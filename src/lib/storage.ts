@@ -7,8 +7,10 @@ type StorageLike = Pick<Storage, "getItem" | "setItem" | "removeItem">;
 
 const strings = (value: unknown): value is string[] => Array.isArray(value) && value.every((item) => typeof item === "string");
 const validLearningKey = (key: string) => {
-  const order = Number(key.replace("network-topic-", ""));
-  return key.startsWith("network-topic-") && Number.isInteger(order) && order >= 1 && order <= 14;
+  const match = key.match(/^([a-z0-9-]+)-topic-(\d+)$/);
+  if (!match) return false;
+  const order = Number(match[2]);
+  return Number.isInteger(order) && order >= 1 && order <= 100;
 };
 
 export function parseProgress(value: unknown): Progress {

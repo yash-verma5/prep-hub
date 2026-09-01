@@ -12,8 +12,8 @@ main:has(.learning-topics) .page-title { align-items: center; margin-bottom: 12p
 .topic-index button { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 7px; border-radius: 8px; padding: 8px 10px; color: #526473; font-size: .76rem; line-height: 1.2; text-align: left; white-space: nowrap; }
 .topic-index button:hover { background: #eef5f3; border-color: #9acbbf; }
 .topic-index button.active { border-color: #16856b; background: #e3f3ee; color: #075f4e; }
-.topic-index span { display: grid; width: 22px; height: 22px; place-items: center; border-radius: 50%; background: #e9eff3; color: #526473; font: 700 .69rem "Manrope", sans-serif; }
-.topic-index button.active span { background: #16856b; color: white; }
+.topic-index > button > span { display: grid; width: 22px; height: 22px; place-items: center; border-radius: 50%; background: #e9eff3; color: #526473; font: 700 .69rem "Manrope", sans-serif; }
+.topic-index button.active > span { background: #16856b; color: white; }
 
 .learning-topics { display: grid; gap: 28px; }
 .learning-topic { scroll-margin-top: 94px; padding: clamp(24px, 4vw, 44px); border: 1px solid #dce4e9; border-radius: 18px; background: white; box-shadow: 0 10px 30px #102a430a; }
@@ -39,7 +39,8 @@ main:has(.learning-topics) .page-title { align-items: center; margin-bottom: 12p
 .steps { counter-reset: lesson-step; list-style: none; padding-left: 0 !important; }
 .steps li { position: relative; min-height: 28px; padding: 0 0 0 37px; }
 .steps li::before { position: absolute; left: 0; top: 0; display: grid; width: 24px; height: 24px; place-items: center; border-radius: 50%; background: #e2f2ed; color: #08705b; content: counter(lesson-step); counter-increment: lesson-step; font: 800 .72rem "Manrope", sans-serif; }
-.steps span { display: block; margin-top: 2px; color: #5d6e7b; font-size: .88rem; }
+.steps > li > .rich-content,
+.steps > li > span { display: block; margin-top: 2px; color: #5d6e7b; font-size: .88rem; }
 .analogy { border-left: 4px solid #d98b42; background: #fffaf4; }
 .comparison { padding-bottom: 8px; overflow: hidden; background: white; }
 .comparison h3 { padding: 0 0 12px; }
@@ -60,11 +61,14 @@ main:has(.learning-topics) .page-title { align-items: center; margin-bottom: 12p
 .recall summary { color: #102a43; font-size: .9rem; }
 .recall details p { margin: 9px 0 0; color: #08705b; }
 .learning-topic footer { display: grid; gap: 7px; margin-top: 20px; padding: 17px 18px; border-radius: 10px; background: #f4f7f8; color: #526473; font-size: .79rem; }
-.learning-topic footer span { display: block; }
+.learning-topic footer > span { display: block; }
 .learning-topic footer a { color: #08705b; font-weight: 700; }
 .learning-topic footer small { color: #657786; }
 .lesson-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px; padding-top: 20px; border-top: 1px solid #e2e9ed; }
 .lesson-actions button { padding: 9px 12px; font-size: .84rem; }
+.lesson-actions button.complete-action,
+.lesson-actions button.selected-action { border-color: #16856b; background: #e3f3ee; color: #075f4e; font-weight: 700; }
+.lesson-actions button.complete-action:hover { background: #d4ebd4; border-color: #0e6c56; }
 
 @media (max-width: 720px) {
   main:has(.learning-topics) .page-title { align-items: flex-start; }
@@ -75,3 +79,102 @@ main:has(.learning-topics) .page-title { align-items: center; margin-bottom: 12p
   .lesson-actions { display: grid; grid-template-columns: 1fr 1fr; }
   .lesson-actions button { width: 100%; }
 }
+
+/* TOC Visual Diagram Components */
+.toc-diagram-card { margin-top: 22px; padding: 20px 22px; border: 1px solid #cce3de; border-radius: 14px; background: linear-gradient(180deg, #f7fbf9 0%, #ffffff 100%); box-shadow: 0 4px 16px #102a4308; }
+.toc-diagram-card .diagram-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.toc-diagram-card .diagram-header h4 { margin: 0; color: #102a43; font-size: .96rem; font-weight: 700; }
+.toc-diagram-card .badge { padding: 3px 9px; border-radius: 6px; background: #e3f3ee; color: #08705b; font-size: .72rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+
+.toc-diagram-card .svg-container { display: flex; justify-content: center; padding: 12px 0; overflow-x: auto; }
+.toc-svg { width: 100%; max-width: 540px; height: auto; }
+
+.toc-diagram-card .diagram-caption { margin-top: 10px; font-size: .88rem; color: #475569; }
+.toc-diagram-card .diagram-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.toc-diagram-card .diagram-actions button,
+.toc-diagram-card .pump-controls button { padding: 6px 12px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; color: #475569; font-size: .8rem; font-weight: 600; cursor: pointer; transition: all .15s ease; }
+.toc-diagram-card button.active-btn { border-color: #16856b; background: #16856b; color: white; }
+
+/* Arden's Theorem Box */
+.arden-box { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 10px; }
+.arden-equation-card { padding: 16px; border: 1px solid #b2dfdb; border-radius: 10px; background: #e0f2f1; text-align: center; }
+.arden-equation-card .eq-row { margin: 6px 0; }
+.arden-equation-card .eq-label { display: block; font-size: .75rem; color: #004d40; font-weight: 700; text-transform: uppercase; margin-bottom: 2px; }
+.arden-equation-card .eq-code { display: inline-block; padding: 4px 10px; border-radius: 6px; background: white; color: #00796b; font-family: monospace; font-size: .98rem; font-weight: 700; }
+.arden-equation-card .eq-code.highlight { background: #004d40; color: #e0f2f1; }
+.arden-equation-card .eq-arrow { margin: 6px 0; color: #004d40; font-weight: 800; font-size: .9rem; }
+.arden-explanation { padding: 14px; background: white; border: 1px solid #e2e8f0; border-radius: 10px; }
+.arden-explanation p { margin: 0 0 8px; font-size: .88rem; }
+.arden-explanation .formula-badge { display: inline-block; padding: 6px 12px; border-radius: 6px; background: #f1f5f9; color: #0f172a; font-family: monospace; font-size: .88rem; font-weight: bold; }
+.arden-explanation .subtext { margin-top: 8px; color: #64748b; font-size: .82rem; }
+
+/* Minimization Grid */
+.minimization-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 10px; }
+.partition-step { padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; background: white; }
+.partition-step h5 { margin: 0 0 8px; color: #1e293b; font-size: .84rem; }
+.partition-step .p-box { display: grid; gap: 6px; font-size: .8rem; }
+.partition-step .group { padding: 4px 8px; border-radius: 4px; font-weight: 600; }
+.partition-step .group.non-final { background: #f1f5f9; color: #475569; }
+.partition-step .group.final { background: #dcfce7; color: #166534; }
+.partition-step .test-line { margin: 0; color: #64748b; font-size: .78rem; }
+.partition-step .result-badge { padding: 4px 8px; border-radius: 4px; background: #e0f2fe; color: #0369a1; font-weight: 700; font-size: .78rem; text-align: center; }
+.partition-step .p-box.merged { font-weight: bold; color: #0f172a; }
+
+/* Pumping Lemma Visual */
+.pumping-visual { margin-top: 10px; }
+.string-segments { display: flex; gap: 8px; justify-content: center; margin-bottom: 14px; }
+.string-segments .segment { padding: 10px 16px; border-radius: 8px; text-align: center; min-width: 90px; }
+.string-segments .segment.prefix { background: #f1f5f9; border: 1px solid #cbd5e1; }
+.string-segments .segment.loop { background: #fef3c7; border: 2px solid #f59e0b; }
+.string-segments .segment.suffix { background: #f1f5f9; border: 1px solid #cbd5e1; }
+.string-segments .seg-label { display: block; font-size: .72rem; font-weight: 800; color: #475569; text-transform: uppercase; }
+.string-segments .seg-val { display: block; font-family: monospace; font-size: 1.1rem; font-weight: bold; color: #0f172a; margin-top: 4px; }
+.pump-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: .84rem; color: #475569; }
+
+/* PDA Layout */
+.pda-layout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 10px; }
+.pda-tape, .pda-control, .pda-stack { padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; background: white; }
+.pda-label { display: block; font-size: .76rem; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 8px; }
+.tape-cells { display: flex; gap: 4px; }
+.tape-cells .cell { display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid #cbd5e1; border-radius: 4px; font-family: monospace; font-weight: bold; background: #f8fafc; }
+.tape-cells .cell.read { border-color: #16856b; background: #e3f3ee; color: #08705b; }
+.pda-control .state-bubble { display: inline-block; padding: 6px 12px; border-radius: 20px; background: #0f172a; color: white; font-size: .84rem; }
+.pda-control .op-text { margin-top: 8px; font-size: .78rem; color: #475569; font-family: monospace; }
+.stack-items { display: grid; gap: 4px; }
+.stack-cell { padding: 4px 8px; border-radius: 4px; background: #f1f5f9; font-family: monospace; font-size: .8rem; text-align: center; }
+.stack-cell.top { background: #dcfce7; color: #166534; font-weight: bold; }
+.stack-cell.bottom { background: #e2e8f0; color: #64748b; }
+
+/* Turing Machine Layout */
+.tm-layout { margin-top: 10px; text-align: center; }
+.tm-head-indicator { margin-bottom: 6px; color: #ef6c24; font-size: .82rem; font-weight: 800; }
+.tm-tape { display: flex; justify-content: center; align-items: center; gap: 4px; }
+.tape-cell { display: grid; place-items: center; width: 36px; height: 36px; border: 2px solid #94a3b8; border-radius: 6px; font-family: monospace; font-size: 1.1rem; font-weight: bold; background: white; }
+.tape-cell.active { border-color: #ef6c24; background: #fff7f2; color: #c2410c; }
+.blank-cell { font-family: monospace; color: #94a3b8; font-size: .9rem; }
+.tm-rules { margin-top: 12px; font-size: .86rem; color: #334155; }
+.tm-rules small { display: block; color: #64748b; font-size: .78rem; margin-top: 2px; }
+
+/* Chomsky Hierarchy Concentric Circles */
+.chomsky-concentric { margin-top: 10px; }
+.ring { padding: 14px 18px; border-radius: 12px; border: 2px stroke; }
+.ring-title { display: block; font-size: .78rem; font-weight: 800; margin-bottom: 8px; }
+.ring.type0 { background: #f8fafc; border: 2px solid #94a3b8; color: #334155; }
+.ring.type1 { background: #eff6ff; border: 2px solid #3b82f6; color: #1e40af; }
+.ring.type2 { background: #f0fdf4; border: 2px solid #22c55e; color: #15803d; }
+.ring.type3 { background: #fefce8; border: 2px solid #eab308; color: #a16207; }
+
+/* Undecidability Grid */
+.undecidable-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 10px; }
+.decision-box { padding: 14px; border-radius: 10px; border: 1px solid; }
+.decision-box h5 { margin: 0 0 6px; font-size: .86rem; font-weight: 800; }
+.decision-box p { margin: 0; font-size: .8rem; line-height: 1.5; }
+.decision-box.recursive { background: #f0fdf4; border-color: #86efac; color: #166534; }
+.decision-box.re { background: #fefce8; border-color: #fde047; color: #854d0e; }
+.decision-box.non-re { background: #fef2f2; border-color: #fca5a5; color: #991b1b; }
+
+@media (max-width: 720px) {
+  .arden-box, .minimization-grid, .pda-layout, .undecidable-grid { grid-template-columns: 1fr; }
+  .string-segments { flex-wrap: wrap; }
+}
+

@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { networkModule, questions } from "../content";
+import { dbmsModule, networkModule, osModule, tocModule, compilerDesignModule, questions } from "../content";
 import { SUBJECTS, type Attempt, type Question } from "../types";
 import { filterWrongAnswers } from "./revision";
 import { scoreAttempts } from "./scoring";
 import { EMPTY_PROGRESS, loadProgress, parseProgress, saveProgress, STORAGE_KEY } from "./storage";
 import { validateQuestions } from "./questions";
-import { NETWORK_TOPIC_ORDER, validateLearningModule } from "./learning";
+import { DBMS_TOPIC_ORDER, NETWORK_TOPIC_ORDER, OS_TOPIC_ORDER, TOC_TOPIC_ORDER, COMPILER_DESIGN_TOPIC_ORDER, validateLearningModule } from "./learning";
 
 const memoryStorage = () => {
   const values = new Map<string, string>();
@@ -52,12 +52,19 @@ describe("progress persistence", () => {
 
 describe("question validation", () => {
   it("accepts the expanded bank and preserves the exact mock section pools", () => {
-    expect(questions).toHaveLength(115);
+    expect(questions).toHaveLength(191);
     expect(questions.filter((q) => q.section === "quant")).toHaveLength(20);
     expect(questions.filter((q) => q.section === "reasoning")).toHaveLength(15);
     expect(questions.filter((q) => q.section === "english")).toHaveLength(15);
-    expect(questions.filter((q) => q.section === "domain")).toHaveLength(65);
+    expect(questions.filter((q) => q.section === "domain")).toHaveLength(141);
     expect(questions.filter((q) => q.subject === "Computer Networks")).toHaveLength(20);
+    expect(questions.filter((q) => q.subject === "Operating Systems")).toHaveLength(25);
+    expect(questions.filter((q) => q.subject === "Databases")).toHaveLength(25);
+    expect(questions.filter((q) => q.subject === "Theory of Computation")).toHaveLength(25);
+    expect(questions.filter((q) => q.subject === "Compiler Design")).toHaveLength(21);
+    expect(questions.filter((q) => q.id.startsWith("toc-"))).toHaveLength(25);
+    expect(questions.filter((q) => q.id.startsWith("cd-"))).toHaveLength(16);
+    expect(questions.filter((q) => q.id.startsWith("compiler-"))).toHaveLength(5);
     const mockDomain = SUBJECTS.slice(0, 10).flatMap((subject) => questions.filter((q) => q.subject === subject).slice(0, 5));
     expect(mockDomain).toHaveLength(50);
   });
@@ -66,10 +73,27 @@ describe("question validation", () => {
     const invalid = { ...questions[0], explanation: "" } as Question;
     expect(() => validateQuestions([invalid], new Set([invalid.sourceId, ...invalid.verificationSources.map((source) => source.sourceId)]))).toThrow(/explanation/);
   });
-  it("validates all 14 learning topics and their required study blocks", () => {
+
+  it("validates all learning topics and their required study blocks", () => {
     expect(validateLearningModule(networkModule)).toBe(networkModule);
     expect(networkModule.topics.map((topic) => topic.title)).toEqual([...NETWORK_TOPIC_ORDER]);
     expect(networkModule.topics.every((topic) => topic.solvedExamples.length === 2 && topic.takeaways.length === 5 && topic.quickRecall.length === 3)).toBe(true);
+
+    expect(validateLearningModule(osModule)).toBe(osModule);
+    expect(osModule.topics.map((topic) => topic.title)).toEqual([...OS_TOPIC_ORDER]);
+    expect(osModule.topics.every((topic) => topic.solvedExamples.length === 2 && topic.takeaways.length === 5 && topic.quickRecall.length === 3)).toBe(true);
+
+    expect(validateLearningModule(dbmsModule)).toBe(dbmsModule);
+    expect(dbmsModule.topics.map((topic) => topic.title)).toEqual([...DBMS_TOPIC_ORDER]);
+    expect(dbmsModule.topics.every((topic) => topic.solvedExamples.length === 2 && topic.takeaways.length === 5 && topic.quickRecall.length === 3)).toBe(true);
+
+    expect(validateLearningModule(tocModule)).toBe(tocModule);
+    expect(tocModule.topics.map((topic) => topic.title)).toEqual([...TOC_TOPIC_ORDER]);
+    expect(tocModule.topics.every((topic) => topic.solvedExamples.length === 2 && topic.takeaways.length >= 2 && topic.quickRecall.length === 3)).toBe(true);
+
+    expect(validateLearningModule(compilerDesignModule)).toBe(compilerDesignModule);
+    expect(compilerDesignModule.topics.map((topic) => topic.title)).toEqual([...COMPILER_DESIGN_TOPIC_ORDER]);
+    expect(compilerDesignModule.topics.every((topic) => topic.solvedExamples.length === 2 && topic.takeaways.length >= 2 && topic.quickRecall.length === 3)).toBe(true);
   });
 
   it("requires Network-specific source and distractor fields", () => {

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { questions } from "./content";
 import Learning from "./Learning";
+import { RichContent } from "./RichContent";
 import { filterWrongAnswers } from "./lib/revision";
 import { scoreAttempts } from "./lib/scoring";
 import { clearProgress, loadProgress, parseProgress, saveProgress } from "./lib/storage";
@@ -29,6 +30,7 @@ function makeAttempt(question: Question, selectedOptionId: string | null, confid
 function App() {
   const [view, setView] = useState<View>("Dashboard");
   const [practiceTopic, setPracticeTopic] = useState<string | undefined>();
+  const [practiceSubject, setPracticeSubject] = useState<Subject | undefined>();
   const [progress, setProgress] = useState<Progress>(() => loadProgress());
 
   const updateProgress = (next: Progress | ((current: Progress) => Progress)) => {
@@ -55,8 +57,8 @@ function App() {
         <main>
           {view === "Dashboard" && <Dashboard progress={progress} go={setView} />}
           {view === "Syllabus" && <Syllabus progress={progress} update={updateProgress} />}
-          {view === "Learning" && <Learning progress={progress} onProgress={updateProgress} onPracticeTopic={(topic) => { setPracticeTopic(topic); setView("Practice"); }} />}
-          {view === "Practice" && <Practice progress={progress} update={updateProgress} initialTopic={practiceTopic} />}
+          {view === "Learning" && <Learning progress={progress} onProgress={updateProgress} onPracticeTopic={(topic, subject) => { setPracticeTopic(topic); if (subject) setPracticeSubject(subject); setView("Practice"); }} />}
+          {view === "Practice" && <Practice progress={progress} update={updateProgress} initialTopic={practiceTopic} initialSubject={practiceSubject} />}
           {view === "Exam" && <Exam update={updateProgress} />}
           {view === "Revision" && <Revision progress={progress} update={updateProgress} />}
           {view === "Data" && <DataControls progress={progress} update={updateProgress} />}
@@ -115,8 +117,8 @@ function Syllabus({ progress, update }: { progress: Progress; update: (next: Pro
   </>;
 }
 
-function Practice({ progress, update, initialTopic }: { progress: Progress; update: (next: Progress | ((current: Progress) => Progress)) => void; initialTopic?: string }) {
-  const [subject, setSubject] = useState<Subject>("Computer Networks");
+function Practice({ progress, update, initialTopic, initialSubject }: { progress: Progress; update: (next: Progress | ((current: Progress) => Progress)) => void; initialTopic?: string; initialSubject?: Subject }) {
+  const [subject, setSubject] = useState<Subject>(initialSubject ?? "Computer Networks");
   const [topic, setTopic] = useState(initialTopic ?? "");
   const availableTopics = [...new Set(questions.filter((question) => question.subject === subject).map((question) => question.topic))];
   const pool = questions.filter((question) => question.subject === subject && (!topic || question.topic === topic));
@@ -156,10 +158,10 @@ function Practice({ progress, update, initialTopic }: { progress: Progress; upda
 export function QuestionCard({ question, selected, confidence, revealed, onSelect, onConfidence }: { question: Question; selected: string | null; confidence: Confidence | null; revealed: boolean; onSelect: (id: string) => void; onConfidence: (value: Confidence) => void }) {
   return <article className="question-card">
     <div className="question-meta"><span>{question.subject}</span><span>{question.topic}</span><span>{question.difficulty}</span></div>
-    <h2>{question.stem}</h2>
-    <fieldset className="options" disabled={revealed}><legend className="sr-only">Answer options</legend>{question.options.map((option, index) => <label key={option.id} className={`${selected === option.id ? "chosen" : ""} ${revealed && option.id === question.correctOptionId ? "correct" : ""} ${revealed && selected === option.id && selected !== question.correctOptionId ? "wrong" : ""}`}><input type="radio" name={`answer-${question.id}`} checked={selected === option.id} onChange={() => onSelect(option.id)} /><b>{String.fromCharCode(65 + index)}</b><span>{option.text}</span></label>)}</fieldset>
+    <h2><RichContent content={question.stem} /></h2>
+    <fieldset className="options" disabled={revealed}><legend className="sr-only">Answer options</legend>{question.options.map((option, index) => <label key={option.id} className={`${selected === option.id ? "chosen" : ""} ${revealed && option.id === question.correctOptionId ? "correct" : ""} ${revealed && selected === option.id && selected !== question.correctOptionId ? "wrong" : ""}`}><input type="radio" name={`answer-${question.id}`} checked={selected === option.id} onChange={() => onSelect(option.id)} /><b>{String.fromCharCode(65 + index)}</b><span><RichContent content={option.text} /></span></label>)}</fieldset>
     <fieldset className="confidence" disabled={revealed}><legend>How confident are you?</legend>{CONFIDENCES.map((item) => <label key={item} className={confidence === item ? "chosen" : ""}><input type="radio" name={`confidence-${question.id}`} checked={confidence === item} onChange={() => onConfidence(item)} /><span>{item}</span></label>)}</fieldset>
-    {revealed && <div className="explanation" aria-live="polite"><strong>{selected === question.correctOptionId ? "Correct" : selected ? "Incorrect" : "Skipped"}</strong><h3>Explanation</h3><p>{question.explanation}</p>{question.closestDistractorExplanation && <><h3>Closest distractor</h3><p>{question.closestDistractorExplanation}</p></>}<small>{question.attribution} · {question.sourceId}, {question.sourceLocator}</small>{question.sourceUrl && <p className="question-source"><a href={question.sourceUrl} target="_blank" rel="noreferrer">{question.sourceTitle}</a></p>}</div>}
+    {revealed && <div className="explanation" aria-live="polite"><strong>{selected === question.correctOptionId ? "Correct" : selected ? "Incorrect" : "Skipped"}</strong><h3>Explanation</h3><RichContent content={question.explanation} />{question.closestDistractorExplanation && <><h3>Closest distractor</h3><RichContent content={question.closestDistractorExplanation} /></>}<small>{question.attribution} · {question.sourceId}, {question.sourceLocator}</small>{question.sourceUrl && <p className="question-source"><a href={question.sourceUrl} target="_blank" rel="noreferrer">{question.sourceTitle}</a></p>}</div>}
   </article>;
 }
 
@@ -235,7 +237,7 @@ function Revision({ progress, update }: { progress: Progress; update: (next: Pro
     <PageTitle eyebrow="Targeted revision" title="Revision notebook" />
     <div className="tabs"><button className={tab === "wrong" ? "active" : ""} onClick={() => setTab("wrong")}>Wrong answers ({filterWrongAnswers(progress.attempts, questions).length})</button><button className={tab === "bookmarks" ? "active" : ""} onClick={() => setTab("bookmarks")}>Bookmarks ({progress.bookmarks.length})</button></div>
     <div className="filters"><select aria-label="Filter by subject" value={filters.subject ?? ""} onChange={(e) => setFilters({ ...filters, subject: e.target.value, topic: "" })}><option value="">All subjects</option>{SUBJECTS.map((subject) => <option key={subject}>{subject}</option>)}</select><select aria-label="Filter by topic" value={filters.topic ?? ""} onChange={(e) => setFilters({ ...filters, topic: e.target.value })}><option value="">All topics</option>{topics.map((topic) => <option key={topic}>{topic}</option>)}</select><select aria-label="Filter by difficulty" value={filters.difficulty ?? ""} onChange={(e) => setFilters({ ...filters, difficulty: e.target.value })}><option value="">All difficulties</option><option>Easy</option><option>Medium</option><option>Hard</option></select><select aria-label="Filter by confidence" value={filters.confidence ?? ""} onChange={(e) => setFilters({ ...filters, confidence: e.target.value })}><option value="">All confidence</option>{CONFIDENCES.map((item) => <option key={item}>{item}</option>)}</select></div>
-    <section className="revision-list">{items.length ? items.map(({ question, attempt }) => <article key={`${question.id}-${attempt?.id ?? "bookmark"}`}><div className="question-meta"><span>{question.subject}</span><span>{question.topic}</span><span>{question.difficulty}</span>{attempt?.confidence && <span>{attempt.confidence}</span>}</div><h2>{question.stem}</h2>{attempt && <p>Your answer: <b>{question.options.find((option) => option.id === attempt.selectedOptionId)?.text ?? "Skipped"}</b></p>}<p className="answer">Correct answer: <b>{question.options.find((option) => option.id === question.correctOptionId)?.text}</b></p><details><summary>Show explanation</summary><p>{question.explanation}</p><small>{question.sourceId} · {question.sourceLocator}</small></details>{progress.bookmarks.includes(question.id) && <button onClick={() => update((current) => ({ ...current, bookmarks: current.bookmarks.filter((id) => id !== question.id) }))}>Remove bookmark</button>}</article>) : <div className="empty"><strong>Nothing here yet</strong><p>Complete practice questions or add bookmarks, then return here.</p></div>}</section>
+    <section className="revision-list">{items.length ? items.map(({ question, attempt }) => <article key={`${question.id}-${attempt?.id ?? "bookmark"}`}><div className="question-meta"><span>{question.subject}</span><span>{question.topic}</span><span>{question.difficulty}</span>{attempt?.confidence && <span>{attempt.confidence}</span>}</div><h2><RichContent content={question.stem} /></h2>{attempt && <p>Your answer: <b><RichContent content={question.options.find((option) => option.id === attempt.selectedOptionId)?.text ?? "Skipped"} /></b></p>}<p className="answer">Correct answer: <b><RichContent content={question.options.find((option) => option.id === question.correctOptionId)?.text ?? ""} /></b></p><details><summary>Show explanation</summary><RichContent content={question.explanation} /><small>{question.sourceId} · {question.sourceLocator}</small></details>{progress.bookmarks.includes(question.id) && <button onClick={() => update((current) => ({ ...current, bookmarks: current.bookmarks.filter((id) => id !== question.id) }))}>Remove bookmark</button>}</article>) : <div className="empty"><strong>Nothing here yet</strong><p>Complete practice questions or add bookmarks, then return here.</p></div>}</section>
   </>;
 }
 

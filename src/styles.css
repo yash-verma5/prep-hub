@@ -194,3 +194,23 @@ summary { color: var(--ink); font-weight: 700; cursor: pointer; }
   .result-hero > div + div { border-left: 0; border-top: 1px solid #365169; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
+
+/* Rich Content & KaTeX Display Scroll Formatting */
+.rich-content { width: 100%; color: inherit; font-size: inherit; line-height: inherit; }
+.rich-content p { margin: 0 0 0.8em; }
+.rich-content p:last-child { margin-bottom: 0; }
+.rich-content .table-scroll { overflow-x: auto; margin: 1em 0; border: 1px solid #dce4e9; border-radius: 8px; }
+.rich-content table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.rich-content th, .rich-content td { padding: 10px 14px; border: 1px solid #e1e9ed; text-align: left; }
+.rich-content th { background: #f1f6f8; font-weight: 700; color: #102a43; }
+
+/* KaTeX Responsive Display Math Container & Layout Protection */
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 6px 0; margin: 0.8em 0 !important; max-width: 100%; text-align: center; }
+.katex-display > .katex { display: block; text-align: center; }
+.katex-display > .katex > .katex-html { display: inline-block; }
+.katex { font-size: 1.05em; line-height: 1.2; text-indent: 0; }
+.katex span { display: inline; }
+.katex .katex-html { display: inline-block; }
+.katex .base { display: inline-block; white-space: nowrap; }
+.katex .mord, .katex .mbin, .katex .mrel, .katex .mopen, .katex .mclose, .katex .mpunct, .katex .minner { display: inline-block; }
+
