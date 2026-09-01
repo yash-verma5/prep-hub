@@ -11,12 +11,18 @@
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
-    "vite": "latest",
+    "katex": "^0.18.5",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-markdown": "^10.1.0",
+    "rehype-katex": "^7.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0",
+    "vite": "latest"
   },
   "devDependencies": {
     "@eslint/js": "latest",
+    "@types/katex": "^0.16.8",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
