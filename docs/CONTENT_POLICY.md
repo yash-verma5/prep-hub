@@ -131,3 +131,11 @@ Automated validation checks completeness, not truth. Human source review remains
 - If official IOCL documents change, update the registry and specification first, then tests and app behavior.
 - Display “tentative” for the exam date until a current official document makes it final.
 
+## 11. Mathematical & Visual Presentation Policy
+
+- **LaTeX Delimiters**: All mathematical notation, variables, set expressions, logic formulas, relational algebra, and matrix equations MUST use KaTeX math delimiters (`$...$` for inline math and `$$...$$` for block display math).
+- **No Raw Unescaped LaTeX**: Content strings must never contain raw unformatted LaTeX strings (e.g. `\sum_{i=1}^n` without `$`).
+- **Responsive Diagram Registry**: Technical diagrams must not be embedded as inline raw HTML or arbitrary unstyled SVGs. All complex visual diagrams (e.g., state transition diagrams, syntax trees, ER models, protocol headers) must be registered with stable IDs in `DiagramRegistry.tsx`.
+- **Global Rich Content Component**: All text rendering in lessons, questions, option stems, and explanations must pass through the standardized `<RichContent />` component to ensure KaTeX mathematical expressions and responsive markdown tables render consistently.
+
+

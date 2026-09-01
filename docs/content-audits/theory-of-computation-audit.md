@@ -1,0 +1,41 @@
+# Theory of Computation (TOC) Content Audit
+
+Reviewed: 1 September 2026  
+Scope: 10-lesson Theory of Computation module against the IOCL Grade-A CS/IT domain heading and the official GATE 2026 CS syllabus.
+
+## Scope Check
+
+IOCL lists **Theory of Computation** as one of the ten CS/IT domain headings. GATE CS 2026 expands it into:
+- Regular expressions and finite automata
+- Context-free grammars and push-down automata
+- Regular and context-free languages, pumping lemma
+- Turing machines and undecidability
+
+The 10-lesson module strictly stays within these boundaries without adding non-syllabus material (such as advanced complexity classes $P, NP, PSPACE$, or quantum automata).
+
+---
+
+## Verified Lesson Outline & Key Elements Audit
+
+| Lesson Number & Title | Syllabus Coverage & Key Concepts | Required Calculations & Diagrams | Key Comparisons | Common Exam Traps & Pitfalls | Primary Sources |
+|---|---|---|---|---|---|
+| **1. Finite Automata: DFA, NFA, and Equivalence** | Deterministic Finite Automata (DFA), Nondeterministic Finite Automata (NFA), $\epsilon$-NFA, 5-tuple definitions $(Q, \Sigma, \delta, q_0, F)$, NFA to DFA Subset Construction algorithm. | NFA to DFA state count upper bound ($2^{|Q|}$); Transition table construction; $\epsilon$-closure computation. | DFA vs NFA vs $\epsilon$-NFA (all possess equal expressive power accepting Regular Languages); Deterministic vs Nondeterministic state transitions. | NFA to DFA conversion max states is $2^n$, but minimal DFA may have fewer; NFA accepts if *at least one* path reaches final state, not all paths. | Hopcroft, Motwani, Ullman Ch. 2; Sipser Ch. 1 |
+| **2. Regular Expressions, Regular Languages, & Arden's Theorem** | Regular Expressions (RE), Operators ($+, \cdot, *$), Language denoted by RE, Arden's Theorem ($R = Q + RP \implies R = QP^*$), RE to FA (Thompson's Construction), FA to RE. | Solving state equations using Arden's Theorem; Converting FA to Regular Expression using state elimination or Arden's. | Regular Expressions vs Finite Automata (equivalent representation); Precedence of operations ($* > \cdot > +$). | Arden's Theorem requires $\epsilon \notin P$ (i.e. $P$ does not contain empty string); $(a+b)^* \ne a^* + b^*$; $(a^*b^*)^* = (a+b)^*$. | Hopcroft, Motwani, Ullman Ch. 3; Sipser Ch. 1 |
+| **3. DFA Minimization & Myhill-Nerode Theorem** | Minimal DFA, Equivalence of States, Distinguishable States, Table-Filling Algorithm (Myhill-Nerode equivalence relations), Myhill-Nerode Index. | Table-filling algorithm step-by-step state pair marking; Partitioning algorithm for DFA minimization. | Equivalent States vs Distinguishable States; Minimizable DFA vs Minimal DFA (unique up to state renaming). | Dead/Trap state MUST be included during DFA minimization; initial state non-final pair vs final-final pair distinction. | Hopcroft, Motwani, Ullman Ch. 4; Linz Ch. 2 |
+| **4. Pumping Lemma for Regular Languages & Non-Regularity** | Pumping Lemma for Regular Languages, Pumping Length $p$, Deconstruct string $w = xyz$ where $|xy| \le p, |y| \ge 1, xy^i z \in L$, Proof of non-regularity. | Selecting string $w \in L$ with $|w| \ge p$; Finding adversary choice of $y$ and pumping $i=0$ or $i=2$ to show contradiction. | Regular vs Non-Regular Languages; Necessary condition (Pumping Lemma) vs Sufficient condition (Myhill-Nerode). | Pumping Lemma is a *necessary* condition for regular languages, NOT a sufficient condition (some non-regular languages satisfy pumping lemma); $y \ne \epsilon$ ($|y| \ge 1$). | Hopcroft, Motwani, Ullman Ch. 4; Sipser Ch. 1 |
+| **5. Context-Free Grammars (CFG), Parse Trees, & Ambiguity** | Context-Free Grammar (CFG) 4-tuple $(V, T, P, S)$, Leftmost Derivation (LMD), Rightmost Derivation (RMD), Parse Trees, Ambiguous Grammars, CNF & GNF Normal Forms. | Derivation tree construction; CNF conversion steps (eliminating $\epsilon$-productions, unit productions, useless symbols). | Leftmost Derivation vs Rightmost Derivation; Ambiguous Grammar (2+ LMDs for same string) vs Ambiguous Language (inherently ambiguous). | Multiple parse trees for one string $\implies$ Ambiguous Grammar; Ambiguity is undecidable for general CFGs; Inherently ambiguous CFL has NO unambiguous grammar. | Hopcroft, Motwani, Ullman Ch. 5; Sipser Ch. 2 |
+| **6. Pushdown Automata (PDA) & Context-Free Languages (CFL)** | Pushdown Automata 7-tuple $(Q, \Sigma, \Gamma, \delta, q_0, Z_0, F)$, Acceptance by Final State vs Empty Stack, Deterministic PDA (DPDA) vs Nondeterministic PDA (NPDA). | Stack transition tracing; Conversion between final state and empty stack acceptance. | DPDA (accepts Deterministic CFLs - DCFL) vs NPDA (accepts all CFLs); DCFLs $\subset$ CFLs (strict containment). | NPDA is MORE powerful than DPDA ($L = \{ww^R\}$ is CFL but NOT DCFL); DPDA languages are closed under complementation, but general CFLs are NOT. | Hopcroft, Motwani, Ullman Ch. 6; Sipser Ch. 2 |
+| **7. Pumping Lemma for CFLs & Closure Properties** | Pumping Lemma for CFLs ($w = vwxyz, |vxy| \le p, |vy| \ge 1, vw^i x y^i z \in L$), Closure properties of Regular, DCFL, CFL, CSL, REC, RE under set operations. | Pumping Lemma proof for non-CFLs ($L = \{a^n b^n c^n\}$); Closure property calculations (e.g. CFL $\cap$ Regular = CFL). | Closure under Intersection, Complement, Union, Concatenation, Kleene Star across Chomsky Hierarchy classes. | CFLs are closed under Union, Concatenation, Kleene Star, but NOT closed under Intersection or Complementation; Intersection of CFL and Regular IS Context-Free. | Hopcroft, Motwani, Ullman Ch. 7; Linz Ch. 8 |
+| **8. Turing Machines (TM) & Language Acceptance** | Turing Machine 7-tuple $(Q, \Sigma, \Gamma, \delta, q_0, q_{accept}, q_{reject})$, Tape head movements ($L, R$), Deterministic TM (DTM), Turing Decidable (Recursive) vs Turing Recognizable (Recursively Enumerable). | Transition trace on tape; Halting configurations ($q_{accept}, q_{reject}$, infinite loop). | Turing Decidable / Recursive ($L$) vs Turing Recognizable / RE ($L$); Multitape TM vs Single-tape TM (equivalent power). | TM tape is infinite in at least one direction (or both); RE language TM halts and accepts on valid strings, but may loop forever on invalid strings. | Hopcroft, Motwani, Ullman Ch. 8; Sipser Ch. 3 |
+| **9. Chomsky Hierarchy of Languages** | Type 0 (Unrestricted / RE), Type 1 (Context-Sensitive / CSL), Type 2 (Context-Free / CFL), Type 3 (Regular). Grammar rules, Automata equivalence, Containment relations. | Production rule classification ($A \to \alpha$, $|\alpha| \le |\beta|$, $A \to w$, etc.); Language containment verification. | Grammar Type 3 $\subset$ Type 2 $\subset$ Type 1 $\subset$ Type 0; Finite Automaton vs LBA vs PDA vs Turing Machine. | Regular $\subset$ DCFL $\subset$ CFL $\subset$ CSL $\subset$ Recursive $\subset$ RE; LBA (Linear Bounded Automaton) accepts CSLs ($|\alpha| \le |\beta|$). | Hopcroft, Motwani, Ullman Ch. 9; Chomsky (1956) |
+| **10. Undecidability, Halting Problem, & Rice's Theorem** | Decidability vs Undecidability, Diagonalization Language $L_d$, Universal Language $L_u$, Halting Problem ($H_{TM}$), Reduction ($A \le_m B$), Rice's Theorem (Part 1 and Part 2). | Reduction proofs ($A \le_m B$, if $A$ undecidable $\implies B$ undecidable); Applying Rice's Theorem to property $P$. | Semantic Property (about language accepted $L(M)$) vs Syntactic Property (about TM structure/states $|Q|$); Rice's Theorem applicability. | Rice's Theorem applies ONLY to non-trivial *semantic* properties of RE languages; checks on number of states, tape alphabet, or steps are *syntactic* and DECIDABLE. | Hopcroft, Motwani, Ullman Ch. 9; Sipser Ch. 4–5 |
+
+---
+
+## Primary Verified Sources Inspected
+
+1. **Hopcroft, John E., Rajeev Motwani, and Jeffrey D. Ullman** — *Introduction to Automata Theory, Languages, and Computation* (3rd Edition, Pearson)
+2. **Sipser, Michael** — *Introduction to the Theory of Computation* (3rd Edition, Cengage Learning)
+3. **Linz, Peter** — *An Introduction to Formal Languages and Automata* (6th Edition, Jones & Bartlett Learning)
+4. **Official GATE CS 2026 Syllabus** — Section 5: Theory of Computation
+5. **IOCL Grade-A Recruitment Notification Syllabus** — CS/IT Domain Heading: Theory of Computation

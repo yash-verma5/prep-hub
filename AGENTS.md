@@ -21,6 +21,8 @@ Build a focused local study and practice platform for the IOCL 2026 Graduate Eng
 - Never invent a fact, question, answer, explanation, locator, citation, or previous-year attribution.
 - Follow `docs/CONTENT_POLICY.md`; every enabled question needs an explanation, provenance label, precise source, verification source, and approved status.
 - Do not reproduce paid or unauthorized copyrighted test-series content.
+- Standardize all mathematical expressions and formulas using LaTeX syntax or KaTeX delimiters (`$...$` for inline, `$$...$$` for block math). Never output raw unformatted LaTeX strings (e.g. `\sum`, `\sigma`, `\pi`).
+- Render complex technical diagrams via centralized SVG components in `DiagramRegistry.tsx`.
 
 ## Product constraints
 
