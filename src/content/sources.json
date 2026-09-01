@@ -1,0 +1,170 @@
+[
+  {
+    "id": "IOCL-GA-SYL-2026",
+    "title": "IOCL General Aptitude Syllabus",
+    "authority": "Indian Oil Corporation Limited",
+    "location": "sources/official/AllPostGeneralAptitude.pdf"
+  },
+  {
+    "id": "GATE-CS-SYL-2026",
+    "title": "GATE 2026 Computer Science and Information Technology Syllabus",
+    "authority": "IIT Guwahati",
+    "location": "sources/official/CS_2026_Syllabus.pdf"
+  },
+  {
+    "id": "NCERT-MATH",
+    "title": "NCERT Mathematics, Classes X–XII",
+    "authority": "National Council of Educational Research and Training",
+    "location": "https://ncert.nic.in/textbook.php"
+  },
+  {
+    "id": "ROSEN-DM",
+    "title": "Discrete Mathematics and Its Applications, 8th edition",
+    "authority": "Kenneth H. Rosen",
+    "location": "Chapters 1, 2, 5, 6 and 10"
+  },
+  {
+    "id": "PURDUE-OWL",
+    "title": "Purdue Online Writing Lab — Grammar",
+    "authority": "Purdue University",
+    "location": "https://owl.purdue.edu/owl/general_writing/grammar/"
+  },
+  {
+    "id": "MANO-DIGITAL",
+    "title": "Digital Design, 6th edition",
+    "authority": "M. Morris Mano and Michael Ciletti",
+    "location": "Chapters 1–5"
+  },
+  {
+    "id": "PATTERSON-COA",
+    "title": "Computer Organization and Design, RISC-V Edition",
+    "authority": "David Patterson and John Hennessy",
+    "location": "Chapters 2, 4 and 5"
+  },
+  {
+    "id": "ISO-C17",
+    "title": "ISO/IEC 9899:2018 — Programming Languages — C",
+    "authority": "ISO/IEC",
+    "location": "Clauses 6.2 and 6.8"
+  },
+  {
+    "id": "CLRS",
+    "title": "Introduction to Algorithms, 4th edition",
+    "authority": "Cormen, Leiserson, Rivest and Stein",
+    "location": "Chapters 2, 6, 20–22 and 24"
+  },
+  {
+    "id": "SIPSER-TOC",
+    "title": "Introduction to the Theory of Computation, 3rd edition",
+    "authority": "Michael Sipser",
+    "location": "Chapters 1–5"
+  },
+  {
+    "id": "DRAGON-COMPILERS",
+    "title": "Compilers: Principles, Techniques, and Tools, 2nd edition",
+    "authority": "Aho, Lam, Sethi and Ullman",
+    "location": "Chapters 2, 3, 4, 6 and 9"
+  },
+  {
+    "id": "OS-CONCEPTS",
+    "title": "Operating System Concepts, 10th edition",
+    "authority": "Silberschatz, Galvin and Gagne",
+    "location": "Chapters 3–10"
+  },
+  {
+    "id": "DB-SYSTEMS",
+    "title": "Database System Concepts, 7th edition",
+    "authority": "Silberschatz, Korth and Sudarshan",
+    "location": "Chapters 2–7, 14 and 17–18"
+  },
+  {
+    "id": "NETWORKING-TD",
+    "title": "Computer Networking: A Top-Down Approach, 8th edition",
+    "authority": "James Kurose and Keith Ross",
+    "location": "Chapters 2–6"
+  },
+  {
+    "id": "RFC-1242",
+    "title": "RFC 1242 — Benchmarking Terminology for Network Interconnection Devices",
+    "authority": "IETF / RFC Editor",
+    "location": "https://www.rfc-editor.org/rfc/rfc1242"
+  },
+  {
+    "id": "RFC-1122",
+    "title": "RFC 1122 — Requirements for Internet Hosts: Communication Layers",
+    "authority": "IETF / RFC Editor",
+    "location": "https://www.rfc-editor.org/rfc/rfc1122"
+  },
+  {
+    "id": "IEEE-8023",
+    "title": "IEEE 802.3 Ethernet Working Group",
+    "authority": "IEEE 802",
+    "location": "https://www.ieee802.org/3/"
+  },
+  {
+    "id": "RFC-791",
+    "title": "RFC 791 — Internet Protocol",
+    "authority": "IETF / RFC Editor",
+    "location": "https://www.rfc-editor.org/rfc/rfc791"
+  },
+  {
+    "id": "RFC-1918",
+    "title": "RFC 1918 — Address Allocation for Private Internets",
+    "authority": "IETF / RFC Editor",
+    "location": "https://www.rfc-editor.org/rfc/rfc1918"
+  },
+  {
+    "id": "RFC-4632",
+    "title": "RFC 4632 — CIDR Address Assignment and Aggregation",
+    "authority": "IETF / RFC Editor",
+    "location": "https://www.rfc-editor.org/rfc/rfc4632"
+  },
+  {
+    "id": "RFC-826",
+    "title": "RFC 826 — Address Resolution Protocol",
+    "authority": "IETF / RFC Editor",
+    "location": "https://www.rfc-editor.org/rfc/rfc826"
+  },
+  {
+    "id": "RFC-2131",
+    "title": "RFC 2131 — Dynamic Host Configuration Protocol",
+    "authority": "IETF / RFC Editor",
+    "location": "https://www.rfc-editor.org/rfc/rfc2131"
+  },
+  {
+    "id": "RFC-2328",
+    "title": "RFC 2328 — OSPF Version 2",
+    "authority": "IETF / RFC Editor",
+    "location": "https://www.rfc-editor.org/rfc/rfc2328"
+  },
+  {
+    "id": "RFC-9293",
+    "title": "RFC 9293 — Transmission Control Protocol",
+    "authority": "IETF / RFC Editor",
+    "location": "https://www.rfc-editor.org/rfc/rfc9293"
+  },
+  {
+    "id": "RFC-768",
+    "title": "RFC 768 — User Datagram Protocol",
+    "authority": "IETF / RFC Editor",
+    "location": "https://www.rfc-editor.org/rfc/rfc768"
+  },
+  {
+    "id": "RFC-5681",
+    "title": "RFC 5681 — TCP Congestion Control",
+    "authority": "IETF / RFC Editor",
+    "location": "https://www.rfc-editor.org/rfc/rfc5681"
+  },
+  {
+    "id": "RFC-1035",
+    "title": "RFC 1035 — Domain Names: Implementation and Specification",
+    "authority": "IETF / RFC Editor",
+    "location": "https://www.rfc-editor.org/rfc/rfc1035"
+  },
+  {
+    "id": "NIST-SP800-12",
+    "title": "NIST SP 800-12 Rev. 1 — An Introduction to Information Security",
+    "authority": "National Institute of Standards and Technology",
+    "location": "https://csrc.nist.gov/pubs/sp/800/12/r1/final"
+  }
+]

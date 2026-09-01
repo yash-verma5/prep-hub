@@ -1,0 +1,202 @@
+[
+  {
+    "id": "db-01",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.2 — integrity constraints",
+    "section": "domain",
+    "subject": "Databases",
+    "topic": "Relational model",
+    "difficulty": "Easy",
+    "stem": "What must be true of a primary key value in a relation?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It uniquely identifies a tuple and is not null"
+      },
+      {
+        "id": "b",
+        "text": "It must be duplicated"
+      },
+      {
+        "id": "c",
+        "text": "It must contain only text"
+      },
+      {
+        "id": "d",
+        "text": "It is always a foreign key"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "A primary key uniquely identifies tuples and cannot be null.",
+    "verificationSources": [
+      {
+        "sourceId": "DB-SYSTEMS",
+        "locator": "Keys and integrity constraints"
+      }
+    ],
+    "reviewNote": "Second-pass checked against primary-key constraints."
+  },
+  {
+    "id": "db-02",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.2 — SQL",
+    "section": "domain",
+    "subject": "Databases",
+    "topic": "SQL",
+    "difficulty": "Easy",
+    "stem": "Which SQL clause filters individual rows before grouping?",
+    "options": [
+      {
+        "id": "a",
+        "text": "WHERE"
+      },
+      {
+        "id": "b",
+        "text": "HAVING"
+      },
+      {
+        "id": "c",
+        "text": "ORDER BY"
+      },
+      {
+        "id": "d",
+        "text": "CREATE"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "WHERE filters rows before grouping; HAVING filters groups after aggregation.",
+    "verificationSources": [
+      {
+        "sourceId": "DB-SYSTEMS",
+        "locator": "SQL — basic queries and aggregation"
+      }
+    ],
+    "reviewNote": "Second-pass checked against SQL logical processing."
+  },
+  {
+    "id": "db-03",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.2 — normal forms",
+    "section": "domain",
+    "subject": "Databases",
+    "topic": "Normalization",
+    "difficulty": "Easy",
+    "stem": "Normalization primarily aims to reduce redundancy and prevent what?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Update anomalies"
+      },
+      {
+        "id": "b",
+        "text": "All indexes"
+      },
+      {
+        "id": "c",
+        "text": "Every join"
+      },
+      {
+        "id": "d",
+        "text": "Use of keys"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Normalization reduces duplicated facts and the insertion, deletion and update anomalies they cause.",
+    "verificationSources": [
+      {
+        "sourceId": "DB-SYSTEMS",
+        "locator": "Relational design — normalization"
+      }
+    ],
+    "reviewNote": "Second-pass checked against normalization goals."
+  },
+  {
+    "id": "db-04",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.2 — transactions",
+    "section": "domain",
+    "subject": "Databases",
+    "topic": "Transactions",
+    "difficulty": "Easy",
+    "stem": "Which ACID property means a transaction happens completely or not at all?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Atomicity"
+      },
+      {
+        "id": "b",
+        "text": "Consistency"
+      },
+      {
+        "id": "c",
+        "text": "Isolation"
+      },
+      {
+        "id": "d",
+        "text": "Durability"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Atomicity treats the transaction as one indivisible unit that commits or rolls back.",
+    "verificationSources": [
+      {
+        "sourceId": "DB-SYSTEMS",
+        "locator": "Transactions — ACID properties"
+      }
+    ],
+    "reviewNote": "Second-pass checked against ACID definitions."
+  },
+  {
+    "id": "db-05",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.2 — B+ trees",
+    "section": "domain",
+    "subject": "Databases",
+    "topic": "Indexing",
+    "difficulty": "Medium",
+    "stem": "In a typical B+ tree index, where are data entries or record pointers stored?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only in the root"
+      },
+      {
+        "id": "b",
+        "text": "At leaf nodes"
+      },
+      {
+        "id": "c",
+        "text": "Outside every node"
+      },
+      {
+        "id": "d",
+        "text": "Only in internal nodes"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "Internal nodes guide searches; leaf nodes contain data entries or pointers and support range scans.",
+    "verificationSources": [
+      {
+        "sourceId": "DB-SYSTEMS",
+        "locator": "Indexing — B+ trees"
+      }
+    ],
+    "reviewNote": "Second-pass checked against B+ tree organization."
+  }
+]
