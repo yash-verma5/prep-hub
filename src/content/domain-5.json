@@ -5,31 +5,31 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p.2 — integrity constraints",
+    "sourceLocator": "p.2 \u2014 integrity constraints",
     "section": "domain",
     "subject": "Databases",
-    "topic": "Relational model",
+    "topic": "Relational Model Fundamentals: Keys and Integrity Constraints",
     "difficulty": "Easy",
     "stem": "What must be true of a primary key value in a relation?",
     "options": [
       {
-        "id": "a",
+        "id": "db-01-a",
         "text": "It uniquely identifies a tuple and is not null"
       },
       {
-        "id": "b",
+        "id": "db-01-b",
         "text": "It must be duplicated"
       },
       {
-        "id": "c",
+        "id": "db-01-c",
         "text": "It must contain only text"
       },
       {
-        "id": "d",
+        "id": "db-01-d",
         "text": "It is always a foreign key"
       }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "db-01-a",
     "explanation": "A primary key uniquely identifies tuples and cannot be null.",
     "verificationSources": [
       {
@@ -45,36 +45,36 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p.2 — SQL",
+    "sourceLocator": "p.2 \u2014 SQL",
     "section": "domain",
     "subject": "Databases",
-    "topic": "SQL",
+    "topic": "Structured Query Language (SQL): DDL, DML, Aggregations, and Joins",
     "difficulty": "Easy",
     "stem": "Which SQL clause filters individual rows before grouping?",
     "options": [
       {
-        "id": "a",
+        "id": "db-02-a",
         "text": "WHERE"
       },
       {
-        "id": "b",
+        "id": "db-02-b",
         "text": "HAVING"
       },
       {
-        "id": "c",
+        "id": "db-02-c",
         "text": "ORDER BY"
       },
       {
-        "id": "d",
+        "id": "db-02-d",
         "text": "CREATE"
       }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "db-02-a",
     "explanation": "WHERE filters rows before grouping; HAVING filters groups after aggregation.",
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "SQL — basic queries and aggregation"
+        "locator": "SQL \u2014 basic queries and aggregation"
       }
     ],
     "reviewNote": "Second-pass checked against SQL logical processing."
@@ -85,36 +85,36 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p.2 — normal forms",
+    "sourceLocator": "p.2 \u2014 normal forms",
     "section": "domain",
     "subject": "Databases",
-    "topic": "Normalization",
+    "topic": "Database Normalization: 1NF, 2NF, 3NF, BCNF, and Decompositions",
     "difficulty": "Easy",
     "stem": "Normalization primarily aims to reduce redundancy and prevent what?",
     "options": [
       {
-        "id": "a",
+        "id": "db-03-a",
         "text": "Update anomalies"
       },
       {
-        "id": "b",
+        "id": "db-03-b",
         "text": "All indexes"
       },
       {
-        "id": "c",
+        "id": "db-03-c",
         "text": "Every join"
       },
       {
-        "id": "d",
+        "id": "db-03-d",
         "text": "Use of keys"
       }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "db-03-a",
     "explanation": "Normalization reduces duplicated facts and the insertion, deletion and update anomalies they cause.",
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "Relational design — normalization"
+        "locator": "Relational design \u2014 normalization"
       }
     ],
     "reviewNote": "Second-pass checked against normalization goals."
@@ -125,36 +125,36 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p.2 — transactions",
+    "sourceLocator": "p.2 \u2014 transactions",
     "section": "domain",
     "subject": "Databases",
-    "topic": "Transactions",
+    "topic": "Transaction Processing and ACID Properties",
     "difficulty": "Easy",
     "stem": "Which ACID property means a transaction happens completely or not at all?",
     "options": [
       {
-        "id": "a",
+        "id": "db-04-a",
         "text": "Atomicity"
       },
       {
-        "id": "b",
+        "id": "db-04-b",
         "text": "Consistency"
       },
       {
-        "id": "c",
+        "id": "db-04-c",
         "text": "Isolation"
       },
       {
-        "id": "d",
+        "id": "db-04-d",
         "text": "Durability"
       }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "db-04-a",
     "explanation": "Atomicity treats the transaction as one indivisible unit that commits or rolls back.",
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "Transactions — ACID properties"
+        "locator": "Transactions \u2014 ACID properties"
       }
     ],
     "reviewNote": "Second-pass checked against ACID definitions."
@@ -165,36 +165,36 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p.2 — B+ trees",
+    "sourceLocator": "p.2 \u2014 B+ trees",
     "section": "domain",
     "subject": "Databases",
-    "topic": "Indexing",
+    "topic": "Storage Structures, Indexing, B-Trees and B+ Trees",
     "difficulty": "Medium",
     "stem": "In a typical B+ tree index, where are data entries or record pointers stored?",
     "options": [
       {
-        "id": "a",
+        "id": "db-05-a",
         "text": "Only in the root"
       },
       {
-        "id": "b",
+        "id": "db-05-b",
         "text": "At leaf nodes"
       },
       {
-        "id": "c",
+        "id": "db-05-c",
         "text": "Outside every node"
       },
       {
-        "id": "d",
+        "id": "db-05-d",
         "text": "Only in internal nodes"
       }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "db-05-b",
     "explanation": "Internal nodes guide searches; leaf nodes contain data entries or pointers and support range scans.",
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "Indexing — B+ trees"
+        "locator": "Indexing \u2014 B+ trees"
       }
     ],
     "reviewNote": "Second-pass checked against B+ tree organization."

@@ -17,10 +17,10 @@ The official IOCL Grade-A Computer Science and IT CBT syllabus comprises 10 doma
 | **2** | **Databases** | 10 | Relational algebra, Normalization closure, B+ tree order/height | `COMPLETE` |
 | **3** | **Theory of Computation** | 10 | Pumping lemma bounds, DFA minimization, Closure properties | `COMPLETE` |
 | **4** | **Compiler Design** | 8 | FIRST/FOLLOW sets, Parsing tables, Liveness analysis | `COMPLETE` |
-| **5** | **Programming and Data Structures** | 10 | Recursion depth, Tree traversals, BST operations, Heapify | `NOT_STARTED` |
+| **5** | **Programming and Data Structures** | 10 | Recursion depth, Tree traversals, BST operations, Heapify | `REVIEW_NEEDED` |
 | **6** | **Algorithms** | 12 | Asymptotic bounds, Recurrences, MST/Shortest path weights | `IN_PROGRESS` |
-| **7** | **Digital Logic** | 8 | K-map minimization, Multiplexer realization, FLOP propagation | `NOT_STARTED` |
-| **8** | **Computer Organization & Architecture** | 10 | Pipeline speedup/stalls, Cache mapping & hit ratios, IEEE 754 | `NOT_STARTED` |
+| **7** | **Digital Logic** | 8 | K-map minimization, Multiplexer realization, FLOP propagation | `REVIEW_NEEDED` |
+| **8** | **Computer Organization & Architecture** | 10 | Pipeline speedup/stalls, Cache mapping & hit ratios, IEEE 754 | `REVIEW_NEEDED` |
 | **9** | **Engineering Mathematics** | 12 | Matrix rank/eigenvalues, Bayes theorem, Combinatorics, Recurrences | `NOT_STARTED` |
 
 ---
@@ -154,7 +154,7 @@ The official IOCL Grade-A Computer Science and IT CBT syllabus comprises 10 doma
 
 ### 5. Programming and Data Structures (Priority 5)
 
-* **Status**: `NOT_STARTED`
+* **Status**: `IN_PROGRESS`
 * **Official Syllabus Coverage**:
   * IOCL Broad Heading: Programming and Data Structures
   * GATE CS Detailed Expansion: Programming in C, recursion, arrays, stacks, queues, linked lists, trees, binary search trees, binary heaps, and graphs.
@@ -218,7 +218,7 @@ The official IOCL Grade-A Computer Science and IT CBT syllabus comprises 10 doma
 
 ### 7. Digital Logic (Priority 7)
 
-* **Status**: `NOT_STARTED`
+* **Status**: `REVIEW_NEEDED`
 * **Official Syllabus Coverage**:
   * IOCL Broad Heading: Digital Logic
   * GATE CS Detailed Expansion: Boolean algebra, combinational and sequential circuits, minimization, number representations, fixed- and floating-point computer arithmetic.
@@ -247,7 +247,7 @@ The official IOCL Grade-A Computer Science and IT CBT syllabus comprises 10 doma
 
 ### 8. Computer Organization and Architecture (Priority 8)
 
-* **Status**: `NOT_STARTED`
+* **Status**: `REVIEW_NEEDED`
 * **Official Syllabus Coverage**:
   * IOCL Broad Heading: Computer Organization and Architecture
   * GATE CS Detailed Expansion: Machine instructions and addressing modes, ALU, datapath and control unit, instruction pipelining and pipeline hazards, memory hierarchy (cache, main memory, secondary storage), I/O interface, interrupts, and DMA.
@@ -278,7 +278,7 @@ The official IOCL Grade-A Computer Science and IT CBT syllabus comprises 10 doma
 
 ### 9. Engineering Mathematics (Priority 9)
 
-* **Status**: `NOT_STARTED`
+* **Status**: `REVIEW_NEEDED`
 * **Official Syllabus Coverage**:
   * IOCL Broad Heading: Engineering Mathematics
   * GATE CS Detailed Expansion: Discrete mathematics (logic, sets, relations, functions, partial orders, lattices, groups, graph theory, combinatorics, recurrences); Linear algebra; Calculus; Probability and statistics.

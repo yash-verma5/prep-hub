@@ -13,23 +13,23 @@
     "stem": "What is the maximum theoretical number of states in a Deterministic Finite Automaton (DFA) created by converting an Nondeterministic Finite Automaton (NFA) with n states?",
     "options": [
       {
-        "id": "A",
+        "id": "toc-q1-A",
         "text": "n^2"
       },
       {
-        "id": "B",
+        "id": "toc-q1-B",
         "text": "2^n"
       },
       {
-        "id": "C",
+        "id": "toc-q1-C",
         "text": "2n"
       },
       {
-        "id": "D",
+        "id": "toc-q1-D",
         "text": "n!"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "toc-q1-B",
     "explanation": "By the Rabin-Scott Subset Construction algorithm, each state of the converted DFA corresponds to a subset of the states of the NFA. For an NFA with n states, the power set has exactly 2^n possible subsets, making 2^n the maximum theoretical state count.",
     "verificationSources": [
       {
@@ -50,26 +50,26 @@
     "subject": "Theory of Computation",
     "topic": "Finite Automata: Deterministic (DFA), Nondeterministic (NFA), and Equivalence",
     "difficulty": "Medium",
-    "stem": "What is the minimum number of states in a DFA over alphabet Σ = {0, 1} that accepts all strings containing an odd number of 1s?",
+    "stem": "What is the minimum number of states in a DFA over alphabet \u03a3 = {0, 1} that accepts all strings containing an odd number of 1s?",
     "options": [
       {
-        "id": "A",
+        "id": "toc-q2-A",
         "text": "1 state"
       },
       {
-        "id": "B",
+        "id": "toc-q2-B",
         "text": "2 states"
       },
       {
-        "id": "C",
+        "id": "toc-q2-C",
         "text": "3 states"
       },
       {
-        "id": "D",
+        "id": "toc-q2-D",
         "text": "4 states"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "toc-q2-B",
     "explanation": "To track whether the number of 1s seen so far is even or odd, the DFA only needs 2 states: State q0 (start state, even number of 1s, non-accepting) and State q1 (odd number of 1s, accepting). On input '0', both states remain in themselves. On input '1', q0 transitions to q1 and q1 transitions to q0.",
     "verificationSources": [
       {
@@ -90,27 +90,27 @@
     "subject": "Theory of Computation",
     "topic": "Regular Expressions, Regular Languages, and Arden's Theorem",
     "difficulty": "Easy",
-    "stem": "Under Arden's Theorem, what is the unique algebraic solution for the linear equation R = Q + RP over an alphabet, provided that ε is not in the language of P?",
+    "stem": "Under Arden's Theorem, what is the unique algebraic solution for the linear equation R = Q + RP over an alphabet, provided that \u03b5 is not in the language of P?",
     "options": [
       {
-        "id": "A",
+        "id": "toc-q3-A",
         "text": "R = P* Q"
       },
       {
-        "id": "B",
+        "id": "toc-q3-B",
         "text": "R = Q P*"
       },
       {
-        "id": "C",
+        "id": "toc-q3-C",
         "text": "R = (Q + P)*"
       },
       {
-        "id": "D",
+        "id": "toc-q3-D",
         "text": "R = Q* P"
       }
     ],
-    "correctOptionId": "B",
-    "explanation": "Arden's Theorem states that if P and Q are regular expressions and ε ∉ L(P), then the linear equation R = Q + RP has the unique solution R = Q P*.",
+    "correctOptionId": "toc-q3-B",
+    "explanation": "Arden's Theorem states that if P and Q are regular expressions and \u03b5 \u2209 L(P), then the linear equation R = Q + RP has the unique solution R = Q P*.",
     "verificationSources": [
       {
         "sourceId": "SIPSER-TOC",
@@ -133,23 +133,23 @@
     "stem": "Which of the following regular expressions generates the exact same language as (a + b)*?",
     "options": [
       {
-        "id": "A",
+        "id": "toc-q4-A",
         "text": "a* + b*"
       },
       {
-        "id": "B",
+        "id": "toc-q4-B",
         "text": "(a* b*)*"
       },
       {
-        "id": "C",
+        "id": "toc-q4-C",
         "text": "a* b*"
       },
       {
-        "id": "D",
+        "id": "toc-q4-D",
         "text": "(a b)*"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "toc-q4-B",
     "explanation": "(a* b*)* allows any sequence of zero or more a's followed by zero or more b's to be repeated arbitrarily many times. This covers all possible combinations of 'a' and 'b' characters in any order, which is identical to (a + b)*. Options A, C, and D miss mixed non-alternating strings.",
     "verificationSources": [
       {
@@ -173,23 +173,23 @@
     "stem": "What is the relationship between the number of equivalence classes of the Myhill-Nerode relation for a regular language L and the minimal DFA for L?",
     "options": [
       {
-        "id": "A",
+        "id": "toc-q5-A",
         "text": "The number of equivalence classes is strictly greater than the state count of the minimal DFA."
       },
       {
-        "id": "B",
+        "id": "toc-q5-B",
         "text": "The number of equivalence classes equals the exact number of states in the minimal DFA."
       },
       {
-        "id": "C",
+        "id": "toc-q5-C",
         "text": "The number of equivalence classes is 2^n where n is the state count of the minimal DFA."
       },
       {
-        "id": "D",
+        "id": "toc-q5-D",
         "text": "The number of equivalence classes depends on the choice of non-deterministic transitions."
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "toc-q5-B",
     "explanation": "The Myhill-Nerode Theorem states that a language L is regular if and only if the number of equivalence classes of the relation R_L is finite. Furthermore, the index (number of equivalence classes) of R_L is exactly equal to the number of states in the unique minimal DFA for L.",
     "verificationSources": [
       {
@@ -213,23 +213,23 @@
     "stem": "A DFA has 5 reachable states: q0 (start), q1, q2, q3, q4 (final state). In the base step of the table-filling minimization algorithm, how many unordered state pairs (p, q) are initially marked as distinguishable?",
     "options": [
       {
-        "id": "A",
+        "id": "toc-q6-A",
         "text": "4 pairs"
       },
       {
-        "id": "B",
+        "id": "toc-q6-B",
         "text": "6 pairs"
       },
       {
-        "id": "C",
+        "id": "toc-q6-C",
         "text": "8 pairs"
       },
       {
-        "id": "D",
+        "id": "toc-q6-D",
         "text": "10 pairs"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "toc-q6-A",
     "explanation": "The base step marks any state pair (p, q) where one state is an accepting (final) state and the other is a non-accepting state. Here, only q4 is final, while {q0, q1, q2, q3} are non-final. The pairs formed between q4 and each of the 4 non-final states are: (q0, q4), (q1, q4), (q2, q4), and (q3, q4). Exactly 4 pairs are marked in the base step.",
     "verificationSources": [
       {
@@ -253,24 +253,24 @@
     "stem": "In the Pumping Lemma for regular languages, if string w is decomposed into w = xyz with pumping length p, what are the mandatory constraints on the substrings xy and y?",
     "options": [
       {
-        "id": "A",
+        "id": "toc-q7-A",
         "text": "|xy| <= p and |y| >= 1"
       },
       {
-        "id": "B",
+        "id": "toc-q7-B",
         "text": "|xyz| <= p and |y| >= 0"
       },
       {
-        "id": "C",
+        "id": "toc-q7-C",
         "text": "|xy| >= p and |y| <= 1"
       },
       {
-        "id": "D",
+        "id": "toc-q7-D",
         "text": "|yz| <= p and |x| >= 1"
       }
     ],
-    "correctOptionId": "A",
-    "explanation": "The Pumping Lemma for regular languages mandates three conditions for w = xyz: (1) for all i >= 0, x yⁱ z is in L, (2) |y| >= 1 (y is non-empty), and (3) |xy| <= p (the loop y occurs within the first p symbols).",
+    "correctOptionId": "toc-q7-A",
+    "explanation": "The Pumping Lemma for regular languages mandates three conditions for w = xyz: (1) for all i >= 0, x y\u2071 z is in L, (2) |y| >= 1 (y is non-empty), and (3) |xy| <= p (the loop y occurs within the first p symbols).",
     "verificationSources": [
       {
         "sourceId": "SIPSER-TOC",
@@ -290,26 +290,26 @@
     "subject": "Theory of Computation",
     "topic": "Pumping Lemma for Regular Languages and Non-Regularity Proofs",
     "difficulty": "Medium",
-    "stem": "Which of the following languages over alphabet Σ = {a, b} is Regular?",
+    "stem": "Which of the following languages over alphabet \u03a3 = {a, b} is Regular?",
     "options": [
       {
-        "id": "A",
+        "id": "toc-q8-A",
         "text": "L = { a^n b^n | n >= 0 }"
       },
       {
-        "id": "B",
+        "id": "toc-q8-B",
         "text": "L = { w w^R | w in {a, b}* }"
       },
       {
-        "id": "C",
+        "id": "toc-q8-C",
         "text": "L = { a^n b^m | n <= 500, m >= 0 }"
       },
       {
-        "id": "D",
+        "id": "toc-q8-D",
         "text": "L = { a^{n^2} | n >= 1 }"
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "toc-q8-C",
     "explanation": "Option C has a bounded count of 'a's (n <= 500) followed by any number of 'b's (m >= 0). This can be easily parsed by a finite automaton with 502 states tracking the exact number of 'a's before transitioning to a 'b'-loop. Options A, B, and D require infinite tracking memory and are non-regular.",
     "verificationSources": [
       {
@@ -333,23 +333,23 @@
     "stem": "Suppose a student attempts to use the Pumping Lemma to show that language L is regular. Which statement accurately describes this attempt?",
     "options": [
       {
-        "id": "A",
+        "id": "toc-q9-A",
         "text": "The proof is valid because the Pumping Lemma is a necessary and sufficient condition for regular languages."
       },
       {
-        "id": "B",
+        "id": "toc-q9-B",
         "text": "The proof is invalid because the Pumping Lemma is only a necessary condition for regular languages and cannot be used to prove regularity."
       },
       {
-        "id": "C",
+        "id": "toc-q9-C",
         "text": "The proof is valid if i = 2 is successfully pumped for all strings."
       },
       {
-        "id": "D",
+        "id": "toc-q9-D",
         "text": "The proof is valid provided |xy| <= p is satisfied for all string lengths."
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "toc-q9-B",
     "explanation": "The Pumping Lemma is a NECESSARY condition for regular languages, not a sufficient condition. Some non-regular languages (e.g. L = { a^i b^j c^k | i=0 or j=k }) satisfy the pumping lemma. Therefore, satisfying the pumping lemma does NOT prove a language is regular; the lemma can only be used to disprove regularity.",
     "verificationSources": [
       {
@@ -370,26 +370,26 @@
     "subject": "Theory of Computation",
     "topic": "Context-Free Grammars (CFG), Parse Trees, and Ambiguity",
     "difficulty": "Easy",
-    "stem": "In a Context-Free Grammar converted to Chomsky Normal Form (CNF), what are the allowed forms for all production rules (assuming S does not derive ε)?",
+    "stem": "In a Context-Free Grammar converted to Chomsky Normal Form (CNF), what are the allowed forms for all production rules (assuming S does not derive \u03b5)?",
     "options": [
       {
-        "id": "A",
+        "id": "toc-q10-A",
         "text": "A -> BC or A -> a (where A, B, C are non-terminals and a is a terminal)"
       },
       {
-        "id": "B",
+        "id": "toc-q10-B",
         "text": "A -> aB or A -> a (where A, B are non-terminals and a is a terminal)"
       },
       {
-        "id": "C",
+        "id": "toc-q10-C",
         "text": "A -> B or A -> a (unit productions and terminal rules)"
       },
       {
-        "id": "D",
+        "id": "toc-q10-D",
         "text": "A -> BCD or A -> a"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "toc-q10-A",
     "explanation": "Chomsky Normal Form restricts all production rules to either A -> BC (a non-terminal producing exactly two non-terminals) or A -> a (a non-terminal producing a single terminal symbol).",
     "verificationSources": [
       {
@@ -413,23 +413,23 @@
     "stem": "If a string w of length |w| = 6 is derived using a Context-Free Grammar in Chomsky Normal Form (CNF), how many total derivation steps are performed?",
     "options": [
       {
-        "id": "A",
+        "id": "toc-q11-A",
         "text": "6 steps"
       },
       {
-        "id": "B",
+        "id": "toc-q11-B",
         "text": "11 steps"
       },
       {
-        "id": "C",
+        "id": "toc-q11-C",
         "text": "12 steps"
       },
       {
-        "id": "D",
+        "id": "toc-q11-D",
         "text": "5 steps"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "toc-q11-B",
     "explanation": "For any string of length n derived from a grammar in Chomsky Normal Form, the number of derivation steps is given by the formula 2n - 1. For n = 6: Steps = 2(6) - 1 = 12 - 1 = 11 steps.",
     "verificationSources": [
       {
@@ -453,23 +453,23 @@
     "stem": "Which of the following statements concerning grammar ambiguity and inherently ambiguous languages is TRUE?",
     "options": [
       {
-        "id": "A",
+        "id": "toc-q12-A",
         "text": "Checking whether an arbitrary Context-Free Grammar is ambiguous is a decidable problem."
       },
       {
-        "id": "B",
+        "id": "toc-q12-B",
         "text": "An inherently ambiguous Context-Free Language possesses at least one unambiguous CFG."
       },
       {
-        "id": "C",
+        "id": "toc-q12-C",
         "text": "A grammar is ambiguous if and only if there exists a string with two distinct Leftmost Derivations."
       },
       {
-        "id": "D",
+        "id": "toc-q12-D",
         "text": "If a string has one LMD and one RMD, the grammar is guaranteed to be ambiguous."
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "toc-q12-C",
     "explanation": "A grammar is defined to be ambiguous if there exists at least one string in its language that has two or more distinct parse trees, which is mathematically equivalent to having two or more distinct Leftmost Derivations (LMDs). Option A is false (ambiguity is undecidable), B is false (inherently ambiguous languages have NO unambiguous CFGs), and D is false (every unambiguous grammar yields 1 LMD and 1 RMD for a string).",
     "verificationSources": [
       {
@@ -493,23 +493,23 @@
     "stem": "What additional data structure distinguishes a Pushdown Automaton (PDA) from a standard Finite State Automaton (FA)?",
     "options": [
       {
-        "id": "A",
+        "id": "toc-q13-A",
         "text": "A Queue memory"
       },
       {
-        "id": "B",
+        "id": "toc-q13-B",
         "text": "A Stack memory"
       },
       {
-        "id": "C",
+        "id": "toc-q13-C",
         "text": "A Hash table"
       },
       {
-        "id": "D",
+        "id": "toc-q13-D",
         "text": "A Random access array"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "toc-q13-B",
     "explanation": "A Pushdown Automaton is a finite state machine augmented with an auxiliary infinite Stack memory operating on Last-In, First-Out (LIFO) access rules.",
     "verificationSources": [
       {
@@ -533,23 +533,23 @@
     "stem": "Which of the following languages is a Deterministic Context-Free Language (DCFL) recognizable by a Deterministic PDA (DPDA)?",
     "options": [
       {
-        "id": "A",
+        "id": "toc-q14-A",
         "text": "L = { w w^R | w in {a, b}* } (Even length palindromes without marker)"
       },
       {
-        "id": "B",
+        "id": "toc-q14-B",
         "text": "L = { w c w^R | w in {a, b}* } (Palindromes with middle marker 'c')"
       },
       {
-        "id": "C",
+        "id": "toc-q14-C",
         "text": "L = { a^n b^n c^n | n >= 1 }"
       },
       {
-        "id": "D",
+        "id": "toc-q14-D",
         "text": "L = { w | w contains equal number of 'a's, 'b's, and 'c's }"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "toc-q14-B",
     "explanation": "In L = {w c w^R}, the explicit middle marker symbol 'c' allows a DPDA to deterministically know when to stop pushing symbols and start popping symbols to verify the reverse string. In Option A ({w w^R}), there is no marker, requiring an NPDA to non-deterministically guess the midpoint. Options C and D are non-context-free.",
     "verificationSources": [
       {
@@ -573,24 +573,24 @@
     "stem": "If L1 is a Context-Free Language (CFL) and L2 is a Regular Language (REG), which of the following is GUARANTEED to be a Context-Free Language?",
     "options": [
       {
-        "id": "A",
-        "text": "L1 ∩ L2"
+        "id": "toc-q15-A",
+        "text": "L1 \u2229 L2"
       },
       {
-        "id": "B",
+        "id": "toc-q15-B",
         "text": "L1 - L2"
       },
       {
-        "id": "C",
-        "text": "L1 ∪ L2"
+        "id": "toc-q15-C",
+        "text": "L1 \u222a L2"
       },
       {
-        "id": "D",
+        "id": "toc-q15-D",
         "text": "All of the above"
       }
     ],
-    "correctOptionId": "D",
-    "explanation": "Context-Free Languages are closed under Union with any CFL/Regular language (L1 ∪ L2 is CFL). Furthermore, by the Cross-Class Intersection Theorem, L1 ∩ L2 (CFL ∩ Regular) is ALWAYS a CFL. Since L1 - L2 = L1 ∩ L2' and L2' is Regular, L1 - L2 is also a CFL. Thus, all of the above options are guaranteed to be Context-Free Languages.",
+    "correctOptionId": "toc-q15-D",
+    "explanation": "Context-Free Languages are closed under Union with any CFL/Regular language (L1 \u222a L2 is CFL). Furthermore, by the Cross-Class Intersection Theorem, L1 \u2229 L2 (CFL \u2229 Regular) is ALWAYS a CFL. Since L1 - L2 = L1 \u2229 L2' and L2' is Regular, L1 - L2 is also a CFL. Thus, all of the above options are guaranteed to be Context-Free Languages.",
     "verificationSources": [
       {
         "sourceId": "SIPSER-TOC",
@@ -613,23 +613,23 @@
     "stem": "In the Pumping Lemma for Context-Free Languages (w = u v w x y), what is the structural constraint imposed on the substring vwx?",
     "options": [
       {
-        "id": "A",
+        "id": "toc-q16-A",
         "text": "|vwx| <= p"
       },
       {
-        "id": "B",
+        "id": "toc-q16-B",
         "text": "|vwx| >= p"
       },
       {
-        "id": "C",
+        "id": "toc-q16-C",
         "text": "|uv| <= p"
       },
       {
-        "id": "D",
+        "id": "toc-q16-D",
         "text": "|xy| <= p"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "toc-q16-A",
     "explanation": "The Pumping Lemma for Context-Free Languages decomposes string w into five parts w = u v w x y such that: (1) for all i >= 0, u v^i w x^i y is in L, (2) |vx| >= 1, and (3) |vwx| <= p. Constraint |vwx| <= p ensures that the two pumped substrings v and x are separated by at most p characters.",
     "verificationSources": [
       {
@@ -653,23 +653,23 @@
     "stem": "What is the primary difference between a Recursive Language (Turing Decidable) and a Recursively Enumerable Language (Turing Recognizable)?",
     "options": [
       {
-        "id": "A",
+        "id": "toc-q17-A",
         "text": "For a Recursive Language, the Turing Machine is guaranteed to halt on all inputs; for a Recursively Enumerable Language, it may loop forever on strings not in the language."
       },
       {
-        "id": "B",
+        "id": "toc-q17-B",
         "text": "Recursive languages are accepted by Finite Automata, while RE languages require Turing Machines."
       },
       {
-        "id": "C",
+        "id": "toc-q17-C",
         "text": "RE languages are closed under complementation, whereas Recursive languages are not."
       },
       {
-        "id": "D",
+        "id": "toc-q17-D",
         "text": "Recursive languages require non-deterministic Turing Machines."
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "toc-q17-A",
     "explanation": "A language is Recursive (Decidable) if there exists a Turing Machine that halts on EVERY input string (accepting members and rejecting non-members). A language is Recursively Enumerable (Recognizable) if its TM halts and accepts valid strings, but may loop endlessly on non-member strings.",
     "verificationSources": [
       {
@@ -693,23 +693,23 @@
     "stem": "How does the language recognition power of a Multitape Turing Machine compare to a standard Single-Tape Deterministic Turing Machine?",
     "options": [
       {
-        "id": "A",
+        "id": "toc-q18-A",
         "text": "Multitape Turing Machines can recognize Context-Sensitive languages that single-tape TMs cannot."
       },
       {
-        "id": "B",
+        "id": "toc-q18-B",
         "text": "Multitape Turing Machines have the exact same language recognition power as single-tape TMs."
       },
       {
-        "id": "C",
+        "id": "toc-q18-C",
         "text": "Multitape Turing Machines can solve the Halting Problem."
       },
       {
-        "id": "D",
+        "id": "toc-q18-D",
         "text": "Single-tape TMs are strictly more powerful than Multitape TMs."
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "toc-q18-B",
     "explanation": "Every Multitape Turing Machine can be simulated by an equivalent Single-Tape Turing Machine with multiple tracks. While the simulation introduces a quadratic time slowdown, the class of languages recognized by both models is identical (the Recursively Enumerable languages).",
     "verificationSources": [
       {
@@ -733,23 +733,23 @@
     "stem": "Which machine architecture corresponds to Type 1 (Context-Sensitive) languages in the Chomsky Hierarchy?",
     "options": [
       {
-        "id": "A",
+        "id": "toc-q19-A",
         "text": "Finite Automaton (FA)"
       },
       {
-        "id": "B",
+        "id": "toc-q19-B",
         "text": "Pushdown Automaton (PDA)"
       },
       {
-        "id": "C",
+        "id": "toc-q19-C",
         "text": "Linear Bounded Automaton (LBA)"
       },
       {
-        "id": "D",
+        "id": "toc-q19-D",
         "text": "Unrestricted Turing Machine"
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "toc-q19-C",
     "explanation": "In the Chomsky Hierarchy: Type 3 (Regular) -> Finite Automaton, Type 2 (Context-Free) -> Pushdown Automaton, Type 1 (Context-Sensitive) -> Linear Bounded Automaton (LBA), and Type 0 (Unrestricted / RE) -> Turing Machine.",
     "verificationSources": [
       {
@@ -773,24 +773,24 @@
     "stem": "Which of the following decision problems concerning a Turing Machine M is DECIDABLE?",
     "options": [
       {
-        "id": "A",
+        "id": "toc-q20-A",
         "text": "Determining whether the language accepted L(M) is empty (E_TM)."
       },
       {
-        "id": "B",
+        "id": "toc-q20-B",
         "text": "Determining whether the language accepted L(M) is regular."
       },
       {
-        "id": "C",
+        "id": "toc-q20-C",
         "text": "Determining whether Turing Machine M contains more than 15 states in its specification."
       },
       {
-        "id": "D",
+        "id": "toc-q20-D",
         "text": "Determining whether L(M) contains the string '101'."
       }
     ],
-    "correctOptionId": "C",
-    "explanation": "Rice's Theorem states that any non-trivial SEMANTIC property (a property of the language L(M) accepted by a TM) is undecidable. Options A, B, and D are all semantic properties of L(M) and are undecidable. Option C asks about the number of states in M's description—this is a SYNTACTIC property of the machine code, which can be directly counted and is therefore DECIDABLE.",
+    "correctOptionId": "toc-q20-C",
+    "explanation": "Rice's Theorem states that any non-trivial SEMANTIC property (a property of the language L(M) accepted by a TM) is undecidable. Options A, B, and D are all semantic properties of L(M) and are undecidable. Option C asks about the number of states in M's description\u2014this is a SYNTACTIC property of the machine code, which can be directly counted and is therefore DECIDABLE.",
     "verificationSources": [
       {
         "sourceId": "SIPSER-TOC",

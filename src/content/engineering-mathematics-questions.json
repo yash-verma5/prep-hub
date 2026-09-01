@@ -1,0 +1,802 @@
+[
+  {
+    "id": "em-001",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Propositional & First-Order Logic",
+    "difficulty": "Easy",
+    "options": [
+      {
+        "id": "em-001-a",
+        "text": "$(P \\lor Q) \\implies P$"
+      },
+      {
+        "id": "em-001-b",
+        "text": "$P \\implies (P \\lor Q)$"
+      },
+      {
+        "id": "em-001-c",
+        "text": "$(P \\land Q) \\implies (P \\implies Q)$"
+      },
+      {
+        "id": "em-001-d",
+        "text": "$(P \\implies Q) \\implies (Q \\implies P)$"
+      }
+    ],
+    "correctOptionId": "em-001-b",
+    "explanation": "$P \\implies (P \\lor Q)$ is equivalent to $\\neg P \\lor (P \\lor Q)$, which simplifies to $(\\neg P \\lor P) \\lor Q$. Since $\\neg P \\lor P$ is always true, the entire expression is a tautology.",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "Engineering Mathematics - Propositional & First-Order Logic",
+    "verificationSources": [
+      {
+        "sourceId": "GATE-CS-SYL-2026",
+        "locator": "Engineering Mathematics"
+      }
+    ],
+    "stem": "Which of the following propositions is a tautology?",
+    "reviewNote": "Verified during engineering mathematics implementation."
+  },
+  {
+    "id": "em-002",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Propositional & First-Order Logic",
+    "difficulty": "Medium",
+    "options": [
+      {
+        "id": "em-002-a",
+        "text": "$\\exists x (P(x) \\land \\neg Q(x))$"
+      },
+      {
+        "id": "em-002-b",
+        "text": "$\\forall x (P(x) \\land \\neg Q(x))$"
+      },
+      {
+        "id": "em-002-c",
+        "text": "$\\exists x (\\neg P(x) \\lor Q(x))$"
+      },
+      {
+        "id": "em-002-d",
+        "text": "$\\exists x (\\neg P(x) \\implies \\neg Q(x))$"
+      }
+    ],
+    "correctOptionId": "em-002-a",
+    "explanation": "First, apply De Morgan's Law for quantifiers: $\\neg \\forall x \\equiv \\exists x \\neg$. We get $\\exists x \\neg (P(x) \\implies Q(x))$. Since $P(x) \\implies Q(x) \\equiv \\neg P(x) \\lor Q(x)$, negating it yields $P(x) \\land \\neg Q(x)$ using De Morgan's Law.",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "Engineering Mathematics - Propositional & First-Order Logic",
+    "verificationSources": [
+      {
+        "sourceId": "GATE-CS-SYL-2026",
+        "locator": "Engineering Mathematics"
+      }
+    ],
+    "stem": "Let $P(x)$ and $Q(x)$ be predicates. Which of the following is logically equivalent to $\\neg \\forall x (P(x) \\implies Q(x))$?",
+    "reviewNote": "Verified during engineering mathematics implementation."
+  },
+  {
+    "id": "em-003",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Sets, Relations, Lattices & Functions",
+    "difficulty": "Medium",
+    "options": [
+      {
+        "id": "em-003-a",
+        "text": "$2^n$"
+      },
+      {
+        "id": "em-003-b",
+        "text": "$2^{n^2}$"
+      },
+      {
+        "id": "em-003-c",
+        "text": "$2^{n^2 - n}$"
+      },
+      {
+        "id": "em-003-d",
+        "text": "$2^{n^2 + n}$"
+      }
+    ],
+    "correctOptionId": "em-003-c",
+    "explanation": "A relation is a subset of $A \\times A$, which has $n^2$ elements. For a relation to be reflexive, the $n$ diagonal elements $(a, a)$ MUST be included. The remaining $n^2 - n$ elements can either be included or not. Thus, there are $2^{n^2 - n}$ such relations.",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "Engineering Mathematics - Sets, Relations, Lattices & Functions",
+    "verificationSources": [
+      {
+        "sourceId": "GATE-CS-SYL-2026",
+        "locator": "Engineering Mathematics"
+      }
+    ],
+    "stem": "Let $A$ be a set with $n$ elements. How many reflexive relations are possible on $A$?",
+    "reviewNote": "Verified during engineering mathematics implementation."
+  },
+  {
+    "id": "em-004",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Algebraic Structures: Monoids & Groups",
+    "difficulty": "Medium",
+    "options": [
+      {
+        "id": "em-004-a",
+        "text": "Semi-group"
+      },
+      {
+        "id": "em-004-b",
+        "text": "Group"
+      },
+      {
+        "id": "em-004-c",
+        "text": "Abelian Group"
+      },
+      {
+        "id": "em-004-d",
+        "text": "Monoid"
+      }
+    ],
+    "correctOptionId": "em-004-d",
+    "explanation": "A Monoid is defined as a semi-group (which has closure and associativity) with an identity element. A Group goes one step further and requires every element to have an inverse.",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "Engineering Mathematics - Algebraic Structures: Monoids & Groups",
+    "verificationSources": [
+      {
+        "sourceId": "GATE-CS-SYL-2026",
+        "locator": "Engineering Mathematics"
+      }
+    ],
+    "stem": "Which of the following algebraic structures satisfies closure, associativity, and has an identity element, but does NOT guarantee inverses for all elements?",
+    "reviewNote": "Verified during engineering mathematics implementation."
+  },
+  {
+    "id": "em-005",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Algebraic Structures: Monoids & Groups",
+    "difficulty": "Hard",
+    "options": [
+      {
+        "id": "em-005-a",
+        "text": "5"
+      },
+      {
+        "id": "em-005-b",
+        "text": "7"
+      },
+      {
+        "id": "em-005-c",
+        "text": "8"
+      },
+      {
+        "id": "em-005-d",
+        "text": "10"
+      }
+    ],
+    "correctOptionId": "em-005-c",
+    "explanation": "By Lagrange's Theorem, the order of a subgroup of a finite group must perfectly divide the order of the group. Since 8 divides 24, it is a possible order. 5, 7, and 10 do not divide 24.",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "Engineering Mathematics - Algebraic Structures: Monoids & Groups",
+    "verificationSources": [
+      {
+        "sourceId": "GATE-CS-SYL-2026",
+        "locator": "Engineering Mathematics"
+      }
+    ],
+    "stem": "If $G$ is a finite group of order 24, which of the following can be the order of a subgroup of $G$?",
+    "reviewNote": "Verified during engineering mathematics implementation."
+  },
+  {
+    "id": "em-006",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Graph Theory I: Connectivity, Paths & Cycles",
+    "difficulty": "Easy",
+    "options": [
+      {
+        "id": "em-006-a",
+        "text": "Every vertex must have an odd degree"
+      },
+      {
+        "id": "em-006-b",
+        "text": "Every vertex must have an even degree"
+      },
+      {
+        "id": "em-006-c",
+        "text": "Exactly two vertices must have an odd degree"
+      },
+      {
+        "id": "em-006-d",
+        "text": "The graph must be a tree"
+      }
+    ],
+    "correctOptionId": "em-006-b",
+    "explanation": "An Eulerian circuit visits every edge exactly once and returns to the start. For this to happen in a connected graph, every vertex must be entered and exited an equal number of times, meaning every vertex must have an even degree.",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "Engineering Mathematics - Graph Theory I: Connectivity, Paths & Cycles",
+    "verificationSources": [
+      {
+        "sourceId": "GATE-CS-SYL-2026",
+        "locator": "Engineering Mathematics"
+      }
+    ],
+    "stem": "What is the necessary and sufficient condition for a connected undirected graph to have an Eulerian circuit?",
+    "reviewNote": "Verified during engineering mathematics implementation."
+  },
+  {
+    "id": "em-007",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Graph Theory II: Planarity, Coloring & Matching",
+    "difficulty": "Medium",
+    "options": [
+      {
+        "id": "em-007-a",
+        "text": "8"
+      },
+      {
+        "id": "em-007-b",
+        "text": "10"
+      },
+      {
+        "id": "em-007-c",
+        "text": "12"
+      },
+      {
+        "id": "em-007-d",
+        "text": "14"
+      }
+    ],
+    "correctOptionId": "em-007-b",
+    "explanation": "Euler's formula for a connected planar graph states $V - E + F = 2$. Substituting the values: $12 - 20 + F = 2$, which gives $-8 + F = 2$, so $F = 10$.",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "Engineering Mathematics - Graph Theory II: Planarity, Coloring & Matching",
+    "verificationSources": [
+      {
+        "sourceId": "GATE-CS-SYL-2026",
+        "locator": "Engineering Mathematics"
+      }
+    ],
+    "stem": "A connected planar graph has 12 vertices and 20 edges. How many faces (regions) does it divide the plane into?",
+    "reviewNote": "Verified during engineering mathematics implementation."
+  },
+  {
+    "id": "em-008",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Graph Theory II: Planarity, Coloring & Matching",
+    "difficulty": "Easy",
+    "options": [
+      {
+        "id": "em-008-a",
+        "text": "1"
+      },
+      {
+        "id": "em-008-b",
+        "text": "2"
+      },
+      {
+        "id": "em-008-c",
+        "text": "3"
+      },
+      {
+        "id": "em-008-d",
+        "text": "$n-1$"
+      }
+    ],
+    "correctOptionId": "em-008-b",
+    "explanation": "A tree is a bipartite graph (it contains no cycles, and thus no odd cycles). Every bipartite graph with at least one edge can be 2-colored.",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "Engineering Mathematics - Graph Theory II: Planarity, Coloring & Matching",
+    "verificationSources": [
+      {
+        "sourceId": "GATE-CS-SYL-2026",
+        "locator": "Engineering Mathematics"
+      }
+    ],
+    "stem": "What is the chromatic number of any tree with $n \\ge 2$ vertices?",
+    "reviewNote": "Verified during engineering mathematics implementation."
+  },
+  {
+    "id": "em-009",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Combinatorics: Permutations & Combinations",
+    "difficulty": "Medium",
+    "options": [
+      {
+        "id": "em-009-a",
+        "text": "420"
+      },
+      {
+        "id": "em-009-b",
+        "text": "5040"
+      },
+      {
+        "id": "em-009-c",
+        "text": "840"
+      },
+      {
+        "id": "em-009-d",
+        "text": "1260"
+      }
+    ],
+    "correctOptionId": "em-009-a",
+    "explanation": "The word 'SUCCESS' has 7 letters. The letter 'S' repeats 3 times, and 'C' repeats 2 times. The number of unique permutations is $7! / (3! 2!) = 5040 / (6 \\times 2) = 5040 / 12 = 420$.",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "Engineering Mathematics - Combinatorics: Permutations & Combinations",
+    "verificationSources": [
+      {
+        "sourceId": "GATE-CS-SYL-2026",
+        "locator": "Engineering Mathematics"
+      }
+    ],
+    "stem": "How many distinct anagrams can be formed using all the letters in the word 'SUCCESS'?",
+    "reviewNote": "Verified during engineering mathematics implementation."
+  },
+  {
+    "id": "em-010",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Combinatorics: Permutations & Combinations",
+    "difficulty": "Medium",
+    "options": [
+      {
+        "id": "em-010-a",
+        "text": "0"
+      },
+      {
+        "id": "em-010-b",
+        "text": "5"
+      },
+      {
+        "id": "em-010-c",
+        "text": "10"
+      },
+      {
+        "id": "em-010-d",
+        "text": "15"
+      }
+    ],
+    "correctOptionId": "em-010-b",
+    "explanation": "Using the Principle of Inclusion-Exclusion: $|C \\cup M| = |C| + |M| - |C \\cap M| = 30 + 25 - 10 = 45$. The number of students studying neither is the total minus this union: $50 - 45 = 5$.",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "Engineering Mathematics - Combinatorics: Permutations & Combinations",
+    "verificationSources": [
+      {
+        "sourceId": "GATE-CS-SYL-2026",
+        "locator": "Engineering Mathematics"
+      }
+    ],
+    "stem": "In a group of 50 students, 30 study Computer Science, 25 study Mathematics, and 10 study both. How many students study neither?",
+    "reviewNote": "Verified during engineering mathematics implementation."
+  },
+  {
+    "id": "em-011",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Generating Functions & Recurrence Relations",
+    "difficulty": "Hard",
+    "options": [
+      {
+        "id": "em-011-a",
+        "text": "$r^2 + 5r - 6 = 0$"
+      },
+      {
+        "id": "em-011-b",
+        "text": "$r^2 - 5r + 6 = 0$"
+      },
+      {
+        "id": "em-011-c",
+        "text": "$r^2 - 6r + 5 = 0$"
+      },
+      {
+        "id": "em-011-d",
+        "text": "$r^2 - 5r - 6 = 0$"
+      }
+    ],
+    "correctOptionId": "em-011-b",
+    "explanation": "Assuming a solution of the form $a_n = r^n$, substitute it into the relation: $r^n = 5r^{n-1} - 6r^{n-2}$. Dividing by $r^{n-2}$ yields $r^2 = 5r - 6$. Rearranging gives the characteristic equation $r^2 - 5r + 6 = 0$.",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "Engineering Mathematics - Generating Functions & Recurrence Relations",
+    "verificationSources": [
+      {
+        "sourceId": "GATE-CS-SYL-2026",
+        "locator": "Engineering Mathematics"
+      }
+    ],
+    "stem": "What is the characteristic equation for the recurrence relation $a_n = 5a_{n-1} - 6a_{n-2}$?",
+    "reviewNote": "Verified during engineering mathematics implementation."
+  },
+  {
+    "id": "em-012",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Linear Algebra I: Matrices & Systems of Equations",
+    "difficulty": "Easy",
+    "options": [
+      {
+        "id": "em-012-a",
+        "text": "The trace of $A$ is non-zero"
+      },
+      {
+        "id": "em-012-b",
+        "text": "The determinant of $A$ is zero"
+      },
+      {
+        "id": "em-012-c",
+        "text": "The determinant of $A$ is non-zero"
+      },
+      {
+        "id": "em-012-d",
+        "text": "The matrix is symmetric"
+      }
+    ],
+    "correctOptionId": "em-012-c",
+    "explanation": "A square matrix is invertible (non-singular) if and only if its determinant is not equal to zero. If the determinant is zero, the matrix collapses space and cannot be reversed.",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "Engineering Mathematics - Linear Algebra I: Matrices & Systems of Equations",
+    "verificationSources": [
+      {
+        "sourceId": "GATE-CS-SYL-2026",
+        "locator": "Engineering Mathematics"
+      }
+    ],
+    "stem": "Which of the following conditions ensures that a square matrix $A$ has an inverse?",
+    "reviewNote": "Verified during engineering mathematics implementation."
+  },
+  {
+    "id": "em-013",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Linear Algebra I: Matrices & Systems of Equations",
+    "difficulty": "Medium",
+    "options": [
+      {
+        "id": "em-013-a",
+        "text": "$A^{-1} B^{-1}$"
+      },
+      {
+        "id": "em-013-b",
+        "text": "$B^{-1} A^{-1}$"
+      },
+      {
+        "id": "em-013-c",
+        "text": "$(B A)^{-1}$"
+      },
+      {
+        "id": "em-013-d",
+        "text": "$A B$"
+      }
+    ],
+    "correctOptionId": "em-013-b",
+    "explanation": "The inverse of a product of matrices is the product of their inverses in reverse order. So, $(AB)^{-1} = B^{-1} A^{-1}$.",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "Engineering Mathematics - Linear Algebra I: Matrices & Systems of Equations",
+    "verificationSources": [
+      {
+        "sourceId": "GATE-CS-SYL-2026",
+        "locator": "Engineering Mathematics"
+      }
+    ],
+    "stem": "If $A$ and $B$ are invertible $n \\times n$ matrices, what is $(AB)^{-1}$ equal to?",
+    "reviewNote": "Verified during engineering mathematics implementation."
+  },
+  {
+    "id": "em-014",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Linear Algebra II: Vector Spaces & Eigenvalues",
+    "difficulty": "Medium",
+    "options": [
+      {
+        "id": "em-014-a",
+        "text": "6"
+      },
+      {
+        "id": "em-014-b",
+        "text": "0"
+      },
+      {
+        "id": "em-014-c",
+        "text": "14"
+      },
+      {
+        "id": "em-014-d",
+        "text": "5"
+      }
+    ],
+    "correctOptionId": "em-014-a",
+    "explanation": "The determinant of a matrix is equal to the product of its eigenvalues. Therefore, $\\det(A) = 1 \\times 2 \\times 3 = 6$.",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "Engineering Mathematics - Linear Algebra II: Vector Spaces & Eigenvalues",
+    "verificationSources": [
+      {
+        "sourceId": "GATE-CS-SYL-2026",
+        "locator": "Engineering Mathematics"
+      }
+    ],
+    "stem": "A $3 \\times 3$ matrix $A$ has eigenvalues $1, 2,$ and $3$. What is the determinant of $A$?",
+    "reviewNote": "Verified during engineering mathematics implementation."
+  },
+  {
+    "id": "em-015",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Linear Algebra II: Vector Spaces & Eigenvalues",
+    "difficulty": "Hard",
+    "options": [
+      {
+        "id": "em-015-a",
+        "text": "Its own minimal polynomial"
+      },
+      {
+        "id": "em-015-b",
+        "text": "Its own characteristic equation"
+      },
+      {
+        "id": "em-015-c",
+        "text": "The condition of invertibility"
+      },
+      {
+        "id": "em-015-d",
+        "text": "Orthogonality"
+      }
+    ],
+    "correctOptionId": "em-015-b",
+    "explanation": "The Cayley-Hamilton theorem states that substituting the matrix $A$ for $\\lambda$ in its characteristic polynomial $\\det(A - \\lambda I) = 0$ results in the zero matrix.",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "Engineering Mathematics - Linear Algebra II: Vector Spaces & Eigenvalues",
+    "verificationSources": [
+      {
+        "sourceId": "GATE-CS-SYL-2026",
+        "locator": "Engineering Mathematics"
+      }
+    ],
+    "stem": "According to the Cayley-Hamilton theorem, every square matrix satisfies:",
+    "reviewNote": "Verified during engineering mathematics implementation."
+  },
+  {
+    "id": "em-016",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Calculus: Limits, Continuity & Maxima/Minima",
+    "difficulty": "Easy",
+    "options": [
+      {
+        "id": "em-016-a",
+        "text": "It has a local minimum"
+      },
+      {
+        "id": "em-016-b",
+        "text": "It has a local maximum"
+      },
+      {
+        "id": "em-016-c",
+        "text": "It is an inflection point"
+      },
+      {
+        "id": "em-016-d",
+        "text": "The test is inconclusive"
+      }
+    ],
+    "correctOptionId": "em-016-b",
+    "explanation": "By the second derivative test, if the first derivative is zero (critical point) and the second derivative is negative (concave down), the point is a local maximum.",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "Engineering Mathematics - Calculus: Limits, Continuity & Maxima/Minima",
+    "verificationSources": [
+      {
+        "sourceId": "GATE-CS-SYL-2026",
+        "locator": "Engineering Mathematics"
+      }
+    ],
+    "stem": "If $f'(c) = 0$ and $f''(c) < 0$, what can be said about the function $f(x)$ at $x = c$?",
+    "reviewNote": "Verified during engineering mathematics implementation."
+  },
+  {
+    "id": "em-017",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Calculus: Limits, Continuity & Maxima/Minima",
+    "difficulty": "Medium",
+    "options": [
+      {
+        "id": "em-017-a",
+        "text": "0"
+      },
+      {
+        "id": "em-017-b",
+        "text": "$1/2$"
+      },
+      {
+        "id": "em-017-c",
+        "text": "1"
+      },
+      {
+        "id": "em-017-d",
+        "text": "Undefined"
+      }
+    ],
+    "correctOptionId": "em-017-b",
+    "explanation": "Substitute $x=0$ gives $0/0$. Apply L'Hopital's rule: derivative of top is $\\sin(x)$, bottom is $2x$. Limit is $\\lim \\frac{\\sin(x)}{2x}$. Still $0/0$. Apply L'Hopital's again: derivative of top is $\\cos(x)$, bottom is $2$. Limit is $\\frac{\\cos(0)}{2} = 1/2$.",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "Engineering Mathematics - Calculus: Limits, Continuity & Maxima/Minima",
+    "verificationSources": [
+      {
+        "sourceId": "GATE-CS-SYL-2026",
+        "locator": "Engineering Mathematics"
+      }
+    ],
+    "stem": "Evaluate the limit: $\\lim_{x \\to 0} \\frac{1 - \\cos(x)}{x^2}$.",
+    "reviewNote": "Verified during engineering mathematics implementation."
+  },
+  {
+    "id": "em-018",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Integral Calculus: Integration",
+    "difficulty": "Medium",
+    "options": [
+      {
+        "id": "em-018-a",
+        "text": "0"
+      },
+      {
+        "id": "em-018-b",
+        "text": "1"
+      },
+      {
+        "id": "em-018-c",
+        "text": "$-1$"
+      },
+      {
+        "id": "em-018-d",
+        "text": "$\\pi$"
+      }
+    ],
+    "correctOptionId": "em-018-b",
+    "explanation": "The antiderivative of $\\sin(x)$ is $-\\cos(x)$. Evaluating from 0 to $\\pi/2$: $(-\\cos(\\pi/2)) - (-\\cos(0)) = 0 - (-1) = 1$.",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "Engineering Mathematics - Integral Calculus: Integration",
+    "verificationSources": [
+      {
+        "sourceId": "GATE-CS-SYL-2026",
+        "locator": "Engineering Mathematics"
+      }
+    ],
+    "stem": "What is the value of the definite integral $\\int_{0}^{\\pi/2} \\sin(x) \\, dx$?",
+    "reviewNote": "Verified during engineering mathematics implementation."
+  },
+  {
+    "id": "em-019",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Probability & Statistics: Distributions & Bayes",
+    "difficulty": "Medium",
+    "options": [
+      {
+        "id": "em-019-a",
+        "text": "$\\sqrt{\\lambda}$"
+      },
+      {
+        "id": "em-019-b",
+        "text": "$\\lambda$"
+      },
+      {
+        "id": "em-019-c",
+        "text": "$\\lambda^2$"
+      },
+      {
+        "id": "em-019-d",
+        "text": "$1 / \\lambda$"
+      }
+    ],
+    "correctOptionId": "em-019-b",
+    "explanation": "A unique property of the Poisson distribution is that its expected value (mean) and its variance are both equal to $\\lambda$.",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "Engineering Mathematics - Probability & Statistics: Distributions & Bayes",
+    "verificationSources": [
+      {
+        "sourceId": "GATE-CS-SYL-2026",
+        "locator": "Engineering Mathematics"
+      }
+    ],
+    "stem": "In a Poisson distribution, if the mean number of occurrences in an interval is $\\lambda$, what is the variance?",
+    "reviewNote": "Verified during engineering mathematics implementation."
+  },
+  {
+    "id": "em-020",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Probability & Statistics: Distributions & Bayes",
+    "difficulty": "Hard",
+    "options": [
+      {
+        "id": "em-020-a",
+        "text": "$3/5$"
+      },
+      {
+        "id": "em-020-b",
+        "text": "$1/2$"
+      },
+      {
+        "id": "em-020-c",
+        "text": "$2/5$"
+      },
+      {
+        "id": "em-020-d",
+        "text": "$1/3$"
+      }
+    ],
+    "correctOptionId": "em-020-a",
+    "explanation": "Use Bayes' Theorem: $P(A|R) = \\frac{P(R|A)P(A)}{P(R|A)P(A) + P(R|B)P(B)}$. $P(A) = 0.5$, $P(R|A) = 3/5$, $P(B) = 0.5$, $P(R|B) = 2/5$. Numerator: $(3/5)(1/2) = 3/10$. Denominator: $3/10 + (2/5)(1/2) = 3/10 + 2/10 = 5/10$. Thus, $P(A|R) = (3/10) / (5/10) = 3/5$.",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "Engineering Mathematics - Probability & Statistics: Distributions & Bayes",
+    "verificationSources": [
+      {
+        "sourceId": "GATE-CS-SYL-2026",
+        "locator": "Engineering Mathematics"
+      }
+    ],
+    "stem": "Box A has 3 red and 2 blue balls. Box B has 2 red and 3 blue balls. A box is chosen at random (equal probability), and a ball is drawn. If the drawn ball is red, what is the probability it came from Box A?",
+    "reviewNote": "Verified during engineering mathematics implementation."
+  }
+]

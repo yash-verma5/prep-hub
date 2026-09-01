@@ -8,20 +8,35 @@
     "sourceLocator": "Chapter 3",
     "section": "domain",
     "subject": "Algorithms",
-    "topic": "algo-1-asymptotic-analysis",
+    "topic": "Asymptotic Analysis",
     "difficulty": "Easy",
     "stem": "Which of the following correctly describes the Big-O notation?",
     "options": [
-      { "id": "a", "text": "It provides a strict lower bound for the growth rate of a function." },
-      { "id": "b", "text": "It provides an exact tight bound for the growth rate of a function." },
-      { "id": "c", "text": "It provides an asymptotic upper bound for the growth rate of a function." },
-      { "id": "d", "text": "It denotes the average case time complexity of an algorithm." }
+      {
+        "id": "algo-q-1-a",
+        "text": "It provides a strict lower bound for the growth rate of a function."
+      },
+      {
+        "id": "algo-q-1-b",
+        "text": "It provides an exact tight bound for the growth rate of a function."
+      },
+      {
+        "id": "algo-q-1-c",
+        "text": "It provides an asymptotic upper bound for the growth rate of a function."
+      },
+      {
+        "id": "algo-q-1-d",
+        "text": "It denotes the average case time complexity of an algorithm."
+      }
     ],
-    "correctOptionId": "c",
+    "correctOptionId": "algo-q-1-c",
     "explanation": "Big-O notation describes an asymptotic upper bound. It means the function grows no faster than a certain rate. Distractor: Big-Omega is the lower bound, and Big-Theta is the tight bound.",
     "reviewNote": "Verified against CLRS Chapter 3.",
     "verificationSources": [
-      { "sourceId": "CLRS", "locator": "Chapter 3" }
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 3"
+      }
     ]
   },
   {
@@ -33,20 +48,35 @@
     "sourceLocator": "Chapter 2",
     "section": "domain",
     "subject": "Algorithms",
-    "topic": "algo-4-comparison-sorting",
+    "topic": "Comparison-Based Sorting",
     "difficulty": "Easy",
     "stem": "Which sorting algorithm is generally considered the best choice when the input array is already almost sorted?",
     "options": [
-      { "id": "a", "text": "Quick Sort" },
-      { "id": "b", "text": "Merge Sort" },
-      { "id": "c", "text": "Heap Sort" },
-      { "id": "d", "text": "Insertion Sort" }
+      {
+        "id": "algo-q-2-a",
+        "text": "Quick Sort"
+      },
+      {
+        "id": "algo-q-2-b",
+        "text": "Merge Sort"
+      },
+      {
+        "id": "algo-q-2-c",
+        "text": "Heap Sort"
+      },
+      {
+        "id": "algo-q-2-d",
+        "text": "Insertion Sort"
+      }
     ],
-    "correctOptionId": "d",
+    "correctOptionId": "algo-q-2-d",
     "explanation": "Insertion Sort performs in $O(n)$ time when the array is nearly sorted because it only shifts elements when necessary. Distractor: Quick Sort can actually degrade to $O(n^2)$ on nearly sorted data if a poor pivot (like the last element) is chosen.",
     "reviewNote": "Insertion sort is adaptive and linear on nearly sorted data.",
     "verificationSources": [
-      { "sourceId": "CLRS", "locator": "Chapter 2" }
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 2"
+      }
     ]
   },
   {
@@ -58,20 +88,35 @@
     "sourceLocator": "Chapter 22",
     "section": "domain",
     "subject": "Algorithms",
-    "topic": "algo-9-graph-traversals",
+    "topic": "Graph Algorithms: BFS, DFS & Topological Sort",
     "difficulty": "Easy",
     "stem": "What data structure is fundamentally used to implement Breadth-First Search (BFS)?",
     "options": [
-      { "id": "a", "text": "Stack" },
-      { "id": "b", "text": "Priority Queue" },
-      { "id": "c", "text": "Queue" },
-      { "id": "d", "text": "Disjoint Set" }
+      {
+        "id": "algo-q-3-a",
+        "text": "Stack"
+      },
+      {
+        "id": "algo-q-3-b",
+        "text": "Priority Queue"
+      },
+      {
+        "id": "algo-q-3-c",
+        "text": "Queue"
+      },
+      {
+        "id": "algo-q-3-d",
+        "text": "Disjoint Set"
+      }
     ],
-    "correctOptionId": "c",
+    "correctOptionId": "algo-q-3-c",
     "explanation": "BFS explores nodes level by level, which naturally requires a FIFO (First-In-First-Out) Queue. Distractor: Stacks are used for Depth-First Search (DFS).",
     "reviewNote": "Standard fact.",
     "verificationSources": [
-      { "sourceId": "CLRS", "locator": "Chapter 22" }
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 22"
+      }
     ]
   },
   {
@@ -83,20 +128,35 @@
     "sourceLocator": "Chapter 23",
     "section": "domain",
     "subject": "Algorithms",
-    "topic": "algo-7-greedy-algorithms",
+    "topic": "Greedy Algorithms",
     "difficulty": "Easy",
     "stem": "Which algorithm paradigm does Kruskal's Minimum Spanning Tree algorithm follow?",
     "options": [
-      { "id": "a", "text": "Dynamic Programming" },
-      { "id": "b", "text": "Greedy" },
-      { "id": "c", "text": "Divide and Conquer" },
-      { "id": "d", "text": "Backtracking" }
+      {
+        "id": "algo-q-4-a",
+        "text": "Dynamic Programming"
+      },
+      {
+        "id": "algo-q-4-b",
+        "text": "Greedy"
+      },
+      {
+        "id": "algo-q-4-c",
+        "text": "Divide and Conquer"
+      },
+      {
+        "id": "algo-q-4-d",
+        "text": "Backtracking"
+      }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "algo-q-4-b",
     "explanation": "Kruskal's algorithm always selects the minimum weight edge available that does not form a cycle, making the locally optimal choice at each step (Greedy approach).",
     "reviewNote": "Standard classification.",
     "verificationSources": [
-      { "sourceId": "CLRS", "locator": "Chapter 23" }
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 23"
+      }
     ]
   },
   {
@@ -108,20 +168,35 @@
     "sourceLocator": "Chapter 34",
     "section": "domain",
     "subject": "Algorithms",
-    "topic": "algo-12-all-pairs-np",
+    "topic": "All-Pairs Shortest Paths & NP-Completeness",
     "difficulty": "Easy",
     "stem": "Which of the following problem classes contains problems that can be verified in polynomial time?",
     "options": [
-      { "id": "a", "text": "P only" },
-      { "id": "b", "text": "NP only" },
-      { "id": "c", "text": "Both P and NP" },
-      { "id": "d", "text": "NP-Hard only" }
+      {
+        "id": "algo-q-5-a",
+        "text": "P only"
+      },
+      {
+        "id": "algo-q-5-b",
+        "text": "NP only"
+      },
+      {
+        "id": "algo-q-5-c",
+        "text": "Both P and NP"
+      },
+      {
+        "id": "algo-q-5-d",
+        "text": "NP-Hard only"
+      }
     ],
-    "correctOptionId": "c",
+    "correctOptionId": "algo-q-5-c",
     "explanation": "NP stands for Nondeterministic Polynomial time, meaning any given solution can be verified in polynomial time. Since P is a subset of NP ($P \\subseteq NP$), problems in P can also be verified in polynomial time.",
     "reviewNote": "Definition of NP and P.",
     "verificationSources": [
-      { "sourceId": "CLRS", "locator": "Chapter 34" }
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 34"
+      }
     ]
   },
   {
@@ -133,20 +208,35 @@
     "sourceLocator": "Chapter 8",
     "section": "domain",
     "subject": "Algorithms",
-    "topic": "algo-5-linear-sorting",
+    "topic": "Linear-Time Sorting",
     "difficulty": "Easy",
     "stem": "What is the primary constraint that limits the general application of Counting Sort?",
     "options": [
-      { "id": "a", "text": "It cannot sort floating point numbers." },
-      { "id": "b", "text": "It runs in $O(n^2)$ time in the worst case." },
-      { "id": "c", "text": "It requires space proportional to the maximum value in the input." },
-      { "id": "d", "text": "It is an unstable sorting algorithm." }
+      {
+        "id": "algo-q-6-a",
+        "text": "It cannot sort floating point numbers."
+      },
+      {
+        "id": "algo-q-6-b",
+        "text": "It runs in $O(n^2)$ time in the worst case."
+      },
+      {
+        "id": "algo-q-6-c",
+        "text": "It requires space proportional to the maximum value in the input."
+      },
+      {
+        "id": "algo-q-6-d",
+        "text": "It is an unstable sorting algorithm."
+      }
     ],
-    "correctOptionId": "c",
+    "correctOptionId": "algo-q-6-c",
     "explanation": "Counting sort requires an auxiliary array of size $k$ (the range of input values). If $k$ is extremely large compared to $n$ (e.g., $k = n^3$), it becomes highly inefficient in space and time.",
     "reviewNote": "Counting sort space complexity.",
     "verificationSources": [
-      { "sourceId": "CLRS", "locator": "Chapter 8" }
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 8"
+      }
     ]
   },
   {
@@ -158,20 +248,35 @@
     "sourceLocator": "Chapter 23",
     "section": "domain",
     "subject": "Algorithms",
-    "topic": "algo-10-mst",
+    "topic": "Minimum Spanning Trees (MST)",
     "difficulty": "Easy",
     "stem": "If an undirected, connected graph has $V$ vertices, how many edges will its Minimum Spanning Tree contain?",
     "options": [
-      { "id": "a", "text": "$V$" },
-      { "id": "b", "text": "$V - 1$" },
-      { "id": "c", "text": "$V + 1$" },
-      { "id": "d", "text": "$E - V + 1$" }
+      {
+        "id": "algo-q-7-a",
+        "text": "$V$"
+      },
+      {
+        "id": "algo-q-7-b",
+        "text": "$V - 1$"
+      },
+      {
+        "id": "algo-q-7-c",
+        "text": "$V + 1$"
+      },
+      {
+        "id": "algo-q-7-d",
+        "text": "$E - V + 1$"
+      }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "algo-q-7-b",
     "explanation": "By definition, any spanning tree (minimum or not) of a connected graph with $V$ vertices must contain exactly $V - 1$ edges to ensure connectivity without cycles.",
     "reviewNote": "Tree property.",
     "verificationSources": [
-      { "sourceId": "CLRS", "locator": "Chapter 23" }
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 23"
+      }
     ]
   },
   {
@@ -183,20 +288,35 @@
     "sourceLocator": "Chapter 4",
     "section": "domain",
     "subject": "Algorithms",
-    "topic": "algo-2-recurrence-relations",
+    "topic": "Recurrence Relations & Master Theorem",
     "difficulty": "Medium",
     "stem": "Solve the recurrence relation using the Master Theorem: $T(n) = 4T(n/2) + n$.",
     "options": [
-      { "id": "a", "text": "$O(n \\log n)$" },
-      { "id": "b", "text": "$O(n^2)$" },
-      { "id": "c", "text": "$O(n^2 \\log n)$" },
-      { "id": "d", "text": "$O(n)$" }
+      {
+        "id": "algo-q-8-a",
+        "text": "$O(n \\log n)$"
+      },
+      {
+        "id": "algo-q-8-b",
+        "text": "$O(n^2)$"
+      },
+      {
+        "id": "algo-q-8-c",
+        "text": "$O(n^2 \\log n)$"
+      },
+      {
+        "id": "algo-q-8-d",
+        "text": "$O(n)$"
+      }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "algo-q-8-b",
     "explanation": "Here $a=4, b=2, f(n)=n$. Calculate $n^{\\log_b a} = n^{\\log_2 4} = n^2$. Since $f(n) = n$ is polynomially smaller than $n^2$ by a factor of $n^1$, this is Case 1. The result is $O(n^2)$.",
     "reviewNote": "Master theorem application.",
     "verificationSources": [
-      { "sourceId": "CLRS", "locator": "Chapter 4" }
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 4"
+      }
     ]
   },
   {
@@ -208,20 +328,35 @@
     "sourceLocator": "Chapter 11",
     "section": "domain",
     "subject": "Algorithms",
-    "topic": "algo-3-searching-hashing",
+    "topic": "Searching Algorithms & Hashing",
     "difficulty": "Medium",
     "stem": "Given a hash table of size 7, a hash function $h(k) = k \\bmod 7$, and linear probing. Keys $15, 11, 25, 16$ are inserted sequentially. At which index will $16$ be stored?",
     "options": [
-      { "id": "a", "text": "2" },
-      { "id": "b", "text": "3" },
-      { "id": "c", "text": "4" },
-      { "id": "d", "text": "5" }
+      {
+        "id": "algo-q-9-a",
+        "text": "2"
+      },
+      {
+        "id": "algo-q-9-b",
+        "text": "3"
+      },
+      {
+        "id": "algo-q-9-c",
+        "text": "4"
+      },
+      {
+        "id": "algo-q-9-d",
+        "text": "5"
+      }
     ],
-    "correctOptionId": "a",
+    "correctOptionId": "algo-q-9-a",
     "explanation": "$15 \\bmod 7 = 1$ (Index 1). $11 \\bmod 7 = 4$ (Index 4). $25 \\bmod 7 = 4$ (Collision, linear probe to Index 5). $16 \\bmod 7 = 2$ (Index 2). It doesn't collide with 1, 4, or 5. Therefore, it goes to index 2.",
     "reviewNote": "Hashing with linear probing.",
     "verificationSources": [
-      { "sourceId": "CLRS", "locator": "Chapter 11" }
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 11"
+      }
     ]
   },
   {
@@ -233,20 +368,35 @@
     "sourceLocator": "Chapter 2",
     "section": "domain",
     "subject": "Algorithms",
-    "topic": "algo-4-comparison-sorting",
+    "topic": "Comparison-Based Sorting",
     "difficulty": "Medium",
     "stem": "Which of the following sorting algorithms is strictly NOT an in-place sorting algorithm?",
     "options": [
-      { "id": "a", "text": "Selection Sort" },
-      { "id": "b", "text": "Merge Sort" },
-      { "id": "c", "text": "Heap Sort" },
-      { "id": "d", "text": "Quick Sort" }
+      {
+        "id": "algo-q-10-a",
+        "text": "Selection Sort"
+      },
+      {
+        "id": "algo-q-10-b",
+        "text": "Merge Sort"
+      },
+      {
+        "id": "algo-q-10-c",
+        "text": "Heap Sort"
+      },
+      {
+        "id": "algo-q-10-d",
+        "text": "Quick Sort"
+      }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "algo-q-10-b",
     "explanation": "Merge sort requires an auxiliary array of size $O(n)$ to temporarily hold the merged elements during the combine step. Distractor: Quick Sort uses $O(\\log n)$ stack space, which is typically considered in-place compared to linear $O(n)$ space.",
     "reviewNote": "Sorting properties.",
     "verificationSources": [
-      { "sourceId": "CLRS", "locator": "Chapter 2" }
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 2"
+      }
     ]
   },
   {
@@ -258,20 +408,35 @@
     "sourceLocator": "Chapter 24",
     "section": "domain",
     "subject": "Algorithms",
-    "topic": "algo-11-single-shortest-path",
+    "topic": "Single-Source Shortest Paths",
     "difficulty": "Medium",
     "stem": "Which of the following statements regarding Dijkstra's algorithm is correct?",
     "options": [
-      { "id": "a", "text": "It successfully finds shortest paths in all graphs, including those with negative weight cycles." },
-      { "id": "b", "text": "It runs in $O(V + E)$ time when implemented with a standard binary heap." },
-      { "id": "c", "text": "It may produce incorrect shortest paths if the graph contains negative weight edges." },
-      { "id": "d", "text": "It is a Dynamic Programming algorithm." }
+      {
+        "id": "algo-q-11-a",
+        "text": "It successfully finds shortest paths in all graphs, including those with negative weight cycles."
+      },
+      {
+        "id": "algo-q-11-b",
+        "text": "It runs in $O(V + E)$ time when implemented with a standard binary heap."
+      },
+      {
+        "id": "algo-q-11-c",
+        "text": "It may produce incorrect shortest paths if the graph contains negative weight edges."
+      },
+      {
+        "id": "algo-q-11-d",
+        "text": "It is a Dynamic Programming algorithm."
+      }
     ],
-    "correctOptionId": "c",
+    "correctOptionId": "algo-q-11-c",
     "explanation": "Dijkstra's greedy approach assumes once a node is finalized, its shortest path is found. A negative edge discovered later can violate this assumption, leading to incorrect results. Distractor: Bellman-Ford uses DP and handles negative edges.",
     "reviewNote": "Dijkstra limitations.",
     "verificationSources": [
-      { "sourceId": "CLRS", "locator": "Chapter 24" }
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 24"
+      }
     ]
   },
   {
@@ -283,20 +448,35 @@
     "sourceLocator": "Chapter 15",
     "section": "domain",
     "subject": "Algorithms",
-    "topic": "algo-8-dynamic-programming",
+    "topic": "Dynamic Programming",
     "difficulty": "Medium",
     "stem": "In the matrix chain multiplication problem for four matrices $A_1, A_2, A_3, A_4$, what does the DP entry $M[1, 4]$ represent?",
     "options": [
-      { "id": "a", "text": "The result of multiplying the four matrices." },
-      { "id": "b", "text": "The minimum number of scalar multiplications needed to multiply the chain from $A_1$ to $A_4$." },
-      { "id": "c", "text": "The dimensions of the final resulting matrix." },
-      { "id": "d", "text": "The sequence of optimal parenthesis placement." }
+      {
+        "id": "algo-q-12-a",
+        "text": "The result of multiplying the four matrices."
+      },
+      {
+        "id": "algo-q-12-b",
+        "text": "The minimum number of scalar multiplications needed to multiply the chain from $A_1$ to $A_4$."
+      },
+      {
+        "id": "algo-q-12-c",
+        "text": "The dimensions of the final resulting matrix."
+      },
+      {
+        "id": "algo-q-12-d",
+        "text": "The sequence of optimal parenthesis placement."
+      }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "algo-q-12-b",
     "explanation": "The DP table $M[i,j]$ strictly stores the minimum cost (number of scalar multiplications) required to multiply the subchain from matrix $i$ to matrix $j$.",
     "reviewNote": "MCM DP formulation.",
     "verificationSources": [
-      { "sourceId": "CLRS", "locator": "Chapter 15" }
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 15"
+      }
     ]
   },
   {
@@ -308,20 +488,35 @@
     "sourceLocator": "Chapter 22",
     "section": "domain",
     "subject": "Algorithms",
-    "topic": "algo-9-graph-traversals",
+    "topic": "Graph Algorithms: BFS, DFS & Topological Sort",
     "difficulty": "Medium",
     "stem": "During a Depth-First Search (DFS) of a directed graph, if an edge $(u, v)$ points to a node $v$ that has been discovered but not yet finished, what type of edge is it?",
     "options": [
-      { "id": "a", "text": "Tree Edge" },
-      { "id": "b", "text": "Forward Edge" },
-      { "id": "c", "text": "Cross Edge" },
-      { "id": "d", "text": "Back Edge" }
+      {
+        "id": "algo-q-13-a",
+        "text": "Tree Edge"
+      },
+      {
+        "id": "algo-q-13-b",
+        "text": "Forward Edge"
+      },
+      {
+        "id": "algo-q-13-c",
+        "text": "Cross Edge"
+      },
+      {
+        "id": "algo-q-13-d",
+        "text": "Back Edge"
+      }
     ],
-    "correctOptionId": "d",
+    "correctOptionId": "algo-q-13-d",
     "explanation": "An edge pointing to an ancestor currently residing on the recursion stack (discovered but not finished) is a Back Edge. The presence of a back edge is the necessary and sufficient condition for a cycle in a directed graph.",
     "reviewNote": "DFS edge types.",
     "verificationSources": [
-      { "sourceId": "CLRS", "locator": "Chapter 22" }
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 22"
+      }
     ]
   },
   {
@@ -333,20 +528,35 @@
     "sourceLocator": "Chapter 3",
     "section": "domain",
     "subject": "Algorithms",
-    "topic": "algo-1-asymptotic-analysis",
+    "topic": "Asymptotic Analysis",
     "difficulty": "Medium",
     "stem": "Let $f(n) = n^2 \\log n$ and $g(n) = n(\\log n)^{10}$. Which of the following relationships is true?",
     "options": [
-      { "id": "a", "text": "$f(n) = O(g(n))$" },
-      { "id": "b", "text": "$g(n) = O(f(n))$" },
-      { "id": "c", "text": "$f(n) = \\Theta(g(n))$" },
-      { "id": "d", "text": "$g(n) = \\Omega(f(n))$" }
+      {
+        "id": "algo-q-14-a",
+        "text": "$f(n) = O(g(n))$"
+      },
+      {
+        "id": "algo-q-14-b",
+        "text": "$g(n) = O(f(n))$"
+      },
+      {
+        "id": "algo-q-14-c",
+        "text": "$f(n) = \\Theta(g(n))$"
+      },
+      {
+        "id": "algo-q-14-d",
+        "text": "$g(n) = \\Omega(f(n))$"
+      }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "algo-q-14-b",
     "explanation": "Compare $n^2 \\log n$ and $n(\\log n)^{10}$. Dividing both by $n \\log n$ yields $n$ versus $(\\log n)^9$. Since any polynomial grows faster than any polylogarithmic function, $n$ grows faster. Thus $f(n)$ grows faster, meaning $g(n) = O(f(n))$.",
     "reviewNote": "Growth of functions.",
     "verificationSources": [
-      { "sourceId": "CLRS", "locator": "Chapter 3" }
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 3"
+      }
     ]
   },
   {
@@ -358,20 +568,35 @@
     "sourceLocator": "Chapter 9",
     "section": "domain",
     "subject": "Algorithms",
-    "topic": "algo-6-divide-and-conquer",
+    "topic": "Divide and Conquer Strategy",
     "difficulty": "Medium",
     "stem": "What is the time complexity of the standard Quick Select algorithm for finding the k-th smallest element in an array?",
     "options": [
-      { "id": "a", "text": "$O(\\log n)$ average, $O(n)$ worst-case" },
-      { "id": "b", "text": "$O(n)$ average, $O(n \\log n)$ worst-case" },
-      { "id": "c", "text": "$O(n)$ average, $O(n^2)$ worst-case" },
-      { "id": "d", "text": "$O(n \\log n)$ average, $O(n^2)$ worst-case" }
+      {
+        "id": "algo-q-15-a",
+        "text": "$O(\\log n)$ average, $O(n)$ worst-case"
+      },
+      {
+        "id": "algo-q-15-b",
+        "text": "$O(n)$ average, $O(n \\log n)$ worst-case"
+      },
+      {
+        "id": "algo-q-15-c",
+        "text": "$O(n)$ average, $O(n^2)$ worst-case"
+      },
+      {
+        "id": "algo-q-15-d",
+        "text": "$O(n \\log n)$ average, $O(n^2)$ worst-case"
+      }
     ],
-    "correctOptionId": "c",
+    "correctOptionId": "algo-q-15-c",
     "explanation": "Quick Select drops one half of the partition at each step, yielding $T(n) = T(n/2) + O(n) = O(n)$ on average. However, if bad pivots are chosen (like max element), it yields $T(n) = T(n-1) + O(n) = O(n^2)$ worst-case.",
     "reviewNote": "Quick select complexity.",
     "verificationSources": [
-      { "sourceId": "CLRS", "locator": "Chapter 9" }
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 9"
+      }
     ]
   },
   {
@@ -383,20 +608,35 @@
     "sourceLocator": "Chapter 16",
     "section": "domain",
     "subject": "Algorithms",
-    "topic": "algo-7-greedy-algorithms",
+    "topic": "Greedy Algorithms",
     "difficulty": "Medium",
     "stem": "Why does the greedy approach fail for the 0/1 Knapsack problem?",
     "options": [
-      { "id": "a", "text": "Because sorting items by ratio takes $O(n \\log n)$ time which is too slow." },
-      { "id": "b", "text": "Because taking an item might prevent taking multiple smaller items that sum to a higher total value." },
-      { "id": "c", "text": "Because the optimal substructure property does not hold." },
-      { "id": "d", "text": "Because 0/1 Knapsack allows fractional choices which greedy cannot handle." }
+      {
+        "id": "algo-q-16-a",
+        "text": "Because sorting items by ratio takes $O(n \\log n)$ time which is too slow."
+      },
+      {
+        "id": "algo-q-16-b",
+        "text": "Because taking an item might prevent taking multiple smaller items that sum to a higher total value."
+      },
+      {
+        "id": "algo-q-16-c",
+        "text": "Because the optimal substructure property does not hold."
+      },
+      {
+        "id": "algo-q-16-d",
+        "text": "Because 0/1 Knapsack allows fractional choices which greedy cannot handle."
+      }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "algo-q-16-b",
     "explanation": "Greedy works on Fractional Knapsack because you can exactly fill the remaining capacity. In 0/1 Knapsack, taking an item leaves empty space that might not be perfectly fillable, rendering the greedy ratio-based choice suboptimal.",
     "reviewNote": "Greedy vs DP knapsack.",
     "verificationSources": [
-      { "sourceId": "CLRS", "locator": "Chapter 16" }
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 16"
+      }
     ]
   },
   {
@@ -408,20 +648,35 @@
     "sourceLocator": "Chapter 15",
     "section": "domain",
     "subject": "Algorithms",
-    "topic": "algo-8-dynamic-programming",
+    "topic": "Dynamic Programming",
     "difficulty": "Hard",
     "stem": "Given two strings $X = \\text{\"ABCBDAB\"}$ and $Y = \\text{\"BDCABA\"}$, what is the length of their Longest Common Subsequence (LCS)?",
     "options": [
-      { "id": "a", "text": "3" },
-      { "id": "b", "text": "4" },
-      { "id": "c", "text": "5" },
-      { "id": "d", "text": "6" }
+      {
+        "id": "algo-q-17-a",
+        "text": "3"
+      },
+      {
+        "id": "algo-q-17-b",
+        "text": "4"
+      },
+      {
+        "id": "algo-q-17-c",
+        "text": "5"
+      },
+      {
+        "id": "algo-q-17-d",
+        "text": "6"
+      }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "algo-q-17-b",
     "explanation": "The LCS length is 4. Example subsequences of length 4 are \"BCBA\", \"BDAB\", and \"BCAB\". There is no common subsequence of length 5.",
     "reviewNote": "LCS calculation.",
     "verificationSources": [
-      { "sourceId": "CLRS", "locator": "Chapter 15" }
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 15"
+      }
     ]
   },
   {
@@ -433,20 +688,35 @@
     "sourceLocator": "Chapter 4",
     "section": "domain",
     "subject": "Algorithms",
-    "topic": "algo-2-recurrence-relations",
+    "topic": "Recurrence Relations & Master Theorem",
     "difficulty": "Hard",
     "stem": "Evaluate the recurrence $T(n) = 2T(\\sqrt{n}) + \\log n$.",
     "options": [
-      { "id": "a", "text": "$O(\\log n)$" },
-      { "id": "b", "text": "$O(\\log n \\log \\log n)$" },
-      { "id": "c", "text": "$O(n)$" },
-      { "id": "d", "text": "$O(n \\log n)$" }
+      {
+        "id": "algo-q-18-a",
+        "text": "$O(\\log n)$"
+      },
+      {
+        "id": "algo-q-18-b",
+        "text": "$O(\\log n \\log \\log n)$"
+      },
+      {
+        "id": "algo-q-18-c",
+        "text": "$O(n)$"
+      },
+      {
+        "id": "algo-q-18-d",
+        "text": "$O(n \\log n)$"
+      }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "algo-q-18-b",
     "explanation": "Let $n = 2^m$. Then $T(2^m) = 2T(2^{m/2}) + m$. Rename $S(m) = T(2^m)$. Then $S(m) = 2S(m/2) + m$. By Master Theorem Case 2, $S(m) = O(m \\log m)$. Substituting back $m = \\log n$, we get $T(n) = O(\\log n \\log \\log n)$.",
     "reviewNote": "Variable substitution in recurrence.",
     "verificationSources": [
-      { "sourceId": "CLRS", "locator": "Chapter 4" }
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 4"
+      }
     ]
   },
   {
@@ -458,20 +728,35 @@
     "sourceLocator": "Chapter 34",
     "section": "domain",
     "subject": "Algorithms",
-    "topic": "algo-12-all-pairs-np",
+    "topic": "All-Pairs Shortest Paths & NP-Completeness",
     "difficulty": "Hard",
     "stem": "Suppose we are given a polynomial-time algorithm to solve the Boolean Satisfiability (SAT) problem. Which of the following conclusions can strictly be drawn?",
     "options": [
-      { "id": "a", "text": "All problems in NP-Hard can be solved in polynomial time." },
-      { "id": "b", "text": "$P = NP$, and all problems in NP can be solved in polynomial time." },
-      { "id": "c", "text": "SAT is no longer NP-Complete, but other problems remain NP-Complete." },
-      { "id": "d", "text": "The halting problem can now be solved in polynomial time." }
+      {
+        "id": "algo-q-19-a",
+        "text": "All problems in NP-Hard can be solved in polynomial time."
+      },
+      {
+        "id": "algo-q-19-b",
+        "text": "$P = NP$, and all problems in NP can be solved in polynomial time."
+      },
+      {
+        "id": "algo-q-19-c",
+        "text": "SAT is no longer NP-Complete, but other problems remain NP-Complete."
+      },
+      {
+        "id": "algo-q-19-d",
+        "text": "The halting problem can now be solved in polynomial time."
+      }
     ],
-    "correctOptionId": "b",
+    "correctOptionId": "algo-q-19-b",
     "explanation": "SAT is NP-Complete (by Cook's theorem). If any NP-Complete problem is solved in polynomial time, then every problem in NP can be reduced to it and solved in polynomial time, proving $P = NP$. Distractor: NP-Hard problems include undecidable problems like Halting, which still cannot be solved.",
     "reviewNote": "NP-completeness implication.",
     "verificationSources": [
-      { "sourceId": "CLRS", "locator": "Chapter 34" }
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 34"
+      }
     ]
   },
   {
@@ -483,20 +768,35 @@
     "sourceLocator": "Chapter 24",
     "section": "domain",
     "subject": "Algorithms",
-    "topic": "algo-11-single-shortest-path",
+    "topic": "Single-Source Shortest Paths",
     "difficulty": "Hard",
     "stem": "In a directed graph with $V$ vertices and $E$ edges, if we execute Bellman-Ford and observe that a distance value $d[v]$ is updated during the $V$-th iteration, what does this mathematically guarantee?",
     "options": [
-      { "id": "a", "text": "The shortest path to $v$ has exactly $V$ edges." },
-      { "id": "b", "text": "The graph is disconnected." },
-      { "id": "c", "text": "There exists a negative weight cycle reachable from the source." },
-      { "id": "d", "text": "The graph contains at least one negative weight edge, but no negative cycles." }
+      {
+        "id": "algo-q-20-a",
+        "text": "The shortest path to $v$ has exactly $V$ edges."
+      },
+      {
+        "id": "algo-q-20-b",
+        "text": "The graph is disconnected."
+      },
+      {
+        "id": "algo-q-20-c",
+        "text": "There exists a negative weight cycle reachable from the source."
+      },
+      {
+        "id": "algo-q-20-d",
+        "text": "The graph contains at least one negative weight edge, but no negative cycles."
+      }
     ],
-    "correctOptionId": "c",
+    "correctOptionId": "algo-q-20-c",
     "explanation": "A simple path can have at most $V-1$ edges. If an edge can still be relaxed on the $V$-th pass, the path length strictly exceeds $V-1$ edges, which implies the path contains a cycle. Since it lowered the cost, it must be a negative weight cycle.",
     "reviewNote": "Bellman-Ford V-th iteration.",
     "verificationSources": [
-      { "sourceId": "CLRS", "locator": "Chapter 24" }
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 24"
+      }
     ]
   }
 ]

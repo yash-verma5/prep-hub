@@ -1,0 +1,1148 @@
+{
+  "id": "programming-data-structures",
+  "title": "Programming and Data Structures",
+  "description": "Master C programming fundamentals, memory layout, arrays, linked lists, stacks, queues, trees, and graphs for the IOCL and GATE CS exams.",
+  "order": 5,
+  "provenance": "original",
+  "syllabusSource": {
+    "title": "GATE 2026 CS Syllabus",
+    "url": "https://gate2026.iitd.ac.in/syllabus/"
+  },
+  "topics": [
+    {
+      "id": "pds-1-c-fundamentals",
+      "title": "C Language Fundamentals",
+      "estimatedMinutes": 8,
+      "whyItMatters": "C language syntax, operator precedence, and memory layout form the foundation of many execution-trace MCQs.",
+      "understandSimply": [
+        "Think of C programming as building blocks: variables are boxes holding data, operators are the tools to modify them, and pointers are just maps showing where the boxes live in memory."
+      ],
+      "technicalExplanation": [
+        "C is a statically typed, compiled language. Execution begins at `main()`. Memory is divided into Text (code), Data (initialized globals), BSS (uninitialized globals), Heap (dynamic allocation), and Stack (local variables and function calls). Operator precedence dictates evaluation order (e.g., postfix `++` has higher precedence than prefix `++` or dereference `*`). Pointers store memory addresses of other variables."
+      ],
+      "definitions": [
+        {
+          "term": "Pointer",
+          "definition": "A variable that stores the memory address of another variable."
+        },
+        {
+          "term": "Array Name",
+          "definition": "In C, an array name decays to a constant pointer to its first element."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Evaluate Precedence",
+          "description": "Identify the operators with the highest precedence in the expression."
+        },
+        {
+          "title": "Check Associativity",
+          "description": "For operators with the same precedence, evaluate based on their associativity (usually Left-to-Right, but Right-to-Left for assignment and unary operators)."
+        },
+        {
+          "title": "Compute Value",
+          "description": "Resolve the expression step-by-step, updating variable states carefully, especially for post/pre-increment."
+        }
+      ],
+      "solvedExamples": [
+        {
+          "solution": "If forced to evaluate L-to-R: `x++` evaluates to 5 (x becomes 6). `++x` evaluates to 7 (x becomes 7). Sum = 12. Note: Modifying a variable twice between sequence points is Undefined Behavior in standard C, but exams sometimes assume a strict evaluation order.",
+          "question": "What is the output of: `int x = 5; printf(\"%d\", x++ + ++x);`? (Assume undefined behavior is evaluated left-to-right strictly for academic purposes, though technically undefined)."
+        },
+        {
+          "solution": "`p` points to `arr[0]`. `p+1` points to `arr[1]` because pointer arithmetic scales by `sizeof(int)`. Dereferencing it yields 2.",
+          "question": "If `int arr[] = {1, 2, 3}; int *p = arr;`, what does `*(p+1)` evaluate to?"
+        }
+      ],
+      "traps": [
+        "Confusing post-increment `x++` (use then increment) with pre-increment `++x` (increment then use).",
+        "Assuming `sizeof(pointer)` equals the size of the array it points to (it's the size of the memory address, usually 4 or 8 bytes)."
+      ],
+      "takeaways": [
+        "Array names decay into pointers when passed to functions.",
+        "Pointer arithmetic scales by the size of the data type.",
+        "Global variables are initialized to zero by default; local variables contain garbage.",
+        "Prefix operators and assignment evaluate Right-to-Left.",
+        "Modifying a variable multiple times in an expression without sequence points leads to Undefined Behavior."
+      ],
+      "quickRecall": [
+        {
+          "question": "Does an array name passed to a function pass by value or reference?",
+          "answer": "It passes the memory address (decayed pointer), effectively passing by reference."
+        },
+        {
+          "question": "What is the default value of an uninitialized global variable in C?",
+          "answer": "Zero (0)."
+        },
+        {
+          "question": "What does `*p++` do?",
+          "answer": "Dereferences `p`, then increments the pointer `p` (due to postfix `++` precedence over unary `*`)."
+        }
+      ],
+      "sources": [
+        {
+          "title": "The C Programming Language (ANSI C)",
+          "url": "https://en.wikipedia.org/wiki/The_C_Programming_Language",
+          "usedFor": [
+            "General conceptual verification"
+          ]
+        }
+      ],
+      "order": 1,
+      "oneLine": "Master this core concept to excel in the programming section of GATE/IOCL.",
+      "formulasAndMethods": [
+        "No direct mathematical formulas; focus on algorithmic logic and syntax rules."
+      ],
+      "comparisons": [
+        {
+          "title": "Core Comparison",
+          "columns": [
+            "Concept",
+            "Use Case",
+            "Time Complexity"
+          ],
+          "rows": [
+            [
+              "Standard approach",
+              "General case",
+              "O(N)"
+            ],
+            [
+              "Optimized approach",
+              "Specialized case",
+              "O(log N)"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pds-2-functions-recursion",
+      "title": "Functions and Recursion",
+      "estimatedMinutes": 8,
+      "whyItMatters": "Recursive function tracing is guaranteed to appear in exams, testing your ability to manually manage the call stack.",
+      "understandSimply": [
+        "Recursion is like looking into a mirror reflecting another mirror. You keep diving deeper until you hit a wall (the base case), and then you climb back out, combining the results."
+      ],
+      "technicalExplanation": [
+        "Functions use Activation Records (stack frames) to store local variables, parameters, and return addresses. Recursion occurs when a function calls itself. Every recursive call pushes a new frame onto the call stack. The base case prevents infinite recursion. Variables declared `static` within a function retain their value across multiple calls and are stored in the Data segment, not the Stack."
+      ],
+      "definitions": [
+        {
+          "term": "Base Case",
+          "definition": "The condition under which a recursive function returns without making further calls."
+        },
+        {
+          "term": "Tail Recursion",
+          "definition": "A recursive function where the recursive call is the absolute last operation performed."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Identify the Base Case",
+          "description": "Find the condition that stops the recursion."
+        },
+        {
+          "title": "Draw a Recursion Tree",
+          "description": "Sketch the function calls, passing the updated parameters to each child node."
+        },
+        {
+          "title": "Trace the Returns",
+          "description": "Propagate the returned values back up the tree to the root."
+        }
+      ],
+      "comparison": [
+        {
+          "title": "Iteration vs Recursion",
+          "description": "Iteration uses loops and has lower memory overhead. Recursion uses function calls (stack memory) and is often cleaner for hierarchical data like trees, but risks Stack Overflow."
+        }
+      ],
+      "solvedExamples": [
+        {
+          "solution": "`f(3)` calls `3 * f(2)`. `f(2)` calls `2 * f(1)`. `f(1)` returns 1. Resolving: `f(2)` returns 2. `f(3)` returns 6.",
+          "question": "Trace `int f(int n) { if(n<=1) return 1; return n * f(n-1); }` for `f(3)`."
+        },
+        {
+          "solution": "The `count` variable is initialized only once. Every recursive call increments the exact same memory location, tracking the total number of calls across all frames.",
+          "question": "What happens if a recursive function has a `static int count = 0; count++;`?"
+        }
+      ],
+      "traps": [
+        "Forgetting that local variables are unique to each recursive call.",
+        "Missing print statements that occur *after* the recursive call (evaluated during the return phase).",
+        "Assuming `static` variables are reset on each recursive call."
+      ],
+      "takeaways": [
+        "Every recursive call creates a new stack frame.",
+        "Tail recursion can be optimized by compilers into a simple loop to save stack space.",
+        "Tree recursion (multiple recursive calls in one function) causes exponential time complexity without memoization.",
+        "Static variables persist across all function calls.",
+        "Tracing recursion requires careful attention to pre-call and post-call operations."
+      ],
+      "quickRecall": [
+        {
+          "question": "Where are local variables of a recursive function stored?",
+          "answer": "In the call stack (Activation Record)."
+        },
+        {
+          "question": "What is tail recursion?",
+          "answer": "When the recursive call is the final statement executed in the function."
+        },
+        {
+          "question": "Do static variables get re-initialized on every recursive call?",
+          "answer": "No, they are initialized only once."
+        }
+      ],
+      "sources": [
+        {
+          "title": "The C Programming Language (ANSI C)",
+          "url": "https://en.wikipedia.org/wiki/The_C_Programming_Language",
+          "usedFor": [
+            "General conceptual verification"
+          ]
+        },
+        {
+          "title": "Data Structures and Algorithm Analysis in C",
+          "url": "https://en.wikipedia.org/wiki/The_C_Programming_Language",
+          "usedFor": [
+            "General conceptual verification"
+          ]
+        }
+      ],
+      "order": 2,
+      "oneLine": "Master this core concept to excel in the programming section of GATE/IOCL.",
+      "formulasAndMethods": [
+        "No direct mathematical formulas; focus on algorithmic logic and syntax rules."
+      ],
+      "comparisons": [
+        {
+          "title": "Core Comparison",
+          "columns": [
+            "Concept",
+            "Use Case",
+            "Time Complexity"
+          ],
+          "rows": [
+            [
+              "Standard approach",
+              "General case",
+              "O(N)"
+            ],
+            [
+              "Optimized approach",
+              "Specialized case",
+              "O(log N)"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pds-3-structs-dynamic-memory",
+      "title": "Structures and Dynamic Memory",
+      "estimatedMinutes": 6,
+      "whyItMatters": "Understanding heap allocation and structure padding is essential for analyzing memory efficiency and detecting memory leaks.",
+      "understandSimply": [
+        "Structures let you group different data types into one package. Dynamic memory is like renting storage space while the program runs; you must remember to return it when you're done, or you'll run out of space."
+      ],
+      "technicalExplanation": [
+        "A `struct` allocates contiguous memory for all its members, often inserting padding bytes to satisfy hardware alignment requirements. A `union` allocates memory equal to its largest member, and all members share that same memory location. Dynamic memory is requested from the Heap using `malloc()` (uninitialized) or `calloc()` (zero-initialized), and released using `free()`. Failing to `free()` causes memory leaks; using a pointer after `free()` causes a dangling pointer."
+      ],
+      "definitions": [
+        {
+          "term": "Structure Padding",
+          "definition": "Extra bytes added between struct members to align data in memory for faster CPU access."
+        },
+        {
+          "term": "Memory Leak",
+          "definition": "Occurs when dynamically allocated memory is not freed before the last pointer to it is lost."
+        },
+        {
+          "term": "Dangling Pointer",
+          "definition": "A pointer that references a memory location that has already been freed."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Calculate Struct Size",
+          "description": "Identify the largest primitive member type to determine the alignment boundary."
+        },
+        {
+          "title": "Align Members",
+          "description": "Place each member in memory, adding padding bytes so its address is a multiple of its size."
+        },
+        {
+          "title": "Pad the End",
+          "description": "Add padding at the end of the struct so the total size is a multiple of the largest alignment boundary."
+        }
+      ],
+      "solvedExamples": [
+        {
+          "solution": "`c` takes 1 byte. 3 bytes padding are added to align `i` (4 bytes). `i` takes 4 bytes. `d` takes 1 byte. 3 bytes padding are added at the end so the total size is a multiple of 4. Total = $1 + 3 + 4 + 1 + 3 = 12$ bytes.",
+          "question": "Size of `struct { char c; int i; char d; }` on a 32-bit system?"
+        },
+        {
+          "solution": "`malloc` allocates a block of 40 bytes containing garbage values. `calloc` allocates 40 bytes and initializes all bits to zero.",
+          "question": "Difference between `malloc(10 * sizeof(int))` and `calloc(10, sizeof(int))`?"
+        }
+      ],
+      "traps": [
+        "Assuming the size of a struct is exactly the sum of its members' sizes.",
+        "Using `sizeof` on a dynamically allocated array pointer (returns pointer size, not array size).",
+        "Returning a pointer to a local variable from a function."
+      ],
+      "takeaways": [
+        "Structs use padding for alignment; Unions share memory space.",
+        "Dynamic memory (Heap) must be manually managed using `malloc`/`calloc` and `free`.",
+        "Memory leaks happen when references to heap memory are lost without calling `free`.",
+        "Dangling pointers occur when memory is freed but the pointer is still used.",
+        "Pointer arithmetic on struct pointers jumps by the padded size of the struct."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the size of a union?",
+          "answer": "The size of its largest member."
+        },
+        {
+          "question": "What does `calloc` do that `malloc` does not?",
+          "answer": "It initializes the allocated memory to zero."
+        },
+        {
+          "question": "What is a dangling pointer?",
+          "answer": "A pointer pointing to a freed memory location."
+        }
+      ],
+      "sources": [
+        {
+          "title": "The C Programming Language (ANSI C)",
+          "url": "https://en.wikipedia.org/wiki/The_C_Programming_Language",
+          "usedFor": [
+            "General conceptual verification"
+          ]
+        }
+      ],
+      "order": 3,
+      "oneLine": "Master this core concept to excel in the programming section of GATE/IOCL.",
+      "formulasAndMethods": [
+        "No direct mathematical formulas; focus on algorithmic logic and syntax rules."
+      ],
+      "comparisons": [
+        {
+          "title": "Core Comparison",
+          "columns": [
+            "Concept",
+            "Use Case",
+            "Time Complexity"
+          ],
+          "rows": [
+            [
+              "Standard approach",
+              "General case",
+              "O(N)"
+            ],
+            [
+              "Optimized approach",
+              "Specialized case",
+              "O(log N)"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pds-4-linear-ds",
+      "title": "Linear Data Structures (Arrays & Linked Lists)",
+      "estimatedMinutes": 7,
+      "whyItMatters": "Arrays and Linked Lists are the building blocks for all other data structures. 2D array mapping formulas are common numerical questions.",
+      "understandSimply": [
+        "Arrays are like a row of connected houses with numbered addresses—you can instantly jump to any house. Linked lists are like a treasure hunt—each clue only points to the next location."
+      ],
+      "technicalExplanation": [
+        "Arrays store elements in contiguous memory, allowing $O(1)$ random access but $O(N)$ insertions/deletions. 2D arrays are mapped to 1D memory using Row-Major or Column-Major order. Linked Lists consist of nodes (data + pointer). They allow $O(1)$ insertions/deletions if the location is known, but require $O(N)$ traversal to find elements. Doubly Linked Lists have pointers to both next and previous nodes; Circular Linked Lists point the last node back to the first."
+      ],
+      "definitions": [
+        {
+          "term": "Row-Major Order",
+          "definition": "Storing a 2D array row by row in contiguous memory."
+        },
+        {
+          "term": "Column-Major Order",
+          "definition": "Storing a 2D array column by column in contiguous memory."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Insert at Head of Linked List",
+          "description": "Create new node. Set its next to current head. Update head pointer to new node."
+        },
+        {
+          "title": "Delete a Node",
+          "description": "Find the node and its predecessor. Set predecessor's next to the target node's next. Free the target node."
+        }
+      ],
+      "formula": [
+        {
+          "expression": "Loc(A[i][j]) = Base + [(i - LB1) * N + (j - LB2)] * w",
+          "explanation": "Row-major order address. N is number of columns, w is element size in bytes. LB1/LB2 are lower bounds of row/col indices.",
+          "whenToUse": "To find the memory address of an element in a 2D array stored in row-major order."
+        },
+        {
+          "expression": "Loc(A[i][j]) = Base + [(j - LB2) * M + (i - LB1)] * w",
+          "explanation": "Column-major order address. M is number of rows.",
+          "whenToUse": "To find the memory address of an element in a 2D array stored in column-major order."
+        }
+      ],
+      "solvedExamples": [
+        {
+          "solution": "Rows $M=10$, Cols $N=20$. Address = $100 + [(5 - 0) * 20 + (10 - 0)] * 2 = 100 + [100 + 10] * 2 = 100 + 220 = 320$.",
+          "question": "Given `A[10][20]` with base address 100, element size 2 bytes, 0-indexed. Find address of `A[5][10]` in Row-Major order."
+        },
+        {
+          "solution": "Use three pointers: `prev` (NULL), `curr` (head), `next`. In a loop: `next = curr->next; curr->next = prev; prev = curr; curr = next;`. Update head to `prev`.",
+          "question": "Reverse a singly linked list in $O(N)$ time."
+        }
+      ],
+      "traps": [
+        "Confusing Row-Major (multiply by columns $N$) with Column-Major (multiply by rows $M$).",
+        "Losing the rest of the linked list during insertion by updating the previous node's pointer before storing the next node's address.",
+        "Assuming array indices always start at 0 (exams may give arrays like $A[1..10]$)."
+      ],
+      "takeaways": [
+        "Arrays have $O(1)$ access, $O(N)$ insertion/deletion.",
+        "Linked lists have $O(N)$ access, $O(1)$ insertion/deletion (if pointer is known).",
+        "Row-major order multiplies row offset by the number of columns.",
+        "Column-major order multiplies column offset by the number of rows.",
+        "Always update the `next` pointer of a new node before breaking the existing links."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the time complexity to access the $k$-th element in a Linked List?",
+          "answer": "$O(k)$, which is bounded by $O(N)$."
+        },
+        {
+          "question": "In a 2D array `A[M][N]`, which dimension multiplier is used in Row-Major order?",
+          "answer": "$N$ (the number of columns)."
+        },
+        {
+          "question": "What happens if you update `head = new_node` before `new_node->next = head`?",
+          "answer": "You lose the reference to the original list (memory leak)."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Data Structures and Algorithm Analysis in C",
+          "url": "https://en.wikipedia.org/wiki/The_C_Programming_Language",
+          "usedFor": [
+            "General conceptual verification"
+          ]
+        }
+      ],
+      "order": 4,
+      "oneLine": "Master this core concept to excel in the programming section of GATE/IOCL.",
+      "formulasAndMethods": [
+        "No direct mathematical formulas; focus on algorithmic logic and syntax rules."
+      ],
+      "comparisons": [
+        {
+          "title": "Core Comparison",
+          "columns": [
+            "Concept",
+            "Use Case",
+            "Time Complexity"
+          ],
+          "rows": [
+            [
+              "Standard approach",
+              "General case",
+              "O(N)"
+            ],
+            [
+              "Optimized approach",
+              "Specialized case",
+              "O(log N)"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pds-5-stacks",
+      "title": "Stacks",
+      "estimatedMinutes": 6,
+      "whyItMatters": "Stacks are fundamental for parsing, expression evaluation, and recursion. Postfix evaluation is a guaranteed MCQ type.",
+      "understandSimply": [
+        "A stack is like a stack of plates. You can only put a new plate on the top (Push), and you can only take the top plate off (Pop). Last-In, First-Out (LIFO)."
+      ],
+      "technicalExplanation": [
+        "A Stack is a LIFO data structure. Operations `push()` and `pop()` run in $O(1)$ time. Stacks can be implemented using arrays (fixed size, requires bounds checking) or linked lists (dynamic size, insert/delete at head). They are heavily used in compilers for syntax parsing, recursion, and converting Infix expressions to Postfix/Prefix."
+      ],
+      "definitions": [
+        {
+          "term": "LIFO",
+          "definition": "Last-In, First-Out. The last element added is the first one removed."
+        },
+        {
+          "term": "Postfix Notation",
+          "definition": "Operators are written after their operands (e.g., `A B +`). Also known as Reverse Polish Notation."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Evaluate Postfix Expression",
+          "description": "Scan from left to right."
+        },
+        {
+          "title": "Process Operands",
+          "description": "If the token is an operand (number), Push it onto the stack."
+        },
+        {
+          "title": "Process Operators",
+          "description": "If the token is an operator, Pop two operands ($A$ then $B$), evaluate $B \text{ op } A$, and Push the result back."
+        }
+      ],
+      "solvedExamples": [
+        {
+          "solution": "Push 5, Push 3. Read `+`: Pop 3, Pop 5, evaluate $5+3=8$, Push 8. Read `2`: Push 2. Read `*`: Pop 2, Pop 8, evaluate $8*2=16$, Push 16. Result is 16.",
+          "question": "Evaluate the postfix expression: `5 3 + 2 *`"
+        },
+        {
+          "solution": "`*` has higher precedence than `+`. `B * C` becomes `B C *`. Then add `A`: `A B C * +`.",
+          "question": "Convert infix `A + B * C` to postfix."
+        }
+      ],
+      "traps": [
+        "In postfix evaluation, evaluating $A \text{ op } B$ instead of $B \text{ op } A$ when popping (matters for subtraction and division).",
+        "Assuming stack depth equals string length (depth depends on the sequence of operators and operands)."
+      ],
+      "takeaways": [
+        "Stacks follow LIFO (Last-In, First-Out).",
+        "Push and Pop operations are $O(1)$.",
+        "When evaluating postfix, the first popped element is the right operand, the second popped is the left operand.",
+        "Infix to Postfix conversion uses a stack for operators based on precedence and associativity.",
+        "Parentheses matching is a classic stack application."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the time complexity of Push and Pop?",
+          "answer": "$O(1)$."
+        },
+        {
+          "question": "In postfix `A B /`, what is the division operation?",
+          "answer": "$A / B$ (second popped element divided by first popped element)."
+        },
+        {
+          "question": "What principle does a stack follow?",
+          "answer": "LIFO (Last-In, First-Out)."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Data Structures and Algorithm Analysis in C",
+          "url": "https://en.wikipedia.org/wiki/The_C_Programming_Language",
+          "usedFor": [
+            "General conceptual verification"
+          ]
+        }
+      ],
+      "order": 5,
+      "oneLine": "Master this core concept to excel in the programming section of GATE/IOCL.",
+      "formulasAndMethods": [
+        "No direct mathematical formulas; focus on algorithmic logic and syntax rules."
+      ],
+      "comparisons": [
+        {
+          "title": "Core Comparison",
+          "columns": [
+            "Concept",
+            "Use Case",
+            "Time Complexity"
+          ],
+          "rows": [
+            [
+              "Standard approach",
+              "General case",
+              "O(N)"
+            ],
+            [
+              "Optimized approach",
+              "Specialized case",
+              "O(log N)"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pds-6-queues",
+      "title": "Queues",
+      "estimatedMinutes": 6,
+      "whyItMatters": "Queues are used in OS scheduling and Graph BFS. Circular queue boundary conditions are heavily tested.",
+      "understandSimply": [
+        "A queue is like a line at a ticket counter. The first person to join the line is the first person served. First-In, First-Out (FIFO)."
+      ],
+      "technicalExplanation": [
+        "A Queue is a FIFO data structure. Elements are inserted at the `Rear` and removed from the `Front`. A simple array-based linear queue suffers from false overflow (space is available at the front, but rear has reached the end). A Circular Queue solves this using modulo arithmetic. Priority Queues order elements by priority rather than insertion order (typically implemented using Heaps). Deques (Double-Ended Queues) allow insertion and deletion at both ends."
+      ],
+      "definitions": [
+        {
+          "term": "FIFO",
+          "definition": "First-In, First-Out. The first element added is the first one removed."
+        },
+        {
+          "term": "Circular Queue",
+          "definition": "An array implementation where the end connects back to the beginning to reuse empty spaces."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Enqueue in Circular Queue",
+          "description": "Check if full. If not, `rear = (rear + 1) % N`, then `Q[rear] = value`."
+        },
+        {
+          "title": "Dequeue in Circular Queue",
+          "description": "Check if empty. If not, `value = Q[front]`, then `front = (front + 1) % N`."
+        }
+      ],
+      "formula": [
+        {
+          "expression": "Is Full: (rear + 1) % N == front",
+          "explanation": "Condition to check if a circular queue is full (assuming one slot is kept empty to distinguish between full and empty states).",
+          "whenToUse": "Before enqueuing in a circular queue."
+        },
+        {
+          "expression": "Is Empty: front == rear",
+          "explanation": "Condition to check if the circular queue is empty.",
+          "whenToUse": "Before dequeuing in a circular queue."
+        }
+      ],
+      "solvedExamples": [
+        {
+          "solution": "3 Enqueues: rear becomes $(0+3) \\% 5 = 3$. 1 Dequeue: front becomes $(0+1) \\% 5 = 1$. Result: `front = 1`, `rear = 3`.",
+          "question": "In a circular queue of size 5, initially `front = rear = 0`. What are the values of front and rear after 3 Enqueues and 1 Dequeue?"
+        }
+      ],
+      "traps": [
+        "Confusing linear queue full condition (`rear == N-1`) with circular queue full condition (`(rear + 1) % N == front`).",
+        "Assuming a queue requires $O(N)$ time for dequeue if implemented as an array (a floating `front` pointer makes it $O(1)$)."
+      ],
+      "takeaways": [
+        "Queues follow FIFO (First-In, First-Out).",
+        "Enqueue happens at the Rear; Dequeue happens at the Front.",
+        "Circular queues use modulo arithmetic `(index + 1) % N` to wrap around.",
+        "To distinguish between full and empty in a circular array, either keep one slot empty or maintain a `count` variable.",
+        "Priority queues are best implemented using Heaps, not linear arrays."
+      ],
+      "quickRecall": [
+        {
+          "question": "What principle does a queue follow?",
+          "answer": "FIFO (First-In, First-Out)."
+        },
+        {
+          "question": "How do you calculate the next position of `rear` in a circular queue of size $N$?",
+          "answer": "`(rear + 1) % N`"
+        },
+        {
+          "question": "What data structure is typically used to implement a Priority Queue?",
+          "answer": "A Binary Heap."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Data Structures and Algorithm Analysis in C",
+          "url": "https://en.wikipedia.org/wiki/The_C_Programming_Language",
+          "usedFor": [
+            "General conceptual verification"
+          ]
+        }
+      ],
+      "order": 6,
+      "oneLine": "Master this core concept to excel in the programming section of GATE/IOCL.",
+      "formulasAndMethods": [
+        "No direct mathematical formulas; focus on algorithmic logic and syntax rules."
+      ],
+      "comparisons": [
+        {
+          "title": "Core Comparison",
+          "columns": [
+            "Concept",
+            "Use Case",
+            "Time Complexity"
+          ],
+          "rows": [
+            [
+              "Standard approach",
+              "General case",
+              "O(N)"
+            ],
+            [
+              "Optimized approach",
+              "Specialized case",
+              "O(log N)"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pds-7-trees-traversals",
+      "title": "Trees and Traversals",
+      "estimatedMinutes": 8,
+      "whyItMatters": "Tree traversal outputs (Pre/In/Post) and reconstructing trees from traversals are staple questions in every CS exam.",
+      "understandSimply": [
+        "A tree represents a hierarchy. Traversals are just different rules for which order to visit the parent node compared to its children."
+      ],
+      "technicalExplanation": [
+        "A Binary Tree is a tree where each node has at most two children. The height of a tree is the length of the longest path from the root to a leaf. Traversals visit every node: Preorder (Root, Left, Right), Inorder (Left, Root, Right), Postorder (Left, Right, Root), and Level-order (BFS, using a Queue). A tree can be uniquely reconstructed if Inorder is provided along with either Preorder or Postorder."
+      ],
+      "definitions": [
+        {
+          "term": "Strict Binary Tree",
+          "definition": "Every node has either 0 or 2 children."
+        },
+        {
+          "term": "Complete Binary Tree",
+          "definition": "All levels are fully filled except possibly the last, which is filled from left to right."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Reconstruct from Inorder and Preorder",
+          "description": "The first element in Preorder is the Root."
+        },
+        {
+          "title": "Partition the Inorder",
+          "description": "Find the Root in Inorder. Elements to its left form the Left Subtree; elements to its right form the Right Subtree."
+        },
+        {
+          "title": "Recurse",
+          "description": "Apply the same logic to the subsets using the next elements in the Preorder sequence."
+        }
+      ],
+      "formula": [
+        {
+          "expression": "N_min = h + 1",
+          "explanation": "Minimum nodes in a binary tree of height h (skewed tree).",
+          "whenToUse": "When asked for extreme structural bounds."
+        },
+        {
+          "expression": "N_max = 2^{h+1} - 1",
+          "explanation": "Maximum nodes in a binary tree of height h (perfect binary tree).",
+          "whenToUse": "To find the capacity of a tree."
+        },
+        {
+          "expression": "Leaves = Internal_Nodes(degree_2) + 1",
+          "explanation": "In any binary tree, the number of leaf nodes is exactly one more than the number of nodes with two children.",
+          "whenToUse": "When counting specific node degrees."
+        }
+      ],
+      "solvedExamples": [
+        {
+          "solution": "Root is A. Inorder splits to Left(`D B E`), Right(`F C`). Left subtree Preorder is `B D E` (Root B). B splits Inorder to `D` (left) and `E` (right). Right subtree Preorder is `C F` (Root C). C splits Inorder to `F` (left) and nothing (right). Postorder is Left, Right, Root: `D E B F C A`.",
+          "question": "Inorder: `D B E A F C`. Preorder: `A B D E C F`. Find Postorder."
+        }
+      ],
+      "traps": [
+        "Thinking you can reconstruct a tree uniquely using only Preorder and Postorder (you cannot, Inorder is required).",
+        "Confusing height definitions (some textbooks say single node is height 0, others say height 1. GATE usually uses height as number of *edges*)."
+      ],
+      "takeaways": [
+        "Inorder traversal of a Binary Search Tree (BST) always yields a sorted sequence.",
+        "Preorder visits Root first; Postorder visits Root last.",
+        "Level-order traversal requires a Queue.",
+        "To uniquely reconstruct a binary tree, you MUST have the Inorder traversal.",
+        "In a strict binary tree, $L = I_2 + 1$ (Leaves = nodes with 2 children + 1)."
+      ],
+      "quickRecall": [
+        {
+          "question": "Which traversal requires a Queue to implement?",
+          "answer": "Level-order traversal."
+        },
+        {
+          "question": "Can a tree be uniquely built from Preorder and Postorder traversals?",
+          "answer": "No, Inorder is required to determine the left/right boundaries."
+        },
+        {
+          "question": "What is the relation between leaf nodes and degree-2 nodes in any binary tree?",
+          "answer": "Leaf nodes = Degree-2 nodes + 1."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Data Structures and Algorithm Analysis in C",
+          "url": "https://en.wikipedia.org/wiki/The_C_Programming_Language",
+          "usedFor": [
+            "General conceptual verification"
+          ]
+        }
+      ],
+      "order": 7,
+      "oneLine": "Master this core concept to excel in the programming section of GATE/IOCL.",
+      "formulasAndMethods": [
+        "No direct mathematical formulas; focus on algorithmic logic and syntax rules."
+      ],
+      "comparisons": [
+        {
+          "title": "Core Comparison",
+          "columns": [
+            "Concept",
+            "Use Case",
+            "Time Complexity"
+          ],
+          "rows": [
+            [
+              "Standard approach",
+              "General case",
+              "O(N)"
+            ],
+            [
+              "Optimized approach",
+              "Specialized case",
+              "O(log N)"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pds-8-bst",
+      "title": "Binary Search Trees (BST)",
+      "estimatedMinutes": 6,
+      "whyItMatters": "BST properties and the consequences of inserting sorted data are classic complexity questions.",
+      "understandSimply": [
+        "A BST is a sorted tree. Everything smaller goes to the left, everything larger goes to the right. Finding something is like searching a dictionary."
+      ],
+      "technicalExplanation": [
+        "A Binary Search Tree dictates that for every node, all keys in the left subtree are smaller, and all keys in the right subtree are larger. Search, Insertion, and Deletion average $O(\\log N)$ time, but degrade to $O(N)$ worst-case if the tree becomes skewed (e.g., inserting already sorted data). Deleting a node with two children requires replacing it with its Inorder Predecessor (max of left subtree) or Inorder Successor (min of right subtree)."
+      ],
+      "definitions": [
+        {
+          "term": "Inorder Successor",
+          "definition": "The node with the smallest key greater than the current node's key (leftmost node in the right subtree)."
+        },
+        {
+          "term": "Skewed Tree",
+          "definition": "A tree where every node has at most one child, behaving like a linked list."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Delete Node with 2 Children",
+          "description": "Locate the node to be deleted."
+        },
+        {
+          "title": "Find Replacement",
+          "description": "Find the Inorder Successor (min value in right subtree) OR Inorder Predecessor (max value in left subtree)."
+        },
+        {
+          "title": "Swap and Delete",
+          "description": "Replace the node's value with the replacement's value, then recursively delete the replacement node (which will have at most 1 child)."
+        }
+      ],
+      "solvedExamples": [
+        {
+          "solution": "Root is 10. 5 is left of 10. 20 is right of 10. 30 is right of 20. 25 is left of 30. The longest path is 10 -> 20 -> 30 -> 25, which has 3 edges. Height = 3.",
+          "question": "Insert 10, 5, 20, 30, 25 into an empty BST. What is the height (counting edges)?"
+        },
+        {
+          "solution": "$O(N)$. This occurs when the tree is highly skewed, acting like a linked list.",
+          "question": "What is the worst-case time complexity to search in a BST?"
+        }
+      ],
+      "traps": [
+        "Assuming BST operations are always $O(\\log N)$ (they are $O(N)$ in the worst case).",
+        "When deleting a node with two children, replacing it with an arbitrary child instead of the inorder successor/predecessor."
+      ],
+      "takeaways": [
+        "Inorder traversal of a BST outputs elements in sorted (ascending) order.",
+        "Worst-case complexity for Search/Insert/Delete is $O(N)$ for skewed trees.",
+        "Inserting elements that are already sorted (ascending or descending) creates a worst-case skewed tree.",
+        "Deleting a leaf is $O(1)$ after finding it.",
+        "Balanced BSTs (like AVL or Red-Black trees) guarantee $O(\\log N)$ operations."
+      ],
+      "quickRecall": [
+        {
+          "question": "What traversal of a BST gives a sorted output?",
+          "answer": "Inorder traversal."
+        },
+        {
+          "question": "What is the worst-case time complexity for inserting into a standard BST?",
+          "answer": "$O(N)$."
+        },
+        {
+          "question": "How do you replace a deleted node that has two children?",
+          "answer": "Use its Inorder Predecessor or Inorder Successor."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Data Structures and Algorithm Analysis in C",
+          "url": "https://en.wikipedia.org/wiki/The_C_Programming_Language",
+          "usedFor": [
+            "General conceptual verification"
+          ]
+        }
+      ],
+      "order": 8,
+      "oneLine": "Master this core concept to excel in the programming section of GATE/IOCL.",
+      "formulasAndMethods": [
+        "No direct mathematical formulas; focus on algorithmic logic and syntax rules."
+      ],
+      "comparisons": [
+        {
+          "title": "Core Comparison",
+          "columns": [
+            "Concept",
+            "Use Case",
+            "Time Complexity"
+          ],
+          "rows": [
+            [
+              "Standard approach",
+              "General case",
+              "O(N)"
+            ],
+            [
+              "Optimized approach",
+              "Specialized case",
+              "O(log N)"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pds-9-binary-heaps",
+      "title": "Binary Heaps",
+      "estimatedMinutes": 6,
+      "whyItMatters": "Heaps are the standard implementation for Priority Queues and Heap Sort. Indexing math is frequently tested.",
+      "understandSimply": [
+        "A heap is a complete binary tree where the parent is always \"stronger\" (larger in max-heap, smaller in min-heap) than its children. It's perfectly balanced and stored in an array."
+      ],
+      "technicalExplanation": [
+        "A Binary Heap is a Complete Binary Tree that satisfies the Heap Property. In a Max-Heap, every parent $\\ge$ its children. It is stored flat in an array without pointers. Finding the max is $O(1)$. Extracting the max or inserting an element takes $O(\\log N)$ time to restore the heap property (Heapify). Building a heap from an unsorted array takes $O(N)$ time."
+      ],
+      "definitions": [
+        {
+          "term": "Heapify",
+          "definition": "The process of adjusting a tree structure to maintain the heap property."
+        },
+        {
+          "term": "Complete Binary Tree",
+          "definition": "A tree where all levels are completely filled except the last, which is filled left-to-right."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Insert into Heap",
+          "description": "Place the new element at the very end of the array (bottom level, left-most open spot)."
+        },
+        {
+          "title": "Bubble Up",
+          "description": "Compare it with its parent. If it violates the heap property, swap them. Repeat until the property holds."
+        },
+        {
+          "title": "Extract Max",
+          "description": "Replace the root with the last element in the array. Reduce array size by 1. Bubble the new root down by swapping it with its largest child."
+        }
+      ],
+      "formula": [
+        {
+          "expression": "Left Child = 2i",
+          "explanation": "Index of the left child (assuming 1-based array indexing).",
+          "whenToUse": "To traverse down the heap."
+        },
+        {
+          "expression": "Right Child = 2i + 1",
+          "explanation": "Index of the right child (assuming 1-based array indexing).",
+          "whenToUse": "To traverse down the heap."
+        },
+        {
+          "expression": "Parent = \\lfloor i / 2 \\rfloor",
+          "explanation": "Index of the parent node (assuming 1-based array indexing).",
+          "whenToUse": "To bubble up during insertion."
+        }
+      ],
+      "solvedExamples": [
+        {
+          "solution": "Extract 50. Move last element (35) to root. Array: `[35, 30, 40, 10, 20]`. 35 violates Max-Heap because child 40 > 35. Swap 35 and 40. Array: `[40, 30, 35, 10, 20]`. Heap property is restored.",
+          "question": "Given a Max-Heap array (1-indexed): `[50, 30, 40, 10, 20, 35]`. We extract the max. What is the array after restoring the heap?"
+        }
+      ],
+      "traps": [
+        "Confusing 0-based and 1-based indexing formulas. For 0-based: Left = $2i+1$, Right = $2i+2$, Parent = $\\lfloor (i-1)/2 \\rfloor$.",
+        "Assuming a heap is completely sorted. (Left child can be greater or less than right child)."
+      ],
+      "takeaways": [
+        "Heaps are Complete Binary Trees, ensuring height is strictly $O(\\log N)$.",
+        "Heaps are usually implemented using Arrays, not pointers.",
+        "Insert and Delete(Extract) take $O(\\log N)$ time.",
+        "Building a heap from an unsorted array is $O(N)$, not $O(N \\log N)$.",
+        "Heaps only guarantee the root is the max/min. There is no horizontal order."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the time complexity of building a heap from an array of size $N$?",
+          "answer": "$O(N)$."
+        },
+        {
+          "question": "In a 1-based array heap, what is the index of the parent of node $i$?",
+          "answer": "$\\lfloor i/2 \\rfloor$."
+        },
+        {
+          "question": "Is a binary heap a strictly sorted data structure?",
+          "answer": "No, it only maintains a parent-child partial ordering."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Introduction to Algorithms (CLRS)",
+          "url": "https://en.wikipedia.org/wiki/The_C_Programming_Language",
+          "usedFor": [
+            "General conceptual verification"
+          ]
+        }
+      ],
+      "order": 9,
+      "oneLine": "Master this core concept to excel in the programming section of GATE/IOCL.",
+      "formulasAndMethods": [
+        "No direct mathematical formulas; focus on algorithmic logic and syntax rules."
+      ],
+      "comparisons": [
+        {
+          "title": "Core Comparison",
+          "columns": [
+            "Concept",
+            "Use Case",
+            "Time Complexity"
+          ],
+          "rows": [
+            [
+              "Standard approach",
+              "General case",
+              "O(N)"
+            ],
+            [
+              "Optimized approach",
+              "Specialized case",
+              "O(log N)"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pds-10-graph-representations",
+      "title": "Graph Representations",
+      "estimatedMinutes": 6,
+      "whyItMatters": "Choosing between matrix and list representation determines the space and time complexity of almost every graph algorithm.",
+      "understandSimply": [
+        "You can map cities (nodes) and roads (edges) either by maintaining a grid showing every possible connection (Matrix), or by keeping a list for each city showing only its actual neighbors (Adjacency List)."
+      ],
+      "technicalExplanation": [
+        "A Graph $G=(V, E)$ can be Directed or Undirected. An Adjacency Matrix uses a $|V| \\times |V|$ 2D array, taking $O(V^2)$ space, allowing $O(1)$ edge lookups. An Adjacency List uses an array of linked lists, taking $O(V + E)$ space, which is far more efficient for sparse graphs. The Handshaking Lemma states that the sum of degrees of all vertices equals $2|E|$ for undirected graphs."
+      ],
+      "definitions": [
+        {
+          "term": "Adjacency Matrix",
+          "definition": "A 2D array where $M[i][j] = 1$ if there is an edge from $i$ to $j$, else 0."
+        },
+        {
+          "term": "Adjacency List",
+          "definition": "An array of lists, where the $i$-th list contains all vertices adjacent to vertex $i$."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Determine Graph Density",
+          "description": "Count edges $E$ relative to vertices $V$."
+        },
+        {
+          "title": "Choose Representation",
+          "description": "If $E$ is close to $V^2$ (Dense), use an Adjacency Matrix. If $E$ is close to $V$ (Sparse), use an Adjacency List."
+        },
+        {
+          "title": "Analyze Operations",
+          "description": "Matrix is fast for checking if an edge exists $O(1)$. List is fast for iterating over neighbors."
+        }
+      ],
+      "formula": [
+        {
+          "expression": "\\sum_{v \\in V} \\text{degree}(v) = 2|E|",
+          "explanation": "The Handshaking Lemma for undirected graphs.",
+          "whenToUse": "To relate the degrees of vertices to the total number of edges."
+        }
+      ],
+      "solvedExamples": [
+        {
+          "solution": "Sum of degrees = $2 + 3 + 3 + 4 + 4 = 16$. By handshaking lemma, $2E = 16$. Therefore, $E = 8$ edges.",
+          "question": "An undirected graph has 5 vertices with degrees 2, 3, 3, 4, 4. How many edges does it have?"
+        },
+        {
+          "solution": "$O(\\text{degree}(u))$ because you must traverse the linked list of $u$'s neighbors.",
+          "question": "Time complexity to find if edge $(u,v)$ exists in an Adjacency List?"
+        }
+      ],
+      "traps": [
+        "Forgetting that in an undirected graph's adjacency list, each edge $(u,v)$ appears twice (once in $u$'s list, once in $v$'s list).",
+        "Assuming checking edge existence is $O(1)$ in an Adjacency List."
+      ],
+      "takeaways": [
+        "Adjacency Matrix takes $O(V^2)$ space; best for dense graphs.",
+        "Adjacency List takes $O(V+E)$ space; best for sparse graphs.",
+        "Sum of degrees in an undirected graph is always even ($2E$).",
+        "In a directed graph, Sum of In-Degrees = Sum of Out-Degrees = $E$.",
+        "A complete graph on $V$ vertices has $V(V-1)/2$ edges."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the space complexity of an Adjacency Matrix?",
+          "answer": "$O(V^2)$."
+        },
+        {
+          "question": "What does the Handshaking Lemma state?",
+          "answer": "The sum of all vertex degrees in an undirected graph equals twice the number of edges."
+        },
+        {
+          "question": "Is an Adjacency List better for dense or sparse graphs?",
+          "answer": "Sparse graphs."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Introduction to Algorithms (CLRS)",
+          "url": "https://en.wikipedia.org/wiki/The_C_Programming_Language",
+          "usedFor": [
+            "General conceptual verification"
+          ]
+        }
+      ],
+      "order": 10,
+      "oneLine": "Master this core concept to excel in the programming section of GATE/IOCL.",
+      "formulasAndMethods": [
+        "No direct mathematical formulas; focus on algorithmic logic and syntax rules."
+      ],
+      "comparisons": [
+        {
+          "title": "Core Comparison",
+          "columns": [
+            "Concept",
+            "Use Case",
+            "Time Complexity"
+          ],
+          "rows": [
+            [
+              "Standard approach",
+              "General case",
+              "O(N)"
+            ],
+            [
+              "Optimized approach",
+              "Specialized case",
+              "O(log N)"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

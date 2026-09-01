@@ -127,16 +127,18 @@ function Practice({ progress, update, initialTopic, initialSubject }: { progress
   const [confidence, setConfidence] = useState<Confidence | null>(null);
   const [revealed, setRevealed] = useState(false);
   const started = useRef(INITIAL_NOW);
-  const question = pool[index % pool.length];
+  const question = pool.length > 0 ? pool[index % pool.length] : null;
 
   const resetQuestion = (nextIndex: number) => { setIndex(nextIndex); setSelected(null); setConfidence(null); setRevealed(false); started.current = Date.now(); };
   const record = (skip = false) => {
+    if (!question) return;
     if (!skip && (!selected || !confidence)) return;
     if (skip) { setSelected(null); setConfidence(null); }
     update((current) => ({ ...current, attempts: [...current.attempts, makeAttempt(question, skip ? null : selected, skip ? null : confidence, "practice", Math.round((Date.now() - started.current) / 1000))] }));
     setRevealed(true);
   };
   const toggle = (field: "bookmarks" | "reports") => update((current) => {
+    if (!question) return current;
     const set = new Set(current[field]);
     if (set.has(question.id)) set.delete(question.id); else set.add(question.id);
     return { ...current, [field]: [...set] };
@@ -144,14 +146,20 @@ function Practice({ progress, update, initialTopic, initialSubject }: { progress
 
   return <>
     <PageTitle eyebrow="Confidence-aware learning" title="Practice mode" />
-    <div className="practice-toolbar"><label>Subject<select value={subject} onChange={(event) => { setSubject(event.target.value as Subject); setTopic(""); resetQuestion(0); }}>{SUBJECTS.map((item) => <option key={item}>{item}</option>)}</select></label><label>Topic<select value={topic} onChange={(event) => { setTopic(event.target.value); resetQuestion(0); }}><option value="">All topics</option>{availableTopics.map((item) => <option key={item}>{item}</option>)}</select></label><span>{index % pool.length + 1} of {pool.length}</span></div>
-    <QuestionCard question={question} selected={selected} confidence={confidence} revealed={revealed} onSelect={setSelected} onConfidence={setConfidence} />
-    <div className="question-actions">
-      <button className={progress.bookmarks.includes(question.id) ? "selected-action" : ""} onClick={() => toggle("bookmarks")}>★ {progress.bookmarks.includes(question.id) ? "Bookmarked" : "Bookmark"}</button>
-      <button className={progress.reports.includes(question.id) ? "selected-action" : ""} onClick={() => toggle("reports")}>⚑ {progress.reports.includes(question.id) ? "Error reported" : "Report error"}</button>
-      <span />
-      {!revealed ? <><button onClick={() => record(true)}>Skip</button><button className="primary" disabled={!selected || !confidence} onClick={() => record()}>Submit answer</button></> : <button className="primary" onClick={() => resetQuestion((index + 1) % pool.length)}>Next question</button>}
-    </div>
+    <div className="practice-toolbar"><label>Subject<select value={subject} onChange={(event) => { setSubject(event.target.value as Subject); setTopic(""); resetQuestion(0); }}>{SUBJECTS.map((item) => <option key={item}>{item}</option>)}</select></label><label>Topic<select value={topic} onChange={(event) => { setTopic(event.target.value); resetQuestion(0); }}><option value="">All topics</option>{availableTopics.map((item) => <option key={item}>{item}</option>)}</select></label><span>{pool.length > 0 ? (index % pool.length) + 1 : 0} of {pool.length}</span></div>
+    {question ? (
+      <>
+        <QuestionCard question={question} selected={selected} confidence={confidence} revealed={revealed} onSelect={setSelected} onConfidence={setConfidence} />
+        <div className="question-actions">
+          <button className={progress.bookmarks.includes(question.id) ? "selected-action" : ""} onClick={() => toggle("bookmarks")}>★ {progress.bookmarks.includes(question.id) ? "Bookmarked" : "Bookmark"}</button>
+          <button className={progress.reports.includes(question.id) ? "selected-action" : ""} onClick={() => toggle("reports")}>⚑ {progress.reports.includes(question.id) ? "Error reported" : "Report error"}</button>
+          <span />
+          {!revealed ? <><button onClick={() => record(true)}>Skip</button><button className="primary" disabled={!selected || !confidence} onClick={() => record()}>Submit answer</button></> : <button className="primary" onClick={() => resetQuestion((index + 1) % pool.length)}>Next question</button>}
+        </div>
+      </>
+    ) : (
+      <div className="empty"><strong>No questions available</strong><p>Try selecting a different topic or subject.</p></div>
+    )}
   </>;
 }
 

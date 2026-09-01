@@ -5,33 +5,33 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Databases: ER-model",
+    "sourceLocator": "p. 2 \u2014 Databases: ER-model",
     "section": "domain",
     "subject": "Databases",
-    "topic": "ER Model, Relational Model, Constraints, and Keys",
+    "topic": "Entity-Relationship (ER) Modeling, Entities, Relationships, and Constraints",
     "difficulty": "Easy",
     "question": "What is the primary distinguishing characteristic of a Weak Entity Set in an Entity-Relationship (ER) model?",
     "stem": "What is the primary distinguishing characteristic of a Weak Entity Set in an Entity-Relationship (ER) model?",
     "options": [
       {
-        "id": "a",
+        "id": "dbms-001-a",
         "text": "It cannot have any attributes attached to it in the ER diagram."
       },
       {
-        "id": "b",
+        "id": "dbms-001-b",
         "text": "It does not possess a primary key of its own and depends on an identifying strong entity set."
       },
       {
-        "id": "c",
+        "id": "dbms-001-c",
         "text": "It can only participate in binary 1:1 relationships."
       },
       {
-        "id": "d",
+        "id": "dbms-001-d",
         "text": "It is stored in a separate temporary file system rather than a relational table."
       }
     ],
     "correctOption": "b",
-    "correctOptionId": "b",
+    "correctOptionId": "dbms-001-b",
     "explanation": "A weak entity set lacks a primary key and relies on an identifying relationship with a strong entity set along with a partial key (discriminator) to uniquely identify its entities.",
     "closestDistractorExplanation": "Weak entities do have attributes (including partial keys); option A is incorrect.",
     "sourceTitle": "Database System Concepts, 7th edition",
@@ -39,7 +39,7 @@
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "Ch. 6 — Weak Entity Sets"
+        "locator": "Ch. 6 \u2014 Weak Entity Sets"
       }
     ],
     "reviewNote": "Weak entity definition verified against Silberschatz."
@@ -50,33 +50,33 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Databases: relational model and integrity constraints",
+    "sourceLocator": "p. 2 \u2014 Databases: relational model and integrity constraints",
     "section": "domain",
     "subject": "Databases",
-    "topic": "ER Model, Relational Model, Constraints, and Keys",
+    "topic": "Entity-Relationship (ER) Modeling, Entities, Relationships, and Constraints",
     "difficulty": "Easy",
     "question": "Which relational integrity constraint enforces that a foreign key value in a referencing table must either match a candidate key value in the referenced table or be NULL?",
     "stem": "Which relational integrity constraint enforces that a foreign key value in a referencing table must either match a candidate key value in the referenced table or be NULL?",
     "options": [
       {
-        "id": "a",
+        "id": "dbms-002-a",
         "text": "Entity Integrity Constraint"
       },
       {
-        "id": "b",
+        "id": "dbms-002-b",
         "text": "Referential Integrity Constraint"
       },
       {
-        "id": "c",
+        "id": "dbms-002-c",
         "text": "Domain Constraint"
       },
       {
-        "id": "d",
+        "id": "dbms-002-d",
         "text": "Key Constraint"
       }
     ],
     "correctOption": "b",
-    "correctOptionId": "b",
+    "correctOptionId": "dbms-002-b",
     "explanation": "Referential integrity guarantees that tuples referencing another relation refer to an existing tuple in that relation, or contain a NULL value if permitted.",
     "closestDistractorExplanation": "Entity integrity dictates that primary key attributes cannot contain NULL values, which applies to the primary key itself, not foreign key references.",
     "sourceTitle": "Database System Concepts, 7th edition",
@@ -84,7 +84,7 @@
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "Ch. 2 — Referential Integrity"
+        "locator": "Ch. 2 \u2014 Referential Integrity"
       }
     ],
     "reviewNote": "Integrity constraint types rechecked."
@@ -95,41 +95,41 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Databases: relational algebra",
+    "sourceLocator": "p. 2 \u2014 Databases: relational algebra",
     "section": "domain",
     "subject": "Databases",
-    "topic": "Relational Algebra (Tuple & Domain Relational Calculus)",
+    "topic": "Relational Algebra & Relational Calculus",
     "difficulty": "Medium",
-    "question": "Relation R has 5 tuples and Relation S has 4 tuples. R and S share a common attribute set A. What are the maximum and minimum possible number of tuples in the Natural Join (R ⋈ S)?",
-    "stem": "Relation R has 5 tuples and Relation S has 4 tuples. R and S share a common attribute set A. What are the maximum and minimum possible number of tuples in the Natural Join (R ⋈ S)?",
+    "question": "Relation R has 5 tuples and Relation S has 4 tuples. R and S share a common attribute set A. What are the maximum and minimum possible number of tuples in the Natural Join (R \u22c8 S)?",
+    "stem": "Relation R has 5 tuples and Relation S has 4 tuples. R and S share a common attribute set A. What are the maximum and minimum possible number of tuples in the Natural Join (R \u22c8 S)?",
     "options": [
       {
-        "id": "a",
+        "id": "dbms-003-a",
         "text": "Maximum = 20, Minimum = 0"
       },
       {
-        "id": "b",
+        "id": "dbms-003-b",
         "text": "Maximum = 5, Minimum = 4"
       },
       {
-        "id": "c",
+        "id": "dbms-003-c",
         "text": "Maximum = 9, Minimum = 0"
       },
       {
-        "id": "d",
+        "id": "dbms-003-d",
         "text": "Maximum = 20, Minimum = 4"
       }
     ],
     "correctOption": "a",
-    "correctOptionId": "a",
-    "explanation": "If all 5 tuples in R and 4 tuples in S have the exact same value on common attribute A, natural join degenerates to Cartesian product yielding 5 × 4 = 20 tuples. If R and S share no matching values on attribute A, the result is 0 tuples.",
+    "correctOptionId": "dbms-003-a",
+    "explanation": "If all 5 tuples in R and 4 tuples in S have the exact same value on common attribute A, natural join degenerates to Cartesian product yielding 5 \u00d7 4 = 20 tuples. If R and S share no matching values on attribute A, the result is 0 tuples.",
     "closestDistractorExplanation": "Maximum = 5 occurs only if A is a key in both relations; here attribute A is not specified as a key.",
     "sourceTitle": "Database System Concepts, 7th edition",
     "sourceUrl": "https://www.db-book.com/",
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "Ch. 2 — Natural Join Cardinality"
+        "locator": "Ch. 2 \u2014 Natural Join Cardinality"
       }
     ],
     "reviewNote": "Natural join cardinality limits verified."
@@ -140,41 +140,41 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Databases: relational algebra division",
+    "sourceLocator": "p. 2 \u2014 Databases: relational algebra division",
     "section": "domain",
     "subject": "Databases",
-    "topic": "Relational Algebra (Tuple & Domain Relational Calculus)",
+    "topic": "Relational Algebra & Relational Calculus",
     "difficulty": "Medium",
-    "question": "Which relational algebra expression correctly represents the Division operation (R ÷ S) for relations R(A, B) and S(B)?",
-    "stem": "Which relational algebra expression correctly represents the Division operation (R ÷ S) for relations R(A, B) and S(B)?",
+    "question": "Which relational algebra expression correctly represents the Division operation (R \u00f7 S) for relations R(A, B) and S(B)?",
+    "stem": "Which relational algebra expression correctly represents the Division operation (R \u00f7 S) for relations R(A, B) and S(B)?",
     "options": [
       {
-        "id": "a",
-        "text": "π_A(R) - π_A((π_A(R) × S) - R)"
+        "id": "dbms-004-a",
+        "text": "\u03c0_A(R) - \u03c0_A((\u03c0_A(R) \u00d7 S) - R)"
       },
       {
-        "id": "b",
-        "text": "π_A(R) ⋈ π_B(S)"
+        "id": "dbms-004-b",
+        "text": "\u03c0_A(R) \u22c8 \u03c0_B(S)"
       },
       {
-        "id": "c",
-        "text": "π_A(R × S) - R"
+        "id": "dbms-004-c",
+        "text": "\u03c0_A(R \u00d7 S) - R"
       },
       {
-        "id": "d",
-        "text": "π_A(R) - π_A(R ⋈ S)"
+        "id": "dbms-004-d",
+        "text": "\u03c0_A(R) - \u03c0_A(R \u22c8 S)"
       }
     ],
     "correctOption": "a",
-    "correctOptionId": "a",
-    "explanation": "R ÷ S finds A-values in R associated with ALL B-values in S. Expression π_A(R) - π_A((π_A(R) × S) - R) subtracts A-values that are missing at least one pair (A, B) present in S from all A-values in R.",
+    "correctOptionId": "dbms-004-a",
+    "explanation": "R \u00f7 S finds A-values in R associated with ALL B-values in S. Expression \u03c0_A(R) - \u03c0_A((\u03c0_A(R) \u00d7 S) - R) subtracts A-values that are missing at least one pair (A, B) present in S from all A-values in R.",
     "closestDistractorExplanation": "Option D computes tuples in R not matching S, which is set difference projection, not division.",
     "sourceTitle": "Database System Concepts, 7th edition",
     "sourceUrl": "https://www.db-book.com/",
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "Ch. 2 — Relational Division Equivalence"
+        "locator": "Ch. 2 \u2014 Relational Division Equivalence"
       }
     ],
     "reviewNote": "Division formula verified in Silberschatz."
@@ -185,33 +185,33 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Databases: SQL syntax and queries",
+    "sourceLocator": "p. 2 \u2014 Databases: SQL syntax and queries",
     "section": "domain",
     "subject": "Databases",
-    "topic": "Structured Query Language (SQL) & Subqueries",
+    "topic": "Structured Query Language (SQL): DDL, DML, Aggregations, and Joins",
     "difficulty": "Easy",
     "question": "In standard SQL, how does COUNT(*) behave differently from COUNT(column_name)?",
     "stem": "In standard SQL, how does COUNT(*) behave differently from COUNT(column_name)?",
     "options": [
       {
-        "id": "a",
+        "id": "dbms-005-a",
         "text": "COUNT(*) includes NULL values and duplicate rows, whereas COUNT(column_name) ignores NULL values in that column."
       },
       {
-        "id": "b",
+        "id": "dbms-005-b",
         "text": "COUNT(*) counts only distinct values across all columns."
       },
       {
-        "id": "c",
+        "id": "dbms-005-c",
         "text": "COUNT(column_name) counts NULL values but ignores zeros."
       },
       {
-        "id": "d",
+        "id": "dbms-005-d",
         "text": "COUNT(*) requires a GROUP BY clause whereas COUNT(column_name) does not."
       }
     ],
     "correctOption": "a",
-    "correctOptionId": "a",
+    "correctOptionId": "dbms-005-a",
     "explanation": "COUNT(*) counts total rows in the result set regardless of NULL values, whereas COUNT(column_name) counts only rows where column_name is NOT NULL.",
     "closestDistractorExplanation": "Counting distinct values requires the explicit keyword COUNT(DISTINCT column_name); option B is incorrect.",
     "sourceTitle": "Database System Concepts, 7th edition",
@@ -219,7 +219,7 @@
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "Ch. 3 — Aggregate Functions"
+        "locator": "Ch. 3 \u2014 Aggregate Functions"
       }
     ],
     "reviewNote": "SQL aggregate NULL handling verified."
@@ -230,33 +230,33 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Databases: SQL subqueries and quantifiers",
+    "sourceLocator": "p. 2 \u2014 Databases: SQL subqueries and quantifiers",
     "section": "domain",
     "subject": "Databases",
-    "topic": "Structured Query Language (SQL) & Subqueries",
+    "topic": "Structured Query Language (SQL): DDL, DML, Aggregations, and Joins",
     "difficulty": "Medium",
     "question": "Given table Student(ID, Name, Marks, Section). Which query correctly selects students whose marks are strictly higher than every student in Section 'B'?",
     "stem": "Given table Student(ID, Name, Marks, Section). Which query correctly selects students whose marks are strictly higher than every student in Section 'B'?",
     "options": [
       {
-        "id": "a",
+        "id": "dbms-006-a",
         "text": "SELECT Name FROM Student WHERE Marks > ALL (SELECT Marks FROM Student WHERE Section = 'B')"
       },
       {
-        "id": "b",
+        "id": "dbms-006-b",
         "text": "SELECT Name FROM Student WHERE Marks > ANY (SELECT Marks FROM Student WHERE Section = 'B')"
       },
       {
-        "id": "c",
+        "id": "dbms-006-c",
         "text": "SELECT Name FROM Student WHERE Marks IN (SELECT MAX(Marks) FROM Student WHERE Section = 'B')"
       },
       {
-        "id": "d",
+        "id": "dbms-006-d",
         "text": "SELECT Name FROM Student WHERE Marks = SOME (SELECT Marks FROM Student WHERE Section = 'B')"
       }
     ],
     "correctOption": "a",
-    "correctOptionId": "a",
+    "correctOptionId": "dbms-006-a",
     "explanation": "The > ALL comparison operator evaluates to TRUE if the value is strictly greater than every value returned by the subquery (i.e. greater than MAX(Marks) of Section B).",
     "closestDistractorExplanation": "> ANY evaluates to TRUE if the value is greater than AT LEAST ONE student's marks in Section B, which is weaker than higher than every student.",
     "sourceTitle": "Database System Concepts, 7th edition",
@@ -264,7 +264,7 @@
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "Ch. 3 — Set Comparison Subqueries"
+        "locator": "Ch. 3 \u2014 Set Comparison Subqueries"
       }
     ],
     "reviewNote": "ALL quantifier vs ANY quantifier semantics verified."
@@ -275,33 +275,33 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Databases: functional dependencies and closure",
+    "sourceLocator": "p. 2 \u2014 Databases: functional dependencies and closure",
     "section": "domain",
     "subject": "Databases",
-    "topic": "Functional Dependencies, Keys, and Attribute Closure",
+    "topic": "Functional Dependencies, Attribute Closure, and Candidate Key Derivation",
     "difficulty": "Medium",
     "question": "Relation R(A, B, C, D) has Functional Dependencies F = {A -> B, B -> C, C -> D}. What is the attribute closure {A}+?",
     "stem": "Relation R(A, B, C, D) has Functional Dependencies F = {A -> B, B -> C, C -> D}. What is the attribute closure {A}+?",
     "options": [
       {
-        "id": "a",
+        "id": "dbms-007-a",
         "text": "{A, B}"
       },
       {
-        "id": "b",
+        "id": "dbms-007-b",
         "text": "{A, B, C}"
       },
       {
-        "id": "c",
+        "id": "dbms-007-c",
         "text": "{A, B, C, D}"
       },
       {
-        "id": "d",
+        "id": "dbms-007-d",
         "text": "{A}"
       }
     ],
     "correctOption": "c",
-    "correctOptionId": "c",
+    "correctOptionId": "dbms-007-c",
     "explanation": "Start with {A}. A -> B adds B -> {A, B}. B -> C adds C -> {A, B, C}. C -> D adds D -> {A, B, C, D}. Since {A}+ contains all attributes of R, A is a candidate key.",
     "closestDistractorExplanation": "{A, B, C} omits D which is transitively derived via C -> D.",
     "sourceTitle": "Database System Concepts, 7th edition",
@@ -309,7 +309,7 @@
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "Ch. 7 — Attribute Closure Algorithm"
+        "locator": "Ch. 7 \u2014 Attribute Closure Algorithm"
       }
     ],
     "reviewNote": "Closure calculation rechecked: A -> B -> C -> D."
@@ -320,41 +320,41 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Databases: candidate keys and dependencies",
+    "sourceLocator": "p. 2 \u2014 Databases: candidate keys and dependencies",
     "section": "domain",
     "subject": "Databases",
-    "topic": "Functional Dependencies, Keys, and Attribute Closure",
+    "topic": "Functional Dependencies, Attribute Closure, and Candidate Key Derivation",
     "difficulty": "Hard",
     "question": "Relation R(A, B, C, D) has Functional Dependencies: F = {AB -> C, C -> D, D -> A}. Which of the following is NOT a candidate key for R?",
     "stem": "Relation R(A, B, C, D) has Functional Dependencies: F = {AB -> C, C -> D, D -> A}. Which of the following is NOT a candidate key for R?",
     "options": [
       {
-        "id": "a",
+        "id": "dbms-008-a",
         "text": "{AB}"
       },
       {
-        "id": "b",
+        "id": "dbms-008-b",
         "text": "{BC}"
       },
       {
-        "id": "c",
+        "id": "dbms-008-c",
         "text": "{BD}"
       },
       {
-        "id": "d",
+        "id": "dbms-008-d",
         "text": "{CD}"
       }
     ],
     "correctOption": "d",
-    "correctOptionId": "d",
-    "explanation": "Let's check closures: {AB}+ = {A,B,C,D} (key). {BC}+: C->D, D->A gives {B,C,D,A} (key). {BD}+: D->A gives {B,D,A}, AB->C gives {B,D,A,C} (key). {CD}+: C->D, D->A gives {C,D,A}, but cannot determine B because no FD produces B! So {CD}+ = {A,C,D} ≠ {A,B,C,D}. Hence {CD} is NOT a candidate key.",
+    "correctOptionId": "dbms-008-d",
+    "explanation": "Let's check closures: {AB}+ = {A,B,C,D} (key). {BC}+: C->D, D->A gives {B,C,D,A} (key). {BD}+: D->A gives {B,D,A}, AB->C gives {B,D,A,C} (key). {CD}+: C->D, D->A gives {C,D,A}, but cannot determine B because no FD produces B! So {CD}+ = {A,C,D} \u2260 {A,B,C,D}. Hence {CD} is NOT a candidate key.",
     "closestDistractorExplanation": "{BC} IS a candidate key because {BC}+ = {A,B,C,D} via C -> D -> A.",
     "sourceTitle": "Database System Concepts, 7th edition",
     "sourceUrl": "https://www.db-book.com/",
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "Ch. 7 — Finding Candidate Keys"
+        "locator": "Ch. 7 \u2014 Finding Candidate Keys"
       }
     ],
     "reviewNote": "Candidate key closures re-verified: B is never on RHS of any FD, so B must be present in all candidate keys."
@@ -365,33 +365,33 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Databases: normal forms 1NF 2NF 3NF BCNF",
+    "sourceLocator": "p. 2 \u2014 Databases: normal forms 1NF 2NF 3NF BCNF",
     "section": "domain",
     "subject": "Databases",
-    "topic": "Normalization (1NF, 2NF, 3NF, BCNF, 4NF)",
+    "topic": "Database Normalization: 1NF, 2NF, 3NF, BCNF, and Decompositions",
     "difficulty": "Medium",
     "question": "Relation R(A, B, C, D) has FDs: F = {A -> B, B -> C, C -> D}. Candidate key is A. What is the HIGHEST normal form satisfied by R?",
     "stem": "Relation R(A, B, C, D) has FDs: F = {A -> B, B -> C, C -> D}. Candidate key is A. What is the HIGHEST normal form satisfied by R?",
     "options": [
       {
-        "id": "a",
+        "id": "dbms-009-a",
         "text": "1NF"
       },
       {
-        "id": "b",
+        "id": "dbms-009-b",
         "text": "2NF"
       },
       {
-        "id": "c",
+        "id": "dbms-009-c",
         "text": "3NF"
       },
       {
-        "id": "d",
+        "id": "dbms-009-d",
         "text": "BCNF"
       }
     ],
     "correctOption": "b",
-    "correctOptionId": "b",
+    "correctOptionId": "dbms-009-b",
     "explanation": "A is the single attribute primary key. 2NF: No non-prime attribute is partially dependent on a key (since A is atomic, no partial dependency exists). 3NF: For B -> C, B is not a superkey and C is not prime (transitive dependency). Thus 3NF fails. Highest NF satisfied is 2NF.",
     "closestDistractorExplanation": "3NF fails because B -> C exhibits transitive dependency where B is not a superkey and C is not prime.",
     "sourceTitle": "Database System Concepts, 7th edition",
@@ -399,7 +399,7 @@
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "Ch. 7 — Normal Form Classification"
+        "locator": "Ch. 7 \u2014 Normal Form Classification"
       }
     ],
     "reviewNote": "Normal form conditions checked against Silberschatz."
@@ -410,41 +410,41 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Databases: BCNF vs 3NF",
+    "sourceLocator": "p. 2 \u2014 Databases: BCNF vs 3NF",
     "section": "domain",
     "subject": "Databases",
-    "topic": "Normalization (1NF, 2NF, 3NF, BCNF, 4NF)",
+    "topic": "Database Normalization: 1NF, 2NF, 3NF, BCNF, and Decompositions",
     "difficulty": "Hard",
     "question": "Relation R(A, B, C) has FDs: F = {AB -> C, C -> A}. Which statement correctly describes the normal form status of R?",
     "stem": "Relation R(A, B, C) has FDs: F = {AB -> C, C -> A}. Which statement correctly describes the normal form status of R?",
     "options": [
       {
-        "id": "a",
+        "id": "dbms-010-a",
         "text": "R is in BCNF."
       },
       {
-        "id": "b",
+        "id": "dbms-010-b",
         "text": "R is in 3NF but NOT in BCNF."
       },
       {
-        "id": "c",
+        "id": "dbms-010-c",
         "text": "R is in 2NF but NOT in 3NF."
       },
       {
-        "id": "d",
+        "id": "dbms-010-d",
         "text": "R is only in 1NF."
       }
     ],
     "correctOption": "b",
-    "correctOptionId": "b",
+    "correctOptionId": "dbms-010-b",
     "explanation": "Candidate keys are AB and BC. Prime attributes are A, B, C. For FD C -> A: C is not a superkey, so it violates BCNF. However, RHS attribute A is prime (part of key AB), so C -> A satisfies 3NF! Thus R is in 3NF but NOT in BCNF.",
-    "closestDistractorExplanation": "Claiming R is in BCNF fails because C -> A has LHS C which is not a superkey ({C}+ = {C, A} ≠ {A, B, C}).",
+    "closestDistractorExplanation": "Claiming R is in BCNF fails because C -> A has LHS C which is not a superkey ({C}+ = {C, A} \u2260 {A, B, C}).",
     "sourceTitle": "Database System Concepts, 7th edition",
     "sourceUrl": "https://www.db-book.com/",
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "Ch. 7 — 3NF vs BCNF Classic Example"
+        "locator": "Ch. 7 \u2014 3NF vs BCNF Classic Example"
       }
     ],
     "reviewNote": "Classic AB->C, C->A 3NF/BCNF example verified."
@@ -455,33 +455,33 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Databases: ACID properties",
+    "sourceLocator": "p. 2 \u2014 Databases: ACID properties",
     "section": "domain",
     "subject": "Databases",
-    "topic": "Transaction Processing & ACID Properties",
+    "topic": "Transaction Processing and ACID Properties",
     "difficulty": "Easy",
     "question": "Which ACID property guarantees that either all operations of a transaction complete successfully or none of them take effect (all-or-nothing execution)?",
     "stem": "Which ACID property guarantees that either all operations of a transaction complete successfully or none of them take effect (all-or-nothing execution)?",
     "options": [
       {
-        "id": "a",
+        "id": "dbms-011-a",
         "text": "Atomicity"
       },
       {
-        "id": "b",
+        "id": "dbms-011-b",
         "text": "Consistency"
       },
       {
-        "id": "c",
+        "id": "dbms-011-c",
         "text": "Isolation"
       },
       {
-        "id": "d",
+        "id": "dbms-011-d",
         "text": "Durability"
       }
     ],
     "correctOption": "a",
-    "correctOptionId": "a",
+    "correctOptionId": "dbms-011-a",
     "explanation": "Atomicity requires that all operations of a transaction are executed as a single indivisible unit of work; if any step fails, the system rolls back to the pre-transaction state.",
     "closestDistractorExplanation": "Consistency ensures the database transitions from one valid state satisfying all schema constraints to another valid state.",
     "sourceTitle": "Database System Concepts, 7th edition",
@@ -489,7 +489,7 @@
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "Ch. 14 — Transaction Concept"
+        "locator": "Ch. 14 \u2014 Transaction Concept"
       }
     ],
     "reviewNote": "ACID definitions rechecked."
@@ -500,33 +500,33 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Databases: concurrency anomalies",
+    "sourceLocator": "p. 2 \u2014 Databases: concurrency anomalies",
     "section": "domain",
     "subject": "Databases",
-    "topic": "Transaction Processing & ACID Properties",
+    "topic": "Transaction Processing and ACID Properties",
     "difficulty": "Easy",
     "question": "In database concurrency, what is a Dirty Read anomaly?",
     "stem": "In database concurrency, what is a Dirty Read anomaly?",
     "options": [
       {
-        "id": "a",
+        "id": "dbms-012-a",
         "text": "Transaction T1 reads data written by uncommitted Transaction T2, and T2 subsequently aborts."
       },
       {
-        "id": "b",
+        "id": "dbms-012-b",
         "text": "Transaction T1 reads a row twice and finds modified attribute values because T2 committed in between."
       },
       {
-        "id": "c",
+        "id": "dbms-012-c",
         "text": "Transaction T1 re-executes a range query and discovers newly inserted tuples committed by T2."
       },
       {
-        "id": "d",
+        "id": "dbms-012-d",
         "text": "Two transactions simultaneously overwrite the same data block without locking."
       }
     ],
     "correctOption": "a",
-    "correctOptionId": "a",
+    "correctOptionId": "dbms-012-a",
     "explanation": "A Dirty Read occurs when a transaction reads uncommitted changes made by another transaction that later rolls back, leaving T1 with state that never officially existed in the database.",
     "closestDistractorExplanation": "Option B describes Non-Repeatable Read, and option C describes Phantom Read anomaly.",
     "sourceTitle": "Database System Concepts, 7th edition",
@@ -534,7 +534,7 @@
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "Ch. 15 — Read Phenonema"
+        "locator": "Ch. 15 \u2014 Read Phenonema"
       }
     ],
     "reviewNote": "Dirty read definition verified."
@@ -545,33 +545,33 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Databases: two-phase locking",
+    "sourceLocator": "p. 2 \u2014 Databases: two-phase locking",
     "section": "domain",
     "subject": "Databases",
-    "topic": "Concurrency Control (2PL, Strict 2PL, Timestamp Ordering)",
+    "topic": "Concurrency Control: Two-Phase Locking (2PL) and Timestamp Ordering",
     "difficulty": "Medium",
     "question": "Basic Two-Phase Locking (2PL) protocol guarantees which schedule property, and what problem can it still suffer from?",
     "stem": "Basic Two-Phase Locking (2PL) protocol guarantees which schedule property, and what problem can it still suffer from?",
     "options": [
       {
-        "id": "a",
+        "id": "dbms-013-a",
         "text": "Guarantees Conflict Serializability, but can suffer from Deadlocks."
       },
       {
-        "id": "b",
+        "id": "dbms-013-b",
         "text": "Guarantees freedom from Deadlocks, but does not guarantee Conflict Serializability."
       },
       {
-        "id": "c",
+        "id": "dbms-013-c",
         "text": "Guarantees Cascadelessness, but suffers from Dirty Reads."
       },
       {
-        "id": "d",
+        "id": "dbms-013-d",
         "text": "Guarantees View Serializability without requiring locks."
       }
     ],
     "correctOption": "a",
-    "correctOptionId": "a",
+    "correctOptionId": "dbms-013-a",
     "explanation": "Basic 2PL (Growing phase followed by Shrinking phase) guarantees conflict serializability. However, transactions can still enter cyclic wait states, leading to deadlocks.",
     "closestDistractorExplanation": "Basic 2PL does NOT prevent deadlocks (wait-for graph cycles can still form during the growing phase).",
     "sourceTitle": "Database System Concepts, 7th edition",
@@ -579,7 +579,7 @@
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "Ch. 15 — Two-Phase Locking Protocol"
+        "locator": "Ch. 15 \u2014 Two-Phase Locking Protocol"
       }
     ],
     "reviewNote": "2PL conflict serializability vs deadlock risk verified."
@@ -590,33 +590,33 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Databases: strict two-phase locking",
+    "sourceLocator": "p. 2 \u2014 Databases: strict two-phase locking",
     "section": "domain",
     "subject": "Databases",
-    "topic": "Concurrency Control (2PL, Strict 2PL, Timestamp Ordering)",
+    "topic": "Concurrency Control: Two-Phase Locking (2PL) and Timestamp Ordering",
     "difficulty": "Medium",
     "question": "What key operational rule distinguishes Strict 2PL from Basic 2PL?",
     "stem": "What key operational rule distinguishes Strict 2PL from Basic 2PL?",
     "options": [
       {
-        "id": "a",
+        "id": "dbms-014-a",
         "text": "Strict 2PL requires all shared (S) locks to be acquired at the very beginning of the transaction."
       },
       {
-        "id": "b",
+        "id": "dbms-014-b",
         "text": "Strict 2PL holds all Exclusive (X) locks until the transaction terminates (Commit or Abort)."
       },
       {
-        "id": "c",
+        "id": "dbms-014-c",
         "text": "Strict 2PL eliminates the shrinking phase completely."
       },
       {
-        "id": "d",
+        "id": "dbms-014-d",
         "text": "Strict 2PL prevents deadlocks by assigning timestamps."
       }
     ],
     "correctOption": "b",
-    "correctOptionId": "b",
+    "correctOptionId": "dbms-014-b",
     "explanation": "Strict 2PL requires holding all exclusive locks until commit/abort time. This ensures that uncommitted writes are never read by other transactions, guaranteeing cascadeless schedules and avoiding cascading rollbacks.",
     "closestDistractorExplanation": "Rigorous 2PL holds ALL locks (both Shared and Exclusive) until commit, whereas Strict 2PL requires holding all Exclusive locks.",
     "sourceTitle": "Database System Concepts, 7th edition",
@@ -624,7 +624,7 @@
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "Ch. 15 — Strict 2PL"
+        "locator": "Ch. 15 \u2014 Strict 2PL"
       }
     ],
     "reviewNote": "Strict vs Rigorous 2PL distinction verified."
@@ -635,33 +635,33 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Databases: conflict serializability precedence graph",
+    "sourceLocator": "p. 2 \u2014 Databases: conflict serializability precedence graph",
     "section": "domain",
     "subject": "Databases",
-    "topic": "Conflict & View Serializability, Recoverability",
+    "topic": "Serializability: Conflict & View Serializability, Precedence Graphs",
     "difficulty": "Medium",
     "question": "Consider Schedule S: r1(X); w2(X); r1(Y); w1(X); c1; c2. Is Schedule S conflict serializable?",
     "stem": "Consider Schedule S: r1(X); w2(X); r1(Y); w1(X); c1; c2. Is Schedule S conflict serializable?",
     "options": [
       {
-        "id": "a",
+        "id": "dbms-015-a",
         "text": "Yes, equivalent to serial order T1 -> T2"
       },
       {
-        "id": "b",
+        "id": "dbms-015-b",
         "text": "Yes, equivalent to serial order T2 -> T1"
       },
       {
-        "id": "c",
+        "id": "dbms-015-c",
         "text": "No, because the precedence graph contains a cycle between T1 and T2"
       },
       {
-        "id": "d",
+        "id": "dbms-015-d",
         "text": "Yes, because operations on Y do not conflict"
       }
     ],
     "correctOption": "c",
-    "correctOptionId": "c",
+    "correctOptionId": "dbms-015-c",
     "explanation": "Conflicts on X: 1) r1(X) precedes w2(X) => Edge T1 -> T2. 2) w2(X) precedes w1(X) => Edge T2 -> T1. The precedence graph has edges T1 -> T2 and T2 -> T1, forming a cycle. Therefore, S is NOT conflict serializable.",
     "closestDistractorExplanation": "Option A ignores the conflicting pair w2(X) before w1(X) which creates the reverse edge T2 -> T1.",
     "sourceTitle": "Database System Concepts, 7th edition",
@@ -669,7 +669,7 @@
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "Ch. 14 — Conflict Testing Algorithm"
+        "locator": "Ch. 14 \u2014 Conflict Testing Algorithm"
       }
     ],
     "reviewNote": "Precedence graph cycle verified."
@@ -680,33 +680,33 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Databases: recoverability and cascadelessness",
+    "sourceLocator": "p. 2 \u2014 Databases: recoverability and cascadelessness",
     "section": "domain",
     "subject": "Databases",
-    "topic": "Conflict & View Serializability, Recoverability",
+    "topic": "Serializability: Conflict & View Serializability, Precedence Graphs",
     "difficulty": "Hard",
     "question": "What strict operational requirement must a schedule satisfy to be classified as a Cascadeless (Avoids Cascading Aborts) Schedule?",
     "stem": "What strict operational requirement must a schedule satisfy to be classified as a Cascadeless (Avoids Cascading Aborts) Schedule?",
     "options": [
       {
-        "id": "a",
+        "id": "dbms-016-a",
         "text": "For every pair of transactions Ti and Tj, if Tj reads a data item previously written by Ti, the commit operation of Ti must appear BEFORE the read operation of Tj."
       },
       {
-        "id": "b",
+        "id": "dbms-016-b",
         "text": "Transactions must commit in strict order of their start timestamps."
       },
       {
-        "id": "c",
+        "id": "dbms-016-c",
         "text": "No transaction is permitted to write to a data item that has been read by another transaction."
       },
       {
-        "id": "d",
+        "id": "dbms-016-d",
         "text": "If Ti aborts, Tj must also abort immediately."
       }
     ],
     "correctOption": "a",
-    "correctOptionId": "a",
+    "correctOptionId": "dbms-016-a",
     "explanation": "A schedule avoids cascading aborts if transactions read ONLY committed data values. Thus, if Tj reads data written by Ti, Ti MUST commit before Tj performs the read.",
     "closestDistractorExplanation": "Option D describes cascading abort behavior, which is the exact problem that cascadeless schedules PREVENT, not the definition.",
     "sourceTitle": "Database System Concepts, 7th edition",
@@ -714,7 +714,7 @@
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "Ch. 14 — Recoverable and Cascadeless Schedules"
+        "locator": "Ch. 14 \u2014 Recoverable and Cascadeless Schedules"
       }
     ],
     "reviewNote": "Cascadeless definition rechecked against Silberschatz."
@@ -725,33 +725,33 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Databases: B+ trees indexing",
+    "sourceLocator": "p. 2 \u2014 Databases: B+ trees indexing",
     "section": "domain",
     "subject": "Databases",
-    "topic": "File Organization & Indexing (B-Tree, B+ Tree)",
+    "topic": "Storage Structures, Indexing, B-Trees and B+ Trees",
     "difficulty": "Easy",
     "question": "Why are B+ Trees predominantly preferred over standard B-Trees for relational database disk indexing?",
     "stem": "Why are B+ Trees predominantly preferred over standard B-Trees for relational database disk indexing?",
     "options": [
       {
-        "id": "a",
+        "id": "dbms-017-a",
         "text": "B+ Trees store all actual data pointers/records in leaf nodes and link leaves sequentially, enabling fast range scans and higher internal node fan-out."
       },
       {
-        "id": "b",
+        "id": "dbms-017-b",
         "text": "B+ Trees consume significantly less memory because internal nodes store data records."
       },
       {
-        "id": "c",
+        "id": "dbms-017-c",
         "text": "B+ Trees do not require rebalancing operations during insertion or deletion."
       },
       {
-        "id": "d",
+        "id": "dbms-017-d",
         "text": "B-Trees cannot perform exact key equality searches."
       }
     ],
     "correctOption": "a",
-    "correctOptionId": "a",
+    "correctOptionId": "dbms-017-a",
     "explanation": "In a B+ Tree, non-leaf nodes contain only search key values and child pointers, maximizing fan-out (reducing tree height). All data pointers reside in leaf nodes, which are linked together in sequential order for rapid range queries.",
     "closestDistractorExplanation": "B+ Trees DO require rebalancing (node splits and merges) just like B-Trees; option C is incorrect.",
     "sourceTitle": "Database System Concepts, 7th edition",
@@ -759,7 +759,7 @@
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "Ch. 11 — B+ Tree Index Files"
+        "locator": "Ch. 11 \u2014 B+ Tree Index Files"
       }
     ],
     "reviewNote": "B+ Tree structural advantages verified."
@@ -770,33 +770,33 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Databases: B+ tree order calculation",
+    "sourceLocator": "p. 2 \u2014 Databases: B+ tree order calculation",
     "section": "domain",
     "subject": "Databases",
-    "topic": "File Organization & Indexing (B-Tree, B+ Tree)",
+    "topic": "Storage Structures, Indexing, B-Trees and B+ Trees",
     "difficulty": "Hard",
     "question": "In a B+ tree index, disk block size = 512 bytes, search key size = 10 bytes, block pointer size = 6 bytes. What is the maximum order p (maximum child pointers) of an internal node?",
     "stem": "In a B+ tree index, disk block size = 512 bytes, search key size = 10 bytes, block pointer size = 6 bytes. What is the maximum order p (maximum child pointers) of an internal node?",
     "options": [
       {
-        "id": "a",
+        "id": "dbms-018-a",
         "text": "31"
       },
       {
-        "id": "b",
+        "id": "dbms-018-b",
         "text": "32"
       },
       {
-        "id": "c",
+        "id": "dbms-018-c",
         "text": "33"
       },
       {
-        "id": "d",
+        "id": "dbms-018-d",
         "text": "30"
       }
     ],
     "correctOption": "b",
-    "correctOptionId": "b",
+    "correctOptionId": "dbms-018-b",
     "explanation": "An internal node with order p contains p block pointers and (p - 1) search keys. Node size constraint: p * P_block + (p - 1) * K_key <= BlockSize => p * 6 + (p - 1) * 10 <= 512 => 6p + 10p - 10 <= 512 => 16p <= 522 => p <= 522 / 16 = 32.625. Since order p must be an integer, max p = 32.",
     "closestDistractorExplanation": "p = 33 would require 33 * 6 + 32 * 10 = 198 + 320 = 518 bytes, exceeding the 512-byte block capacity.",
     "sourceTitle": "Database System Concepts, 7th edition",
@@ -804,7 +804,7 @@
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "Ch. 11 — B+ Tree Node Capacity Calculation"
+        "locator": "Ch. 11 \u2014 B+ Tree Node Capacity Calculation"
       }
     ],
     "reviewNote": "Order calculation verified: 16p - 10 <= 512 => p = 32."
@@ -815,33 +815,33 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Databases: WAL protocol rules",
+    "sourceLocator": "p. 2 \u2014 Databases: WAL protocol rules",
     "section": "domain",
     "subject": "Databases",
-    "topic": "Database Recovery Techniques (WAL, Checkpoints, ARIES)",
+    "topic": "Transaction Processing and ACID Properties",
     "difficulty": "Medium",
     "question": "Under the Write-Ahead Logging (WAL) protocol, when MUST the log record corresponding to a data modification be written to non-volatile disk storage?",
     "stem": "Under the Write-Ahead Logging (WAL) protocol, when MUST the log record corresponding to a data modification be written to non-volatile disk storage?",
     "options": [
       {
-        "id": "a",
+        "id": "dbms-019-a",
         "text": "BEFORE the modified dirty data block is written to persistent disk storage."
       },
       {
-        "id": "b",
+        "id": "dbms-019-b",
         "text": "AFTER the database system performs a full system reboot."
       },
       {
-        "id": "c",
+        "id": "dbms-019-c",
         "text": "Simultaneously using hardware atomic dual-write bus operations."
       },
       {
-        "id": "d",
+        "id": "dbms-019-d",
         "text": "Only when the transaction issues a COMMIT statement."
       }
     ],
     "correctOption": "a",
-    "correctOptionId": "a",
+    "correctOptionId": "dbms-019-a",
     "explanation": "WAL protocol mandates that log records describing a modification (containing old and new values) MUST be flushed to disk before the actual modified buffer block is written to disk. This ensures atomicity and undo capability.",
     "closestDistractorExplanation": "Writing log records only at COMMIT (option D) violates the STEAL buffer policy where uncommitted dirty pages can be flushed to disk before commit.",
     "sourceTitle": "Database System Concepts, 7th edition",
@@ -849,7 +849,7 @@
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "Ch. 16 — Write-Ahead Logging Protocol"
+        "locator": "Ch. 16 \u2014 Write-Ahead Logging Protocol"
       }
     ],
     "reviewNote": "WAL protocol rule rechecked."
@@ -860,33 +860,33 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Databases: crash recovery and deferred update",
+    "sourceLocator": "p. 2 \u2014 Databases: crash recovery and deferred update",
     "section": "domain",
     "subject": "Databases",
-    "topic": "Database Recovery Techniques (WAL, Checkpoints, ARIES)",
+    "topic": "Transaction Processing and ACID Properties",
     "difficulty": "Medium",
     "question": "In crash recovery using Deferred Update (No-Undo/Redo) policy, what actions are taken for committed transactions vs active uncommitted transactions found in the log?",
     "stem": "In crash recovery using Deferred Update (No-Undo/Redo) policy, what actions are taken for committed transactions vs active uncommitted transactions found in the log?",
     "options": [
       {
-        "id": "a",
+        "id": "dbms-020-a",
         "text": "REDO committed transactions; NO UNDO needed for active uncommitted transactions."
       },
       {
-        "id": "b",
+        "id": "dbms-020-b",
         "text": "UNDO committed transactions; REDO active uncommitted transactions."
       },
       {
-        "id": "c",
+        "id": "dbms-020-c",
         "text": "UNDO both committed and uncommitted transactions."
       },
       {
-        "id": "d",
+        "id": "dbms-020-d",
         "text": "REDO all active transactions and delete log records of committed transactions."
       }
     ],
     "correctOption": "a",
-    "correctOptionId": "a",
+    "correctOptionId": "dbms-020-a",
     "explanation": "In Deferred Update mode, data modifications are held in log buffers and never written to disk until the transaction commits. Thus, active uncommitted transactions never altered the disk state (so no UNDO is required), while committed transactions are REDONE to guarantee durability.",
     "closestDistractorExplanation": "Immediate Update mode (with STEAL policy) requires both REDO and UNDO operations during crash recovery.",
     "sourceTitle": "Database System Concepts, 7th edition",
@@ -894,7 +894,7 @@
     "verificationSources": [
       {
         "sourceId": "DB-SYSTEMS",
-        "locator": "Ch. 16 — Deferred Modification Recovery"
+        "locator": "Ch. 16 \u2014 Deferred Modification Recovery"
       }
     ],
     "reviewNote": "Deferred update recovery policy verified."

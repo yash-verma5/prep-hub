@@ -5,7 +5,7 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Computer Networks: delay and throughput",
+    "sourceLocator": "p. 2 \u2014 Computer Networks: delay and throughput",
     "section": "domain",
     "subject": "Computer Networks",
     "topic": "Network fundamentals and performance terms",
@@ -14,36 +14,36 @@
     "stem": "A 12,000-bit packet is transmitted on a 6 Mbit/s link. Ignoring all other delays, what is its transmission delay?",
     "options": [
       {
-        "id": "a",
+        "id": "cn-001-a",
         "text": "0.2 ms"
       },
       {
-        "id": "b",
+        "id": "cn-001-b",
         "text": "2 ms"
       },
       {
-        "id": "c",
+        "id": "cn-001-c",
         "text": "20 ms"
       },
       {
-        "id": "d",
+        "id": "cn-001-d",
         "text": "72 ms"
       }
     ],
-    "correctOption": "b",
-    "correctOptionId": "b",
-    "explanation": "Transmission delay is L/R = 12,000/(6×10^6) seconds = 0.002 seconds = 2 ms.",
+    "correctOption": "cn-001-b",
+    "correctOptionId": "cn-001-b",
+    "explanation": "Transmission delay is L/R = 12,000/(6\u00d710^6) seconds = 0.002 seconds = 2 ms.",
     "closestDistractorExplanation": "0.2 ms is wrong because it divides by 60 Mbit/s, a factor-of-ten unit error.",
-    "sourceTitle": "RFC 1242 — Benchmarking Terminology for Network Interconnection Devices",
+    "sourceTitle": "RFC 1242 \u2014 Benchmarking Terminology for Network Interconnection Devices",
     "sourceUrl": "https://www.rfc-editor.org/rfc/rfc1242",
     "verificationSources": [
       {
         "sourceId": "NETWORKING-TD",
-        "locator": "Ch. 1 — nodal delay and throughput"
+        "locator": "Ch. 1 \u2014 nodal delay and throughput"
       },
       {
         "sourceId": "RFC-1242",
-        "locator": "RFC 1242 — Benchmarking Terminology for Network Interconnection Devices"
+        "locator": "RFC 1242 \u2014 Benchmarking Terminology for Network Interconnection Devices"
       }
     ],
     "reviewNote": "Original calculation independently recomputed; units checked."
@@ -54,7 +54,7 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Computer Networks: latency and bandwidth",
+    "sourceLocator": "p. 2 \u2014 Computer Networks: latency and bandwidth",
     "section": "domain",
     "subject": "Computer Networks",
     "topic": "Network fundamentals and performance terms",
@@ -63,36 +63,36 @@
     "stem": "Which change directly reduces propagation delay on a fixed-length path?",
     "options": [
       {
-        "id": "a",
+        "id": "cn-002-a",
         "text": "Increasing the link bit rate"
       },
       {
-        "id": "b",
+        "id": "cn-002-b",
         "text": "Using a medium with higher signal propagation speed"
       },
       {
-        "id": "c",
+        "id": "cn-002-c",
         "text": "Reducing the packet header size"
       },
       {
-        "id": "d",
+        "id": "cn-002-d",
         "text": "Increasing the receiver window"
       }
     ],
-    "correctOption": "b",
-    "correctOptionId": "b",
+    "correctOption": "cn-002-b",
+    "correctOptionId": "cn-002-b",
     "explanation": "Propagation delay equals path distance divided by propagation speed, so a faster propagation medium reduces it.",
     "closestDistractorExplanation": "Increasing bit rate reduces transmission delay L/R, not signal travel time over the path.",
-    "sourceTitle": "RFC 1242 — Benchmarking Terminology for Network Interconnection Devices",
+    "sourceTitle": "RFC 1242 \u2014 Benchmarking Terminology for Network Interconnection Devices",
     "sourceUrl": "https://www.rfc-editor.org/rfc/rfc1242",
     "verificationSources": [
       {
         "sourceId": "NETWORKING-TD",
-        "locator": "Ch. 1 — transmission and propagation delay"
+        "locator": "Ch. 1 \u2014 transmission and propagation delay"
       },
       {
         "sourceId": "RFC-1242",
-        "locator": "RFC 1242 — Benchmarking Terminology for Network Interconnection Devices"
+        "locator": "RFC 1242 \u2014 Benchmarking Terminology for Network Interconnection Devices"
       }
     ],
     "reviewNote": "Definitions and dependency distinction checked."
@@ -103,7 +103,7 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Computer Networks: layering and protocol stacks",
+    "sourceLocator": "p. 2 \u2014 Computer Networks: layering and protocol stacks",
     "section": "domain",
     "subject": "Computer Networks",
     "topic": "OSI and TCP/IP models",
@@ -112,36 +112,36 @@
     "stem": "Which OSI layer is responsible for routing packets across interconnected networks?",
     "options": [
       {
-        "id": "a",
+        "id": "cn-003-a",
         "text": "Data Link"
       },
       {
-        "id": "b",
+        "id": "cn-003-b",
         "text": "Network"
       },
       {
-        "id": "c",
+        "id": "cn-003-c",
         "text": "Transport"
       },
       {
-        "id": "d",
+        "id": "cn-003-d",
         "text": "Session"
       }
     ],
-    "correctOption": "b",
-    "correctOptionId": "b",
+    "correctOption": "cn-003-b",
+    "correctOptionId": "cn-003-b",
     "explanation": "The Network layer provides logical addressing and packet forwarding across network boundaries.",
     "closestDistractorExplanation": "Data Link forwards frames on a link or bridged LAN; it does not perform end-to-end IP routing across networks.",
-    "sourceTitle": "RFC 1122 — Requirements for Internet Hosts: Communication Layers",
+    "sourceTitle": "RFC 1122 \u2014 Requirements for Internet Hosts: Communication Layers",
     "sourceUrl": "https://www.rfc-editor.org/rfc/rfc1122",
     "verificationSources": [
       {
         "sourceId": "NETWORKING-TD",
-        "locator": "Ch. 1 — protocol layers"
+        "locator": "Ch. 1 \u2014 protocol layers"
       },
       {
         "sourceId": "RFC-1122",
-        "locator": "RFC 1122 — Requirements for Internet Hosts: Communication Layers"
+        "locator": "RFC 1122 \u2014 Requirements for Internet Hosts: Communication Layers"
       }
     ],
     "reviewNote": "Layer responsibility checked against Internet architecture and textbook mapping."
@@ -152,7 +152,7 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Computer Networks: switches and routers",
+    "sourceLocator": "p. 2 \u2014 Computer Networks: switches and routers",
     "section": "domain",
     "subject": "Computer Networks",
     "topic": "Hub, repeater, bridge, switch, router and gateway",
@@ -161,36 +161,36 @@
     "stem": "Which device normally separates IPv4 broadcast domains?",
     "options": [
       {
-        "id": "a",
+        "id": "cn-004-a",
         "text": "Repeater"
       },
       {
-        "id": "b",
+        "id": "cn-004-b",
         "text": "Hub"
       },
       {
-        "id": "c",
+        "id": "cn-004-c",
         "text": "Layer-2 switch"
       },
       {
-        "id": "d",
+        "id": "cn-004-d",
         "text": "Router"
       }
     ],
-    "correctOption": "d",
-    "correctOptionId": "d",
+    "correctOption": "cn-004-d",
+    "correctOptionId": "cn-004-d",
     "explanation": "A router forwards packets between IP networks and does not normally forward layer-2 broadcasts between interfaces.",
     "closestDistractorExplanation": "A layer-2 switch separates collision domains, but floods broadcasts within the same VLAN.",
-    "sourceTitle": "RFC 1122 — Internet architecture and gateways",
+    "sourceTitle": "RFC 1122 \u2014 Internet architecture and gateways",
     "sourceUrl": "https://www.rfc-editor.org/rfc/rfc1122",
     "verificationSources": [
       {
         "sourceId": "NETWORKING-TD",
-        "locator": "Chs. 4 and 6 — routers and switches"
+        "locator": "Chs. 4 and 6 \u2014 routers and switches"
       },
       {
         "sourceId": "RFC-1122",
-        "locator": "RFC 1122 — Internet architecture and gateways"
+        "locator": "RFC 1122 \u2014 Internet architecture and gateways"
       }
     ],
     "reviewNote": "Broadcast-domain wording checked; VLAN exceptions intentionally excluded by 'normally'."
@@ -201,7 +201,7 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Computer Networks: Ethernet and switching",
+    "sourceLocator": "p. 2 \u2014 Computer Networks: Ethernet and switching",
     "section": "domain",
     "subject": "Computer Networks",
     "topic": "Ethernet, MAC addressing and switching",
@@ -210,24 +210,24 @@
     "stem": "A learning Ethernet switch records a MAC-table entry from which field of an incoming frame?",
     "options": [
       {
-        "id": "a",
+        "id": "cn-005-a",
         "text": "Source MAC address"
       },
       {
-        "id": "b",
+        "id": "cn-005-b",
         "text": "Destination MAC address"
       },
       {
-        "id": "c",
+        "id": "cn-005-c",
         "text": "Source IP address"
       },
       {
-        "id": "d",
+        "id": "cn-005-d",
         "text": "EtherType only"
       }
     ],
-    "correctOption": "a",
-    "correctOptionId": "a",
+    "correctOption": "cn-005-a",
+    "correctOptionId": "cn-005-a",
     "explanation": "The switch associates the incoming frame's source MAC address with the ingress port.",
     "closestDistractorExplanation": "The destination MAC is looked up to decide forwarding; it is not the address learned for the sender on that frame.",
     "sourceTitle": "IEEE 802.3 Ethernet Working Group",
@@ -235,7 +235,7 @@
     "verificationSources": [
       {
         "sourceId": "NETWORKING-TD",
-        "locator": "Ch. 6 — self-learning switches"
+        "locator": "Ch. 6 \u2014 self-learning switches"
       },
       {
         "sourceId": "IEEE-8023",
@@ -250,7 +250,7 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Computer Networks: error detection and sliding window",
+    "sourceLocator": "p. 2 \u2014 Computer Networks: error detection and sliding window",
     "section": "domain",
     "subject": "Computer Networks",
     "topic": "Error detection, flow control and sliding-window protocols",
@@ -259,36 +259,36 @@
     "stem": "With 3-bit sequence numbers, what is the maximum sender window size for Go-Back-N ARQ?",
     "options": [
       {
-        "id": "a",
+        "id": "cn-006-a",
         "text": "3"
       },
       {
-        "id": "b",
+        "id": "cn-006-b",
         "text": "4"
       },
       {
-        "id": "c",
+        "id": "cn-006-c",
         "text": "7"
       },
       {
-        "id": "d",
+        "id": "cn-006-d",
         "text": "8"
       }
     ],
-    "correctOption": "c",
-    "correctOptionId": "c",
-    "explanation": "For m-bit sequence numbers, the Go-Back-N sender window is at most 2^m−1. For m=3, it is 7.",
+    "correctOption": "cn-006-c",
+    "correctOptionId": "cn-006-c",
+    "explanation": "For m-bit sequence numbers, the Go-Back-N sender window is at most 2^m\u22121. For m=3, it is 7.",
     "closestDistractorExplanation": "8 is the sequence-number space size, but using all 8 values would make old and new frames ambiguous after wraparound.",
-    "sourceTitle": "RFC 1122 — Requirements for Internet Hosts: Communication Layers",
+    "sourceTitle": "RFC 1122 \u2014 Requirements for Internet Hosts: Communication Layers",
     "sourceUrl": "https://www.rfc-editor.org/rfc/rfc1122",
     "verificationSources": [
       {
         "sourceId": "NETWORKING-TD",
-        "locator": "Ch. 3 — pipelined reliable data transfer"
+        "locator": "Ch. 3 \u2014 pipelined reliable data transfer"
       },
       {
         "sourceId": "RFC-1122",
-        "locator": "RFC 1122 — Requirements for Internet Hosts: Communication Layers"
+        "locator": "RFC 1122 \u2014 Requirements for Internet Hosts: Communication Layers"
       }
     ],
     "reviewNote": "Window bound and arithmetic checked."
@@ -299,7 +299,7 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Computer Networks: sliding window",
+    "sourceLocator": "p. 2 \u2014 Computer Networks: sliding window",
     "section": "domain",
     "subject": "Computer Networks",
     "topic": "Error detection, flow control and sliding-window protocols",
@@ -308,36 +308,36 @@
     "stem": "Which behavior distinguishes Selective Repeat from Go-Back-N after one frame is lost?",
     "options": [
       {
-        "id": "a",
+        "id": "cn-007-a",
         "text": "It never uses acknowledgements"
       },
       {
-        "id": "b",
+        "id": "cn-007-b",
         "text": "It retransmits only missing frames and can buffer later frames"
       },
       {
-        "id": "c",
+        "id": "cn-007-c",
         "text": "It requires a receiver window of one"
       },
       {
-        "id": "d",
+        "id": "cn-007-d",
         "text": "It cannot pipeline frames"
       }
     ],
-    "correctOption": "b",
-    "correctOptionId": "b",
+    "correctOption": "cn-007-b",
+    "correctOptionId": "cn-007-b",
     "explanation": "Selective Repeat individually acknowledges and buffers acceptable out-of-order frames, so only missing frames need retransmission.",
     "closestDistractorExplanation": "A receiver window of one characterizes the usual Go-Back-N receiver, not Selective Repeat.",
-    "sourceTitle": "RFC 1122 — Requirements for Internet Hosts: Communication Layers",
+    "sourceTitle": "RFC 1122 \u2014 Requirements for Internet Hosts: Communication Layers",
     "sourceUrl": "https://www.rfc-editor.org/rfc/rfc1122",
     "verificationSources": [
       {
         "sourceId": "NETWORKING-TD",
-        "locator": "Ch. 3 — Go-Back-N and Selective Repeat"
+        "locator": "Ch. 3 \u2014 Go-Back-N and Selective Repeat"
       },
       {
         "sourceId": "RFC-1122",
-        "locator": "RFC 1122 — Requirements for Internet Hosts: Communication Layers"
+        "locator": "RFC 1122 \u2014 Requirements for Internet Hosts: Communication Layers"
       }
     ],
     "reviewNote": "Protocol behaviors checked for a single lost frame."
@@ -348,7 +348,7 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Computer Networks: IPv4",
+    "sourceLocator": "p. 2 \u2014 Computer Networks: IPv4",
     "section": "domain",
     "subject": "Computer Networks",
     "topic": "IPv4 addressing",
@@ -357,36 +357,36 @@
     "stem": "What is the network address of 192.0.2.77/26?",
     "options": [
       {
-        "id": "a",
+        "id": "cn-008-a",
         "text": "192.0.2.0"
       },
       {
-        "id": "b",
+        "id": "cn-008-b",
         "text": "192.0.2.64"
       },
       {
-        "id": "c",
+        "id": "cn-008-c",
         "text": "192.0.2.77"
       },
       {
-        "id": "d",
+        "id": "cn-008-d",
         "text": "192.0.2.128"
       }
     ],
-    "correctOption": "b",
-    "correctOptionId": "b",
-    "explanation": "A /26 has blocks of 64 addresses. Address 77 lies in the 64–127 block, whose network address is 192.0.2.64.",
+    "correctOption": "cn-008-b",
+    "correctOptionId": "cn-008-b",
+    "explanation": "A /26 has blocks of 64 addresses. Address 77 lies in the 64\u2013127 block, whose network address is 192.0.2.64.",
     "closestDistractorExplanation": "192.0.2.0 is the preceding /26 block; treating /26 as /24 produces that answer.",
-    "sourceTitle": "RFC 791 — Internet Protocol",
+    "sourceTitle": "RFC 791 \u2014 Internet Protocol",
     "sourceUrl": "https://www.rfc-editor.org/rfc/rfc791",
     "verificationSources": [
       {
         "sourceId": "NETWORKING-TD",
-        "locator": "Ch. 4 — IPv4 addressing"
+        "locator": "Ch. 4 \u2014 IPv4 addressing"
       },
       {
         "sourceId": "RFC-791",
-        "locator": "RFC 791 — Internet Protocol"
+        "locator": "RFC 791 \u2014 Internet Protocol"
       }
     ],
     "reviewNote": "Bitwise AND and block-size calculation independently checked."
@@ -397,7 +397,7 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Computer Networks: IPv4 addressing",
+    "sourceLocator": "p. 2 \u2014 Computer Networks: IPv4 addressing",
     "section": "domain",
     "subject": "Computer Networks",
     "topic": "IPv4 addressing",
@@ -406,36 +406,36 @@
     "stem": "Which IPv4 address is in a private-use address block?",
     "options": [
       {
-        "id": "a",
+        "id": "cn-009-a",
         "text": "172.15.1.1"
       },
       {
-        "id": "b",
+        "id": "cn-009-b",
         "text": "172.20.1.1"
       },
       {
-        "id": "c",
+        "id": "cn-009-c",
         "text": "192.0.2.1"
       },
       {
-        "id": "d",
+        "id": "cn-009-d",
         "text": "224.0.0.1"
       }
     ],
-    "correctOption": "b",
-    "correctOptionId": "b",
+    "correctOption": "cn-009-b",
+    "correctOptionId": "cn-009-b",
     "explanation": "172.20.1.1 lies within 172.16.0.0/12, one of the RFC 1918 private-use blocks.",
     "closestDistractorExplanation": "172.15.1.1 is outside 172.16/12; not every address beginning with 172 is private-use.",
-    "sourceTitle": "RFC 1918 — Address Allocation for Private Internets",
+    "sourceTitle": "RFC 1918 \u2014 Address Allocation for Private Internets",
     "sourceUrl": "https://www.rfc-editor.org/rfc/rfc1918",
     "verificationSources": [
       {
         "sourceId": "NETWORKING-TD",
-        "locator": "Ch. 4 — private addresses"
+        "locator": "Ch. 4 \u2014 private addresses"
       },
       {
         "sourceId": "RFC-1918",
-        "locator": "RFC 1918 — Address Allocation for Private Internets"
+        "locator": "RFC 1918 \u2014 Address Allocation for Private Internets"
       }
     ],
     "reviewNote": "All four ranges checked; documentation block and multicast distractors are distinct."
@@ -446,7 +446,7 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Computer Networks: CIDR",
+    "sourceLocator": "p. 2 \u2014 Computer Networks: CIDR",
     "section": "domain",
     "subject": "Computer Networks",
     "topic": "Subnetting, CIDR and route aggregation",
@@ -455,36 +455,36 @@
     "stem": "Which single CIDR prefix exactly aggregates 192.0.2.0/24 and 192.0.3.0/24?",
     "options": [
       {
-        "id": "a",
+        "id": "cn-010-a",
         "text": "192.0.2.0/23"
       },
       {
-        "id": "b",
+        "id": "cn-010-b",
         "text": "192.0.2.0/24"
       },
       {
-        "id": "c",
+        "id": "cn-010-c",
         "text": "192.0.0.0/22"
       },
       {
-        "id": "d",
+        "id": "cn-010-d",
         "text": "192.0.3.0/23"
       }
     ],
-    "correctOption": "a",
-    "correctOptionId": "a",
+    "correctOption": "cn-010-a",
+    "correctOptionId": "cn-010-a",
     "explanation": "The two adjacent /24 blocks share 23 leading bits and start on the required even third-octet boundary, giving 192.0.2.0/23.",
     "closestDistractorExplanation": "192.0.3.0/23 is not a valid aligned /23 network address; a /23 here begins at an even third octet.",
-    "sourceTitle": "RFC 4632 — CIDR Address Assignment and Aggregation",
+    "sourceTitle": "RFC 4632 \u2014 CIDR Address Assignment and Aggregation",
     "sourceUrl": "https://www.rfc-editor.org/rfc/rfc4632",
     "verificationSources": [
       {
         "sourceId": "NETWORKING-TD",
-        "locator": "Ch. 4 — CIDR and route aggregation"
+        "locator": "Ch. 4 \u2014 CIDR and route aggregation"
       },
       {
         "sourceId": "RFC-4632",
-        "locator": "RFC 4632 — CIDR Address Assignment and Aggregation"
+        "locator": "RFC 4632 \u2014 CIDR Address Assignment and Aggregation"
       }
     ],
     "reviewNote": "Common-prefix and alignment checks performed."
@@ -495,7 +495,7 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Computer Networks: subnetting",
+    "sourceLocator": "p. 2 \u2014 Computer Networks: subnetting",
     "section": "domain",
     "subject": "Computer Networks",
     "topic": "Subnetting, CIDR and route aggregation",
@@ -504,36 +504,36 @@
     "stem": "How many equal-size /26 subnets are produced by subnetting one /24 block?",
     "options": [
       {
-        "id": "a",
+        "id": "cn-011-a",
         "text": "2"
       },
       {
-        "id": "b",
+        "id": "cn-011-b",
         "text": "4"
       },
       {
-        "id": "c",
+        "id": "cn-011-c",
         "text": "8"
       },
       {
-        "id": "d",
+        "id": "cn-011-d",
         "text": "64"
       }
     ],
-    "correctOption": "b",
-    "correctOptionId": "b",
-    "explanation": "The prefix grows by 2 bits, so the number of subnets is 2^(26−24) = 4.",
+    "correctOption": "cn-011-b",
+    "correctOptionId": "cn-011-b",
+    "explanation": "The prefix grows by 2 bits, so the number of subnets is 2^(26\u221224) = 4.",
     "closestDistractorExplanation": "64 is the number of addresses in each /26, not the number of /26 subnets inside a /24.",
-    "sourceTitle": "RFC 4632 — CIDR Address Assignment and Aggregation",
+    "sourceTitle": "RFC 4632 \u2014 CIDR Address Assignment and Aggregation",
     "sourceUrl": "https://www.rfc-editor.org/rfc/rfc4632",
     "verificationSources": [
       {
         "sourceId": "NETWORKING-TD",
-        "locator": "Ch. 4 — subnet prefixes"
+        "locator": "Ch. 4 \u2014 subnet prefixes"
       },
       {
         "sourceId": "RFC-4632",
-        "locator": "RFC 4632 — CIDR Address Assignment and Aggregation"
+        "locator": "RFC 4632 \u2014 CIDR Address Assignment and Aggregation"
       }
     ],
     "reviewNote": "Subnet count distinguished from addresses per subnet."
@@ -544,7 +544,7 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Computer Networks: ARP, DHCP and ICMP",
+    "sourceLocator": "p. 2 \u2014 Computer Networks: ARP, DHCP and ICMP",
     "section": "domain",
     "subject": "Computer Networks",
     "topic": "ARP, DHCP, ICMP and NAT",
@@ -553,36 +553,36 @@
     "stem": "When an IPv4 host sends a packet to a remote subnet, ARP normally resolves which address on the local LAN?",
     "options": [
       {
-        "id": "a",
+        "id": "cn-012-a",
         "text": "The remote host's MAC address"
       },
       {
-        "id": "b",
+        "id": "cn-012-b",
         "text": "The DNS server's MAC address"
       },
       {
-        "id": "c",
+        "id": "cn-012-c",
         "text": "The default router interface's MAC address"
       },
       {
-        "id": "d",
+        "id": "cn-012-d",
         "text": "The remote host's TCP port"
       }
     ],
-    "correctOption": "c",
-    "correctOptionId": "c",
+    "correctOption": "cn-012-c",
+    "correctOptionId": "cn-012-c",
     "explanation": "For an off-subnet destination, the next hop is the default router, so the sender resolves the router's local IPv4 address to its MAC address.",
     "closestDistractorExplanation": "The remote host's MAC address is not visible across routed network boundaries; MAC addressing applies to the current link.",
-    "sourceTitle": "RFC 826 — Address Resolution Protocol",
+    "sourceTitle": "RFC 826 \u2014 Address Resolution Protocol",
     "sourceUrl": "https://www.rfc-editor.org/rfc/rfc826",
     "verificationSources": [
       {
         "sourceId": "NETWORKING-TD",
-        "locator": "Ch. 6 — ARP and routing to another subnet"
+        "locator": "Ch. 6 \u2014 ARP and routing to another subnet"
       },
       {
         "sourceId": "RFC-826",
-        "locator": "RFC 826 — Address Resolution Protocol"
+        "locator": "RFC 826 \u2014 Address Resolution Protocol"
       }
     ],
     "reviewNote": "Next-hop versus final-destination distinction checked."
@@ -593,7 +593,7 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Computer Networks: DHCP",
+    "sourceLocator": "p. 2 \u2014 Computer Networks: DHCP",
     "section": "domain",
     "subject": "Computer Networks",
     "topic": "ARP, DHCP, ICMP and NAT",
@@ -602,36 +602,36 @@
     "stem": "What is the normal order of the initial DHCP client-server exchange?",
     "options": [
       {
-        "id": "a",
+        "id": "cn-013-a",
         "text": "Discover, Offer, Request, Acknowledge"
       },
       {
-        "id": "b",
+        "id": "cn-013-b",
         "text": "Offer, Discover, Acknowledge, Request"
       },
       {
-        "id": "c",
+        "id": "cn-013-c",
         "text": "Request, Discover, Offer, Acknowledge"
       },
       {
-        "id": "d",
+        "id": "cn-013-d",
         "text": "Discover, Request, Offer, Acknowledge"
       }
     ],
-    "correctOption": "a",
-    "correctOptionId": "a",
+    "correctOption": "cn-013-a",
+    "correctOptionId": "cn-013-a",
     "explanation": "A client broadcasts DHCPDISCOVER, receives DHCPOFFER, broadcasts DHCPREQUEST and receives DHCPACK.",
     "closestDistractorExplanation": "Discover, Request, Offer, Acknowledge is wrong because the server must offer configuration before the client can request the selected offer.",
-    "sourceTitle": "RFC 2131 — Dynamic Host Configuration Protocol",
+    "sourceTitle": "RFC 2131 \u2014 Dynamic Host Configuration Protocol",
     "sourceUrl": "https://www.rfc-editor.org/rfc/rfc2131",
     "verificationSources": [
       {
         "sourceId": "NETWORKING-TD",
-        "locator": "Ch. 4 — DHCP"
+        "locator": "Ch. 4 \u2014 DHCP"
       },
       {
         "sourceId": "RFC-2131",
-        "locator": "RFC 2131 — Dynamic Host Configuration Protocol"
+        "locator": "RFC 2131 \u2014 Dynamic Host Configuration Protocol"
       }
     ],
     "reviewNote": "Message ordering checked against RFC client-server interaction."
@@ -642,7 +642,7 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Computer Networks: routing protocols",
+    "sourceLocator": "p. 2 \u2014 Computer Networks: routing protocols",
     "section": "domain",
     "subject": "Computer Networks",
     "topic": "Routing algorithms and routing protocols",
@@ -651,36 +651,36 @@
     "stem": "Which routing protocol is a link-state interior gateway protocol?",
     "options": [
       {
-        "id": "a",
+        "id": "cn-014-a",
         "text": "RIP"
       },
       {
-        "id": "b",
+        "id": "cn-014-b",
         "text": "OSPF"
       },
       {
-        "id": "c",
+        "id": "cn-014-c",
         "text": "BGP"
       },
       {
-        "id": "d",
+        "id": "cn-014-d",
         "text": "ARP"
       }
     ],
-    "correctOption": "b",
-    "correctOptionId": "b",
+    "correctOption": "cn-014-b",
+    "correctOptionId": "cn-014-b",
     "explanation": "OSPF is a link-state interior gateway protocol that builds a topology database and calculates shortest paths.",
     "closestDistractorExplanation": "RIP is also an interior gateway protocol, but it uses a distance-vector algorithm rather than link state.",
-    "sourceTitle": "RFC 2328 — OSPF Version 2",
+    "sourceTitle": "RFC 2328 \u2014 OSPF Version 2",
     "sourceUrl": "https://www.rfc-editor.org/rfc/rfc2328",
     "verificationSources": [
       {
         "sourceId": "NETWORKING-TD",
-        "locator": "Ch. 5 — link-state and distance-vector routing"
+        "locator": "Ch. 5 \u2014 link-state and distance-vector routing"
       },
       {
         "sourceId": "RFC-2328",
-        "locator": "RFC 2328 — OSPF Version 2"
+        "locator": "RFC 2328 \u2014 OSPF Version 2"
       }
     ],
     "reviewNote": "Protocol scope and algorithm classification checked."
@@ -691,7 +691,7 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Computer Networks: TCP and UDP",
+    "sourceLocator": "p. 2 \u2014 Computer Networks: TCP and UDP",
     "section": "domain",
     "subject": "Computer Networks",
     "topic": "TCP and UDP",
@@ -700,36 +700,36 @@
     "stem": "Which property is provided by TCP but not by UDP itself?",
     "options": [
       {
-        "id": "a",
+        "id": "cn-015-a",
         "text": "Port numbers"
       },
       {
-        "id": "b",
+        "id": "cn-015-b",
         "text": "Checksum-based error detection"
       },
       {
-        "id": "c",
+        "id": "cn-015-c",
         "text": "Reliable ordered byte-stream delivery"
       },
       {
-        "id": "d",
+        "id": "cn-015-d",
         "text": "Application data transport"
       }
     ],
-    "correctOption": "c",
-    "correctOptionId": "c",
+    "correctOption": "cn-015-c",
+    "correctOptionId": "cn-015-c",
     "explanation": "TCP provides reliable, in-order delivery of a byte stream using sequencing, acknowledgements and retransmission. UDP does not guarantee delivery or order.",
     "closestDistractorExplanation": "Both TCP and UDP use port numbers, so port multiplexing does not distinguish TCP from UDP.",
-    "sourceTitle": "RFC 9293 — Transmission Control Protocol",
+    "sourceTitle": "RFC 9293 \u2014 Transmission Control Protocol",
     "sourceUrl": "https://www.rfc-editor.org/rfc/rfc9293",
     "verificationSources": [
       {
         "sourceId": "NETWORKING-TD",
-        "locator": "Ch. 3 — TCP and UDP services"
+        "locator": "Ch. 3 \u2014 TCP and UDP services"
       },
       {
         "sourceId": "RFC-9293",
-        "locator": "RFC 9293 — Transmission Control Protocol"
+        "locator": "RFC 9293 \u2014 Transmission Control Protocol"
       }
     ],
     "reviewNote": "Compared service models against TCP and UDP specifications."
@@ -740,7 +740,7 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Computer Networks: UDP",
+    "sourceLocator": "p. 2 \u2014 Computer Networks: UDP",
     "section": "domain",
     "subject": "Computer Networks",
     "topic": "TCP and UDP",
@@ -749,36 +749,36 @@
     "stem": "A UDP datagram has a UDP Length field of 108 bytes. What is its application payload length?",
     "options": [
       {
-        "id": "a",
+        "id": "cn-016-a",
         "text": "100 bytes"
       },
       {
-        "id": "b",
+        "id": "cn-016-b",
         "text": "108 bytes"
       },
       {
-        "id": "c",
+        "id": "cn-016-c",
         "text": "116 bytes"
       },
       {
-        "id": "d",
+        "id": "cn-016-d",
         "text": "128 bytes"
       }
     ],
-    "correctOption": "a",
-    "correctOptionId": "a",
-    "explanation": "The UDP Length includes the 8-byte UDP header, so application payload is 108−8 = 100 bytes.",
+    "correctOption": "cn-016-a",
+    "correctOptionId": "cn-016-a",
+    "explanation": "The UDP Length includes the 8-byte UDP header, so application payload is 108\u22128 = 100 bytes.",
     "closestDistractorExplanation": "108 bytes is the whole UDP datagram length, not just the application payload.",
-    "sourceTitle": "RFC 768 — User Datagram Protocol",
+    "sourceTitle": "RFC 768 \u2014 User Datagram Protocol",
     "sourceUrl": "https://www.rfc-editor.org/rfc/rfc768",
     "verificationSources": [
       {
         "sourceId": "NETWORKING-TD",
-        "locator": "Ch. 3 — UDP segment structure"
+        "locator": "Ch. 3 \u2014 UDP segment structure"
       },
       {
         "sourceId": "RFC-768",
-        "locator": "RFC 768 — User Datagram Protocol"
+        "locator": "RFC 768 \u2014 User Datagram Protocol"
       }
     ],
     "reviewNote": "Header size and subtraction checked against RFC 768."
@@ -789,7 +789,7 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Computer Networks: TCP connection management",
+    "sourceLocator": "p. 2 \u2014 Computer Networks: TCP connection management",
     "section": "domain",
     "subject": "Computer Networks",
     "topic": "TCP connection establishment and termination",
@@ -798,36 +798,36 @@
     "stem": "A TCP client sends a SYN with sequence number 400. What acknowledgement number should the server place in its SYN+ACK?",
     "options": [
       {
-        "id": "a",
+        "id": "cn-017-a",
         "text": "399"
       },
       {
-        "id": "b",
+        "id": "cn-017-b",
         "text": "400"
       },
       {
-        "id": "c",
+        "id": "cn-017-c",
         "text": "401"
       },
       {
-        "id": "d",
+        "id": "cn-017-d",
         "text": "800"
       }
     ],
-    "correctOption": "c",
-    "correctOptionId": "c",
+    "correctOption": "cn-017-c",
+    "correctOptionId": "cn-017-c",
     "explanation": "A SYN consumes one position in TCP sequence space, so the next expected sequence number and acknowledgement is 401.",
     "closestDistractorExplanation": "400 repeats the SYN's sequence number; acknowledgement identifies the next sequence number expected.",
-    "sourceTitle": "RFC 9293 — Transmission Control Protocol",
+    "sourceTitle": "RFC 9293 \u2014 Transmission Control Protocol",
     "sourceUrl": "https://www.rfc-editor.org/rfc/rfc9293",
     "verificationSources": [
       {
         "sourceId": "NETWORKING-TD",
-        "locator": "Ch. 3 — TCP three-way handshake"
+        "locator": "Ch. 3 \u2014 TCP three-way handshake"
       },
       {
         "sourceId": "RFC-9293",
-        "locator": "RFC 9293 — Transmission Control Protocol"
+        "locator": "RFC 9293 \u2014 Transmission Control Protocol"
       }
     ],
     "reviewNote": "SYN sequence-space consumption checked against TCP specification."
@@ -838,7 +838,7 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Computer Networks: flow and congestion control",
+    "sourceLocator": "p. 2 \u2014 Computer Networks: flow and congestion control",
     "section": "domain",
     "subject": "Computer Networks",
     "topic": "Flow control and congestion control",
@@ -847,36 +847,36 @@
     "stem": "A TCP sender has cwnd = 16 KB and the receiver advertises rwnd = 24 KB. Ignoring bytes already in flight, what window limits new data?",
     "options": [
       {
-        "id": "a",
+        "id": "cn-018-a",
         "text": "8 KB"
       },
       {
-        "id": "b",
+        "id": "cn-018-b",
         "text": "16 KB"
       },
       {
-        "id": "c",
+        "id": "cn-018-c",
         "text": "24 KB"
       },
       {
-        "id": "d",
+        "id": "cn-018-d",
         "text": "40 KB"
       }
     ],
-    "correctOption": "b",
-    "correctOptionId": "b",
+    "correctOption": "cn-018-b",
+    "correctOptionId": "cn-018-b",
     "explanation": "The effective send window is constrained by min(cwnd, rwnd) = min(16,24) = 16 KB.",
     "closestDistractorExplanation": "24 KB is the receiver's capacity, but the smaller congestion window imposes the active limit.",
-    "sourceTitle": "RFC 5681 — TCP Congestion Control",
+    "sourceTitle": "RFC 5681 \u2014 TCP Congestion Control",
     "sourceUrl": "https://www.rfc-editor.org/rfc/rfc5681",
     "verificationSources": [
       {
         "sourceId": "NETWORKING-TD",
-        "locator": "Ch. 3 — TCP flow and congestion control"
+        "locator": "Ch. 3 \u2014 TCP flow and congestion control"
       },
       {
         "sourceId": "RFC-5681",
-        "locator": "RFC 5681 — TCP Congestion Control"
+        "locator": "RFC 5681 \u2014 TCP Congestion Control"
       }
     ],
     "reviewNote": "Minimum-window calculation and terminology checked."
@@ -887,7 +887,7 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Computer Networks: application-layer protocols",
+    "sourceLocator": "p. 2 \u2014 Computer Networks: application-layer protocols",
     "section": "domain",
     "subject": "Computer Networks",
     "topic": "DNS, HTTP/HTTPS, FTP, SMTP and email",
@@ -896,36 +896,36 @@
     "stem": "Which DNS record type maps a domain name to an IPv4 address?",
     "options": [
       {
-        "id": "a",
+        "id": "cn-019-a",
         "text": "A"
       },
       {
-        "id": "b",
+        "id": "cn-019-b",
         "text": "AAAA"
       },
       {
-        "id": "c",
+        "id": "cn-019-c",
         "text": "MX"
       },
       {
-        "id": "d",
+        "id": "cn-019-d",
         "text": "NS"
       }
     ],
-    "correctOption": "a",
-    "correctOptionId": "a",
+    "correctOption": "cn-019-a",
+    "correctOptionId": "cn-019-a",
     "explanation": "A records contain IPv4 addresses for names. AAAA records carry IPv6 addresses.",
     "closestDistractorExplanation": "AAAA is the closest address-record distractor, but it maps a name to an IPv6 address, not IPv4.",
-    "sourceTitle": "RFC 1035 — Domain Names: Implementation and Specification",
+    "sourceTitle": "RFC 1035 \u2014 Domain Names: Implementation and Specification",
     "sourceUrl": "https://www.rfc-editor.org/rfc/rfc1035",
     "verificationSources": [
       {
         "sourceId": "NETWORKING-TD",
-        "locator": "Ch. 2 — DNS resource records"
+        "locator": "Ch. 2 \u2014 DNS resource records"
       },
       {
         "sourceId": "RFC-1035",
-        "locator": "RFC 1035 — Domain Names: Implementation and Specification"
+        "locator": "RFC 1035 \u2014 Domain Names: Implementation and Specification"
       }
     ],
     "reviewNote": "Record types checked against DNS specification."
@@ -936,7 +936,7 @@
     "provenance": "original",
     "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
     "sourceId": "GATE-CS-SYL-2026",
-    "sourceLocator": "p. 2 — Computer Networks: network security",
+    "sourceLocator": "p. 2 \u2014 Computer Networks: network security",
     "section": "domain",
     "subject": "Computer Networks",
     "topic": "Network security fundamentals",
@@ -945,36 +945,36 @@
     "stem": "Which key should a receiver use to verify Alice's digital signature?",
     "options": [
       {
-        "id": "a",
+        "id": "cn-020-a",
         "text": "Alice's public key"
       },
       {
-        "id": "b",
+        "id": "cn-020-b",
         "text": "Alice's private key"
       },
       {
-        "id": "c",
+        "id": "cn-020-c",
         "text": "The receiver's private key"
       },
       {
-        "id": "d",
+        "id": "cn-020-d",
         "text": "A shared plaintext password"
       }
     ],
-    "correctOption": "a",
-    "correctOptionId": "a",
+    "correctOption": "cn-020-a",
+    "correctOptionId": "cn-020-a",
     "explanation": "Alice creates the signature with her private key; verifiers use Alice's corresponding public key to verify it.",
     "closestDistractorExplanation": "Alice's private key is used for signing and must remain secret; distributing it for verification would defeat the scheme.",
-    "sourceTitle": "NIST SP 800-12 Rev. 1 — An Introduction to Information Security",
+    "sourceTitle": "NIST SP 800-12 Rev. 1 \u2014 An Introduction to Information Security",
     "sourceUrl": "https://csrc.nist.gov/pubs/sp/800/12/r1/final",
     "verificationSources": [
       {
         "sourceId": "NETWORKING-TD",
-        "locator": "Ch. 8 — public-key cryptography and digital signatures"
+        "locator": "Ch. 8 \u2014 public-key cryptography and digital signatures"
       },
       {
         "sourceId": "NIST-SP800-12",
-        "locator": "NIST SP 800-12 Rev. 1 — An Introduction to Information Security"
+        "locator": "NIST SP 800-12 Rev. 1 \u2014 An Introduction to Information Security"
       }
     ],
     "reviewNote": "Signing and verification key roles checked against NIST guidance."

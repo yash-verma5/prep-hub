@@ -1,11 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { dbmsModule, networkModule, osModule, tocModule, compilerDesignModule, questions } from "../content";
+import { dbmsModule, networkModule, osModule, tocModule, compilerDesignModule, coaModule, digitalLogicModule, engineeringMathematicsModule, questions } from "../content";
 import { SUBJECTS, type Attempt, type Question } from "../types";
 import { filterWrongAnswers } from "./revision";
 import { scoreAttempts } from "./scoring";
 import { EMPTY_PROGRESS, loadProgress, parseProgress, saveProgress, STORAGE_KEY } from "./storage";
 import { validateQuestions } from "./questions";
-import { DBMS_TOPIC_ORDER, NETWORK_TOPIC_ORDER, OS_TOPIC_ORDER, TOC_TOPIC_ORDER, COMPILER_DESIGN_TOPIC_ORDER, validateLearningModule } from "./learning";
+import { DBMS_TOPIC_ORDER, NETWORK_TOPIC_ORDER, OS_TOPIC_ORDER, TOC_TOPIC_ORDER, COMPILER_DESIGN_TOPIC_ORDER, COA_TOPIC_ORDER, DIGITAL_LOGIC_TOPIC_ORDER, ENGINEERING_MATHEMATICS_TOPIC_ORDER, validateLearningModule } from "./learning";
+import { pdsModule } from "../content";
 
 const memoryStorage = () => {
   const values = new Map<string, string>();
@@ -52,17 +53,21 @@ describe("progress persistence", () => {
 
 describe("question validation", () => {
   it("accepts the expanded bank and preserves the exact mock section pools", () => {
-    expect(questions).toHaveLength(211);
+    expect(questions).toHaveLength(291);
     expect(questions.filter((q) => q.section === "quant")).toHaveLength(20);
     expect(questions.filter((q) => q.section === "reasoning")).toHaveLength(15);
     expect(questions.filter((q) => q.section === "english")).toHaveLength(15);
-    expect(questions.filter((q) => q.section === "domain")).toHaveLength(161);
+    expect(questions.filter((q) => q.section === "domain")).toHaveLength(241);
     expect(questions.filter((q) => q.subject === "Computer Networks")).toHaveLength(20);
     expect(questions.filter((q) => q.subject === "Operating Systems")).toHaveLength(25);
     expect(questions.filter((q) => q.subject === "Databases")).toHaveLength(25);
     expect(questions.filter((q) => q.subject === "Theory of Computation")).toHaveLength(25);
     expect(questions.filter((q) => q.subject === "Compiler Design")).toHaveLength(21);
     expect(questions.filter((q) => q.subject === "Algorithms")).toHaveLength(25);
+    expect(questions.filter((q) => q.subject === "Programming and Data Structures")).toHaveLength(25);
+    expect(questions.filter((q) => q.subject === "Computer Organization and Architecture")).toHaveLength(25);
+    expect(questions.filter((q) => q.subject === "Digital Logic")).toHaveLength(25);
+    expect(questions.filter((q) => q.subject === "Engineering Mathematics")).toHaveLength(25);
     expect(questions.filter((q) => q.id.startsWith("toc-"))).toHaveLength(25);
     expect(questions.filter((q) => q.id.startsWith("cd-"))).toHaveLength(16);
     expect(questions.filter((q) => q.id.startsWith("compiler-"))).toHaveLength(5);
@@ -95,6 +100,21 @@ describe("question validation", () => {
     expect(validateLearningModule(compilerDesignModule)).toBe(compilerDesignModule);
     expect(compilerDesignModule.topics.map((topic) => topic.title)).toEqual([...COMPILER_DESIGN_TOPIC_ORDER]);
     expect(compilerDesignModule.topics.every((topic) => topic.solvedExamples.length === 2 && topic.takeaways.length >= 2 && topic.quickRecall.length === 3)).toBe(true);
+
+    expect(validateLearningModule(pdsModule)).toBe(pdsModule);
+    expect(pdsModule.topics.every((topic) => topic.solvedExamples.length >= 1 && topic.takeaways.length >= 2 && topic.quickRecall.length >= 2)).toBe(true);
+
+    expect(validateLearningModule(coaModule)).toBe(coaModule);
+    expect(coaModule.topics.map((topic) => topic.title)).toEqual([...COA_TOPIC_ORDER]);
+    expect(coaModule.topics.every((topic) => topic.solvedExamples.length >= 1 && topic.takeaways.length >= 2 && topic.quickRecall.length >= 2)).toBe(true);
+
+    expect(validateLearningModule(digitalLogicModule)).toBe(digitalLogicModule);
+    expect(digitalLogicModule.topics.map((topic) => topic.title)).toEqual([...DIGITAL_LOGIC_TOPIC_ORDER]);
+    expect(digitalLogicModule.topics.every((topic) => topic.solvedExamples.length >= 1 && topic.takeaways.length >= 2 && topic.quickRecall.length >= 2)).toBe(true);
+
+    expect(validateLearningModule(engineeringMathematicsModule)).toBe(engineeringMathematicsModule);
+    expect(engineeringMathematicsModule.topics.map((topic) => topic.title)).toEqual([...ENGINEERING_MATHEMATICS_TOPIC_ORDER]);
+    expect(engineeringMathematicsModule.topics.every((topic) => topic.solvedExamples.length >= 1 && topic.takeaways.length >= 2 && topic.quickRecall.length >= 1)).toBe(true);
   });
 
   it("requires Network-specific source and distractor fields", () => {

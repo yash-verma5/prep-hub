@@ -69,7 +69,44 @@ export const COMPILER_DESIGN_TOPIC_ORDER = [
   "Data-Flow Analysis: Constant Propagation, Liveness Analysis, and CSE",
 ] as const;
 
+export const COA_TOPIC_ORDER = [
+  "Machine Instructions, Instruction Formats, and Addressing Modes",
+  "Control Unit Design: Hardwired vs Microprogrammed",
+  "Datapath & ALU Organization",
+  "Instruction Pipelining: Stages, Throughput, Speedup",
+  "Pipeline Hazards: Structural, Data, and Control Hazards",
+  "Memory Hierarchy & Main Memory",
+  "Cache Memory Organization: Direct, Associative, Set-Associative",
+  "Cache Policies and Hit/Miss Ratios",
+  "Input/Output Organization: Programmed & Interrupt-Driven I/O",
+  "Direct Memory Access (DMA)",
+] as const;
 
+export const DIGITAL_LOGIC_TOPIC_ORDER = [
+  "Number Systems, Base Conversions, Signed Representation",
+  "Floating-Point Representation (IEEE 754)",
+  "Boolean Algebra & Logic Gates",
+  "Gate-Level Minimization (K-Maps)",
+  "Combinational Circuits I: Arithmetic",
+  "Combinational Circuits II: Data Routing",
+  "Sequential Circuits I: Latches & Flip-Flops",
+  "Sequential Circuits II: Registers & Counters",
+] as const;
+
+export const ENGINEERING_MATHEMATICS_TOPIC_ORDER = [
+  "Propositional & First-Order Logic",
+  "Sets, Relations, Lattices & Functions",
+  "Algebraic Structures: Monoids & Groups",
+  "Graph Theory I: Connectivity, Paths & Cycles",
+  "Graph Theory II: Planarity, Coloring & Matching",
+  "Combinatorics: Permutations & Combinations",
+  "Generating Functions & Recurrence Relations",
+  "Linear Algebra I: Matrices & Systems of Equations",
+  "Linear Algebra II: Vector Spaces & Eigenvalues",
+  "Calculus: Limits, Continuity & Maxima/Minima",
+  "Integral Calculus: Integration",
+  "Probability & Statistics: Distributions & Bayes",
+] as const;
 
 const text = (value: unknown) => typeof value === "string" && Boolean(value.trim());
 const strings = (value: unknown) => Array.isArray(value) && value.length > 0 && value.every(text);

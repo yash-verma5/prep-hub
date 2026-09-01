@@ -1,0 +1,1211 @@
+{
+  "id": "engineering-mathematics",
+  "title": "Engineering Mathematics",
+  "provenance": "original",
+  "syllabusSource": {
+    "title": "GATE 2026 CS Syllabus",
+    "url": "https://gate2026.iitg.ac.in/doc/GATE2026_Syllabus/CS_2026_Syllabus.pdf"
+  },
+  "topics": [
+    {
+      "order": 1,
+      "title": "Propositional & First-Order Logic",
+      "oneLine": "Logic is the foundational language of computer science, formalizing statements, proofs, and conditions.",
+      "whyItMatters": "Used to analyze the validity of arguments, simplify conditions in code, and represent knowledge in AI. Questions often ask to identify equivalent expressions or tautologies.",
+      "understandSimply": [
+        "Propositional logic deals with simple statements that are either true or false. We combine them using operators like AND, OR, NOT, and IMPLIES.",
+        "First-order predicate logic introduces variables and quantifiers ('For all' and 'There exists') to talk about properties of objects in a domain."
+      ],
+      "technicalExplanation": [
+        "A proposition is a declarative sentence that is either true or false. Logical connectives include negation ($\\neg$), conjunction ($\\land$), disjunction ($\\lor$), implication ($\\implies$), and biconditional ($\\iff$).",
+        "Two propositions are logically equivalent ($\\equiv$) if they have the same truth values in all cases. A tautology is always true, a contradiction is always false, and a contingency can be either.",
+        "Predicates are statements involving variables, e.g., $P(x)$. Quantifiers are universal ($\\forall x$) and existential ($\\exists x$). De Morgan's laws for quantifiers state that $\\neg \\forall x P(x) \\equiv \\exists x \\neg P(x)$."
+      ],
+      "definitions": [
+        {
+          "term": "Tautology",
+          "definition": "A compound proposition that is always true, regardless of the truth values of its variables."
+        },
+        {
+          "term": "Implication",
+          "definition": "$P \\implies Q$ is false only when $P$ is true and $Q$ is false. It is equivalent to $\\neg P \\lor Q$."
+        },
+        {
+          "term": "Contrapositive",
+          "definition": "The contrapositive of $P \\implies Q$ is $\\neg Q \\implies \\neg P$, and they are logically equivalent."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Check logical equivalence using Truth Tables",
+          "description": "Construct truth tables for both expressions. If the final columns match for all combinations of inputs, they are equivalent."
+        },
+        {
+          "title": "Simplify using algebraic laws",
+          "description": "Apply De Morgan's laws, distributive laws, and absorption laws to reduce the expression to a simpler form."
+        }
+      ],
+      "formulasAndMethods": [
+        "De Morgan's Laws: $\\neg (p \\land q) \\equiv \\neg p \\lor \\neg q$ and $\\neg (p \\lor q) \\equiv \\neg p \\land \\neg q$.",
+        "Implication equivalence: $p \\implies q \\equiv \\neg p \\lor q$."
+      ],
+      "comparisons": [
+        {
+          "title": "Implication Variants",
+          "columns": [
+            "Variant",
+            "Logical Form",
+            "Equivalent to Original?"
+          ],
+          "rows": [
+            [
+              "Original",
+              "$P \\implies Q$",
+              "Yes"
+            ],
+            [
+              "Converse",
+              "$Q \\implies P$",
+              "No"
+            ],
+            [
+              "Inverse",
+              "$\\neg P \\implies \\neg Q$",
+              "No"
+            ],
+            [
+              "Contrapositive",
+              "$\\neg Q \\implies \\neg P$",
+              "Yes"
+            ]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Is $(P \\land (P \\implies Q)) \\implies Q$ a tautology?",
+          "solution": "Yes. This is Modus Ponens. $P$ is true, $P \\implies Q$ is true, so $Q$ must be true. The overall implication is always true."
+        },
+        {
+          "question": "Simplify $\\neg (P \\lor \\neg Q)$.",
+          "solution": "Apply De Morgan's Law: $\\neg P \\land \\neg (\\neg Q)$, which simplifies to $\\neg P \\land Q$."
+        }
+      ],
+      "traps": [
+        "Assuming the converse $Q \\implies P$ is equivalent to the implication $P \\implies Q$. It is not.",
+        "Misplacing the negation when moving it inside a quantifier (e.g., assuming $\\neg \\forall x P(x)$ is $\\forall x \\neg P(x)$ instead of $\\exists x \\neg P(x)$)."
+      ],
+      "takeaways": [
+        "Implication $P \\implies Q$ is logically equivalent to $\\neg P \\lor Q$ and to its contrapositive $\\neg Q \\implies \\neg P$.",
+        "De Morgan's laws apply to both propositional logic operators (AND/OR) and predicate quantifiers (For all/There exists)."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the contrapositive of $A \\implies B$?",
+          "answer": "$\\neg B \\implies \\neg A$"
+        },
+        {
+          "question": "What does $\\neg (P \\land Q)$ equal?",
+          "answer": "$\\neg P \\lor \\neg Q$"
+        }
+      ],
+      "sources": [
+        {
+          "title": "GATE 2026 CS syllabus — Section 1",
+          "url": "https://gate2026.iitg.ac.in/doc/GATE2026_Syllabus/CS_2026_Syllabus.pdf",
+          "usedFor": [
+            "Scope: Propositional and first order logic"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "title": "Sets, Relations, Lattices & Functions",
+      "oneLine": "Sets are collections of elements, relations link sets, and functions uniquely map inputs to outputs.",
+      "whyItMatters": "They form the basis for database theory (relational algebra), data structures, and counting principles.",
+      "understandSimply": [
+        "A set is just a bunch of unique items. A relation defines how items from one set connect to items in another (or the same) set.",
+        "A function is a strict relation where every input has exactly one output.",
+        "A poset organizes elements hierarchically, and a lattice is a poset where any two elements have a unique least upper bound and greatest lower bound."
+      ],
+      "technicalExplanation": [
+        "Relations on a set can have properties: reflexive ($xRx$), symmetric ($xRy \\implies yRx$), antisymmetric ($xRy \\land yRx \\implies x=y$), and transitive ($xRy \\land yRz \\implies xRz$).",
+        "An Equivalence Relation is reflexive, symmetric, and transitive. It partitions a set into disjoint equivalence classes.",
+        "A Partial Order (Poset) is reflexive, antisymmetric, and transitive. It can be drawn using a Hasse diagram.",
+        "Functions can be injective (one-to-one), surjective (onto), or bijective (both). Bijective functions have an inverse."
+      ],
+      "definitions": [
+        {
+          "term": "Equivalence Relation",
+          "definition": "A relation that is reflexive, symmetric, and transitive."
+        },
+        {
+          "term": "Injective (One-to-One)",
+          "definition": "A function where $f(a) = f(b) \\implies a = b$."
+        },
+        {
+          "term": "Surjective (Onto)",
+          "definition": "A function where every element in the codomain has at least one pre-image in the domain."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Check if a relation is an equivalence relation",
+          "description": "Verify it satisfies all three: reflexive, symmetric, and transitive properties."
+        },
+        {
+          "title": "Check if a poset is a lattice",
+          "description": "For every pair of elements, check if there is a unique Least Upper Bound (LUB or supremum) and Greatest Lower Bound (GLB or infimum)."
+        }
+      ],
+      "formulasAndMethods": [
+        "Number of functions from a set of size $m$ to size $n$: $n^m$.",
+        "Number of injective functions from $m$ to $n$ (where $m \\le n$): $P(n, m) = \\frac{n!}{(n-m)!}$."
+      ],
+      "comparisons": [
+        {
+          "title": "Equivalence vs. Partial Order",
+          "columns": [
+            "Property",
+            "Equivalence Relation",
+            "Partial Order Relation"
+          ],
+          "rows": [
+            [
+              "Reflexive",
+              "Yes",
+              "Yes"
+            ],
+            [
+              "Transitive",
+              "Yes",
+              "Yes"
+            ],
+            [
+              "Symmetry",
+              "Symmetric",
+              "Antisymmetric"
+            ]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Let $A = \\{1, 2, 3\\}$. Is the relation $R = \\{(1,1), (2,2), (3,3), (1,2), (2,1)\\}$ an equivalence relation?",
+          "solution": "No. It is reflexive and symmetric, but $(1,2) \\in R$ and $(2,1) \\in R$, while it lacks other elements for general transitivity across different components if we add more, but wait: here $(1,2), (2,1) \\implies (1,1)$ which is in $R$. It actually IS an equivalence relation because it partitions $A$ into $\\{1, 2\\}$ and $\\{3\\}$."
+        },
+        {
+          "question": "How many functions from a set of 3 elements to a set of 2 elements?",
+          "solution": "$2^3 = 8$."
+        }
+      ],
+      "traps": [
+        "Confusing symmetric with antisymmetric. Antisymmetric does not mean 'not symmetric'; it means $xRy$ and $yRx$ can only happen if $x=y$.",
+        "Assuming all posets are lattices. They are only lattices if LUB and GLB exist for EVERY pair."
+      ],
+      "takeaways": [
+        "Equivalence relations partition a set.",
+        "Bijective functions are exactly the ones that can be inverted.",
+        "Lattices are specific types of posets."
+      ],
+      "quickRecall": [
+        {
+          "question": "What three properties define an equivalence relation?",
+          "answer": "Reflexive, Symmetric, Transitive."
+        },
+        {
+          "question": "What is the formula for the total number of relations on a set of $n$ elements?",
+          "answer": "$2^{n^2}$"
+        }
+      ],
+      "sources": [
+        {
+          "title": "GATE 2026 CS syllabus — Section 1",
+          "url": "https://gate2026.iitg.ac.in/doc/GATE2026_Syllabus/CS_2026_Syllabus.pdf",
+          "usedFor": [
+            "Scope: Sets, relations, functions, partial orders and lattices"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "title": "Algebraic Structures: Monoids & Groups",
+      "oneLine": "Groups and monoids are sets equipped with operations that follow specific structural rules like associativity and inverses.",
+      "whyItMatters": "Group theory is the mathematical backbone of modern cryptography (e.g., RSA, Elliptic Curve) and error-correcting codes.",
+      "understandSimply": [
+        "An algebraic structure is a set paired with a binary operation (like addition or multiplication).",
+        "A Group is a structure where you can combine elements associatively, there is an identity element (like 0 in addition), and every element has an inverse (so you can 'undo' operations)."
+      ],
+      "technicalExplanation": [
+        "A set $S$ with operation $*$ is a Semi-group if it is closed and associative.",
+        "It becomes a Monoid if it also has an identity element $e$ such that $a * e = e * a = a$.",
+        "It becomes a Group if, in addition to monoid properties, every element $a$ has an inverse $a^{-1}$ such that $a * a^{-1} = a^{-1} * a = e$.",
+        "An Abelian Group also satisfies commutativity: $a * b = b * a$."
+      ],
+      "definitions": [
+        {
+          "term": "Identity Element",
+          "definition": "An element $e$ in the set where $a * e = e * a = a$ for all $a$."
+        },
+        {
+          "term": "Inverse",
+          "definition": "For a given $a$, an element $b$ such that $a * b = b * a = e$."
+        },
+        {
+          "term": "Cyclic Group",
+          "definition": "A group generated by a single element."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Determine if a structure is a Group",
+          "description": "Check 4 properties in order: 1) Closure, 2) Associativity, 3) Existence of Identity, 4) Existence of Inverses for ALL elements."
+        }
+      ],
+      "formulasAndMethods": [
+        "Lagrange's Theorem: If $H$ is a subgroup of a finite group $G$, then the order (number of elements) of $H$ divides the order of $G$. $|H|$ divides $|G|$."
+      ],
+      "comparisons": [
+        {
+          "title": "Algebraic Structure Hierarchy",
+          "columns": [
+            "Structure",
+            "Closure",
+            "Associativity",
+            "Identity",
+            "Inverse"
+          ],
+          "rows": [
+            [
+              "Semi-group",
+              "Yes",
+              "Yes",
+              "No",
+              "No"
+            ],
+            [
+              "Monoid",
+              "Yes",
+              "Yes",
+              "Yes",
+              "No"
+            ],
+            [
+              "Group",
+              "Yes",
+              "Yes",
+              "Yes",
+              "Yes"
+            ]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Is the set of integers $\\mathbb{Z}$ under multiplication a group?",
+          "solution": "No. It is a Monoid. It has closure, associativity, and an identity (1), but most elements (like 2) do not have integer inverses."
+        },
+        {
+          "question": "If group $G$ has 15 elements, what are the possible sizes of its subgroups?",
+          "solution": "By Lagrange's Theorem, subgroup sizes must divide 15. Possible sizes are 1, 3, 5, and 15."
+        }
+      ],
+      "traps": [
+        "Assuming commutativity is required for a group. Commutativity makes it an Abelian group, but a standard group does not need it.",
+        "Forgetting to check the inverse property for the element 0 when testing sets under multiplication."
+      ],
+      "takeaways": [
+        "Group = Closure + Associativity + Identity + Inverses.",
+        "Lagrange's Theorem strictly restricts the possible sizes of subgroups for finite groups."
+      ],
+      "quickRecall": [
+        {
+          "question": "What distinguishes a Monoid from a Group?",
+          "answer": "A Group requires every element to have an inverse."
+        },
+        {
+          "question": "What does Lagrange's theorem state?",
+          "answer": "The order of a subgroup divides the order of the group."
+        }
+      ],
+      "sources": [
+        {
+          "title": "GATE 2026 CS syllabus — Section 1",
+          "url": "https://gate2026.iitg.ac.in/doc/GATE2026_Syllabus/CS_2026_Syllabus.pdf",
+          "usedFor": [
+            "Scope: Monoids, Groups"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "title": "Graph Theory I: Connectivity, Paths & Cycles",
+      "oneLine": "Graphs model networks mathematically, using vertices (nodes) and edges (connections).",
+      "whyItMatters": "Graph traversal, pathfinding, and network topology analysis rely entirely on graph theory fundamentals.",
+      "understandSimply": [
+        "A graph is a collection of dots connected by lines. If you can walk from any dot to any other dot, the graph is connected.",
+        "An Eulerian graph has a continuous path that crosses every edge exactly once and ends where it started.",
+        "A Hamiltonian graph has a path that visits every vertex exactly once and returns to the start."
+      ],
+      "technicalExplanation": [
+        "A vertex's degree is the number of edges connected to it. The Handshaking Lemma states that the sum of degrees of all vertices is twice the number of edges: $\\sum \\deg(v) = 2E$.",
+        "An undirected graph has an Eulerian circuit if and only if every vertex has an even degree and all its vertices with non-zero degree belong to a single connected component.",
+        "Determining if a graph is Hamiltonian is an NP-complete problem, unlike the Eulerian condition which is easily checked."
+      ],
+      "definitions": [
+        {
+          "term": "Bipartite Graph",
+          "definition": "A graph whose vertices can be divided into two disjoint sets such that every edge connects a vertex in one set to one in the other."
+        },
+        {
+          "term": "Complete Graph ($K_n$)",
+          "definition": "A graph with $n$ vertices where every pair of distinct vertices is connected by a unique edge."
+        },
+        {
+          "term": "Eulerian Circuit",
+          "definition": "A closed trail that includes every edge of a graph exactly once."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Check for Eulerian Circuit",
+          "description": "Ensure the graph is connected. Then check the degree of every vertex; if all are even, the circuit exists."
+        }
+      ],
+      "formulasAndMethods": [
+        "Handshaking Lemma: $\\sum_{v \\in V} \\deg(v) = 2|E|$.",
+        "Edges in a Complete Graph $K_n$: $\\frac{n(n-1)}{2}$."
+      ],
+      "comparisons": [
+        {
+          "title": "Eulerian vs Hamiltonian",
+          "columns": [
+            "Property",
+            "Eulerian Circuit",
+            "Hamiltonian Cycle"
+          ],
+          "rows": [
+            [
+              "Constraint",
+              "Visits every EDGE exactly once",
+              "Visits every VERTEX exactly once"
+            ],
+            [
+              "Condition",
+              "All vertices have even degree",
+              "No simple necessary and sufficient condition (NP-complete)"
+            ]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "A graph has 10 vertices, each of degree 4. How many edges does it have?",
+          "solution": "Sum of degrees = $10 \\times 4 = 40$. By the handshaking lemma, $2E = 40$, so $E = 20$."
+        },
+        {
+          "question": "Does the complete graph $K_4$ have an Eulerian circuit?",
+          "solution": "No. In $K_4$, every vertex has degree $4-1 = 3$ (which is odd). Eulerian circuits require all even degrees."
+        }
+      ],
+      "traps": [
+        "Assuming a Hamiltonian cycle requires visiting every edge. It only requires visiting every vertex.",
+        "Forgetting that the Handshaking Lemma implies the number of vertices with an odd degree must be even."
+      ],
+      "takeaways": [
+        "Eulerian is about edges; Hamiltonian is about vertices.",
+        "The sum of all vertex degrees is always even."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the degree requirement for an Eulerian circuit?",
+          "answer": "All vertices must have an even degree."
+        },
+        {
+          "question": "How many edges are in a complete graph with $n$ vertices?",
+          "answer": "$n(n-1)/2$"
+        }
+      ],
+      "sources": [
+        {
+          "title": "GATE 2026 CS syllabus — Section 1",
+          "url": "https://gate2026.iitg.ac.in/doc/GATE2026_Syllabus/CS_2026_Syllabus.pdf",
+          "usedFor": [
+            "Scope: Graphs: connectivity"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "title": "Graph Theory II: Planarity, Coloring & Matching",
+      "oneLine": "Advanced graph properties deal with drawing without crossings, coloring adjacencies, and pairing vertices.",
+      "whyItMatters": "Planarity applies to VLSI circuit design. Graph coloring maps to register allocation in compilers. Matching solves assignment problems.",
+      "understandSimply": [
+        "A planar graph can be drawn flat on a piece of paper without any edges crossing over one another.",
+        "Graph coloring involves assigning a color to each vertex so that no two connected vertices share the same color. The minimum colors needed is the chromatic number.",
+        "Matching is finding a set of edges that share no vertices (like matching people to distinct jobs)."
+      ],
+      "technicalExplanation": [
+        "Euler's formula for connected planar graphs is $V - E + F = 2$, where $F$ is the number of regions (faces).",
+        "Kuratowski's Theorem states a graph is planar if and only if it does not contain a subgraph homeomorphic to $K_5$ or $K_{3,3}$.",
+        "A tree is a connected acyclic graph. Any tree with $n$ vertices has exactly $n-1$ edges and a chromatic number of 2 (if $n > 1$)."
+      ],
+      "definitions": [
+        {
+          "term": "Chromatic Number ($\\chi$)",
+          "definition": "The minimum number of colors needed to color the vertices of a graph properly."
+        },
+        {
+          "term": "Planar Graph",
+          "definition": "A graph that can be embedded in the plane with no intersecting edges."
+        },
+        {
+          "term": "Matching",
+          "definition": "A set of edges without common vertices."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Calculate faces in a planar graph",
+          "description": "Use Euler's formula: $F = 2 - V + E$."
+        }
+      ],
+      "formulasAndMethods": [
+        "Euler's Formula: $V - E + F = 2$.",
+        "Edge bound for Planar Graphs: For $V \\ge 3$, $E \\le 3V - 6$.",
+        "Edge bound for Bipartite Planar Graphs: For $V \\ge 3$, $E \\le 2V - 4$."
+      ],
+      "comparisons": [
+        {
+          "title": "Graph Type Chromatic Numbers",
+          "columns": [
+            "Graph Type",
+            "Chromatic Number ($\\chi$)"
+          ],
+          "rows": [
+            [
+              "Tree (with $\\ge 2$ vertices)",
+              "2"
+            ],
+            [
+              "Bipartite Graph",
+              "2"
+            ],
+            [
+              "Complete Graph $K_n$",
+              "$n$"
+            ],
+            [
+              "Cycle graph $C_n$ (even $n$)",
+              "2"
+            ],
+            [
+              "Cycle graph $C_n$ (odd $n$)",
+              "3"
+            ]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "A connected planar graph has 10 vertices and 15 edges. How many faces does it have?",
+          "solution": "$V - E + F = 2 \\implies 10 - 15 + F = 2 \\implies -5 + F = 2 \\implies F = 7$."
+        },
+        {
+          "question": "What is the chromatic number of a bipartite graph with at least one edge?",
+          "solution": "2. The vertices can be split into two sets where edges only cross between sets, allowing each set to be a single color."
+        }
+      ],
+      "traps": [
+        "Applying $V - E + F = 2$ to a disconnected graph. The formula becomes $V - E + F = 1 + C$ where $C$ is the number of connected components.",
+        "Assuming a graph is not planar just because a *specific* drawing has crossing edges. It just needs ONE valid drawing without crossings."
+      ],
+      "takeaways": [
+        "Euler's formula connects vertices, edges, and faces.",
+        "Bipartite graphs and Trees always have a chromatic number of 2.",
+        "$K_5$ and $K_{3,3}$ are the non-planar building blocks."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is Euler's Formula for planar graphs?",
+          "answer": "$V - E + F = 2$"
+        },
+        {
+          "question": "What is the chromatic number of a Tree?",
+          "answer": "2"
+        }
+      ],
+      "sources": [
+        {
+          "title": "GATE 2026 CS syllabus — Section 1",
+          "url": "https://gate2026.iitg.ac.in/doc/GATE2026_Syllabus/CS_2026_Syllabus.pdf",
+          "usedFor": [
+            "Scope: Graphs: matching, colouring"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "title": "Combinatorics: Permutations & Combinations",
+      "oneLine": "Combinatorics is the mathematics of counting arrangements, selections, and groupings.",
+      "whyItMatters": "Fundamental for probability calculations and analyzing the time complexity of algorithms (e.g., how many loop iterations occur).",
+      "understandSimply": [
+        "Permutations are arrangements where the order matters (e.g., passwords or race finishes).",
+        "Combinations are selections where the order does not matter (e.g., picking a team of 3 from 10 people).",
+        "The Pigeonhole Principle is simple logic: if you have 10 pigeons and 9 holes, at least one hole must contain 2 or more pigeons."
+      ],
+      "technicalExplanation": [
+        "The number of permutations of $n$ distinct objects taken $r$ at a time is $P(n,r) = \\frac{n!}{(n-r)!}$.",
+        "The number of combinations of $n$ objects taken $r$ at a time is $C(n,r) = \\binom{n}{r} = \\frac{n!}{r!(n-r)!}$.",
+        "The Principle of Inclusion-Exclusion (PIE) calculates the size of the union of sets by adding individual sizes, subtracting pairwise intersections, adding triple intersections, and so on: $|A \\cup B| = |A| + |B| - |A \\cap B|$."
+      ],
+      "definitions": [
+        {
+          "term": "Factorial",
+          "definition": "$n! = n \\times (n-1) \\times \\dots \\times 1$. By definition, $0! = 1$."
+        },
+        {
+          "term": "Pigeonhole Principle",
+          "definition": "If $n$ items are put into $m$ containers, with $n > m$, then at least one container must contain more than one item."
+        },
+        {
+          "term": "Inclusion-Exclusion",
+          "definition": "A counting technique that compensates for overcounting overlapping groups."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Decide between Permutation or Combination",
+          "description": "Ask: Does order matter? If yes (arranging), use Permutation. If no (selecting), use Combination."
+        }
+      ],
+      "formulasAndMethods": [
+        "Permutations: $P(n,r) = \\frac{n!}{(n-r)!}$",
+        "Combinations: $C(n,r) = \\frac{n!}{r!(n-r)!}$",
+        "Arrangements with repetitions: $\\frac{n!}{n_1! n_2! \\dots n_k!}$"
+      ],
+      "comparisons": [
+        {
+          "title": "Order and Repetition",
+          "columns": [
+            "Scenario",
+            "Formula / Concept"
+          ],
+          "rows": [
+            [
+              "Order matters, no repetition",
+              "$P(n,r)$"
+            ],
+            [
+              "Order doesn't matter, no repetition",
+              "$C(n,r)$"
+            ],
+            [
+              "Order matters, with repetition",
+              "$n^r$"
+            ]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "How many ways can 3 students be chosen for a committee from a class of 10?",
+          "solution": "Order doesn't matter, so it's $C(10,3) = \\frac{10!}{3!7!} = \\frac{10 \\times 9 \\times 8}{6} = 120$ ways."
+        },
+        {
+          "question": "How many anagrams can be made from the word 'MISSISSIPPI'?",
+          "solution": "There are 11 letters total: 4 I's, 4 S's, 2 P's, 1 M. Arrangements = $\\frac{11!}{4! 4! 2! 1!} = 34,650$."
+        }
+      ],
+      "traps": [
+        "Using permutations when combinations are required (e.g., choosing a subset where order is irrelevant).",
+        "Forgetting to divide out permutations of identical items in an arrangement."
+      ],
+      "takeaways": [
+        "Permutation = Arrangement (Order matters). Combination = Selection (Order doesn't matter).",
+        "The Pigeonhole principle is used to prove that a collision or duplication MUST happen."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the formula for $\\binom{n}{r}$?",
+          "answer": "$\\frac{n!}{r!(n-r)!}$"
+        },
+        {
+          "question": "If you have 5 holes and 6 pigeons, what is guaranteed?",
+          "answer": "At least one hole has $\\ge 2$ pigeons."
+        }
+      ],
+      "sources": [
+        {
+          "title": "GATE 2026 CS syllabus — Section 1",
+          "url": "https://gate2026.iitg.ac.in/doc/GATE2026_Syllabus/CS_2026_Syllabus.pdf",
+          "usedFor": [
+            "Scope: Combinatorics: counting"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "title": "Generating Functions & Recurrence Relations",
+      "oneLine": "Recurrences express sequences recursively; generating functions encode entire sequences into a single algebraic expression.",
+      "whyItMatters": "Used heavily in algorithm analysis to find the closed-form time complexity of recursive functions (e.g., Divide and Conquer).",
+      "understandSimply": [
+        "A recurrence relation defines the next term in a sequence based on previous terms (like the Fibonacci sequence: $F_n = F_{n-1} + F_{n-2}$).",
+        "A generating function takes a sequence of numbers and turns them into the coefficients of a polynomial or infinite series."
+      ],
+      "technicalExplanation": [
+        "Linear Homogeneous Recurrence Relations with constant coefficients have the form $a_n = c_1 a_{n-1} + c_2 a_{n-2} + \\dots$. To solve them, we find the roots of the characteristic polynomial.",
+        "If the roots are distinct (e.g., $r_1, r_2$), the solution is $a_n = A(r_1)^n + B(r_2)^n$. If a root $r$ has multiplicity $m$, it contributes $(A_0 + A_1 n + \\dots + A_{m-1} n^{m-1})r^n$.",
+        "The ordinary generating function for a sequence $a_0, a_1, a_2 \\dots$ is $G(x) = \\sum_{n=0}^{\\infty} a_n x^n$."
+      ],
+      "definitions": [
+        {
+          "term": "Recurrence Relation",
+          "definition": "An equation that recursively defines a sequence."
+        },
+        {
+          "term": "Characteristic Equation",
+          "definition": "An algebraic equation derived from a linear homogeneous recurrence, used to find its explicit solution."
+        },
+        {
+          "term": "Generating Function",
+          "definition": "A formal power series whose coefficients encode a sequence of numbers."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Solve a linear homogeneous recurrence",
+          "description": "1. Write the characteristic equation. 2. Find its roots. 3. Form the general solution. 4. Use initial conditions to find the constants."
+        }
+      ],
+      "formulasAndMethods": [
+        "Characteristic equation for $a_n = c_1 a_{n-1} + c_2 a_{n-2}$: $r^2 - c_1 r - c_2 = 0$.",
+        "Generating function for $a_n = 1$ for all $n$: $G(x) = \\frac{1}{1-x}$."
+      ],
+      "comparisons": [
+        {
+          "title": "Recurrence Types",
+          "columns": [
+            "Type",
+            "Example"
+          ],
+          "rows": [
+            [
+              "Linear Homogeneous",
+              "$a_n = 3a_{n-1} + 2a_{n-2}$"
+            ],
+            [
+              "Non-Homogeneous",
+              "$a_n = 3a_{n-1} + 2^n$ (extra term $2^n$ without $a_i$)"
+            ]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Find the general solution to $a_n = 5a_{n-1} - 6a_{n-2}$.",
+          "solution": "Characteristic eq: $r^2 - 5r + 6 = 0$. Roots are $r=2, r=3$. General solution is $a_n = A(2)^n + B(3)^n$."
+        }
+      ],
+      "traps": [
+        "Forgetting to multiply by $n$ when characteristic roots are repeated (e.g., if roots are $2, 2$, the solution is $A(2)^n + Bn(2)^n$).",
+        "Mixing up the signs when moving terms to form the characteristic equation."
+      ],
+      "takeaways": [
+        "Recurrences are discrete differential equations.",
+        "The roots of the characteristic equation dictate the base of the exponential growth in the sequence."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the characteristic equation for $a_n = a_{n-1} + a_{n-2}$?",
+          "answer": "$r^2 - r - 1 = 0$"
+        }
+      ],
+      "sources": [
+        {
+          "title": "GATE 2026 CS syllabus — Section 1",
+          "url": "https://gate2026.iitg.ac.in/doc/GATE2026_Syllabus/CS_2026_Syllabus.pdf",
+          "usedFor": [
+            "Scope: recurrence relations, generating functions"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "title": "Linear Algebra I: Matrices & Systems of Equations",
+      "oneLine": "Linear algebra uses matrices to compactly represent and solve large systems of linear equations.",
+      "whyItMatters": "Matrices are the fundamental data structure in machine learning, graphics (transformations), and numerical computing.",
+      "understandSimply": [
+        "A matrix is a grid of numbers. A determinant is a single number computed from a square matrix that tells you if it can be inverted (if it's non-zero).",
+        "A system of linear equations can be written as $AX = B$. If the determinant of $A$ is zero, there might be no solution or infinite solutions."
+      ],
+      "technicalExplanation": [
+        "Matrix multiplication is associative but generally NOT commutative ($AB \\neq BA$).",
+        "The determinant $|A|$ of an $n \\times n$ matrix dictates invertibility. If $|A| = 0$, $A$ is singular and has no inverse. If $|A| \\neq 0$, $A^{-1} = \\frac{\\text{adj}(A)}{|A|}$.",
+        "LU Decomposition factors a matrix $A$ into a Lower triangular matrix $L$ and an Upper triangular matrix $U$ ($A = LU$) to solve systems faster than matrix inversion.",
+        "Gaussian Elimination transforms a matrix into row echelon form to easily back-substitute and find solutions."
+      ],
+      "definitions": [
+        {
+          "term": "Singular Matrix",
+          "definition": "A square matrix with a determinant of zero. It does not have an inverse."
+        },
+        {
+          "term": "Identity Matrix ($I$)",
+          "definition": "A square matrix with 1s on the main diagonal and 0s elsewhere."
+        },
+        {
+          "term": "Transpose ($A^T$)",
+          "definition": "A matrix formed by swapping rows with columns."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Check system consistency ($AX=B$)",
+          "description": "If $|A| \\neq 0$, unique solution. If $|A| = 0$ and $(\\text{adj}(A))B = 0$, infinite solutions. If $|A| = 0$ and $(\\text{adj}(A))B \\neq 0$, no solution."
+        }
+      ],
+      "formulasAndMethods": [
+        "Determinant of $2 \\times 2$: $|A| = ad - bc$.",
+        "Inverse of $2 \\times 2$: $A^{-1} = \\frac{1}{ad-bc} \\begin{bmatrix} d & -b \\\\ -c & a \\end{bmatrix}$.",
+        "Determinant properties: $|AB| = |A||B|$, $|A^T| = |A|$, $|kA| = k^n|A|$ for an $n \\times n$ matrix."
+      ],
+      "comparisons": [
+        {
+          "title": "System of Equations ($AX=B$)",
+          "columns": [
+            "Determinant $|A|$",
+            "Solution State"
+          ],
+          "rows": [
+            [
+              "$\\neq 0$",
+              "Unique Solution (Consistent)"
+            ],
+            [
+              "$= 0$",
+              "Infinite or No Solution (Depends on B)"
+            ]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "If $A$ is a $3 \\times 3$ matrix with $|A| = 5$, what is $|2A|$?",
+          "solution": "$|2A| = 2^3 \\times |A| = 8 \\times 5 = 40$."
+        }
+      ],
+      "traps": [
+        "Assuming $(AB)^T = A^T B^T$. The correct rule is $(AB)^T = B^T A^T$.",
+        "Forgetting that $|kA| = k^n|A|$ where $n$ is the dimension of the matrix, not just $k|A|$."
+      ],
+      "takeaways": [
+        "Determinants tell you if a matrix transformation collapses space (det = 0).",
+        "LU Decomposition separates the elimination steps from the constants in a system."
+      ],
+      "quickRecall": [
+        {
+          "question": "What does a determinant of 0 imply?",
+          "answer": "The matrix is singular and has no inverse."
+        },
+        {
+          "question": "What is the transpose rule for multiplication?",
+          "answer": "$(AB)^T = B^T A^T$"
+        }
+      ],
+      "sources": [
+        {
+          "title": "GATE 2026 CS syllabus — Section 1",
+          "url": "https://gate2026.iitg.ac.in/doc/GATE2026_Syllabus/CS_2026_Syllabus.pdf",
+          "usedFor": [
+            "Scope: Matrices, determinants, system of linear equations, LU decomposition"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 9,
+      "title": "Linear Algebra II: Vector Spaces & Eigenvalues",
+      "oneLine": "Eigenvectors are directions that do not change when a matrix transformation is applied, scaled only by their eigenvalues.",
+      "whyItMatters": "Eigenvalues are critical for analyzing network stability, PageRank algorithms, and dimensionality reduction (PCA).",
+      "understandSimply": [
+        "Rank is the number of 'unique' or linearly independent rows/columns in a matrix. It tells you the true dimensionality of the data.",
+        "When a matrix multiplies a vector, it usually rotates and stretches it. If it ONLY stretches the vector (no rotation), that vector is an Eigenvector, and the stretch factor is the Eigenvalue."
+      ],
+      "technicalExplanation": [
+        "To find eigenvalues $\\lambda$, solve the characteristic equation $\\det(A - \\lambda I) = 0$.",
+        "For each eigenvalue $\\lambda$, find the eigenvectors $X$ by solving $(A - \\lambda I)X = 0$.",
+        "The sum of the eigenvalues equals the Trace of the matrix (sum of main diagonal). The product of eigenvalues equals the Determinant of the matrix.",
+        "The Cayley-Hamilton Theorem states that every square matrix satisfies its own characteristic equation."
+      ],
+      "definitions": [
+        {
+          "term": "Rank",
+          "definition": "The maximum number of linearly independent row or column vectors in a matrix."
+        },
+        {
+          "term": "Eigenvalue ($\\lambda$)",
+          "definition": "A scalar associated with a linear transformation representing the scaling factor along an eigenvector."
+        },
+        {
+          "term": "Trace",
+          "definition": "The sum of the elements on the main diagonal of a square matrix."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Find Eigenvalues of A",
+          "description": "1. Subtract $\\lambda$ from the main diagonal of A. 2. Calculate the determinant. 3. Set to 0 and solve for $\\lambda$."
+        }
+      ],
+      "formulasAndMethods": [
+        "Characteristic Equation: $\\det(A - \\lambda I) = 0$.",
+        "Trace = $\\sum \\lambda_i$.",
+        "Determinant = $\\prod \\lambda_i$."
+      ],
+      "comparisons": [
+        {
+          "title": "Eigenvalue Shortcuts",
+          "columns": [
+            "Matrix Property",
+            "Eigenvalues"
+          ],
+          "rows": [
+            [
+              "Triangular or Diagonal Matrix",
+              "The entries on the main diagonal"
+            ],
+            [
+              "Idempotent ($A^2 = A$)",
+              "Only 0 or 1"
+            ],
+            [
+              "Orthogonal ($A^T A = I$)",
+              "Magnitude is always 1 (e.g., $1, -1$)"
+            ]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "A $2 \\times 2$ matrix has Trace = 5 and Determinant = 6. What are its eigenvalues?",
+          "solution": "We know $\\lambda_1 + \\lambda_2 = 5$ and $\\lambda_1 \\lambda_2 = 6$. The numbers are 2 and 3."
+        }
+      ],
+      "traps": [
+        "Calculating eigenvalues the hard way for a triangular matrix. Just read them off the diagonal!",
+        "Assuming eigenvectors are unique. They are just directions; any non-zero scalar multiple of an eigenvector is also an eigenvector for the same eigenvalue."
+      ],
+      "takeaways": [
+        "Trace = Sum of Eigenvalues.",
+        "Determinant = Product of Eigenvalues.",
+        "Cayley-Hamilton is useful for finding inverses of matrices via polynomials."
+      ],
+      "quickRecall": [
+        {
+          "question": "How do you find the trace of a matrix?",
+          "answer": "Sum the elements on the main diagonal."
+        },
+        {
+          "question": "What is the characteristic equation?",
+          "answer": "$\\det(A - \\lambda I) = 0$"
+        }
+      ],
+      "sources": [
+        {
+          "title": "GATE 2026 CS syllabus — Section 1",
+          "url": "https://gate2026.iitg.ac.in/doc/GATE2026_Syllabus/CS_2026_Syllabus.pdf",
+          "usedFor": [
+            "Scope: eigenvalues and eigenvectors"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 10,
+      "title": "Calculus: Limits, Continuity & Maxima/Minima",
+      "oneLine": "Calculus studies continuous change, allowing us to evaluate extremes (max/min) and rates of change.",
+      "whyItMatters": "Essential for understanding continuous probability distributions and optimizing loss functions in machine learning (gradient descent).",
+      "understandSimply": [
+        "A limit is the value a function approaches as the input gets closer to a target. If the limit matches the actual function value, it is continuous.",
+        "The derivative is the slope (rate of change). Where the slope is zero, the function has hit a peak (max) or a valley (min)."
+      ],
+      "technicalExplanation": [
+        "L'Hopital's Rule is used to evaluate limits of the form $0/0$ or $\\infty/\\infty$ by taking the derivative of the numerator and denominator.",
+        "To find Maxima and Minima, set the first derivative $f'(x) = 0$ to find critical points. Use the second derivative test: if $f''(x) > 0$, it's a local minimum; if $f''(x) < 0$, it's a local maximum.",
+        "Mean Value Theorem (Lagrange's): If a function is continuous on $[a,b]$ and differentiable on $(a,b)$, there exists a point $c$ such that $f'(c) = \\frac{f(b)-f(a)}{b-a}$."
+      ],
+      "definitions": [
+        {
+          "term": "Continuous Function",
+          "definition": "A function with no sudden jumps; the limit as $x \\to a$ equals $f(a)$."
+        },
+        {
+          "term": "Critical Point",
+          "definition": "A point where the derivative is zero or undefined."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Find Local Maxima/Minima",
+          "description": "1. Find $f'(x)$. 2. Set $f'(x) = 0$ to find critical points $x=c$. 3. Find $f''(x)$. 4. Check sign of $f''(c)$."
+        }
+      ],
+      "formulasAndMethods": [
+        "L'Hopital's Rule: $\\lim_{x \\to c} \\frac{f(x)}{g(x)} = \\lim_{x \\to c} \\frac{f'(x)}{g'(x)}$",
+        "Second Derivative Test: Max if $f'' < 0$, Min if $f'' > 0$."
+      ],
+      "comparisons": [
+        {
+          "title": "Second Derivative Test Outcomes",
+          "columns": [
+            "Condition at $f'(c)=0$",
+            "Conclusion"
+          ],
+          "rows": [
+            [
+              "$f''(c) > 0$",
+              "Local Minimum (Concave Up)"
+            ],
+            [
+              "$f''(c) < 0$",
+              "Local Maximum (Concave Down)"
+            ],
+            [
+              "$f''(c) = 0$",
+              "Test Inconclusive"
+            ]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Evaluate $\\lim_{x \\to 0} \\frac{\\sin x}{x}$.",
+          "solution": "It forms $0/0$. Apply L'Hopital's rule: derivative of $\\sin x$ is $\\cos x$, derivative of $x$ is 1. $\\lim_{x \\to 0} \\frac{\\cos x}{1} = \\cos(0) = 1$."
+        }
+      ],
+      "traps": [
+        "Applying L'Hopital's rule when the limit is NOT $0/0$ or $\\infty/\\infty$. Check the form first!",
+        "Assuming a critical point where $f'(x)=0$ is always a max or min; it could be an inflection point (like $y=x^3$ at $x=0$)."
+      ],
+      "takeaways": [
+        "L'Hopital's rule is the fastest way to solve indeterminate limits.",
+        "The Mean Value Theorem states there is always a point where instantaneous rate of change equals average rate of change."
+      ],
+      "quickRecall": [
+        {
+          "question": "What does $f''(x) > 0$ at a critical point indicate?",
+          "answer": "A local minimum."
+        }
+      ],
+      "sources": [
+        {
+          "title": "GATE 2026 CS syllabus — Section 1",
+          "url": "https://gate2026.iitg.ac.in/doc/GATE2026_Syllabus/CS_2026_Syllabus.pdf",
+          "usedFor": [
+            "Scope: Limits, continuity, Maxima and minima, Mean value theorem"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 11,
+      "title": "Integral Calculus: Integration",
+      "oneLine": "Integration computes areas under curves and serves as the inverse operation to differentiation.",
+      "whyItMatters": "Fundamental for finding probabilities from continuous probability density functions (PDFs).",
+      "understandSimply": [
+        "While a derivative breaks things down into rates of change, an integral sums things up to find the total accumulation (like area or volume).",
+        "Definite integrals have a start and end point (giving a specific number), while indefinite integrals give a general formula (plus a constant $C$)."
+      ],
+      "technicalExplanation": [
+        "The Fundamental Theorem of Calculus links derivatives and integrals: $\\int_{a}^{b} f(x) dx = F(b) - F(a)$, where $F'(x) = f(x)$.",
+        "Integration by Parts is the reverse of the product rule: $\\int u \\, dv = uv - \\int v \\, du$. Choose $u$ based on the ILATE rule (Inverse, Logarithmic, Algebraic, Trigonometric, Exponential).",
+        "Double integrals calculate volumes under surfaces, typically over a region in the $xy$-plane."
+      ],
+      "definitions": [
+        {
+          "term": "Definite Integral",
+          "definition": "An integral with upper and lower limits, representing an exact accumulated value (e.g., area)."
+        },
+        {
+          "term": "Integration by Parts",
+          "definition": "A technique used when integrating the product of two functions."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Apply Integration by Parts (ILATE)",
+          "description": "1. Pick $u$ (the function that appears first in ILATE). 2. Let the rest be $dv$. 3. Differentiate $u$ to get $du$, integrate $dv$ to get $v$. 4. Apply formula."
+        }
+      ],
+      "formulasAndMethods": [
+        "Fundamental Theorem: $\\int_{a}^{b} f'(x) dx = f(b) - f(a)$",
+        "By Parts: $\\int u \\, dv = uv - \\int v \\, du$"
+      ],
+      "comparisons": [
+        {
+          "title": "Derivative vs Integral rules",
+          "columns": [
+            "Function",
+            "Derivative",
+            "Integral"
+          ],
+          "rows": [
+            [
+              "$x^n$",
+              "$n x^{n-1}$",
+              "$\\frac{x^{n+1}}{n+1}$ (for $n \\neq -1$)"
+            ],
+            [
+              "$e^x$",
+              "$e^x$",
+              "$e^x$"
+            ],
+            [
+              "$\\frac{1}{x}$",
+              "$-1/x^2$",
+              "$\\ln|x|$"
+            ]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Evaluate $\\int_{0}^{1} 2x \\, dx$.",
+          "solution": "The antiderivative is $x^2$. Evaluating from 0 to 1: $1^2 - 0^2 = 1$."
+        }
+      ],
+      "traps": [
+        "Forgetting the constant of integration $+C$ on indefinite integrals.",
+        "Switching the limits of integration incorrectly; $\\int_{a}^{b} = -\\int_{b}^{a}$."
+      ],
+      "takeaways": [
+        "Integration by parts requires choosing $u$ and $dv$ wisely; remember ILATE.",
+        "The integral of a probability density function over all space must equal 1."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the acronym for choosing $u$ in integration by parts?",
+          "answer": "ILATE (Inverse, Log, Algebraic, Trig, Exponential)"
+        }
+      ],
+      "sources": [
+        {
+          "title": "GATE 2026 CS syllabus — Section 1",
+          "url": "https://gate2026.iitg.ac.in/doc/GATE2026_Syllabus/CS_2026_Syllabus.pdf",
+          "usedFor": [
+            "Scope: Integration"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 12,
+      "title": "Probability & Statistics: Distributions & Bayes",
+      "oneLine": "Statistics models uncertainty, measuring expectations, variances, and conditional probabilities.",
+      "whyItMatters": "Probability is heavily tested in GATE. Bayes Theorem is the foundation of machine learning classifiers (Naive Bayes).",
+      "understandSimply": [
+        "Conditional probability is the chance of an event happening given that another event already happened.",
+        "Bayes Theorem reverses this: if we know the probability of a symptom given a disease, we can calculate the probability of the disease given the symptom.",
+        "Random variables have standard 'shapes' (distributions) like the Bell Curve (Normal), Coin Flips (Binomial), or Waiting times (Exponential)."
+      ],
+      "technicalExplanation": [
+        "Conditional Probability: $P(A \\mid B) = \\frac{P(A \\cap B)}{P(B)}$. Independent events have $P(A \\cap B) = P(A)P(B)$.",
+        "Bayes Theorem uses the Law of Total Probability for its denominator: $P(A_i \\mid B) = \\frac{P(B \\mid A_i)P(A_i)}{\\sum P(B \\mid A_j)P(A_j)}$.",
+        "Expected Value (Mean $\\mu$) is $\\sum x_i P(x_i)$. Variance ($\\sigma^2$) is $E(X^2) - (E(X))^2$.",
+        "Key Distributions: Binomial (success/failure in $n$ trials), Poisson (events in a fixed interval), Exponential (continuous time between events), Normal (continuous bell curve)."
+      ],
+      "definitions": [
+        {
+          "term": "Mutually Exclusive",
+          "definition": "Events that cannot happen at the same time ($P(A \\cap B) = 0$)."
+        },
+        {
+          "term": "Independent Events",
+          "definition": "The occurrence of one event does not affect the other."
+        },
+        {
+          "term": "Standard Deviation",
+          "definition": "The square root of variance, representing the spread of data."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Solve Bayes Theorem Problems",
+          "description": "1. Identify the 'prior' probabilities $P(A)$. 2. Identify conditional probabilities $P(B \\mid A)$. 3. Calculate total probability of evidence $P(B)$. 4. Apply formula."
+        }
+      ],
+      "formulasAndMethods": [
+        "Bayes Theorem: $P(A \\mid B) = \\frac{P(B \\mid A)P(A)}{P(B)}$",
+        "Binomial: $P(X=k) = \\binom{n}{k} p^k (1-p)^{n-k}$, Mean = $np$, Var = $npq$",
+        "Poisson: $P(X=k) = \\frac{e^{-\\lambda} \\lambda^k}{k!}$, Mean = $\\lambda$, Var = $\\lambda$"
+      ],
+      "comparisons": [
+        {
+          "title": "Discrete vs Continuous Distributions",
+          "columns": [
+            "Type",
+            "Examples",
+            "Summation Method"
+          ],
+          "rows": [
+            [
+              "Discrete",
+              "Binomial, Poisson",
+              "Summation ($\\sum$)"
+            ],
+            [
+              "Continuous",
+              "Normal, Exponential, Uniform",
+              "Integration ($\\int$)"
+            ]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "If a fair coin is flipped 3 times, what is the expected number of heads?",
+          "solution": "This is a Binomial distribution with $n=3$, $p=0.5$. Mean = $np = 3 \\times 0.5 = 1.5$."
+        },
+        {
+          "question": "Two independent events A and B have $P(A) = 0.5$ and $P(B) = 0.4$. What is $P(A \\cup B)$?",
+          "solution": "$P(A \\cup B) = P(A) + P(B) - (P(A) \\times P(B)) = 0.5 + 0.4 - 0.2 = 0.7$."
+        }
+      ],
+      "traps": [
+        "Confusing mutually exclusive with independent. Mutually exclusive means they CANNOT happen together. Independent means they CAN happen together, but one doesn't affect the other.",
+        "Forgetting to expand the denominator in Bayes theorem to include all possible causes of the evidence."
+      ],
+      "takeaways": [
+        "In a Poisson distribution, the mean and variance are identical ($\\lambda$).",
+        "Bayes Theorem allows updating probabilities based on new evidence."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the mean of a binomial distribution?",
+          "answer": "$np$"
+        },
+        {
+          "question": "What is the formula for Variance using Expectations?",
+          "answer": "$\\text{Var}(X) = E(X^2) - (E(X))^2$"
+        }
+      ],
+      "sources": [
+        {
+          "title": "GATE 2026 CS syllabus — Section 1",
+          "url": "https://gate2026.iitg.ac.in/doc/GATE2026_Syllabus/CS_2026_Syllabus.pdf",
+          "usedFor": [
+            "Scope: Probability and Statistics"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,12 +1,402 @@
 [
-  {"id":"compiler-01","status":"approved","provenance":"original","attribution":"Original for IOCL Prep Hub","sourceId":"GATE-CS-SYL-2026","sourceLocator":"p.1 — lexical analysis","section":"domain","subject":"Compiler Design","topic":"Lexical analysis","difficulty":"Easy","stem":"What does a lexical analyzer normally produce from a character stream?","options":[{"id":"a","text":"Tokens"},{"id":"b","text":"Machine interrupts"},{"id":"c","text":"Database rows"},{"id":"d","text":"Network packets"}],"correctOptionId":"a","explanation":"Lexical analysis groups input characters into tokens for the parser.","verificationSources":[{"sourceId":"DRAGON-COMPILERS","locator":"Lexical analysis"}],"reviewNote":"Second-pass checked against compiler phase responsibilities."},
-  {"id":"compiler-02","status":"approved","provenance":"original","attribution":"Original for IOCL Prep Hub","sourceId":"GATE-CS-SYL-2026","sourceLocator":"p.1 — parsing","section":"domain","subject":"Compiler Design","topic":"Parsing","difficulty":"Easy","stem":"Which compiler phase checks whether a token sequence conforms to a grammar?","options":[{"id":"a","text":"Lexical analysis"},{"id":"b","text":"Parsing"},{"id":"c","text":"Register allocation"},{"id":"d","text":"Linking"}],"correctOptionId":"b","explanation":"The parser applies the language grammar to the token stream and builds a syntactic structure.","verificationSources":[{"sourceId":"DRAGON-COMPILERS","locator":"Syntax analysis"}],"reviewNote":"Second-pass checked against compiler phase responsibilities."},
-  {"id":"compiler-03","status":"approved","provenance":"original","attribution":"Original for IOCL Prep Hub","sourceId":"GATE-CS-SYL-2026","sourceLocator":"p.1 — runtime environments","section":"domain","subject":"Compiler Design","topic":"Runtime environments","difficulty":"Medium","stem":"Which structure records identifier attributes such as type and scope during compilation?","options":[{"id":"a","text":"Symbol table"},{"id":"b","text":"Page table"},{"id":"c","text":"Routing table"},{"id":"d","text":"File allocation table"}],"correctOptionId":"a","explanation":"A symbol table associates identifiers with attributes such as type, declaration and scope.","verificationSources":[{"sourceId":"DRAGON-COMPILERS","locator":"Symbol tables and declarations"}],"reviewNote":"Second-pass checked against symbol-table purpose."},
-  {"id":"compiler-04","status":"approved","provenance":"original","attribution":"Original for IOCL Prep Hub","sourceId":"GATE-CS-SYL-2026","sourceLocator":"p.1 — intermediate code","section":"domain","subject":"Compiler Design","topic":"Intermediate code","difficulty":"Easy","stem":"Which is a common intermediate representation used by compilers?","options":[{"id":"a","text":"Three-address code"},{"id":"b","text":"IP packet"},{"id":"c","text":"B+ tree leaf"},{"id":"d","text":"Semaphore queue"}],"correctOptionId":"a","explanation":"Three-address code is a standard linear intermediate representation with simple operations.","verificationSources":[{"sourceId":"DRAGON-COMPILERS","locator":"Intermediate-code generation"}],"reviewNote":"Second-pass checked against standard IR forms."},
-  {"id":"compiler-05","status":"approved","provenance":"original","attribution":"Original for IOCL Prep Hub","sourceId":"GATE-CS-SYL-2026","sourceLocator":"p.1 — liveness analysis","section":"domain","subject":"Compiler Design","topic":"Data-flow analysis","difficulty":"Medium","stem":"A variable is live at a program point if its current value may be what?","options":[{"id":"a","text":"Used along some path before being overwritten"},{"id":"b","text":"Stored only in a database"},{"id":"c","text":"A compile-time constant"},{"id":"d","text":"Declared after program exit"}],"correctOptionId":"a","explanation":"Liveness means the value can be read on a future path before another assignment replaces it.","verificationSources":[{"sourceId":"DRAGON-COMPILERS","locator":"Live-variable analysis"}],"reviewNote":"Second-pass checked against liveness definition."},
-  {"id":"os-01","status":"approved","provenance":"original","attribution":"Original for IOCL Prep Hub","sourceId":"GATE-CS-SYL-2026","sourceLocator":"p.1 — processes","section":"domain","subject":"Operating Systems","topic":"Processes and threads","difficulty":"Easy","stem":"A process is best described as what?","options":[{"id":"a","text":"A program in execution"},{"id":"b","text":"A file that can never run"},{"id":"c","text":"A network cable"},{"id":"d","text":"A database relation"}],"correctOptionId":"a","explanation":"A process is an executing program together with its state and allocated resources.","verificationSources":[{"sourceId":"OS-CONCEPTS","locator":"Processes"}],"reviewNote":"Second-pass checked against process definition."},
-  {"id":"os-02","status":"approved","provenance":"original","attribution":"Original for IOCL Prep Hub","sourceId":"GATE-CS-SYL-2026","sourceLocator":"p.1 — threads","section":"domain","subject":"Operating Systems","topic":"Processes and threads","difficulty":"Easy","stem":"Threads of the same process normally share which resource?","options":[{"id":"a","text":"Address space"},{"id":"b","text":"Program counter"},{"id":"c","text":"Register set"},{"id":"d","text":"Call stack"}],"correctOptionId":"a","explanation":"Threads share code, data and address space; each has its own registers, program counter and stack.","verificationSources":[{"sourceId":"OS-CONCEPTS","locator":"Threads and multicore systems"}],"reviewNote":"Second-pass checked against the thread resource model."},
-  {"id":"os-03","status":"approved","provenance":"original","attribution":"Original for IOCL Prep Hub","sourceId":"GATE-CS-SYL-2026","sourceLocator":"p.1 — synchronization","section":"domain","subject":"Operating Systems","topic":"Synchronization","difficulty":"Easy","stem":"Which primitive is commonly used to coordinate access to shared resources?","options":[{"id":"a","text":"Semaphore"},{"id":"b","text":"Compiler token"},{"id":"c","text":"DNS record"},{"id":"d","text":"B-tree key"}],"correctOptionId":"a","explanation":"Semaphores provide atomic operations for mutual exclusion and condition synchronization.","verificationSources":[{"sourceId":"OS-CONCEPTS","locator":"Synchronization tools — semaphores"}],"reviewNote":"Second-pass checked against semaphore purpose."},
-  {"id":"os-04","status":"approved","provenance":"original","attribution":"Original for IOCL Prep Hub","sourceId":"GATE-CS-SYL-2026","sourceLocator":"p.1 — deadlock","section":"domain","subject":"Operating Systems","topic":"Deadlock","difficulty":"Medium","stem":"Which is one of the four necessary Coffman conditions for deadlock?","options":[{"id":"a","text":"Circular wait"},{"id":"b","text":"Infinite memory"},{"id":"c","text":"Preemption of every resource"},{"id":"d","text":"Only one process exists"}],"correctOptionId":"a","explanation":"Mutual exclusion, hold-and-wait, no preemption and circular wait are the four necessary conditions.","verificationSources":[{"sourceId":"OS-CONCEPTS","locator":"Deadlocks — necessary conditions"}],"reviewNote":"Second-pass checked against Coffman conditions."},
-  {"id":"os-05","status":"approved","provenance":"original","attribution":"Original for IOCL Prep Hub","sourceId":"GATE-CS-SYL-2026","sourceLocator":"p.1 — virtual memory","section":"domain","subject":"Operating Systems","topic":"Memory management","difficulty":"Easy","stem":"Virtual memory allows a process's address space to be larger than what?","options":[{"id":"a","text":"The available physical memory"},{"id":"b","text":"One byte"},{"id":"c","text":"The CPU register count only"},{"id":"d","text":"The number of files"}],"correctOptionId":"a","explanation":"Virtual memory keeps needed pages in physical memory and can hold other pages in secondary storage.","verificationSources":[{"sourceId":"OS-CONCEPTS","locator":"Virtual memory"}],"reviewNote":"Second-pass checked against virtual-memory purpose."}
+  {
+    "id": "compiler-01",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.1 \u2014 lexical analysis",
+    "section": "domain",
+    "subject": "Compiler Design",
+    "topic": "Compiler Architecture, Lexical Analysis, and Tokenization",
+    "difficulty": "Easy",
+    "stem": "What does a lexical analyzer normally produce from a character stream?",
+    "options": [
+      {
+        "id": "compiler-01-a",
+        "text": "Tokens"
+      },
+      {
+        "id": "compiler-01-b",
+        "text": "Machine interrupts"
+      },
+      {
+        "id": "compiler-01-c",
+        "text": "Database rows"
+      },
+      {
+        "id": "compiler-01-d",
+        "text": "Network packets"
+      }
+    ],
+    "correctOptionId": "compiler-01-a",
+    "explanation": "Lexical analysis groups input characters into tokens for the parser.",
+    "verificationSources": [
+      {
+        "sourceId": "DRAGON-COMPILERS",
+        "locator": "Lexical analysis"
+      }
+    ],
+    "reviewNote": "Second-pass checked against compiler phase responsibilities."
+  },
+  {
+    "id": "compiler-02",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.1 \u2014 parsing",
+    "section": "domain",
+    "subject": "Compiler Design",
+    "topic": "Context-Free Grammars, LL(1) Parsing, and FIRST & FOLLOW Sets",
+    "difficulty": "Easy",
+    "stem": "Which compiler phase checks whether a token sequence conforms to a grammar?",
+    "options": [
+      {
+        "id": "compiler-02-a",
+        "text": "Lexical analysis"
+      },
+      {
+        "id": "compiler-02-b",
+        "text": "Parsing"
+      },
+      {
+        "id": "compiler-02-c",
+        "text": "Register allocation"
+      },
+      {
+        "id": "compiler-02-d",
+        "text": "Linking"
+      }
+    ],
+    "correctOptionId": "compiler-02-b",
+    "explanation": "The parser applies the language grammar to the token stream and builds a syntactic structure.",
+    "verificationSources": [
+      {
+        "sourceId": "DRAGON-COMPILERS",
+        "locator": "Syntax analysis"
+      }
+    ],
+    "reviewNote": "Second-pass checked against compiler phase responsibilities."
+  },
+  {
+    "id": "compiler-03",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.1 \u2014 runtime environments",
+    "section": "domain",
+    "subject": "Compiler Design",
+    "topic": "Runtime Environments, Memory Layout, and Activation Records",
+    "difficulty": "Medium",
+    "stem": "Which structure records identifier attributes such as type and scope during compilation?",
+    "options": [
+      {
+        "id": "compiler-03-a",
+        "text": "Symbol table"
+      },
+      {
+        "id": "compiler-03-b",
+        "text": "Page table"
+      },
+      {
+        "id": "compiler-03-c",
+        "text": "Routing table"
+      },
+      {
+        "id": "compiler-03-d",
+        "text": "File allocation table"
+      }
+    ],
+    "correctOptionId": "compiler-03-a",
+    "explanation": "A symbol table associates identifiers with attributes such as type, declaration and scope.",
+    "verificationSources": [
+      {
+        "sourceId": "DRAGON-COMPILERS",
+        "locator": "Symbol tables and declarations"
+      }
+    ],
+    "reviewNote": "Second-pass checked against symbol-table purpose."
+  },
+  {
+    "id": "compiler-04",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.1 \u2014 intermediate code",
+    "section": "domain",
+    "subject": "Compiler Design",
+    "topic": "Intermediate Code Generation (ICG): Three-Address Code, Quadruples, and Triples",
+    "difficulty": "Easy",
+    "stem": "Which is a common intermediate representation used by compilers?",
+    "options": [
+      {
+        "id": "compiler-04-a",
+        "text": "Three-address code"
+      },
+      {
+        "id": "compiler-04-b",
+        "text": "IP packet"
+      },
+      {
+        "id": "compiler-04-c",
+        "text": "B+ tree leaf"
+      },
+      {
+        "id": "compiler-04-d",
+        "text": "Semaphore queue"
+      }
+    ],
+    "correctOptionId": "compiler-04-a",
+    "explanation": "Three-address code is a standard linear intermediate representation with simple operations.",
+    "verificationSources": [
+      {
+        "sourceId": "DRAGON-COMPILERS",
+        "locator": "Intermediate-code generation"
+      }
+    ],
+    "reviewNote": "Second-pass checked against standard IR forms."
+  },
+  {
+    "id": "compiler-05",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.1 \u2014 liveness analysis",
+    "section": "domain",
+    "subject": "Compiler Design",
+    "topic": "Data-Flow Analysis: Constant Propagation, Liveness Analysis, and CSE",
+    "difficulty": "Medium",
+    "stem": "A variable is live at a program point if its current value may be what?",
+    "options": [
+      {
+        "id": "compiler-05-a",
+        "text": "Used along some path before being overwritten"
+      },
+      {
+        "id": "compiler-05-b",
+        "text": "Stored only in a database"
+      },
+      {
+        "id": "compiler-05-c",
+        "text": "A compile-time constant"
+      },
+      {
+        "id": "compiler-05-d",
+        "text": "Declared after program exit"
+      }
+    ],
+    "correctOptionId": "compiler-05-a",
+    "explanation": "Liveness means the value can be read on a future path before another assignment replaces it.",
+    "verificationSources": [
+      {
+        "sourceId": "DRAGON-COMPILERS",
+        "locator": "Live-variable analysis"
+      }
+    ],
+    "reviewNote": "Second-pass checked against liveness definition."
+  },
+  {
+    "id": "os-01",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.1 \u2014 processes",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "Processes, Threads, Context Switching, and Process State Transitions",
+    "difficulty": "Easy",
+    "stem": "A process is best described as what?",
+    "options": [
+      {
+        "id": "os-01-a",
+        "text": "A program in execution"
+      },
+      {
+        "id": "os-01-b",
+        "text": "A file that can never run"
+      },
+      {
+        "id": "os-01-c",
+        "text": "A network cable"
+      },
+      {
+        "id": "os-01-d",
+        "text": "A database relation"
+      }
+    ],
+    "correctOptionId": "os-01-a",
+    "explanation": "A process is an executing program together with its state and allocated resources.",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Processes"
+      }
+    ],
+    "reviewNote": "Second-pass checked against process definition."
+  },
+  {
+    "id": "os-02",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.1 \u2014 threads",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "Processes, Threads, Context Switching, and Process State Transitions",
+    "difficulty": "Easy",
+    "stem": "Threads of the same process normally share which resource?",
+    "options": [
+      {
+        "id": "os-02-a",
+        "text": "Address space"
+      },
+      {
+        "id": "os-02-b",
+        "text": "Program counter"
+      },
+      {
+        "id": "os-02-c",
+        "text": "Register set"
+      },
+      {
+        "id": "os-02-d",
+        "text": "Call stack"
+      }
+    ],
+    "correctOptionId": "os-02-a",
+    "explanation": "Threads share code, data and address space; each has its own registers, program counter and stack.",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Threads and multicore systems"
+      }
+    ],
+    "reviewNote": "Second-pass checked against the thread resource model."
+  },
+  {
+    "id": "os-03",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.1 \u2014 synchronization",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "Process Synchronization: Critical Section Problem, Semaphores, and Mutex",
+    "difficulty": "Easy",
+    "stem": "Which primitive is commonly used to coordinate access to shared resources?",
+    "options": [
+      {
+        "id": "os-03-a",
+        "text": "Semaphore"
+      },
+      {
+        "id": "os-03-b",
+        "text": "Compiler token"
+      },
+      {
+        "id": "os-03-c",
+        "text": "DNS record"
+      },
+      {
+        "id": "os-03-d",
+        "text": "B-tree key"
+      }
+    ],
+    "correctOptionId": "os-03-a",
+    "explanation": "Semaphores provide atomic operations for mutual exclusion and condition synchronization.",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Synchronization tools \u2014 semaphores"
+      }
+    ],
+    "reviewNote": "Second-pass checked against semaphore purpose."
+  },
+  {
+    "id": "os-04",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.1 \u2014 deadlock",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "Deadlocks: Characterization, Prevention, Avoidance, and Detection",
+    "difficulty": "Medium",
+    "stem": "Which is one of the four necessary Coffman conditions for deadlock?",
+    "options": [
+      {
+        "id": "os-04-a",
+        "text": "Circular wait"
+      },
+      {
+        "id": "os-04-b",
+        "text": "Infinite memory"
+      },
+      {
+        "id": "os-04-c",
+        "text": "Preemption of every resource"
+      },
+      {
+        "id": "os-04-d",
+        "text": "Only one process exists"
+      }
+    ],
+    "correctOptionId": "os-04-a",
+    "explanation": "Mutual exclusion, hold-and-wait, no preemption and circular wait are the four necessary conditions.",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Deadlocks \u2014 necessary conditions"
+      }
+    ],
+    "reviewNote": "Second-pass checked against Coffman conditions."
+  },
+  {
+    "id": "os-05",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.1 \u2014 virtual memory",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "Memory Management: Contiguous Allocation, Paging, and Segmentation",
+    "difficulty": "Easy",
+    "stem": "Virtual memory allows a process's address space to be larger than what?",
+    "options": [
+      {
+        "id": "os-05-a",
+        "text": "The available physical memory"
+      },
+      {
+        "id": "os-05-b",
+        "text": "One byte"
+      },
+      {
+        "id": "os-05-c",
+        "text": "The CPU register count only"
+      },
+      {
+        "id": "os-05-d",
+        "text": "The number of files"
+      }
+    ],
+    "correctOptionId": "os-05-a",
+    "explanation": "Virtual memory keeps needed pages in physical memory and can hold other pages in secondary storage.",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Virtual memory"
+      }
+    ],
+    "reviewNote": "Second-pass checked against virtual-memory purpose."
+  }
 ]

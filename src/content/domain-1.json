@@ -1,12 +1,402 @@
 [
-  {"id":"math-01","status":"approved","provenance":"original","attribution":"Original for IOCL Prep Hub","sourceId":"GATE-CS-SYL-2026","sourceLocator":"p.1 — propositional logic","section":"domain","subject":"Engineering Mathematics","topic":"Logic","difficulty":"Medium","stem":"Which proposition is logically equivalent to P → Q?","options":[{"id":"a","text":"Q → P"},{"id":"b","text":"¬P → ¬Q"},{"id":"c","text":"¬Q → ¬P"},{"id":"d","text":"P ∧ ¬Q"}],"correctOptionId":"c","explanation":"An implication is equivalent to its contrapositive, ¬Q → ¬P.","verificationSources":[{"sourceId":"ROSEN-DM","locator":"Propositional equivalences"}],"reviewNote":"Second-pass checked by truth table."},
-  {"id":"math-02","status":"approved","provenance":"original","attribution":"Original for IOCL Prep Hub","sourceId":"GATE-CS-SYL-2026","sourceLocator":"p.1 — sets","section":"domain","subject":"Engineering Mathematics","topic":"Sets","difficulty":"Easy","stem":"If A = {1,2,3} and B = {2,3,4}, what is A ∩ B?","options":[{"id":"a","text":"{1,4}"},{"id":"b","text":"{2,3}"},{"id":"c","text":"{1,2,3,4}"},{"id":"d","text":"∅"}],"correctOptionId":"b","explanation":"An intersection contains elements common to both sets; those are 2 and 3.","verificationSources":[{"sourceId":"ROSEN-DM","locator":"Sets and set operations"}],"reviewNote":"Second-pass checked by membership."},
-  {"id":"math-03","status":"approved","provenance":"original","attribution":"Original for IOCL Prep Hub","sourceId":"GATE-CS-SYL-2026","sourceLocator":"p.1 — eigenvalues","section":"domain","subject":"Engineering Mathematics","topic":"Linear algebra","difficulty":"Medium","stem":"What are the eigenvalues of the diagonal matrix diag(2,5)?","options":[{"id":"a","text":"2 and 5"},{"id":"b","text":"0 and 7"},{"id":"c","text":"1 and 10"},{"id":"d","text":"−2 and −5"}],"correctOptionId":"a","explanation":"The eigenvalues of a diagonal matrix are its diagonal entries, here 2 and 5.","verificationSources":[{"sourceId":"NCERT-MATH","locator":"Matrices and eigenvalues"}],"reviewNote":"Second-pass checked from (2−λ)(5−λ)."},
-  {"id":"math-04","status":"approved","provenance":"original","attribution":"Original for IOCL Prep Hub","sourceId":"GATE-CS-SYL-2026","sourceLocator":"p.1 — conditional probability","section":"domain","subject":"Engineering Mathematics","topic":"Probability","difficulty":"Medium","stem":"If P(A∩B)=0.2 and P(B)=0.5, what is P(A|B)?","options":[{"id":"a","text":"0.1"},{"id":"b","text":"0.2"},{"id":"c","text":"0.4"},{"id":"d","text":"0.7"}],"correctOptionId":"c","explanation":"P(A|B) = P(A∩B)/P(B) = 0.2/0.5 = 0.4.","verificationSources":[{"sourceId":"NCERT-MATH","locator":"Conditional probability"}],"reviewNote":"Second-pass checked by definition."},
-  {"id":"math-05","status":"approved","provenance":"original","attribution":"Original for IOCL Prep Hub","sourceId":"GATE-CS-SYL-2026","sourceLocator":"p.1 — graph connectivity","section":"domain","subject":"Engineering Mathematics","topic":"Graph theory","difficulty":"Easy","stem":"How many edges does a tree with 8 vertices have?","options":[{"id":"a","text":"6"},{"id":"b","text":"7"},{"id":"c","text":"8"},{"id":"d","text":"9"}],"correctOptionId":"b","explanation":"Every finite tree with n vertices has n−1 edges, so 8−1 = 7.","verificationSources":[{"sourceId":"ROSEN-DM","locator":"Trees"}],"reviewNote":"Second-pass checked by the tree edge theorem."},
-  {"id":"logic-01","status":"approved","provenance":"original","attribution":"Original for IOCL Prep Hub","sourceId":"GATE-CS-SYL-2026","sourceLocator":"p.1 — Boolean algebra","section":"domain","subject":"Digital Logic","topic":"Boolean algebra","difficulty":"Easy","stem":"For a two-input XOR gate, when is the output 1?","options":[{"id":"a","text":"Only when both inputs are 0"},{"id":"b","text":"Only when both inputs are 1"},{"id":"c","text":"When the inputs differ"},{"id":"d","text":"Whenever either input is 0"}],"correctOptionId":"c","explanation":"XOR is 1 exactly when its two binary inputs differ.","verificationSources":[{"sourceId":"MANO-DIGITAL","locator":"Boolean functions and logic gates"}],"reviewNote":"Second-pass checked by truth table."},
-  {"id":"logic-02","status":"approved","provenance":"original","attribution":"Original for IOCL Prep Hub","sourceId":"GATE-CS-SYL-2026","sourceLocator":"p.1 — combinational circuits","section":"domain","subject":"Digital Logic","topic":"Combinational circuits","difficulty":"Easy","stem":"Which gates produce the sum and carry outputs of a half adder?","options":[{"id":"a","text":"OR and NOT"},{"id":"b","text":"XOR and AND"},{"id":"c","text":"AND and XOR"},{"id":"d","text":"NOR and NAND"}],"correctOptionId":"b","explanation":"Half-adder sum is A XOR B and carry is A AND B.","verificationSources":[{"sourceId":"MANO-DIGITAL","locator":"Combinational logic — adders"}],"reviewNote":"Second-pass checked by half-adder equations."},
-  {"id":"logic-03","status":"approved","provenance":"original","attribution":"Original for IOCL Prep Hub","sourceId":"GATE-CS-SYL-2026","sourceLocator":"p.1 — sequential circuits","section":"domain","subject":"Digital Logic","topic":"Sequential circuits","difficulty":"Medium","stem":"What does a JK flip-flop do on the active clock edge when J=1 and K=1?","options":[{"id":"a","text":"Resets"},{"id":"b","text":"Sets"},{"id":"c","text":"Holds"},{"id":"d","text":"Toggles"}],"correctOptionId":"d","explanation":"The J=K=1 condition complements the current output, so it toggles.","verificationSources":[{"sourceId":"MANO-DIGITAL","locator":"Flip-flops"}],"reviewNote":"Second-pass checked by characteristic table."},
-  {"id":"logic-04","status":"approved","provenance":"original","attribution":"Original for IOCL Prep Hub","sourceId":"GATE-CS-SYL-2026","sourceLocator":"p.1 — number representations","section":"domain","subject":"Digital Logic","topic":"Number representation","difficulty":"Easy","stem":"What is the range of an 8-bit two's-complement integer?","options":[{"id":"a","text":"−127 to 127"},{"id":"b","text":"−128 to 127"},{"id":"c","text":"−128 to 128"},{"id":"d","text":"0 to 255"}],"correctOptionId":"b","explanation":"An n-bit two's-complement value ranges from −2^(n−1) to 2^(n−1)−1; here, −128 to 127.","verificationSources":[{"sourceId":"MANO-DIGITAL","locator":"Signed binary numbers"}],"reviewNote":"Second-pass checked by range formula."},
-  {"id":"logic-05","status":"approved","provenance":"original","attribution":"Original for IOCL Prep Hub","sourceId":"GATE-CS-SYL-2026","sourceLocator":"p.1 — Boolean algebra","section":"domain","subject":"Digital Logic","topic":"Boolean algebra","difficulty":"Medium","stem":"By De Morgan's law, what is ¬(A ∨ B)?","options":[{"id":"a","text":"¬A ∨ ¬B"},{"id":"b","text":"¬A ∧ ¬B"},{"id":"c","text":"A ∧ B"},{"id":"d","text":"A ∨ ¬B"}],"correctOptionId":"b","explanation":"De Morgan's law complements each operand and changes OR to AND.","verificationSources":[{"sourceId":"MANO-DIGITAL","locator":"De Morgan's theorems"}],"reviewNote":"Second-pass checked by truth table."}
+  {
+    "id": "math-01",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.1 \u2014 propositional logic",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Logic",
+    "difficulty": "Medium",
+    "stem": "Which proposition is logically equivalent to P \u2192 Q?",
+    "options": [
+      {
+        "id": "math-01-a",
+        "text": "Q \u2192 P"
+      },
+      {
+        "id": "math-01-b",
+        "text": "\u00acP \u2192 \u00acQ"
+      },
+      {
+        "id": "math-01-c",
+        "text": "\u00acQ \u2192 \u00acP"
+      },
+      {
+        "id": "math-01-d",
+        "text": "P \u2227 \u00acQ"
+      }
+    ],
+    "correctOptionId": "math-01-c",
+    "explanation": "An implication is equivalent to its contrapositive, \u00acQ \u2192 \u00acP.",
+    "verificationSources": [
+      {
+        "sourceId": "ROSEN-DM",
+        "locator": "Propositional equivalences"
+      }
+    ],
+    "reviewNote": "Second-pass checked by truth table."
+  },
+  {
+    "id": "math-02",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.1 \u2014 sets",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Sets",
+    "difficulty": "Easy",
+    "stem": "If A = {1,2,3} and B = {2,3,4}, what is A \u2229 B?",
+    "options": [
+      {
+        "id": "math-02-a",
+        "text": "{1,4}"
+      },
+      {
+        "id": "math-02-b",
+        "text": "{2,3}"
+      },
+      {
+        "id": "math-02-c",
+        "text": "{1,2,3,4}"
+      },
+      {
+        "id": "math-02-d",
+        "text": "\u2205"
+      }
+    ],
+    "correctOptionId": "math-02-b",
+    "explanation": "An intersection contains elements common to both sets; those are 2 and 3.",
+    "verificationSources": [
+      {
+        "sourceId": "ROSEN-DM",
+        "locator": "Sets and set operations"
+      }
+    ],
+    "reviewNote": "Second-pass checked by membership."
+  },
+  {
+    "id": "math-03",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.1 \u2014 eigenvalues",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Linear algebra",
+    "difficulty": "Medium",
+    "stem": "What are the eigenvalues of the diagonal matrix diag(2,5)?",
+    "options": [
+      {
+        "id": "math-03-a",
+        "text": "2 and 5"
+      },
+      {
+        "id": "math-03-b",
+        "text": "0 and 7"
+      },
+      {
+        "id": "math-03-c",
+        "text": "1 and 10"
+      },
+      {
+        "id": "math-03-d",
+        "text": "\u22122 and \u22125"
+      }
+    ],
+    "correctOptionId": "math-03-a",
+    "explanation": "The eigenvalues of a diagonal matrix are its diagonal entries, here 2 and 5.",
+    "verificationSources": [
+      {
+        "sourceId": "NCERT-MATH",
+        "locator": "Matrices and eigenvalues"
+      }
+    ],
+    "reviewNote": "Second-pass checked from (2\u2212\u03bb)(5\u2212\u03bb)."
+  },
+  {
+    "id": "math-04",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.1 \u2014 conditional probability",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Probability",
+    "difficulty": "Medium",
+    "stem": "If P(A\u2229B)=0.2 and P(B)=0.5, what is P(A|B)?",
+    "options": [
+      {
+        "id": "math-04-a",
+        "text": "0.1"
+      },
+      {
+        "id": "math-04-b",
+        "text": "0.2"
+      },
+      {
+        "id": "math-04-c",
+        "text": "0.4"
+      },
+      {
+        "id": "math-04-d",
+        "text": "0.7"
+      }
+    ],
+    "correctOptionId": "math-04-c",
+    "explanation": "P(A|B) = P(A\u2229B)/P(B) = 0.2/0.5 = 0.4.",
+    "verificationSources": [
+      {
+        "sourceId": "NCERT-MATH",
+        "locator": "Conditional probability"
+      }
+    ],
+    "reviewNote": "Second-pass checked by definition."
+  },
+  {
+    "id": "math-05",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.1 \u2014 graph connectivity",
+    "section": "domain",
+    "subject": "Engineering Mathematics",
+    "topic": "Graph theory",
+    "difficulty": "Easy",
+    "stem": "How many edges does a tree with 8 vertices have?",
+    "options": [
+      {
+        "id": "math-05-a",
+        "text": "6"
+      },
+      {
+        "id": "math-05-b",
+        "text": "7"
+      },
+      {
+        "id": "math-05-c",
+        "text": "8"
+      },
+      {
+        "id": "math-05-d",
+        "text": "9"
+      }
+    ],
+    "correctOptionId": "math-05-b",
+    "explanation": "Every finite tree with n vertices has n\u22121 edges, so 8\u22121 = 7.",
+    "verificationSources": [
+      {
+        "sourceId": "ROSEN-DM",
+        "locator": "Trees"
+      }
+    ],
+    "reviewNote": "Second-pass checked by the tree edge theorem."
+  },
+  {
+    "id": "logic-01",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.1 \u2014 Boolean algebra",
+    "section": "domain",
+    "subject": "Digital Logic",
+    "topic": "Boolean algebra",
+    "difficulty": "Easy",
+    "stem": "For a two-input XOR gate, when is the output 1?",
+    "options": [
+      {
+        "id": "logic-01-a",
+        "text": "Only when both inputs are 0"
+      },
+      {
+        "id": "logic-01-b",
+        "text": "Only when both inputs are 1"
+      },
+      {
+        "id": "logic-01-c",
+        "text": "When the inputs differ"
+      },
+      {
+        "id": "logic-01-d",
+        "text": "Whenever either input is 0"
+      }
+    ],
+    "correctOptionId": "logic-01-c",
+    "explanation": "XOR is 1 exactly when its two binary inputs differ.",
+    "verificationSources": [
+      {
+        "sourceId": "MANO-DIGITAL",
+        "locator": "Boolean functions and logic gates"
+      }
+    ],
+    "reviewNote": "Second-pass checked by truth table."
+  },
+  {
+    "id": "logic-02",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.1 \u2014 combinational circuits",
+    "section": "domain",
+    "subject": "Digital Logic",
+    "topic": "Combinational circuits",
+    "difficulty": "Easy",
+    "stem": "Which gates produce the sum and carry outputs of a half adder?",
+    "options": [
+      {
+        "id": "logic-02-a",
+        "text": "OR and NOT"
+      },
+      {
+        "id": "logic-02-b",
+        "text": "XOR and AND"
+      },
+      {
+        "id": "logic-02-c",
+        "text": "AND and XOR"
+      },
+      {
+        "id": "logic-02-d",
+        "text": "NOR and NAND"
+      }
+    ],
+    "correctOptionId": "logic-02-b",
+    "explanation": "Half-adder sum is A XOR B and carry is A AND B.",
+    "verificationSources": [
+      {
+        "sourceId": "MANO-DIGITAL",
+        "locator": "Combinational logic \u2014 adders"
+      }
+    ],
+    "reviewNote": "Second-pass checked by half-adder equations."
+  },
+  {
+    "id": "logic-03",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.1 \u2014 sequential circuits",
+    "section": "domain",
+    "subject": "Digital Logic",
+    "topic": "Sequential circuits",
+    "difficulty": "Medium",
+    "stem": "What does a JK flip-flop do on the active clock edge when J=1 and K=1?",
+    "options": [
+      {
+        "id": "logic-03-a",
+        "text": "Resets"
+      },
+      {
+        "id": "logic-03-b",
+        "text": "Sets"
+      },
+      {
+        "id": "logic-03-c",
+        "text": "Holds"
+      },
+      {
+        "id": "logic-03-d",
+        "text": "Toggles"
+      }
+    ],
+    "correctOptionId": "logic-03-d",
+    "explanation": "The J=K=1 condition complements the current output, so it toggles.",
+    "verificationSources": [
+      {
+        "sourceId": "MANO-DIGITAL",
+        "locator": "Flip-flops"
+      }
+    ],
+    "reviewNote": "Second-pass checked by characteristic table."
+  },
+  {
+    "id": "logic-04",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.1 \u2014 number representations",
+    "section": "domain",
+    "subject": "Digital Logic",
+    "topic": "Number representation",
+    "difficulty": "Easy",
+    "stem": "What is the range of an 8-bit two's-complement integer?",
+    "options": [
+      {
+        "id": "logic-04-a",
+        "text": "\u2212127 to 127"
+      },
+      {
+        "id": "logic-04-b",
+        "text": "\u2212128 to 127"
+      },
+      {
+        "id": "logic-04-c",
+        "text": "\u2212128 to 128"
+      },
+      {
+        "id": "logic-04-d",
+        "text": "0 to 255"
+      }
+    ],
+    "correctOptionId": "logic-04-b",
+    "explanation": "An n-bit two's-complement value ranges from \u22122^(n\u22121) to 2^(n\u22121)\u22121; here, \u2212128 to 127.",
+    "verificationSources": [
+      {
+        "sourceId": "MANO-DIGITAL",
+        "locator": "Signed binary numbers"
+      }
+    ],
+    "reviewNote": "Second-pass checked by range formula."
+  },
+  {
+    "id": "logic-05",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p.1 \u2014 Boolean algebra",
+    "section": "domain",
+    "subject": "Digital Logic",
+    "topic": "Boolean algebra",
+    "difficulty": "Medium",
+    "stem": "By De Morgan's law, what is \u00ac(A \u2228 B)?",
+    "options": [
+      {
+        "id": "logic-05-a",
+        "text": "\u00acA \u2228 \u00acB"
+      },
+      {
+        "id": "logic-05-b",
+        "text": "\u00acA \u2227 \u00acB"
+      },
+      {
+        "id": "logic-05-c",
+        "text": "A \u2227 B"
+      },
+      {
+        "id": "logic-05-d",
+        "text": "A \u2228 \u00acB"
+      }
+    ],
+    "correctOptionId": "logic-05-b",
+    "explanation": "De Morgan's law complements each operand and changes OR to AND.",
+    "verificationSources": [
+      {
+        "sourceId": "MANO-DIGITAL",
+        "locator": "De Morgan's theorems"
+      }
+    ],
+    "reviewNote": "Second-pass checked by truth table."
+  }
 ]

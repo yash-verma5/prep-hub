@@ -1,0 +1,802 @@
+[
+  {
+    "id": "pds-q-1",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Prep Hub Content Team",
+    "sourceId": "ISO-C17",
+    "sourceLocator": "Chapter 1",
+    "section": "domain",
+    "subject": "Programming and Data Structures",
+    "topic": "C Language Fundamentals",
+    "difficulty": "Easy",
+    "stem": "What is the output of the following C code snippet?\n\n```c\nint a = 10, b = 20, c = 30;\nint result = a > b ? a : b > c ? b : c;\nprintf(\"%d\", result);\n```",
+    "options": [
+      {
+        "id": "pds-q-1-opt1",
+        "text": "10"
+      },
+      {
+        "id": "pds-q-1-opt2",
+        "text": "20"
+      },
+      {
+        "id": "pds-q-1-opt3",
+        "text": "30"
+      },
+      {
+        "id": "pds-q-1-opt4",
+        "text": "Compiler Error"
+      }
+    ],
+    "correctOptionId": "pds-q-1-opt3",
+    "explanation": "The ternary operator evaluates right-to-left. `a > b` (10 > 20) is false, so it evaluates the right side: `b > c ? b : c`. `b > c` (20 > 30) is false, so it evaluates to `c` (30). Option B (20) is the distractor if one assumes left-to-right greedy matching without resolving the nested condition properly.",
+    "reviewNote": "Verified against standard references.",
+    "verificationSources": [
+      {
+        "sourceId": "ISO-C17",
+        "locator": "Chapter 1"
+      }
+    ]
+  },
+  {
+    "id": "pds-q-2",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Prep Hub Content Team",
+    "sourceId": "ISO-C17",
+    "sourceLocator": "Chapter 1",
+    "section": "domain",
+    "subject": "Programming and Data Structures",
+    "topic": "C Language Fundamentals",
+    "difficulty": "Medium",
+    "stem": "Consider the declaration `int a[5] = {10, 20, 30, 40, 50};`. Which of the following expressions evaluates to the value `30`?",
+    "options": [
+      {
+        "id": "pds-q-2-opt1",
+        "text": "`*(a) + 2`"
+      },
+      {
+        "id": "pds-q-2-opt2",
+        "text": "`*a + 2`"
+      },
+      {
+        "id": "pds-q-2-opt3",
+        "text": "`2[a]`"
+      },
+      {
+        "id": "pds-q-2-opt4",
+        "text": "`&a[2]`"
+      }
+    ],
+    "correctOptionId": "pds-q-2-opt3",
+    "explanation": "In C, `2[a]` is exactly equivalent to `*(2 + a)`, which accesses the 3rd element (30). `*(a) + 2` and `*a + 2` both evaluate to 10 + 2 = 12. `&a[2]` gives the address, not the value. The distractor `*(a) + 2` tricks those who forget that pointer addition requires the offset inside the parentheses.",
+    "reviewNote": "Verified against standard references.",
+    "verificationSources": [
+      {
+        "sourceId": "ISO-C17",
+        "locator": "Chapter 1"
+      }
+    ]
+  },
+  {
+    "id": "pds-q-3",
+    "status": "approved",
+    "provenance": "adapted",
+    "attribution": "Prep Hub Content Team",
+    "sourceId": "ISO-C17",
+    "sourceLocator": "Chapter 1",
+    "section": "domain",
+    "subject": "Programming and Data Structures",
+    "topic": "Functions and Recursion",
+    "difficulty": "Medium",
+    "stem": "Consider the following recursive C function:\n\n```c\nvoid print(int n) {\n    if (n < 0) return;\n    printf(\"%d \", n);\n    print(n - 1);\n    printf(\"%d \", n);\n}\n```\nWhat is the output when `print(2)` is called?",
+    "options": [
+      {
+        "id": "pds-q-3-opt1",
+        "text": "2 1 0 0 1 2"
+      },
+      {
+        "id": "pds-q-3-opt2",
+        "text": "2 1 0"
+      },
+      {
+        "id": "pds-q-3-opt3",
+        "text": "0 1 2 2 1 0"
+      },
+      {
+        "id": "pds-q-3-opt4",
+        "text": "2 1 0 -1 0 1 2"
+      }
+    ],
+    "correctOptionId": "pds-q-3-opt1",
+    "explanation": "The function prints `n`, makes a recursive call, and then prints `n` again. For `n=2`, it prints `2`, calls `print(1)`, then prints `2`. `print(1)` prints `1`, calls `print(0)`, then prints `1`. `print(0)` prints `0`, calls `print(-1)`, then prints `0`. `print(-1)` returns immediately. The output is `2 1 0 0 1 2`. Option B is a trap for those who forget to trace the code *after* the recursive call returns.",
+    "reviewNote": "Verified against standard references.",
+    "verificationSources": [
+      {
+        "sourceId": "ISO-C17",
+        "locator": "Chapter 1"
+      }
+    ]
+  },
+  {
+    "id": "pds-q-4",
+    "status": "approved",
+    "provenance": "adapted",
+    "attribution": "Prep Hub Content Team",
+    "sourceId": "ISO-C17",
+    "sourceLocator": "Chapter 1",
+    "section": "domain",
+    "subject": "Programming and Data Structures",
+    "topic": "Functions and Recursion",
+    "difficulty": "Hard",
+    "stem": "Consider the following C function:\n\n```c\nint f(int n) {\n    static int r = 0;\n    if (n <= 0) return 1;\n    if (n > 3) {\n        r = n;\n        return f(n-2) + 2;\n    }\n    return f(n-1) + r;\n}\n```\nWhat is the value of `f(5)`?",
+    "options": [
+      {
+        "id": "pds-q-4-opt1",
+        "text": "18"
+      },
+      {
+        "id": "pds-q-4-opt2",
+        "text": "16"
+      },
+      {
+        "id": "pds-q-4-opt3",
+        "text": "19"
+      },
+      {
+        "id": "pds-q-4-opt4",
+        "text": "15"
+      }
+    ],
+    "correctOptionId": "pds-q-4-opt1",
+    "explanation": "`f(5)`: `n>3` is true. `r=5`. Calls `f(3) + 2`. `f(3)`: `n>3` is false. Calls `f(2) + r`. Since `r` is static, `r` is still 5. So `f(3) = f(2) + 5`. `f(2)` calls `f(1) + 5`. `f(1)` calls `f(0) + 5`. `f(0)` returns 1. Backtracking: `f(1) = 1 + 5 = 6`. `f(2) = 6 + 5 = 11`. `f(3) = 11 + 5 = 16`. Finally, `f(5) = f(3) + 2 = 16 + 2 = 18`. Distractor 15 arises if one assumes `r` is reset or not retained globally.",
+    "reviewNote": "Verified against standard references.",
+    "verificationSources": [
+      {
+        "sourceId": "ISO-C17",
+        "locator": "Chapter 1"
+      }
+    ]
+  },
+  {
+    "id": "pds-q-5",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Prep Hub Content Team",
+    "sourceId": "ISO-C17",
+    "sourceLocator": "Chapter 1",
+    "section": "domain",
+    "subject": "Programming and Data Structures",
+    "topic": "Structures and Dynamic Memory",
+    "difficulty": "Easy",
+    "stem": "Which of the following functions is used to dynamically allocate an array of memory blocks and initialize all bytes to zero?",
+    "options": [
+      {
+        "id": "pds-q-5-opt1",
+        "text": "`malloc()`"
+      },
+      {
+        "id": "pds-q-5-opt2",
+        "text": "`calloc()`"
+      },
+      {
+        "id": "pds-q-5-opt3",
+        "text": "`realloc()`"
+      },
+      {
+        "id": "pds-q-5-opt4",
+        "text": "`free()`"
+      }
+    ],
+    "correctOptionId": "pds-q-5-opt2",
+    "explanation": "`calloc()` allocates multiple blocks of memory and automatically initializes them to zero. `malloc()` allocates a single block but leaves the memory uninitialized (garbage values). Option A is the trap for those who know dynamic allocation but forget the zero-initialization detail.",
+    "reviewNote": "Verified against standard references.",
+    "verificationSources": [
+      {
+        "sourceId": "ISO-C17",
+        "locator": "Chapter 1"
+      }
+    ]
+  },
+  {
+    "id": "pds-q-6",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Prep Hub Content Team",
+    "sourceId": "ISO-C17",
+    "sourceLocator": "Chapter 1",
+    "section": "domain",
+    "subject": "Programming and Data Structures",
+    "topic": "Structures and Dynamic Memory",
+    "difficulty": "Medium",
+    "stem": "Assuming a 32-bit architecture where `char` is 1 byte, `short` is 2 bytes, and `int` is 4 bytes, what is the `sizeof` the following structure (assuming standard alignment)?\n\n```c\nstruct Data {\n    char a;\n    int b;\n    short c;\n};\n```",
+    "options": [
+      {
+        "id": "pds-q-6-opt1",
+        "text": "7 bytes"
+      },
+      {
+        "id": "pds-q-6-opt2",
+        "text": "8 bytes"
+      },
+      {
+        "id": "pds-q-6-opt3",
+        "text": "12 bytes"
+      },
+      {
+        "id": "pds-q-6-opt4",
+        "text": "16 bytes"
+      }
+    ],
+    "correctOptionId": "pds-q-6-opt3",
+    "explanation": "The largest alignment boundary is 4 bytes (`int`). `a` (1 byte) is followed by 3 bytes of padding to align `b`. `b` takes 4 bytes. `c` takes 2 bytes, followed by 2 bytes of padding at the end to make the total size a multiple of 4. Size = 1 + 3 + 4 + 2 + 2 = 12 bytes. Option A (7) is the trap for summing the raw sizes without padding.",
+    "reviewNote": "Verified against standard references.",
+    "verificationSources": [
+      {
+        "sourceId": "ISO-C17",
+        "locator": "Chapter 1"
+      }
+    ]
+  },
+  {
+    "id": "pds-q-7",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Prep Hub Content Team",
+    "sourceId": "CLRS",
+    "sourceLocator": "Chapter 1",
+    "section": "domain",
+    "subject": "Programming and Data Structures",
+    "topic": "Linear Data Structures (Arrays & Linked Lists)",
+    "difficulty": "Easy",
+    "stem": "What is the primary advantage of a Doubly Linked List over a Singly Linked List?",
+    "options": [
+      {
+        "id": "pds-q-7-opt1",
+        "text": "It requires less memory per node."
+      },
+      {
+        "id": "pds-q-7-opt2",
+        "text": "It allows traversal in both forward and backward directions."
+      },
+      {
+        "id": "pds-q-7-opt3",
+        "text": "It provides $O(1)$ random access to elements."
+      },
+      {
+        "id": "pds-q-7-opt4",
+        "text": "It prevents memory leaks automatically."
+      }
+    ],
+    "correctOptionId": "pds-q-7-opt2",
+    "explanation": "A Doubly Linked List maintains pointers to both the next and previous nodes, enabling bidirectional traversal and $O(1)$ deletion if a pointer to the node is given. It requires *more* memory (Option A trap) and does not provide random access (Option C).",
+    "reviewNote": "Verified against standard references.",
+    "verificationSources": [
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 1"
+      }
+    ]
+  },
+  {
+    "id": "pds-q-8",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Prep Hub Content Team",
+    "sourceId": "CLRS",
+    "sourceLocator": "Chapter 1",
+    "section": "domain",
+    "subject": "Programming and Data Structures",
+    "topic": "Linear Data Structures (Arrays & Linked Lists)",
+    "difficulty": "Medium",
+    "stem": "A 2D array `A[10][20]` is stored in row-major order with base address 1000. Assuming each element requires 4 bytes, what is the memory address of `A[5][15]`? (Assume 0-based indexing).",
+    "options": [
+      {
+        "id": "pds-q-8-opt1",
+        "text": "1260"
+      },
+      {
+        "id": "pds-q-8-opt2",
+        "text": "1460"
+      },
+      {
+        "id": "pds-q-8-opt3",
+        "text": "1400"
+      },
+      {
+        "id": "pds-q-8-opt4",
+        "text": "1600"
+      }
+    ],
+    "correctOptionId": "pds-q-8-opt2",
+    "explanation": "For row-major order, $\\text{Loc}(A[i][j]) = \\text{Base} + (i \\times N + j) \\times w$, where $N$ is the number of columns (20) and $w$ is the element size (4). $\\text{Loc} = 1000 + (5 \\times 20 + 15) \\times 4 = 1000 + (115) \\times 4 = 1000 + 460 = 1460$. Option A is a trap if someone mistakenly uses $M$ (10) instead of $N$ (20) as the multiplier.",
+    "reviewNote": "Verified against standard references.",
+    "verificationSources": [
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 1"
+      }
+    ]
+  },
+  {
+    "id": "pds-q-9",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Prep Hub Content Team",
+    "sourceId": "CLRS",
+    "sourceLocator": "Chapter 1",
+    "section": "domain",
+    "subject": "Programming and Data Structures",
+    "topic": "Stacks",
+    "difficulty": "Medium",
+    "stem": "Which of the following applications is NOT typically implemented using a Stack?",
+    "options": [
+      {
+        "id": "pds-q-9-opt1",
+        "text": "Evaluating postfix expressions"
+      },
+      {
+        "id": "pds-q-9-opt2",
+        "text": "Handling function calls and recursion"
+      },
+      {
+        "id": "pds-q-9-opt3",
+        "text": "Breadth-First Search (BFS) in a graph"
+      },
+      {
+        "id": "pds-q-9-opt4",
+        "text": "Parentheses matching in compilers"
+      }
+    ],
+    "correctOptionId": "pds-q-9-opt3",
+    "explanation": "Breadth-First Search (BFS) uses a Queue (FIFO). Stacks (LIFO) are used for Depth-First Search (DFS), recursion, parsing, and expression evaluation. Option C is the correct answer. The distractor is that BFS is a graph traversal, similar to DFS.",
+    "reviewNote": "Verified against standard references.",
+    "verificationSources": [
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 1"
+      }
+    ]
+  },
+  {
+    "id": "pds-q-10",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Prep Hub Content Team",
+    "sourceId": "CLRS",
+    "sourceLocator": "Chapter 1",
+    "section": "domain",
+    "subject": "Programming and Data Structures",
+    "topic": "Stacks",
+    "difficulty": "Hard",
+    "stem": "What is the result of evaluating the postfix expression: `8 2 3 ^ / 2 3 * +`?",
+    "options": [
+      {
+        "id": "pds-q-10-opt1",
+        "text": "7"
+      },
+      {
+        "id": "pds-q-10-opt2",
+        "text": "12"
+      },
+      {
+        "id": "pds-q-10-opt3",
+        "text": "9"
+      },
+      {
+        "id": "pds-q-10-opt4",
+        "text": "5"
+      }
+    ],
+    "correctOptionId": "pds-q-10-opt1",
+    "explanation": "Push 8, 2, 3. Read `^`: Pop 3, 2 -> $2^3 = 8$. Push 8. Stack: `[8, 8]`. Read `/`: Pop 8, 8 -> $8/8 = 1$. Push 1. Stack: `[1]`. Read 2, 3. Stack: `[1, 2, 3]`. Read `*`: Pop 3, 2 -> $2*3 = 6$. Push 6. Stack: `[1, 6]`. Read `+`: Pop 6, 1 -> $1+6 = 7$. Push 7. Result is 7. Option C (9) is a trap if exponentiation is computed backwards ($3^2=9$).",
+    "reviewNote": "Verified against standard references.",
+    "verificationSources": [
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 1"
+      }
+    ]
+  },
+  {
+    "id": "pds-q-11",
+    "status": "approved",
+    "provenance": "official",
+    "attribution": "GATE CS",
+    "sourceId": "CLRS",
+    "sourceLocator": "Chapter 1",
+    "section": "domain",
+    "subject": "Programming and Data Structures",
+    "topic": "Queues",
+    "difficulty": "Easy",
+    "stem": "In a Circular Queue of size $N$ implemented using an array, if we keep one slot empty to distinguish between full and empty states, what is the condition for the queue being full?",
+    "options": [
+      {
+        "id": "pds-q-11-opt1",
+        "text": "`rear == N - 1`"
+      },
+      {
+        "id": "pds-q-11-opt2",
+        "text": "`front == rear`"
+      },
+      {
+        "id": "pds-q-11-opt3",
+        "text": "`(rear + 1) % N == front`"
+      },
+      {
+        "id": "pds-q-11-opt4",
+        "text": "`rear == (front + 1) % N`"
+      }
+    ],
+    "correctOptionId": "pds-q-11-opt3",
+    "explanation": "In a circular queue, `(rear + 1) % N == front` means the next position for `rear` hits the `front` pointer, indicating the queue is full (leaving one space empty). `front == rear` (Option B) is the condition for an empty queue.",
+    "reviewNote": "Verified against standard references.",
+    "verificationSources": [
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 1"
+      }
+    ]
+  },
+  {
+    "id": "pds-q-12",
+    "status": "approved",
+    "provenance": "adapted",
+    "attribution": "Prep Hub Content Team",
+    "sourceId": "CLRS",
+    "sourceLocator": "Chapter 1",
+    "section": "domain",
+    "subject": "Programming and Data Structures",
+    "topic": "Queues",
+    "difficulty": "Medium",
+    "stem": "Suppose a queue is implemented using two stacks, `S1` and `S2`. To enqueue an element, it is pushed to `S1`. To dequeue, if `S2` is empty, all elements from `S1` are popped and pushed to `S2`, and then `S2` is popped. What is the amortized time complexity of the dequeue operation?",
+    "options": [
+      {
+        "id": "pds-q-12-opt1",
+        "text": "$O(1)$"
+      },
+      {
+        "id": "pds-q-12-opt2",
+        "text": "$O(N)$"
+      },
+      {
+        "id": "pds-q-12-opt3",
+        "text": "$O(\\log N)$"
+      },
+      {
+        "id": "pds-q-12-opt4",
+        "text": "$O(N^2)$"
+      }
+    ],
+    "correctOptionId": "pds-q-12-opt1",
+    "explanation": "While a single dequeue might take $O(N)$ if `S2` is empty (moving all elements), each element is pushed to `S1` once, popped from `S1` once, pushed to `S2` once, and popped from `S2` once. Over a sequence of operations, the average (amortized) cost per element is $O(1)$. Option B ($O(N)$) is a trap referring to the worst-case time of a single operation, not amortized.",
+    "reviewNote": "Verified against standard references.",
+    "verificationSources": [
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 1"
+      }
+    ]
+  },
+  {
+    "id": "pds-q-13",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Prep Hub Content Team",
+    "sourceId": "CLRS",
+    "sourceLocator": "Chapter 1",
+    "section": "domain",
+    "subject": "Programming and Data Structures",
+    "topic": "Trees and Traversals",
+    "difficulty": "Easy",
+    "stem": "Which tree traversal can be used to output the elements of a Binary Search Tree (BST) in ascending sorted order?",
+    "options": [
+      {
+        "id": "pds-q-13-opt1",
+        "text": "Preorder Traversal"
+      },
+      {
+        "id": "pds-q-13-opt2",
+        "text": "Inorder Traversal"
+      },
+      {
+        "id": "pds-q-13-opt3",
+        "text": "Postorder Traversal"
+      },
+      {
+        "id": "pds-q-13-opt4",
+        "text": "Level-order Traversal"
+      }
+    ],
+    "correctOptionId": "pds-q-13-opt2",
+    "explanation": "An Inorder traversal visits the Left subtree, then the Root, then the Right subtree. In a BST, this guarantees visiting nodes in ascending sorted order. Options A, C, and D will not yield a sorted sequence.",
+    "reviewNote": "Verified against standard references.",
+    "verificationSources": [
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 1"
+      }
+    ]
+  },
+  {
+    "id": "pds-q-14",
+    "status": "approved",
+    "provenance": "adapted",
+    "attribution": "Prep Hub Content Team",
+    "sourceId": "CLRS",
+    "sourceLocator": "Chapter 1",
+    "section": "domain",
+    "subject": "Programming and Data Structures",
+    "topic": "Trees and Traversals",
+    "difficulty": "Medium",
+    "stem": "The preorder traversal of a binary search tree is `15, 10, 12, 11, 20`. What is the postorder traversal of this tree?",
+    "options": [
+      {
+        "id": "pds-q-14-opt1",
+        "text": "11, 12, 10, 20, 15"
+      },
+      {
+        "id": "pds-q-14-opt2",
+        "text": "11, 10, 12, 20, 15"
+      },
+      {
+        "id": "pds-q-14-opt3",
+        "text": "10, 11, 12, 15, 20"
+      },
+      {
+        "id": "pds-q-14-opt4",
+        "text": "12, 11, 10, 20, 15"
+      }
+    ],
+    "correctOptionId": "pds-q-14-opt1",
+    "explanation": "Since it is a BST, the inorder traversal is the sorted preorder sequence: `10, 11, 12, 15, 20`. Root is 15. Left subtree contains `10, 11, 12` and right contains `20`. For the left subtree, preorder root is 10. Left of 10 is empty, right of 10 is `11, 12`. Root of this right part is 12 (from preorder), left of 12 is 11. Postorder (Left, Right, Root): 11 (left of 12), 12 (right of 10), 10 (left of 15), 20 (right of 15), 15 (root). Result: `11, 12, 10, 20, 15`. Distractor C is just the inorder traversal.",
+    "reviewNote": "Verified against standard references.",
+    "verificationSources": [
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 1"
+      }
+    ]
+  },
+  {
+    "id": "pds-q-15",
+    "status": "approved",
+    "provenance": "official",
+    "attribution": "GATE CS",
+    "sourceId": "CLRS",
+    "sourceLocator": "Chapter 1",
+    "section": "domain",
+    "subject": "Programming and Data Structures",
+    "topic": "Binary Search Trees (BST)",
+    "difficulty": "Medium",
+    "stem": "What is the worst-case time complexity for searching a key in a Binary Search Tree (BST) containing $N$ nodes?",
+    "options": [
+      {
+        "id": "pds-q-15-opt1",
+        "text": "$O(\\log N)$"
+      },
+      {
+        "id": "pds-q-15-opt2",
+        "text": "$O(N)$"
+      },
+      {
+        "id": "pds-q-15-opt3",
+        "text": "$O(N \\log N)$"
+      },
+      {
+        "id": "pds-q-15-opt4",
+        "text": "$O(1)$"
+      }
+    ],
+    "correctOptionId": "pds-q-15-opt2",
+    "explanation": "In the worst case, a BST can become completely skewed (essentially a linked list) if elements are inserted in already sorted order. Therefore, searching takes $O(N)$ time. Option A ($O(\\log N)$) is the trap, which is the *average* case or the worst case for *balanced* BSTs (like AVL trees).",
+    "reviewNote": "Verified against standard references.",
+    "verificationSources": [
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 1"
+      }
+    ]
+  },
+  {
+    "id": "pds-q-16",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Prep Hub Content Team",
+    "sourceId": "CLRS",
+    "sourceLocator": "Chapter 1",
+    "section": "domain",
+    "subject": "Programming and Data Structures",
+    "topic": "Binary Search Trees (BST)",
+    "difficulty": "Hard",
+    "stem": "When deleting a node that has two children in a Binary Search Tree, what is the standard procedure to replace the deleted node?",
+    "options": [
+      {
+        "id": "pds-q-16-opt1",
+        "text": "Replace it with the left child directly."
+      },
+      {
+        "id": "pds-q-16-opt2",
+        "text": "Replace it with the right child directly."
+      },
+      {
+        "id": "pds-q-16-opt3",
+        "text": "Replace it with its Inorder Successor or Inorder Predecessor."
+      },
+      {
+        "id": "pds-q-16-opt4",
+        "text": "Move all its children to the root."
+      }
+    ],
+    "correctOptionId": "pds-q-16-opt3",
+    "explanation": "To maintain the BST property, a node with two children must be replaced by the maximum element in its left subtree (Inorder Predecessor) or the minimum element in its right subtree (Inorder Successor). Replacing it directly with a child (Option A/B trap) would orphan the other child's subtree.",
+    "reviewNote": "Verified against standard references.",
+    "verificationSources": [
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 1"
+      }
+    ]
+  },
+  {
+    "id": "pds-q-17",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Prep Hub Content Team",
+    "sourceId": "CLRS",
+    "sourceLocator": "Chapter 1",
+    "section": "domain",
+    "subject": "Programming and Data Structures",
+    "topic": "Binary Heaps",
+    "difficulty": "Easy",
+    "stem": "In a Min-Heap represented as a 1-based array, what is the index of the parent of a node located at index $i$?",
+    "options": [
+      {
+        "id": "pds-q-17-opt1",
+        "text": "$2i$"
+      },
+      {
+        "id": "pds-q-17-opt2",
+        "text": "$2i + 1$"
+      },
+      {
+        "id": "pds-q-17-opt3",
+        "text": "$\\lfloor i / 2 \\rfloor$"
+      },
+      {
+        "id": "pds-q-17-opt4",
+        "text": "$\\lfloor (i - 1) / 2 \\rfloor$"
+      }
+    ],
+    "correctOptionId": "pds-q-17-opt3",
+    "explanation": "In a 1-based array heap, the left child is $2i$, the right child is $2i+1$, and the parent is $\\lfloor i/2 \\rfloor$. Option D is the formula for a 0-based array implementation.",
+    "reviewNote": "Verified against standard references.",
+    "verificationSources": [
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 1"
+      }
+    ]
+  },
+  {
+    "id": "pds-q-18",
+    "status": "approved",
+    "provenance": "official",
+    "attribution": "GATE CS",
+    "sourceId": "CLRS",
+    "sourceLocator": "Chapter 1",
+    "section": "domain",
+    "subject": "Programming and Data Structures",
+    "topic": "Binary Heaps",
+    "difficulty": "Medium",
+    "stem": "What is the time complexity to build a Binary Heap from an unsorted array of $N$ elements using the standard bottom-up `Heapify` method?",
+    "options": [
+      {
+        "id": "pds-q-18-opt1",
+        "text": "$O(N)$"
+      },
+      {
+        "id": "pds-q-18-opt2",
+        "text": "$O(N \\log N)$"
+      },
+      {
+        "id": "pds-q-18-opt3",
+        "text": "$O(\\log N)$"
+      },
+      {
+        "id": "pds-q-18-opt4",
+        "text": "$O(N^2)$"
+      }
+    ],
+    "correctOptionId": "pds-q-18-opt1",
+    "explanation": "Building a heap bottom-up takes $O(N)$ time because the majority of nodes are at the bottom of the tree and require $O(1)$ shifts. Option B ($O(N \\log N)$) is the trap, which is the time required if you repeatedly call `Insert()` $N$ times instead of using the bottom-up algorithm.",
+    "reviewNote": "Verified against standard references.",
+    "verificationSources": [
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 1"
+      }
+    ]
+  },
+  {
+    "id": "pds-q-19",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Prep Hub Content Team",
+    "sourceId": "CLRS",
+    "sourceLocator": "Chapter 1",
+    "section": "domain",
+    "subject": "Programming and Data Structures",
+    "topic": "Graph Representations",
+    "difficulty": "Easy",
+    "stem": "According to the Handshaking Lemma, what is the relationship between the sum of degrees of all vertices and the total number of edges ($E$) in an undirected graph?",
+    "options": [
+      {
+        "id": "pds-q-19-opt1",
+        "text": "Sum of degrees = $E$"
+      },
+      {
+        "id": "pds-q-19-opt2",
+        "text": "Sum of degrees = $2E$"
+      },
+      {
+        "id": "pds-q-19-opt3",
+        "text": "Sum of degrees = $E / 2$"
+      },
+      {
+        "id": "pds-q-19-opt4",
+        "text": "Sum of degrees = $E^2$"
+      }
+    ],
+    "correctOptionId": "pds-q-19-opt2",
+    "explanation": "Every edge connects two vertices, contributing 1 to the degree of both vertices. Therefore, the sum of all degrees is exactly twice the number of edges ($2E$). Option A is the trap, confusing it with directed graphs where the sum of in-degrees equals $E$.",
+    "reviewNote": "Verified against standard references.",
+    "verificationSources": [
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 1"
+      }
+    ]
+  },
+  {
+    "id": "pds-q-20",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Prep Hub Content Team",
+    "sourceId": "CLRS",
+    "sourceLocator": "Chapter 1",
+    "section": "domain",
+    "subject": "Programming and Data Structures",
+    "topic": "Graph Representations",
+    "difficulty": "Hard",
+    "stem": "Which graph representation is most space-efficient for a sparse graph with $V$ vertices and $E$ edges?",
+    "options": [
+      {
+        "id": "pds-q-20-opt1",
+        "text": "Adjacency Matrix"
+      },
+      {
+        "id": "pds-q-20-opt2",
+        "text": "Incidence Matrix"
+      },
+      {
+        "id": "pds-q-20-opt3",
+        "text": "Adjacency List"
+      },
+      {
+        "id": "pds-q-20-opt4",
+        "text": "Edge List"
+      }
+    ],
+    "correctOptionId": "pds-q-20-opt3",
+    "explanation": "An Adjacency List requires $O(V + E)$ space, making it highly efficient for sparse graphs where $E \\ll V^2$. An Adjacency Matrix (Option A trap) requires $O(V^2)$ space regardless of the number of edges.",
+    "reviewNote": "Verified against standard references.",
+    "verificationSources": [
+      {
+        "sourceId": "CLRS",
+        "locator": "Chapter 1"
+      }
+    ]
+  }
+]

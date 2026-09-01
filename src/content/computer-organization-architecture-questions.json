@@ -1,0 +1,802 @@
+[
+  {
+    "id": "q-coa-001",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "IOCL Prep Hub Original",
+    "sourceId": "PATTERSON-COA",
+    "sourceLocator": "Hamacher, Ch 2",
+    "section": "domain",
+    "subject": "Computer Organization and Architecture",
+    "topic": "Machine Instructions, Instruction Formats, and Addressing Modes",
+    "stem": "Which of the following addressing modes requires exactly zero memory accesses to fetch the operand during instruction execution?",
+    "options": [
+      {
+        "id": "q-coa-001-A",
+        "text": "Direct Addressing"
+      },
+      {
+        "id": "q-coa-001-B",
+        "text": "Indirect Addressing"
+      },
+      {
+        "id": "q-coa-001-C",
+        "text": "Immediate Addressing"
+      },
+      {
+        "id": "q-coa-001-D",
+        "text": "Indexed Addressing"
+      }
+    ],
+    "correctOptionId": "q-coa-001-C",
+    "explanation": "In Immediate Addressing, the operand is embedded directly within the instruction itself. Once the instruction is fetched, the operand is already available in the CPU, requiring zero additional memory accesses to fetch it. Direct requires one access, Indirect requires two, and Indexed requires one.",
+    "verificationSources": [
+      {
+        "sourceId": "PATTERSON-COA",
+        "locator": "Hamacher, Ch 2, Addressing Modes"
+      }
+    ],
+    "reviewNote": "Basic addressing mode concept.",
+    "difficulty": "Easy"
+  },
+  {
+    "id": "q-coa-002",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "IOCL Prep Hub Original",
+    "sourceId": "PATTERSON-COA",
+    "sourceLocator": "Hamacher, Ch 2",
+    "section": "domain",
+    "subject": "Computer Organization and Architecture",
+    "topic": "Machine Instructions, Instruction Formats, and Addressing Modes",
+    "stem": "A 16-bit processor has an instruction format with a 4-bit opcode. How many distinct operations can this processor theoretically support?",
+    "options": [
+      {
+        "id": "q-coa-002-A",
+        "text": "4"
+      },
+      {
+        "id": "q-coa-002-B",
+        "text": "8"
+      },
+      {
+        "id": "q-coa-002-C",
+        "text": "16"
+      },
+      {
+        "id": "q-coa-002-D",
+        "text": "256"
+      }
+    ],
+    "correctOptionId": "q-coa-002-C",
+    "explanation": "The number of distinct operations is determined by the number of bits in the opcode field. For an $m$-bit opcode, the maximum number of operations is $2^m$. Here, $m = 4$, so $2^4 = 16$ distinct operations.",
+    "verificationSources": [
+      {
+        "sourceId": "PATTERSON-COA",
+        "locator": "Hamacher, Ch 2, Instruction Formats"
+      }
+    ],
+    "reviewNote": "Opcode bit size calculation.",
+    "difficulty": "Easy"
+  },
+  {
+    "id": "q-coa-003",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "IOCL Prep Hub Original",
+    "sourceId": "PATTERSON-COA",
+    "sourceLocator": "Hamacher, Ch 7",
+    "section": "domain",
+    "subject": "Computer Organization and Architecture",
+    "topic": "Control Unit Design: Hardwired vs Microprogrammed",
+    "stem": "Which of the following statements is true regarding a Hardwired Control Unit compared to a Microprogrammed Control Unit?",
+    "options": [
+      {
+        "id": "q-coa-003-A",
+        "text": "Hardwired is typically slower but easier to modify."
+      },
+      {
+        "id": "q-coa-003-B",
+        "text": "Hardwired is typically faster but more rigid and difficult to modify."
+      },
+      {
+        "id": "q-coa-003-C",
+        "text": "Hardwired uses a control ROM to store microinstructions."
+      },
+      {
+        "id": "q-coa-003-D",
+        "text": "Hardwired is exclusively used in CISC architectures."
+      }
+    ],
+    "correctOptionId": "q-coa-003-B",
+    "explanation": "A Hardwired Control Unit uses physical logic gates to generate control signals, making it extremely fast but rigid (hard to change). A Microprogrammed Control Unit uses a control ROM to store microinstructions, making it slower (due to memory access) but highly flexible and easier to modify.",
+    "verificationSources": [
+      {
+        "sourceId": "PATTERSON-COA",
+        "locator": "Hamacher, Ch 7, Control Unit Design"
+      }
+    ],
+    "reviewNote": "Control unit fundamental comparison.",
+    "difficulty": "Easy"
+  },
+  {
+    "id": "q-coa-004",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "IOCL Prep Hub Original",
+    "sourceId": "PATTERSON-COA",
+    "sourceLocator": "Hamacher, Ch 7",
+    "section": "domain",
+    "subject": "Computer Organization and Architecture",
+    "topic": "Control Unit Design: Hardwired vs Microprogrammed",
+    "stem": "In vertical microprogramming, a group of 15 mutually exclusive control signals needs to be encoded. How many bits are required in the microinstruction field for this group?",
+    "options": [
+      {
+        "id": "q-coa-004-A",
+        "text": "3 bits"
+      },
+      {
+        "id": "q-coa-004-B",
+        "text": "4 bits"
+      },
+      {
+        "id": "q-coa-004-C",
+        "text": "5 bits"
+      },
+      {
+        "id": "q-coa-004-D",
+        "text": "15 bits"
+      }
+    ],
+    "correctOptionId": "q-coa-004-B",
+    "explanation": "When encoding $N$ mutually exclusive signals, one additional state must be added to represent 'no signal activated' (the default state). The number of states is $N+1 = 16$. The required bits $b = \\lceil \\log_2(16) \\rceil = 4$ bits.",
+    "verificationSources": [
+      {
+        "sourceId": "PATTERSON-COA",
+        "locator": "Hamacher, Ch 7, Microprogramming Encoding"
+      }
+    ],
+    "reviewNote": "Vertical microprogramming bit calculation with +1 default state trap.",
+    "difficulty": "Easy"
+  },
+  {
+    "id": "q-coa-005",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "IOCL Prep Hub Original",
+    "sourceId": "PATTERSON-COA",
+    "sourceLocator": "Patterson, Ch 4",
+    "section": "domain",
+    "subject": "Computer Organization and Architecture",
+    "topic": "Datapath & ALU Organization",
+    "stem": "In a CPU datapath, what is the primary advantage of a three-bus organization over a single-bus organization?",
+    "options": [
+      {
+        "id": "q-coa-005-A",
+        "text": "It reduces the physical size of the ALU."
+      },
+      {
+        "id": "q-coa-005-B",
+        "text": "It allows an ALU operation involving two register reads and one register write to complete in a single clock cycle."
+      },
+      {
+        "id": "q-coa-005-C",
+        "text": "It eliminates the need for a Program Counter."
+      },
+      {
+        "id": "q-coa-005-D",
+        "text": "It reduces the number of bits needed for the instruction opcode."
+      }
+    ],
+    "correctOptionId": "q-coa-005-B",
+    "explanation": "A single-bus architecture forces data transfers to occur sequentially, often requiring 3 clock cycles for an ALU operation (read op1, read op2, write result). A three-bus architecture provides parallel paths, allowing two operands to be read and the result to be written simultaneously in 1 clock cycle.",
+    "verificationSources": [
+      {
+        "sourceId": "PATTERSON-COA",
+        "locator": "Patterson, Ch 4, The Processor Datapath"
+      }
+    ],
+    "reviewNote": "Bus architecture performance differences.",
+    "difficulty": "Easy"
+  },
+  {
+    "id": "q-coa-006",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "IOCL Prep Hub Original",
+    "sourceId": "PATTERSON-COA",
+    "sourceLocator": "Patterson, Ch 4",
+    "section": "domain",
+    "subject": "Computer Organization and Architecture",
+    "topic": "Instruction Pipelining: Stages, Throughput, Speedup",
+    "stem": "A 4-stage pipeline has stage delays of $10\\text{ns}$, $15\\text{ns}$, $12\\text{ns}$, and $11\\text{ns}$. There is a $2\\text{ns}$ latch delay between stages. What is the clock cycle time of this pipeline?",
+    "options": [
+      {
+        "id": "q-coa-006-A",
+        "text": "11ns"
+      },
+      {
+        "id": "q-coa-006-B",
+        "text": "15ns"
+      },
+      {
+        "id": "q-coa-006-C",
+        "text": "17ns"
+      },
+      {
+        "id": "q-coa-006-D",
+        "text": "50ns"
+      }
+    ],
+    "correctOptionId": "q-coa-006-C",
+    "explanation": "The clock cycle time of a pipeline is dictated by its slowest stage plus the overhead of the pipeline register (latch). $t_p = \\max(10, 15, 12, 11) + 2 = 15 + 2 = 17\\text{ns}$.",
+    "verificationSources": [
+      {
+        "sourceId": "PATTERSON-COA",
+        "locator": "Patterson, Ch 4, Pipelining Performance"
+      }
+    ],
+    "reviewNote": "Pipeline cycle time formula with latches.",
+    "difficulty": "Easy"
+  },
+  {
+    "id": "q-coa-007",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "IOCL Prep Hub Original",
+    "sourceId": "PATTERSON-COA",
+    "sourceLocator": "Patterson, Ch 4",
+    "section": "domain",
+    "subject": "Computer Organization and Architecture",
+    "topic": "Instruction Pipelining: Stages, Throughput, Speedup",
+    "stem": "Assuming ideal conditions (no stalls or hazards), how many clock cycles are required to execute $100$ instructions in a $5$-stage pipeline?",
+    "options": [
+      {
+        "id": "q-coa-007-A",
+        "text": "100"
+      },
+      {
+        "id": "q-coa-007-B",
+        "text": "104"
+      },
+      {
+        "id": "q-coa-007-C",
+        "text": "105"
+      },
+      {
+        "id": "q-coa-007-D",
+        "text": "500"
+      }
+    ],
+    "correctOptionId": "q-coa-007-B",
+    "explanation": "The total number of clock cycles to execute $n$ instructions in a $k$-stage pipeline is $(k + n - 1)$. For $k=5$ and $n=100$, cycles = $5 + 100 - 1 = 104$. The $(k-1)$ cycles represent the time taken to initially fill the pipeline.",
+    "verificationSources": [
+      {
+        "sourceId": "PATTERSON-COA",
+        "locator": "Patterson, Ch 4, Pipelining Performance"
+      }
+    ],
+    "reviewNote": "Pipelined execution time formula.",
+    "difficulty": "Easy"
+  },
+  {
+    "id": "q-coa-008",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "IOCL Prep Hub Original",
+    "sourceId": "PATTERSON-COA",
+    "sourceLocator": "Patterson, Ch 4",
+    "section": "domain",
+    "subject": "Computer Organization and Architecture",
+    "topic": "Pipeline Hazards: Structural, Data, and Control Hazards",
+    "stem": "Which type of data hazard represents a 'true dependency', where an instruction requires the result of a previous instruction that has not yet been written?",
+    "options": [
+      {
+        "id": "q-coa-008-A",
+        "text": "WAR (Write After Read)"
+      },
+      {
+        "id": "q-coa-008-B",
+        "text": "WAW (Write After Write)"
+      },
+      {
+        "id": "q-coa-008-C",
+        "text": "RAW (Read After Write)"
+      },
+      {
+        "id": "q-coa-008-D",
+        "text": "Structural Hazard"
+      }
+    ],
+    "correctOptionId": "q-coa-008-C",
+    "explanation": "RAW (Read After Write) is a true data dependency. It occurs when Instruction $J$ tries to read an operand before Instruction $I$ (which precedes $J$) has written it. WAR is an anti-dependency, and WAW is an output dependency.",
+    "verificationSources": [
+      {
+        "sourceId": "PATTERSON-COA",
+        "locator": "Patterson, Ch 4, Data Hazards"
+      }
+    ],
+    "reviewNote": "Hazard classification.",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q-coa-009",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "IOCL Prep Hub Original",
+    "sourceId": "PATTERSON-COA",
+    "sourceLocator": "Patterson, Ch 4",
+    "section": "domain",
+    "subject": "Computer Organization and Architecture",
+    "topic": "Pipeline Hazards: Structural, Data, and Control Hazards",
+    "stem": "Data Forwarding (or Bypassing) is a hardware technique used to resolve which of the following?",
+    "options": [
+      {
+        "id": "q-coa-009-A",
+        "text": "Structural Hazards"
+      },
+      {
+        "id": "q-coa-009-B",
+        "text": "RAW Data Hazards"
+      },
+      {
+        "id": "q-coa-009-C",
+        "text": "Control Hazards"
+      },
+      {
+        "id": "q-coa-009-D",
+        "text": "Cache Misses"
+      }
+    ],
+    "correctOptionId": "q-coa-009-B",
+    "explanation": "Data Forwarding routes the output of the ALU directly back to the ALU input for the next instruction, bypassing the register file write/read cycle. This resolves most RAW data hazards without requiring a pipeline stall.",
+    "verificationSources": [
+      {
+        "sourceId": "PATTERSON-COA",
+        "locator": "Patterson, Ch 4, Forwarding"
+      }
+    ],
+    "reviewNote": "Forwarding technique purpose.",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q-coa-010",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "IOCL Prep Hub Original",
+    "sourceId": "PATTERSON-COA",
+    "sourceLocator": "Stallings, Ch 4",
+    "section": "domain",
+    "subject": "Computer Organization and Architecture",
+    "topic": "Memory Hierarchy & Main Memory",
+    "stem": "Which of the following statements comparing SRAM and DRAM is correct?",
+    "options": [
+      {
+        "id": "q-coa-010-A",
+        "text": "DRAM uses flip-flops and is faster than SRAM."
+      },
+      {
+        "id": "q-coa-010-B",
+        "text": "SRAM requires periodic refreshing, whereas DRAM does not."
+      },
+      {
+        "id": "q-coa-010-C",
+        "text": "SRAM uses flip-flops, is faster, and is typically used for Cache Memory."
+      },
+      {
+        "id": "q-coa-010-D",
+        "text": "DRAM uses capacitors, is faster, and is typically used for Cache Memory."
+      }
+    ],
+    "correctOptionId": "q-coa-010-C",
+    "explanation": "SRAM (Static RAM) uses transistor flip-flops, does not require refreshing, and is very fast (used for cache). DRAM (Dynamic RAM) uses capacitors, requires periodic refreshing, is slower but highly dense and cheap (used for main memory).",
+    "verificationSources": [
+      {
+        "sourceId": "PATTERSON-COA",
+        "locator": "Stallings, Ch 4, Internal Memory"
+      }
+    ],
+    "reviewNote": "SRAM vs DRAM fundamentals.",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q-coa-011",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "IOCL Prep Hub Original",
+    "sourceId": "PATTERSON-COA",
+    "sourceLocator": "Stallings, Ch 4",
+    "section": "domain",
+    "subject": "Computer Organization and Architecture",
+    "topic": "Cache Memory Organization: Direct, Associative, Set-Associative",
+    "stem": "A computer has a $32$-bit physical address space. The cache is Direct Mapped with a block size of $64$ bytes and a total of $1024$ cache lines. What is the size of the Tag field?",
+    "options": [
+      {
+        "id": "q-coa-011-A",
+        "text": "10 bits"
+      },
+      {
+        "id": "q-coa-011-B",
+        "text": "16 bits"
+      },
+      {
+        "id": "q-coa-011-C",
+        "text": "22 bits"
+      },
+      {
+        "id": "q-coa-011-D",
+        "text": "26 bits"
+      }
+    ],
+    "correctOptionId": "q-coa-011-B",
+    "explanation": "In Direct Mapping: Physical Address = Tag + Line Index + Block Offset.\n1. Offset bits = $\\log_2(64) = 6$ bits.\n2. Line Index bits = $\\log_2(1024) = 10$ bits.\n3. Physical Address = $32$ bits.\n4. Tag = $32 - 10 - 6 = 16$ bits.",
+    "verificationSources": [
+      {
+        "sourceId": "PATTERSON-COA",
+        "locator": "Stallings, Ch 4, Cache Memory Principles"
+      }
+    ],
+    "reviewNote": "Direct mapped cache tag calculation.",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q-coa-012",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "IOCL Prep Hub Original",
+    "sourceId": "PATTERSON-COA",
+    "sourceLocator": "Stallings, Ch 4",
+    "section": "domain",
+    "subject": "Computer Organization and Architecture",
+    "topic": "Cache Memory Organization: Direct, Associative, Set-Associative",
+    "stem": "In which cache mapping technique can a main memory block be placed into any available line in the cache?",
+    "options": [
+      {
+        "id": "q-coa-012-A",
+        "text": "Direct Mapping"
+      },
+      {
+        "id": "q-coa-012-B",
+        "text": "Fully Associative Mapping"
+      },
+      {
+        "id": "q-coa-012-C",
+        "text": "2-way Set-Associative Mapping"
+      },
+      {
+        "id": "q-coa-012-D",
+        "text": "4-way Set-Associative Mapping"
+      }
+    ],
+    "correctOptionId": "q-coa-012-B",
+    "explanation": "Fully Associative mapping places no restrictions on where a block can reside; it can be placed in any cache line. Direct mapping forces a block into exactly one line. Set-associative forces a block into one set, but any line within that set.",
+    "verificationSources": [
+      {
+        "sourceId": "PATTERSON-COA",
+        "locator": "Stallings, Ch 4, Cache Mapping"
+      }
+    ],
+    "reviewNote": "Cache mapping flexibility concept.",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q-coa-013",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "IOCL Prep Hub Original",
+    "sourceId": "PATTERSON-COA",
+    "sourceLocator": "Patterson, Ch 5",
+    "section": "domain",
+    "subject": "Computer Organization and Architecture",
+    "topic": "Cache Policies and Hit/Miss Ratios",
+    "stem": "A memory system has a cache access time of $5\\text{ns}$ and a main memory access time of $100\\text{ns}$. The hit ratio is $90\\%$. If cache and main memory are accessed simultaneously, what is the Effective Access Time (EAT)?",
+    "options": [
+      {
+        "id": "q-coa-013-A",
+        "text": "14.5 ns"
+      },
+      {
+        "id": "q-coa-013-B",
+        "text": "15.0 ns"
+      },
+      {
+        "id": "q-coa-013-C",
+        "text": "95.0 ns"
+      },
+      {
+        "id": "q-coa-013-D",
+        "text": "100.0 ns"
+      }
+    ],
+    "correctOptionId": "q-coa-013-A",
+    "explanation": "For simultaneous access, $\\text{EAT} = h \\times t_c + (1-h) \\times t_m$. Here, $h = 0.9$, $t_c = 5$, and $t_m = 100$. $\\text{EAT} = (0.9 \\times 5) + (0.1 \\times 100) = 4.5 + 10 = 14.5\\text{ns}$.",
+    "verificationSources": [
+      {
+        "sourceId": "PATTERSON-COA",
+        "locator": "Patterson, Ch 5, Measuring and Improving Cache Performance"
+      }
+    ],
+    "reviewNote": "EAT simultaneous access calculation.",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q-coa-014",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "IOCL Prep Hub Original",
+    "sourceId": "PATTERSON-COA",
+    "sourceLocator": "Patterson, Ch 5",
+    "section": "domain",
+    "subject": "Computer Organization and Architecture",
+    "topic": "Cache Policies and Hit/Miss Ratios",
+    "stem": "What is the primary function of a 'Dirty Bit' in a cache memory system?",
+    "options": [
+      {
+        "id": "q-coa-014-A",
+        "text": "To indicate if a cache line contains valid data."
+      },
+      {
+        "id": "q-coa-014-B",
+        "text": "To identify which cache block should be replaced according to LRU."
+      },
+      {
+        "id": "q-coa-014-C",
+        "text": "To track if the cache block has been modified so it can be written back to main memory."
+      },
+      {
+        "id": "q-coa-014-D",
+        "text": "To lock a cache block in memory so it cannot be replaced."
+      }
+    ],
+    "correctOptionId": "q-coa-014-C",
+    "explanation": "In a Write-Back cache policy, memory is only updated when a cache block is replaced. The Dirty Bit is set to 1 if the block is modified by the CPU. When the block is evicted, if the dirty bit is 1, it must be written to main memory.",
+    "verificationSources": [
+      {
+        "sourceId": "PATTERSON-COA",
+        "locator": "Patterson, Ch 5, Cache Write Policies"
+      }
+    ],
+    "reviewNote": "Dirty bit concept for write-back.",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q-coa-015",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "IOCL Prep Hub Original",
+    "sourceId": "PATTERSON-COA",
+    "sourceLocator": "Stallings, Ch 7",
+    "section": "domain",
+    "subject": "Computer Organization and Architecture",
+    "topic": "Input/Output Organization: Programmed & Interrupt-Driven I/O",
+    "stem": "Which of the following I/O methods involves the CPU repeatedly checking an I/O device's status register in a 'busy-wait' loop until the device is ready?",
+    "options": [
+      {
+        "id": "q-coa-015-A",
+        "text": "Interrupt-Driven I/O"
+      },
+      {
+        "id": "q-coa-015-B",
+        "text": "Programmed I/O"
+      },
+      {
+        "id": "q-coa-015-C",
+        "text": "Direct Memory Access (DMA)"
+      },
+      {
+        "id": "q-coa-015-D",
+        "text": "Daisy Chaining"
+      }
+    ],
+    "correctOptionId": "q-coa-015-B",
+    "explanation": "In Programmed I/O (also called Polling), the CPU wastes clock cycles executing a loop to continuously check the status of an I/O device. Interrupt-driven I/O and DMA allow the CPU to do other work while waiting.",
+    "verificationSources": [
+      {
+        "sourceId": "PATTERSON-COA",
+        "locator": "Stallings, Ch 7, Programmed I/O"
+      }
+    ],
+    "reviewNote": "Programmed I/O definition.",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q-coa-016",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "IOCL Prep Hub Original",
+    "sourceId": "PATTERSON-COA",
+    "sourceLocator": "Stallings, Ch 7",
+    "section": "domain",
+    "subject": "Computer Organization and Architecture",
+    "topic": "Input/Output Organization: Programmed & Interrupt-Driven I/O",
+    "stem": "During normal execution, at what point does the CPU check for the presence of pending hardware interrupts?",
+    "options": [
+      {
+        "id": "q-coa-016-A",
+        "text": "At the beginning of every clock cycle."
+      },
+      {
+        "id": "q-coa-016-B",
+        "text": "At the end of the instruction fetch phase."
+      },
+      {
+        "id": "q-coa-016-C",
+        "text": "At the end of the complete instruction execution cycle."
+      },
+      {
+        "id": "q-coa-016-D",
+        "text": "Immediately upon receiving the signal, halting the current instruction mid-execution."
+      }
+    ],
+    "correctOptionId": "q-coa-016-C",
+    "explanation": "To maintain processor state integrity, the CPU only checks the interrupt request lines at the very end of the current instruction cycle. It finishes executing the current instruction before branching to the Interrupt Service Routine (ISR).",
+    "verificationSources": [
+      {
+        "sourceId": "PATTERSON-COA",
+        "locator": "Stallings, Ch 7, Interrupt-Driven I/O"
+      }
+    ],
+    "reviewNote": "Interrupt timing.",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q-coa-017",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "IOCL Prep Hub Original",
+    "sourceId": "PATTERSON-COA",
+    "sourceLocator": "Stallings, Ch 7",
+    "section": "domain",
+    "subject": "Computer Organization and Architecture",
+    "topic": "Direct Memory Access (DMA)",
+    "stem": "In which DMA operational mode does the DMA controller transfer a single data word and then release the system bus back to the CPU, slowing the CPU down without halting it completely?",
+    "options": [
+      {
+        "id": "q-coa-017-A",
+        "text": "Burst Mode"
+      },
+      {
+        "id": "q-coa-017-B",
+        "text": "Cycle Stealing Mode"
+      },
+      {
+        "id": "q-coa-017-C",
+        "text": "Transparent Mode"
+      },
+      {
+        "id": "q-coa-017-D",
+        "text": "Programmed Mode"
+      }
+    ],
+    "correctOptionId": "q-coa-017-B",
+    "explanation": "Cycle Stealing mode allows the DMA controller to transfer one word at a time, 'stealing' a bus cycle from the CPU. The CPU continues to execute but at a slightly reduced speed. Burst mode halts the CPU until the entire block is transferred.",
+    "verificationSources": [
+      {
+        "sourceId": "PATTERSON-COA",
+        "locator": "Stallings, Ch 7, Direct Memory Access"
+      }
+    ],
+    "reviewNote": "DMA Cycle Stealing definition.",
+    "difficulty": "Hard"
+  },
+  {
+    "id": "q-coa-018",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "IOCL Prep Hub Original",
+    "sourceId": "PATTERSON-COA",
+    "sourceLocator": "Stallings, Ch 7",
+    "section": "domain",
+    "subject": "Computer Organization and Architecture",
+    "topic": "Direct Memory Access (DMA)",
+    "stem": "Which two pieces of information must the CPU provide to initialize a DMA Controller before a transfer begins?",
+    "options": [
+      {
+        "id": "q-coa-018-A",
+        "text": "Interrupt vector and Status register"
+      },
+      {
+        "id": "q-coa-018-B",
+        "text": "Starting memory address and Word count"
+      },
+      {
+        "id": "q-coa-018-C",
+        "text": "Cache hit ratio and Memory latency"
+      },
+      {
+        "id": "q-coa-018-D",
+        "text": "Source IP address and Destination MAC address"
+      }
+    ],
+    "correctOptionId": "q-coa-018-B",
+    "explanation": "To initiate a DMA transfer, the CPU writes to the DMAC's internal registers to specify the starting physical memory address, the number of words to transfer (Word count), and the direction of transfer (Read/Write).",
+    "verificationSources": [
+      {
+        "sourceId": "PATTERSON-COA",
+        "locator": "Stallings, Ch 7, DMA Operation"
+      }
+    ],
+    "reviewNote": "DMA Initialization.",
+    "difficulty": "Hard"
+  },
+  {
+    "id": "q-coa-019",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "IOCL Prep Hub Original",
+    "sourceId": "PATTERSON-COA",
+    "sourceLocator": "Patterson, Ch 4",
+    "section": "domain",
+    "subject": "Computer Organization and Architecture",
+    "topic": "Pipeline Hazards: Structural, Data, and Control Hazards",
+    "stem": "Which hardware optimization attempts to minimize the penalty of Control Hazards by guessing the outcome of a branch instruction before it is evaluated?",
+    "options": [
+      {
+        "id": "q-coa-019-A",
+        "text": "Data Forwarding"
+      },
+      {
+        "id": "q-coa-019-B",
+        "text": "Branch Prediction"
+      },
+      {
+        "id": "q-coa-019-C",
+        "text": "Cycle Stealing"
+      },
+      {
+        "id": "q-coa-019-D",
+        "text": "Write-Back Policy"
+      }
+    ],
+    "correctOptionId": "q-coa-019-B",
+    "explanation": "Branch Prediction guesses whether a branch will be taken or not taken (using static or dynamic techniques). If the guess is correct, the pipeline avoids stalling. If incorrect, the pipeline flushes the wrongly fetched instructions.",
+    "verificationSources": [
+      {
+        "sourceId": "PATTERSON-COA",
+        "locator": "Patterson, Ch 4, Branch Prediction"
+      }
+    ],
+    "reviewNote": "Branch prediction purpose.",
+    "difficulty": "Hard"
+  },
+  {
+    "id": "q-coa-020",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "IOCL Prep Hub Original",
+    "sourceId": "PATTERSON-COA",
+    "sourceLocator": "Stallings, Ch 4",
+    "section": "domain",
+    "subject": "Computer Organization and Architecture",
+    "topic": "Cache Memory Organization: Direct, Associative, Set-Associative",
+    "stem": "A 4-way set-associative cache has a total of $256$ cache lines. The physical address space is $32$ bits and the block size is $16$ bytes. What is the size of the Set Index field?",
+    "options": [
+      {
+        "id": "q-coa-020-A",
+        "text": "6 bits"
+      },
+      {
+        "id": "q-coa-020-B",
+        "text": "8 bits"
+      },
+      {
+        "id": "q-coa-020-C",
+        "text": "10 bits"
+      },
+      {
+        "id": "q-coa-020-D",
+        "text": "14 bits"
+      }
+    ],
+    "correctOptionId": "q-coa-020-A",
+    "explanation": "1. Find the number of sets: $\\text{Sets} = \\frac{\\text{Total Lines}}{\\text{Associativity}} = \\frac{256}{4} = 64$ sets. \n2. The Set Index field needs enough bits to address 64 sets: $\\log_2(64) = 6$ bits.",
+    "verificationSources": [
+      {
+        "sourceId": "PATTERSON-COA",
+        "locator": "Stallings, Ch 4, Cache Memory Principles"
+      }
+    ],
+    "reviewNote": "Set associative index calculation.",
+    "difficulty": "Hard"
+  }
+]

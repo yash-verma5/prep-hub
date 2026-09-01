@@ -1,0 +1,1135 @@
+{
+  "id": "computer-organization-architecture",
+  "title": "Computer Organization and Architecture",
+  "provenance": "original",
+  "syllabusSource": {
+    "title": "GATE CS 2026 Syllabus",
+    "url": "https://gate2026.iitr.ac.in/syllabus/"
+  },
+  "topics": [
+    {
+      "order": 1,
+      "title": "Machine Instructions, Instruction Formats, and Addressing Modes",
+      "oneLine": "Machine instructions define the elementary operations a CPU can execute, structured into specific formats and using addressing modes to locate operands.",
+      "whyItMatters": "Understanding instruction formats and addressing modes is essential for decoding how the processor interacts with memory and predicting execution speed based on memory accesses.",
+      "understandSimply": [
+        "Think of a machine instruction like a recipe step. The instruction format is how the step is written (e.g., 'Add A and B'), and the addressing mode is where to find the ingredients (e.g., 'in the fridge' or 'on the counter').",
+        "Different architectures allow zero, one, two, or three 'ingredients' (operands) in a single instruction.",
+        "Addressing modes simply provide different ways to calculate the actual physical location (effective address) of the data."
+      ],
+      "technicalExplanation": [
+        "An instruction typically consists of an opcode (operation code) and one or more operands. The instruction set architecture (ISA) dictates the layout of these bits.",
+        "Instruction formats are classified by the number of operands: 0-address (stack-based), 1-address (accumulator-based), 2-address, and 3-address (register-based).",
+        "Addressing modes specify how the effective address (EA) of an operand is calculated. Common modes include Immediate (operand in instruction), Direct (address in instruction), Indirect (address points to memory holding the EA), Register, Register Indirect, Indexed (EA = base + index register), and PC-relative."
+      ],
+      "formulasAndMethods": [
+        "Effective Address ($EA$) for Indexed Mode: $EA = \\text{Base} + \\text{Index Register}$",
+        "Effective Address ($EA$) for PC-Relative Mode: $EA = PC + \\text{Offset}$",
+        "Total instruction size = Opcode bits + Operand bits. For an $n$-bit instruction with an $m$-bit opcode, there are at most $2^m$ unique operations."
+      ],
+      "traps": [
+        "Assuming that the PC points to the current instruction during PC-relative addressing; the PC actually points to the *next* instruction when the EA is calculated.",
+        "Confusing Direct addressing (operand is at the address specified) with Indirect addressing (operand is at the address found at the specified address, requiring an extra memory access).",
+        "Forgetting that Immediate mode means no memory reference is needed to fetch the operand; the operand is part of the instruction itself."
+      ],
+      "comparisons": [
+        {
+          "title": "Common Addressing Modes",
+          "columns": [
+            "Addressing Mode",
+            "EA Calculation",
+            "Memory References (for operand fetch)"
+          ],
+          "rows": [
+            [
+              "Immediate",
+              "Operand = instruction field",
+              "0"
+            ],
+            [
+              "Direct / Absolute",
+              "EA = instruction field",
+              "1"
+            ],
+            [
+              "Indirect",
+              "EA = Memory[instruction field]",
+              "2"
+            ],
+            [
+              "Register",
+              "Operand is in a register",
+              "0"
+            ],
+            [
+              "Indexed",
+              "EA = Base + Index Register",
+              "1"
+            ]
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "term": "Effective Address (EA)",
+          "definition": "The final physical memory address of the operand after all address calculations are completed."
+        },
+        {
+          "term": "Opcode",
+          "definition": "The portion of a machine instruction that specifies the operation to be performed."
+        },
+        {
+          "term": "Accumulator",
+          "definition": "A special-purpose CPU register used in 1-address machines to implicitly store one operand and the result."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Determining Instruction Size Constraints",
+          "description": "To find max operations: Identify total instruction bits, subtract bits required for operands/addresses. Remaining bits form the opcode. Max operations = $2^{\\text{opcode bits}}$."
+        },
+        {
+          "title": "Expanding Opcodes",
+          "description": "If an ISA supports different instruction formats (e.g., some 2-address, some 1-address), calculate remaining opcodes for the smaller format by taking the unused opcodes of the larger format and multiplying by $2^{\\text{bits freed up}}$."
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "A machine has a 32-bit instruction format and supports 2-address instructions. Each address requires 12 bits. How many unique opcodes can be supported?",
+          "solution": "1. Find bits used for operands: $2 \\times 12 = 24$ bits.\\n2. Find bits left for opcode: $32 - 24 = 8$ bits.\\n3. Calculate max opcodes: $2^8 = 256$."
+        },
+        {
+          "question": "An instruction uses PC-relative addressing. The instruction is stored at address 1000. It is 2 bytes long. If the offset is 50, what is the effective address of the operand?",
+          "solution": "1. PC points to the next instruction: $PC = 1000 + 2 = 1002$.\\n2. Calculate EA: $EA = PC + \\text{Offset} = 1002 + 50 = 1052$."
+        }
+      ],
+      "takeaways": [
+        "Immediate addressing requires 0 memory accesses to fetch the operand.",
+        "Indirect addressing requires 2 memory accesses, making it the slowest.",
+        "PC-relative addressing is essential for relocatable code.",
+        "Expanding opcodes allows variable-length instruction formats to maximize the use of available bits.",
+        "The number of operands determines the processor architecture: stack (0), accumulator (1), or general-register (2 or 3)."
+      ],
+      "quickRecall": [
+        {
+          "question": "Which addressing mode requires zero memory accesses to fetch the operand?",
+          "answer": "Immediate mode (and Register mode)."
+        },
+        {
+          "question": "In PC-relative addressing, what does the PC point to when computing the EA?",
+          "answer": "The address of the next instruction."
+        },
+        {
+          "question": "If an instruction has $k$ bits for the opcode, how many distinct operations can it theoretically support?",
+          "answer": "$2^k$"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Computer Organization (Hamacher et al.) - Machine Instructions",
+          "url": "https://example.com/hamacher-instructions",
+          "usedFor": [
+            "Addressing modes definitions",
+            "Opcode expansion rules"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "title": "Control Unit Design: Hardwired vs Microprogrammed",
+      "oneLine": "The control unit orchestrates CPU operations by generating control signals, using either fast hardware logic (hardwired) or stored microinstructions (microprogrammed).",
+      "whyItMatters": "The choice of control unit design dictates the trade-off between CPU execution speed (RISC prefers hardwired) and flexibility/complexity (CISC prefers microprogrammed).",
+      "understandSimply": [
+        "The control unit is the brain of the CPU. It reads an instruction and flips the right switches (control signals) to execute it.",
+        "A Hardwired control unit is like a fixed physical circuit. It's incredibly fast but if you want to change how it works, you have to rebuild the hardware.",
+        "A Microprogrammed control unit is like a mini-computer inside the CPU. It uses tiny programs (microcode) stored in a special memory to generate signals. It's slower but easy to modify."
+      ],
+      "technicalExplanation": [
+        "Hardwired Control Units use logic gates, flip-flops, and decoders to generate control signals based on the instruction opcode and clock steps. They are rigid and primarily used in RISC architectures.",
+        "Microprogrammed Control Units use a Control Memory (ROM) to store microinstructions. A sequence of microinstructions (a microprogram) corresponds to one machine instruction. They are flexible and used in CISC architectures.",
+        "Microinstructions can be Horizontal (each control signal has its own bit, fast but wide) or Vertical (signals are grouped and encoded, requiring decoders, slower but narrower)."
+      ],
+      "formulasAndMethods": [
+        "Control Memory Size = Number of microinstructions $\\times$ Microinstruction width.",
+        "In Vertical microprogramming, if a group has $N$ mutually exclusive signals, it requires $\\ceil \\og_2(N+1) \\rceil$ bits (adding 1 for the 'no action' state)."
+      ],
+      "traps": [
+        "Confusing Horizontal and Vertical microprogramming. Remember: Horizontal means wide (many bits, no decoding), Vertical means narrow (encoded bits, requires decoding).",
+        "Forgetting to add the 'no action' or 'none' state when calculating the number of bits required for encoded control signals.",
+        "Assuming microprogrammed is faster. Hardwired is always faster because there is no control memory to read."
+      ],
+      "comparisons": [
+        {
+          "title": "Hardwired vs Microprogrammed Control",
+          "columns": [
+            "Feature",
+            "Hardwired",
+            "Microprogrammed"
+          ],
+          "rows": [
+            [
+              "Speed",
+              "Fast",
+              "Slow (requires memory access)"
+            ],
+            [
+              "Flexibility",
+              "Rigid, hard to modify",
+              "Flexible, easy to modify"
+            ],
+            [
+              "Complexity",
+              "High for complex ISAs",
+              "Low (simplifies complex ISAs)"
+            ],
+            [
+              "Architecture",
+              "RISC",
+              "CISC"
+            ]
+          ]
+        },
+        {
+          "title": "Horizontal vs Vertical Microinstructions",
+          "columns": [
+            "Feature",
+            "Horizontal",
+            "Vertical"
+          ],
+          "rows": [
+            [
+              "Width",
+              "Wide (many bits)",
+              "Narrow (fewer bits)"
+            ],
+            [
+              "Decoding",
+              "No decoder needed",
+              "Requires decoders"
+            ],
+            [
+              "Speed",
+              "Fast execution",
+              "Slower (due to decoding delay)"
+            ]
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "term": "Microinstruction",
+          "definition": "A low-level instruction stored in control memory that specifies the state of control signals for a single clock cycle."
+        },
+        {
+          "term": "Control Word",
+          "definition": "The bit pattern of a microinstruction that directly drives the control lines of the datapath."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Calculating Microinstruction Width (Vertical)",
+          "description": "1. Identify the mutually exclusive groups of control signals. 2. For each group of size $N$, calculate bits required: $b = \\ceil \\og_2(N+1) \\rceil$. 3. Sum the bits for all groups. 4. Add bits for next-address and condition codes."
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "A microprogrammed control unit has 3 groups of mutually exclusive control signals: G1 with 7 signals, G2 with 15 signals, and G3 with 3 signals. How many bits are required for the control fields in a vertical microinstruction?",
+          "solution": "1. Add 1 to each group for 'no action'.\\n2. G1: $\\ceil \\og_2(7+1) \\rceil = \\og_2(8) = 3$ bits.\\n3. G2: $\\ceil \\og_2(15+1) \\rceil = \\og_2(16) = 4$ bits.\\n4. G3: $\\ceil \\og_2(3+1) \\rceil = \\og_2(4) = 2$ bits.\\n5. Total control field bits = $3 + 4 + 2 = 9$ bits."
+        },
+        {
+          "question": "If the control memory has 2048 words, how many bits are required for the next-address field?",
+          "solution": "1. Address bits = $\\ceil \\og_2(2048) \\rceil = 11$ bits."
+        }
+      ],
+      "takeaways": [
+        "Hardwired control is built using logic gates and is suited for RISC.",
+        "Microprogrammed control uses a control ROM and is suited for CISC.",
+        "Horizontal microcode is wide and fast; Vertical microcode is compact but requires decoding.",
+        "Always add +1 to the number of control signals in a group when encoding to account for the 'do nothing' state."
+      ],
+      "quickRecall": [
+        {
+          "question": "Which control unit design is more flexible and easier to update?",
+          "answer": "Microprogrammed control unit."
+        },
+        {
+          "question": "Does horizontal or vertical microprogramming require a decoder?",
+          "answer": "Vertical microprogramming."
+        },
+        {
+          "question": "Why do we add 1 when calculating the bits for a mutually exclusive group of signals?",
+          "answer": "To represent the state where none of the signals in the group are activated."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Computer Organization (Hamacher et al.) - Control Unit",
+          "url": "https://example.com/hamacher-cu",
+          "usedFor": [
+            "Hardwired vs Microprogrammed",
+            "Horizontal vs Vertical encoding"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "title": "Datapath & ALU Organization",
+      "oneLine": "The datapath connects registers and the ALU using buses, facilitating data transfer and arithmetic/logic operations under the command of the control unit.",
+      "whyItMatters": "The bus architecture (single, double, or triple-bus) directly limits how many data transfers and ALU operations can occur simultaneously in one clock cycle.",
+      "understandSimply": [
+        "The datapath is the highway system of the CPU. The registers are warehouses, the ALU is the factory, and buses are the roads.",
+        "If you only have one road (single-bus), cars can only go one at a time. This makes operations slow because transferring two numbers to the ALU takes two trips.",
+        "If you have three roads (triple-bus), you can send two numbers to the factory and bring the result back to a warehouse all at the same time."
+      ],
+      "technicalExplanation": [
+        "A Datapath consists of an ALU, registers, and the buses that interconnect them. Register Transfer Language (RTL) is used to symbolically describe data movement.",
+        "Single-bus organization requires multiple clock cycles to complete an operation like $ADD\\R1, R2, R3$ because only one operand can travel on the bus at a time. It heavily relies on temporary registers (like A and B) at the ALU inputs.",
+        "Two-bus organization speeds this up but may still require an extra cycle to write back.",
+        "Three-bus organization allows two operands to be read and the result to be written back in a single clock cycle."
+      ],
+      "formulasAndMethods": [
+        "Number of clock cycles for an ALU operation depends on the bus structure.",
+        "Single bus: Typically 3 cycles for register-register ALU operation (Read OP1, Read OP2, Write Result).",
+        "Triple bus: 1 cycle for register-register ALU operation."
+      ],
+      "traps": [
+        "Assuming all datapath operations happen in one cycle. The number of cycles is strictly bounded by the number of buses.",
+        "Forgetting that in a single-bus system, transferring data from a register to the ALU requires buffering the first operand in a temporary latch before fetching the second.",
+        "Confusing RTL micro-operations with macro machine instructions."
+      ],
+      "comparisons": [
+        {
+          "title": "Bus Organizations",
+          "columns": [
+            "Bus Type",
+            "Cycles for $R_3 \\eftarrow R_1 + R_2$",
+            "Hardware Cost"
+          ],
+          "rows": [
+            [
+              "Single-bus",
+              "3 cycles",
+              "Low"
+            ],
+            [
+              "Two-bus",
+              "2 cycles",
+              "Medium"
+            ],
+            [
+              "Three-bus",
+              "1 cycle",
+              "High"
+            ]
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "term": "Datapath",
+          "definition": "The collection of hardware elements (ALU, registers, buses) that perform data processing operations."
+        },
+        {
+          "term": "Register Transfer Language (RTL)",
+          "definition": "A symbolic language used to describe the micro-operations transferring data between registers."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Tracing RTL in a Single-Bus Architecture",
+          "description": "1. Bus $\\eftarrow R1$, Temp_A $\\eftarrow$ Bus. 2. Bus $\\eftarrow R2$, ALU computes Temp_A + Bus, Temp_Z $\\eftarrow$ ALU output. 3. Bus $\\eftarrow$ Temp_Z, $R3 \\eftarrow$ Bus."
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "In a single-bus architecture, how many clock cycles are needed to execute the micro-operations for the instruction $ADD\\R1, R2$ (meaning $R1 \\eftarrow R1 + R2$)? Assume operands are already in registers.",
+          "solution": "1. Cycle 1: Transfer $R1$ to ALU input latch A.\\n2. Cycle 2: Transfer $R2$ to bus, ALU performs addition, store result in output latch Z.\\n3. Cycle 3: Transfer result from Z over the bus to $R1$.\\nTotal: 3 clock cycles."
+        }
+      ],
+      "takeaways": [
+        "Datapath performance is bottlenecked by the number of internal buses.",
+        "Single-bus architectures require temporary registers (latches) at the ALU inputs.",
+        "Triple-bus architectures allow reading two registers and writing to one register simultaneously in a single clock cycle."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the primary advantage of a three-bus organization over a single-bus?",
+          "answer": "It allows operations to complete in fewer clock cycles by enabling parallel data movement."
+        },
+        {
+          "question": "What does RTL stand for?",
+          "answer": "Register Transfer Language."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Computer Organization and Design (Patterson/Hennessy) - Datapath",
+          "url": "https://example.com/patterson-datapath",
+          "usedFor": [
+            "Bus organization",
+            "RTL definitions"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "title": "Instruction Pipelining: Stages, Throughput, Speedup",
+      "oneLine": "Pipelining overlaps the execution of multiple instructions to increase CPU throughput, ideally completing one instruction per clock cycle.",
+      "whyItMatters": "Pipelining is the fundamental technique used in all modern processors to achieve high performance and ILP (Instruction-Level Parallelism) without simply increasing the clock speed.",
+      "understandSimply": [
+        "Think of pipelining like a car assembly line. Instead of building one car completely before starting the next, you break the process into stages (engine, chassis, painting).",
+        "While car 1 is being painted, car 2 is getting its chassis, and car 3 is getting its engine.",
+        "It doesn't make a single car faster to build (latency), but it means a finished car rolls off the line much more frequently (throughput)."
+      ],
+      "technicalExplanation": [
+        "A typical RISC pipeline has 5 stages: Instruction Fetch (IF), Instruction Decode/Register Fetch (ID), Execute/Address Calculation (EX), Memory Access (MEM), and Write Back (WB).",
+        "The clock cycle time of a pipeline is determined by the slowest stage plus any register/latch overhead.",
+        "Ideal CPI (Cycles Per Instruction) of a pipeline is 1. In non-pipelined systems, CPI equals the number of stages $k$.",
+        "Speedup evaluates how much faster the pipelined processor is compared to the non-pipelined processor."
+      ],
+      "formulasAndMethods": [
+        "Pipelined Clock Cycle Time: $t_p = \\ax(\\text{stage delays}) + \\text{latch delay}$",
+        "Non-pipelined Execution Time (for $n$ instructions, $k$ stages): $T_{np} = n \\dot k \\dot t_{np}$",
+        "Pipelined Execution Time (ideal): $T_p = (k + n - 1) \\dot t_p$. The $(k-1)$ represents the cycles to fill the pipeline initially.",
+        "Speedup: $S = \\frac{T_{np}}{T_p} = \\frac{n \\dot k}{k + n - 1}$. As $n \\to \\nfty$, $S \\to k$."
+      ],
+      "traps": [
+        "Assuming the pipeline speeds up individual instructions. It does not; it improves throughput, not individual instruction latency.",
+        "Forgetting to add the latch/buffer delay when calculating the pipelined cycle time $t_p$.",
+        "Ignoring the $(k-1)$ setup cycles when $n$ (number of instructions) is small. If $n$ is massive, $(k-1)$ can be ignored, but in exam questions with 5-10 instructions, it drastically changes the answer."
+      ],
+      "comparisons": [
+        {
+          "title": "Pipelined vs Non-Pipelined",
+          "columns": [
+            "Metric",
+            "Non-Pipelined",
+            "Pipelined (Ideal)"
+          ],
+          "rows": [
+            [
+              "Throughput",
+              "Low (1 instr per $k$ cycles)",
+              "High (1 instr per cycle)"
+            ],
+            [
+              "Latency (1 instr)",
+              "$k \\dot t_{np}$",
+              "$k \\dot t_p$ (slightly slower due to latches)"
+            ],
+            [
+              "Hardware Cost",
+              "Low",
+              "High (needs pipeline registers)"
+            ]
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "term": "Throughput",
+          "definition": "The number of instructions completed per unit of time."
+        },
+        {
+          "term": "Pipeline Depth",
+          "definition": "The number of stages $k$ in the pipeline."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Calculating Speedup for Finite Instructions",
+          "description": "1. Find $t_p$ (max stage + latch). 2. Find non-pipelined time $T_{np} = n \\times \\text{sum of stages}$. 3. Find pipelined time $T_p = (k + n - 1) \\times t_p$. 4. Speedup $S = T_{np} / T_p$."
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "A 4-stage pipeline has stage delays of 10ns, 15ns, 12ns, and 11ns. The latch delay is 2ns. What is the execution time for 100 instructions?",
+          "solution": "1. Find cycle time $t_p = \\ax(10, 15, 12, 11) + 2 = 15 + 2 = 17$ns.\\n2. Identify parameters: $k = 4$, $n = 100$.\\n3. Calculate time: $T_p = (k + n - 1) \\times t_p = (4 + 100 - 1) \\times 17 = 103 \\times 17 = 1751$ns."
+        },
+        {
+          "question": "For the same pipeline, what is the maximum theoretical speedup over a non-pipelined implementation that takes $10+15+12+11=48$ns per instruction?",
+          "solution": "1. Max theoretical speedup occurs as $n \\to \\nfty$.\\n2. $S_{\\ax} = \\frac{\\text{Time per instr (non-pipelined)}}{\\text{Cycle time (pipelined)}} = \\frac{48}{17} \\pprox 2.82$."
+        }
+      ],
+      "takeaways": [
+        "Pipelining improves throughput, not latency.",
+        "The clock cycle time of a pipeline is dictated by its slowest stage.",
+        "Maximum speedup approaches the number of pipeline stages $k$ if all stages are perfectly balanced and there are no latches.",
+        "To execute $n$ instructions in a $k$-stage pipeline, it takes $(k + n - 1)$ clock cycles."
+      ],
+      "quickRecall": [
+        {
+          "question": "If a 5-stage pipeline executes 10 instructions, how many clock cycles are needed ideally?",
+          "answer": "$5 + 10 - 1 = 14$ cycles."
+        },
+        {
+          "question": "What determines the clock period in a pipelined processor?",
+          "answer": "The delay of the slowest stage plus the delay of the pipeline register/latch."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Computer Organization and Design (Patterson/Hennessy) - Pipelining",
+          "url": "https://example.com/patterson-pipelining",
+          "usedFor": [
+            "Speedup formulas",
+            "Pipeline stage definitions"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "title": "Pipeline Hazards: Structural, Data, and Control Hazards",
+      "oneLine": "Hazards prevent the next instruction in the instruction stream from executing in its designated clock cycle, causing stalls that reduce pipeline performance.",
+      "whyItMatters": "Identifying and resolving hazards through forwarding, stalling, or branch prediction is critical; without these, a pipeline would compute incorrect results or lose all its performance gains.",
+      "understandSimply": [
+        "A Structural Hazard is a resource conflict: two cars need the same tool on the assembly line at the same time.",
+        "A Data Hazard is a dependency: car 2 needs a part that is currently being built inside car 1.",
+        "A Control Hazard is a branch: you don't know whether to build a red car or a blue car next until the current car reaches the end of the line."
+      ],
+      "technicalExplanation": [
+        "Structural Hazards occur when hardware cannot support all overlapped instructions (e.g., a single memory used for both fetching instructions and data). Solution: Separate instruction and data caches, or stall.",
+        "Data Hazards occur when instructions depend on the results of previous instructions. Types include RAW (Read After Write, true dependency), WAR (Write After Read, anti-dependency), and WAW (Write After Write, output dependency).",
+        "Data hazards are commonly resolved using Data Forwarding (Operand Bypassing) where results are passed directly from ALU output back to ALU input, avoiding the register file wait. If forwarding isn't enough (e.g., Load-Use hazard), a pipeline stall (bubble) is inserted.",
+        "Control Hazards arise from branch instructions modifying the PC. Until the branch condition and target are evaluated, the pipeline fetches the wrong instructions. Solutions: Branch prediction, delayed branching, or flushing."
+      ],
+      "formulasAndMethods": [
+        "Average Instruction Time with stalls: $\\text{CPI} = 1 + \\text{Stall Cycles per Instruction}$.",
+        "Pipeline Time with Hazards: $T = (\\text{Instructions} + \\text{Total Stalls} + k - 1) \\times t_p$."
+      ],
+      "traps": [
+        "Thinking WAR and WAW hazards occur in a basic 5-stage in-order pipeline. In a strict 5-stage in-order pipeline, only RAW hazards occur because all reads happen in stage 2 and all writes in stage 5.",
+        "Assuming Data Forwarding eliminates *all* data hazard stalls. A 'Load-Use' hazard (e.g., LOAD R1, (R2) followed by ADD R3, R1, R1) still requires a 1-cycle stall even with forwarding.",
+        "Forgetting to calculate branch penalties correctly. If the branch outcome is known at stage 3, the penalty is 2 cycles (because 2 instructions were wrongly fetched)."
+      ],
+      "comparisons": [
+        {
+          "title": "Types of Pipeline Hazards",
+          "columns": [
+            "Hazard Type",
+            "Cause",
+            "Common Solutions"
+          ],
+          "rows": [
+            [
+              "Structural",
+              "Resource conflict (e.g., single memory)",
+              "Hardware duplication, stalling"
+            ],
+            [
+              "Data (RAW)",
+              "Instruction needs a result not yet written",
+              "Forwarding, stalling, code reordering"
+            ],
+            [
+              "Control",
+              "Branch instructions change PC",
+              "Branch prediction, delayed branching, flushing"
+            ]
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "term": "Pipeline Stall / Bubble",
+          "definition": "A cycle where the pipeline does no useful work to allow a hazard to resolve."
+        },
+        {
+          "term": "Data Forwarding (Bypassing)",
+          "definition": "A hardware technique that routes the output of the ALU directly back to the ALU input, bypassing the register file to resolve RAW hazards."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Identifying RAW Hazards",
+          "description": "Look at a sequence of instructions. If Instruction $j$ reads a register that Instruction $i$ (where $i < j$) writes to, a RAW hazard exists."
+        },
+        {
+          "title": "Calculating Total Cycles with Stalls",
+          "description": "Total Cycles = Ideal Cycles $(k + n - 1)$ + Number of Stall Cycles."
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "A 5-stage pipeline encounters a branch instruction. The branch target is evaluated in the EX stage (stage 3). How many stall cycles (penalty) occur if the branch is taken and no branch prediction is used?",
+          "solution": "1. While the branch is in IF, ID, and EX, the pipeline fetches 2 subsequent instructions.\\n2. In EX, the branch evaluates as taken.\\n3. The 2 fetched instructions are flushed.\\n4. Penalty = 2 stall cycles."
+        },
+        {
+          "question": "Consider the sequence: $I_1: \\text{ADD } R1, R2, R3$ and $I_2: \\text{SUB } R4, R1, R5$. Without forwarding, how many stall cycles are needed in a standard 5-stage pipeline?",
+          "solution": "1. $I_1$ writes $R1$ in WB (stage 5).\\n2. $I_2$ reads $R1$ in ID (stage 2).\\n3. $I_2$ must wait in ID until $I_1$ finishes WB. $I_1$ is in EX, MEM, WB while $I_2$ is in ID.\\n4. This causes 3 stall cycles. (With forwarding, 0 stalls)."
+        }
+      ],
+      "takeaways": [
+        "RAW is a true dependency and is the most common data hazard.",
+        "Data forwarding drastically reduces RAW data hazard stalls but cannot eliminate the 1-cycle stall required for a Load-Use hazard.",
+        "Control hazards cause significant performance degradation, making branch prediction a necessity in modern CPUs.",
+        "Structural hazards are usually solved by throwing more hardware at the problem (e.g., Harvard architecture)."
+      ],
+      "quickRecall": [
+        {
+          "question": "What hardware technique resolves most RAW hazards without stalling?",
+          "answer": "Data Forwarding (or Operand Bypassing)."
+        },
+        {
+          "question": "What type of data hazard requires at least a 1-cycle stall even if forwarding is used?",
+          "answer": "Load-Use hazard."
+        },
+        {
+          "question": "What hazard occurs when two instructions need to use the ALU at the same time?",
+          "answer": "Structural hazard."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Computer Organization and Design (Patterson/Hennessy) - Hazards",
+          "url": "https://example.com/patterson-hazards",
+          "usedFor": [
+            "Data Hazard classifications",
+            "Forwarding logic"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "title": "Memory Hierarchy & Main Memory",
+      "oneLine": "The memory hierarchy organizes storage from fast, small, expensive registers down to slow, large, cheap magnetic disks to simulate a single massive, fast memory.",
+      "whyItMatters": "No single memory technology can provide both high speed and large capacity. The hierarchy exploits locality of reference to keep active data near the CPU.",
+      "understandSimply": [
+        "Registers are your pockets (instant access, tiny size).",
+        "Cache is your backpack (fast, small).",
+        "Main memory (RAM) is your bookshelf (slower, bigger).",
+        "Secondary storage (Disk) is a public library (very slow, massive).",
+        "The CPU always checks the pocket first, then the backpack, then the bookshelf."
+      ],
+      "technicalExplanation": [
+        "The Memory Hierarchy is based on the Principle of Locality. Temporal locality: if an item is referenced, it will likely be referenced again soon. Spatial locality: if an item is referenced, nearby items will likely be referenced soon.",
+        "Main memory is usually Dynamic RAM (DRAM), which stores bits in capacitors and requires periodic refreshing. It is dense and cheap but slow.",
+        "Cache memory is Static RAM (SRAM), which uses flip-flops. It is very fast, requires no refreshing, but is bulky and expensive.",
+        "Data is transferred between levels in blocks. Between cache and main memory, it's a 'Cache Block' or 'Line'. Between main memory and disk, it's a 'Page'."
+      ],
+      "formulasAndMethods": [
+        "Memory Capacity = $2^n \\times m$ bits, where $n$ is the number of address lines and $m$ is the number of data lines.",
+        "Number of Chips required = $\\frac{\\text{Total Memory Size}}{\\text{Capacity of one chip}}$."
+      ],
+      "traps": [
+        "Confusing SRAM and DRAM applications. SRAM is for Cache; DRAM is for Main Memory.",
+        "Forgetting that byte-addressable memory means each address points to 8 bits. If memory is word-addressable (e.g., 32-bit word), each address points to 32 bits. This changes addressing calculations drastically.",
+        "Misidentifying spatial vs temporal locality in code loops."
+      ],
+      "comparisons": [
+        {
+          "title": "SRAM vs DRAM",
+          "columns": [
+            "Feature",
+            "SRAM",
+            "DRAM"
+          ],
+          "rows": [
+            [
+              "Storage Element",
+              "Flip-flop (transistors)",
+              "Capacitor"
+            ],
+            [
+              "Refresh Required",
+              "No",
+              "Yes"
+            ],
+            [
+              "Speed",
+              "Very Fast",
+              "Slower"
+            ],
+            [
+              "Density & Cost",
+              "Low density, High cost",
+              "High density, Low cost"
+            ],
+            [
+              "Typical Use",
+              "Cache Memory",
+              "Main Memory"
+            ]
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "term": "Temporal Locality",
+          "definition": "The tendency to access the same memory location repeatedly over a short period (e.g., loop variables)."
+        },
+        {
+          "term": "Spatial Locality",
+          "definition": "The tendency to access memory locations that are physically close to a recently accessed location (e.g., iterating through an array)."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Calculating Memory Chips Required",
+          "description": "1. Convert target memory size to bits. 2. Convert chip capacity to bits. 3. Divide Target / Chip. 4. If asked for arrangement, divide Target Words / Chip Words (rows) and Target Word Size / Chip Word Size (columns)."
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "A system needs 64K $\\times$ 8 bits of main memory. The available RAM chips are 16K $\\times$ 4 bits. How many chips are required?",
+          "solution": "1. Calculate rows: $64K / 16K = 4$ chips vertically.\\n2. Calculate columns: $8 \\text{ bits} / 4 \\text{ bits} = 2$ chips horizontally.\\n3. Total chips = $4 \\times 2 = 8$ chips."
+        }
+      ],
+      "takeaways": [
+        "SRAM is fast, expensive, uses flip-flops, and is used for cache.",
+        "DRAM is slower, cheaper, uses capacitors, needs refreshing, and is used for main memory.",
+        "The hierarchy works because programs exhibit spatial and temporal locality.",
+        "Byte-addressable means 1 address = 1 byte. Word-addressable means 1 address = 1 word."
+      ],
+      "quickRecall": [
+        {
+          "question": "Which memory type requires periodic refreshing to maintain data?",
+          "answer": "DRAM (Dynamic RAM)."
+        },
+        {
+          "question": "Accessing consecutive elements in an array is an example of which type of locality?",
+          "answer": "Spatial locality."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Computer Organization (Hamacher et al.) - Memory",
+          "url": "https://example.com/hamacher-memory",
+          "usedFor": [
+            "SRAM vs DRAM comparison",
+            "Locality of reference"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "title": "Cache Memory Organization: Direct, Associative, Set-Associative",
+      "oneLine": "Cache mapping defines how blocks of main memory are placed into lines (or blocks) of the smaller cache memory.",
+      "whyItMatters": "Cache mapping directly determines the hardware complexity of the cache controller, the likelihood of conflict misses, and the breakdown of the physical address into Tag, Index, and Offset.",
+      "understandSimply": [
+        "Direct Mapping is like assigned parking: memory block 12 MUST park in cache space 2. If it's full, it kicks out the current car.",
+        "Fully Associative is open parking: a memory block can park ANYWHERE in the cache. Great flexibility, but hard to find your car later.",
+        "Set-Associative is zone parking: memory block 12 can park anywhere in Zone B (which has $N$ spaces). It balances flexibility and search speed."
+      ],
+      "technicalExplanation": [
+        "In Direct Mapping, a main memory block maps to exactly one cache line: $i = j \\bmod m$ (where $i$ is cache line, $j$ is memory block, $m$ is total cache lines). The address is divided into: [Tag | Line Index | Block Offset].",
+        "In Fully Associative Mapping, a block can go anywhere. The address is divided into: [Tag | Block Offset]. Hardware must simultaneously compare the tag against ALL cache lines, which is expensive.",
+        "In $K$-way Set-Associative Mapping, the cache is divided into sets, each containing $K$ lines. A block maps to exactly one set but can go into any of the $K$ lines within that set. Address: [Tag | Set Index | Block Offset]. If $K=1$, it's Direct Mapped. If $K=m$, it's Fully Associative."
+      ],
+      "formulasAndMethods": [
+        "Physical Address bits = $\\og_2(\\text{Main Memory Size in bytes})$",
+        "Block Offset bits = $\\og_2(\\text{Block Size in bytes})$",
+        "Direct Mapping: Line Index bits = $\\og_2(\\text{Number of Cache Lines})$. Tag bits = Physical Address - Index - Offset.",
+        "$K$-way Set-Associative: Set Index bits = $\\og_2(\\frac{\\text{Total Cache Lines}}{K})$. Tag bits = Physical Address - Set Index - Offset."
+      ],
+      "traps": [
+        "Calculating Cache Lines incorrectly by confusing Cache Size with Main Memory Size. $\\text{Cache Lines} = \\frac{\\text{Cache Size}}{\\text{Block Size}}$.",
+        "Forgetting to divide by $K$ when calculating the number of sets in $K$-way Set-Associative mapping.",
+        "Confusing Byte Addressable vs Word Addressable. If word addressable, the offset bits are $\\og_2(\\text{words per block})$. Always read the problem carefully."
+      ],
+      "comparisons": [
+        {
+          "title": "Cache Mapping Techniques",
+          "columns": [
+            "Mapping",
+            "Placement Flexibility",
+            "Hardware Cost (Comparators)",
+            "Conflict Misses"
+          ],
+          "rows": [
+            [
+              "Direct",
+              "None (1 choice)",
+              "1 comparator",
+              "High"
+            ],
+            [
+              "Fully Associative",
+              "Maximum (Any choice)",
+              "$M$ comparators",
+              "Zero"
+            ],
+            [
+              "$K$-way Set",
+              "Medium ($K$ choices)",
+              "$K$ comparators",
+              "Medium"
+            ]
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "term": "Tag",
+          "definition": "The upper bits of a physical address stored in the cache to uniquely identify which memory block is currently occupying a cache line."
+        },
+        {
+          "term": "Conflict Miss",
+          "definition": "A cache miss that occurs in Direct or Set-Associative mapping when multiple active blocks map to the same cache line/set, even though the cache overall isn't full."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Calculating Address Bit Breakdown",
+          "description": "1. Find Physical Address bits = $\\og_2(\\text{Main Memory Size})$. 2. Find Offset bits = $\\og_2(\\text{Block Size})$. 3. Find Number of Lines/Sets = $\\og_2(\\text{Sets})$. 4. Tag = Address - Offset - Sets."
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "A byte-addressable computer has 16MB main memory, 64KB cache, and a block size of 32 bytes. If it uses 4-way set-associative mapping, what is the size of the Tag field?",
+          "solution": "1. Physical Address = $\\og_2(16MB) = 24$ bits.\\n2. Block Offset = $\\og_2(32) = 5$ bits.\\n3. Total Cache Lines = $64KB / 32 = 2048$ lines.\\n4. Number of Sets = $2048 / 4 = 512$ sets.\\n5. Set Index bits = $\\og_2(512) = 9$ bits.\\n6. Tag bits = $24 - 5 - 9 = 10$ bits."
+        },
+        {
+          "question": "For the same system using Direct Mapping, what is the Tag size?",
+          "solution": "1. Physical Address = 24, Offset = 5.\\n2. Line Index bits = $\\og_2(2048) = 11$ bits.\\n3. Tag bits = $24 - 5 - 11 = 8$ bits."
+        }
+      ],
+      "takeaways": [
+        "In Direct Mapping, Tag + Index + Offset = Physical Address.",
+        "In Set-Associative Mapping, the cache is divided into sets. The index points to the set, not the line.",
+        "Fully Associative Mapping has no index field, only Tag and Offset.",
+        "Increasing associativity reduces conflict misses but increases hardware complexity and hit time."
+      ],
+      "quickRecall": [
+        {
+          "question": "In a 2-way set associative cache with 128 cache lines, how many sets are there?",
+          "answer": "64 sets."
+        },
+        {
+          "question": "Which mapping technique suffers the most from conflict misses?",
+          "answer": "Direct Mapping."
+        },
+        {
+          "question": "What is the formula for the number of bits in the Block Offset?",
+          "answer": "$\\og_2(\\text{Block Size})$."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Computer Organization and Architecture (Stallings) - Cache",
+          "url": "https://example.com/stallings-cache",
+          "usedFor": [
+            "Cache mapping address structures",
+            "Set calculation"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "title": "Cache Policies and Hit/Miss Ratios",
+      "oneLine": "Cache performance depends on hit ratio, write policies (Write-Through vs Write-Back), and block replacement policies (LRU, FIFO).",
+      "whyItMatters": "Calculating Effective Access Time (EAT) proves mathematically why cache is effective and helps architects decide which replacement and write policies balance cost and performance.",
+      "understandSimply": [
+        "A Cache Hit means you found what you wanted in your backpack. A Miss means you have to go to the bookshelf (Main Memory).",
+        "Write-Through: When you update your notes, you write in the backpack and immediately run to the bookshelf to update it there too. Safe, but slow.",
+        "Write-Back: You just update the backpack. You only update the bookshelf when you throw that notebook out of the backpack to make room. Fast, but risky if power fails."
+      ],
+      "technicalExplanation": [
+        "Effective Access Time (EAT) combines the fast hit time of cache with the slow miss penalty of accessing main memory. EAT is the ultimate metric of memory hierarchy performance.",
+        "Write-Through ensures cache and main memory are always consistent. It requires a Write Buffer to avoid stalling the CPU. Write-Back minimizes memory traffic by using a 'Dirty Bit' to track if a block was modified. Only dirty blocks are written back on replacement.",
+        "Replacement Policies are needed when a cache is full (for Set-Associative and Fully Associative). LRU (Least Recently Used) is optimal but hard to implement for large sets. FIFO is simple. Random is surprisingly effective."
+      ],
+      "formulasAndMethods": [
+        "Simultaneous Access EAT: $\\text{EAT} = h \\dot t_c + (1-h) \\dot t_m$",
+        "Hierarchical Access EAT: $\\text{EAT} = t_c + (1-h) \\dot t_m$ (CPU checks cache first, if miss, THEN checks main memory).",
+        "Miss Ratio = $1 - \\text{Hit Ratio} = 1 - h$"
+      ],
+      "traps": [
+        "Misreading 'Simultaneous' vs 'Hierarchical' access in problems. If the problem states the CPU checks cache, and upon a miss checks memory, it's hierarchical, so you ALWAYS pay $t_c$, plus the miss penalty.",
+        "Forgetting the Dirty Bit probability in Write-Back EAT calculations. If a block is dirty, replacing it takes an extra memory cycle to write it back before fetching the new block.",
+        "Applying replacement policies to Direct Mapped cache. Direct Mapped cache has no replacement policy because there's only one choice of where to place a block."
+      ],
+      "comparisons": [
+        {
+          "title": "Write-Through vs Write-Back",
+          "columns": [
+            "Feature",
+            "Write-Through",
+            "Write-Back"
+          ],
+          "rows": [
+            [
+              "Memory Traffic",
+              "High (every write goes to RAM)",
+              "Low (only writes on replacement)"
+            ],
+            [
+              "Consistency",
+              "Cache and RAM are consistent",
+              "Cache and RAM are inconsistent"
+            ],
+            [
+              "Hardware",
+              "Needs write buffer",
+              "Needs Dirty Bit per block"
+            ]
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "term": "Hit Ratio ($h$)",
+          "definition": "The fraction of memory accesses found in the cache."
+        },
+        {
+          "term": "Miss Penalty",
+          "definition": "The time required to fetch a block from a lower level of the memory hierarchy upon a cache miss."
+        },
+        {
+          "term": "Dirty Bit",
+          "definition": "A status bit in a cache line indicating that the data has been modified and differs from main memory."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Calculating EAT for Hierarchical Access",
+          "description": "1. Identify $t_c$ (cache time), $t_m$ (memory time), and $h$ (hit ratio). 2. Apply formula: $\\text{EAT} = t_c + (1-h) \\times t_m$. 3. Note: The miss penalty here is $t_m$ because $t_c$ is already spent checking."
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "A system has a cache access time of 2ns and a main memory access time of 50ns. The hit ratio is 90%. Access is hierarchical. What is the EAT?",
+          "solution": "1. Use hierarchical formula: $\\text{EAT} = t_c + (1-h) \\times t_m$.\\n2. $\\text{EAT} = 2 + (1 - 0.90) \\times 50$.\\n3. $\\text{EAT} = 2 + 0.10 \\times 50 = 2 + 5 = 7$ns."
+        },
+        {
+          "question": "Using the same numbers, what is the EAT if access is simultaneous?",
+          "solution": "1. Use simultaneous formula: $\\text{EAT} = h \\times t_c + (1-h) \\times t_m$.\\n2. $\\text{EAT} = 0.90 \\times 2 + 0.10 \\times 50$.\\n3. $\\text{EAT} = 1.8 + 5 = 6.8$ns."
+        }
+      ],
+      "takeaways": [
+        "EAT formulas differ depending on whether memory lookups are simultaneous or hierarchical (cache first, then RAM).",
+        "Write-through is simple and consistent but generates heavy memory traffic.",
+        "Write-back is fast but requires a dirty bit and adds latency on cache misses if the replaced block is dirty.",
+        "LRU is the most common replacement policy, but Direct Mapped caches do not use any replacement policy."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the purpose of a Dirty Bit?",
+          "answer": "To track if a cache block has been modified, ensuring it is written back to main memory before being replaced."
+        },
+        {
+          "question": "Does Direct Mapped cache require an LRU replacement policy?",
+          "answer": "No, because a memory block can only map to one specific cache line."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Computer Organization and Design (Patterson/Hennessy) - Cache Performance",
+          "url": "https://example.com/patterson-cache-perf",
+          "usedFor": [
+            "EAT formulas",
+            "Write policies"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 9,
+      "title": "Input/Output Organization: Programmed & Interrupt-Driven I/O",
+      "oneLine": "The CPU communicates with external devices using Programmed I/O (polling) or Interrupt-Driven I/O (hardware signals) to manage data flow.",
+      "whyItMatters": "I/O operations are orders of magnitude slower than CPU operations. Understanding I/O techniques shows how computer systems prevent the CPU from wasting millions of cycles waiting for a keystroke.",
+      "understandSimply": [
+        "Programmed I/O (Polling) is like calling your friend every 5 seconds asking 'Are you ready? Are you ready?' It wastes your time.",
+        "Interrupt-Driven I/O is like telling your friend 'Call me when you are ready,' and you go back to doing your homework. When the phone rings, you stop, handle it, and go back to homework."
+      ],
+      "technicalExplanation": [
+        "In Programmed I/O (Polling), the CPU executes a loop checking the status register of the I/O module. The CPU is completely tied up (busy waiting) and wastes clock cycles.",
+        "In Interrupt-Driven I/O, the CPU issues an I/O command and continues executing other instructions. When the I/O module is ready, it sends a hardware interrupt signal to the CPU.",
+        "When interrupted, the CPU saves its current state (PC and PSW to stack), executes the Interrupt Service Routine (ISR), and then restores the state.",
+        "Multiple interrupts are handled using priority vectoring (e.g., Daisy Chaining), where devices are connected in a line based on priority."
+      ],
+      "formulasAndMethods": [
+        "CPU Time spent polling = $\\frac{\\text{Data Rate}}{\\text{Bytes per poll}} \\times \\text{Time per poll}.$",
+        "Fraction of CPU time wasted = $\\frac{\\text{CPU Time spent in I/O handling}}{\\text{Total Time}}$."
+      ],
+      "traps": [
+        "Thinking interrupts are a software feature. Hardware interrupts are electrical signals that physically alter the CPU's execution flow.",
+        "Forgetting that the CPU only checks for interrupts at the END of the current instruction cycle, not in the middle.",
+        "Assuming Interrupt-driven I/O is best for massive data transfers like a hard drive. It's not, because every single byte/word still requires an interrupt and context switch. That's what DMA is for."
+      ],
+      "comparisons": [
+        {
+          "title": "Programmed vs Interrupt I/O",
+          "columns": [
+            "Feature",
+            "Programmed I/O",
+            "Interrupt-Driven I/O"
+          ],
+          "rows": [
+            [
+              "CPU Involvement",
+              "Constant (busy waiting)",
+              "Low (only during ISR)"
+            ],
+            [
+              "Efficiency",
+              "Low",
+              "High"
+            ],
+            [
+              "Best suited for",
+              "Simple, dedicated systems",
+              "General-purpose, asynchronous I/O"
+            ]
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "term": "Interrupt Service Routine (ISR)",
+          "definition": "A specific software routine executed in response to a hardware interrupt to handle the I/O request."
+        },
+        {
+          "term": "Daisy Chaining",
+          "definition": "A hardware method of prioritizing interrupts by connecting devices in series; the device closest to the CPU has the highest priority."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Interrupt Processing Cycle",
+          "description": "1. CPU finishes current instruction. 2. CPU acknowledges interrupt. 3. CPU pushes PC and PSW to stack. 4. CPU loads PC with ISR address. 5. ISR executes. 6. IRET instruction pops PC and PSW to resume program."
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "A keyboard sends a byte every 10ms. The CPU operates at 1000 MIPS. If programmed I/O (polling) takes 100 instructions per poll and polls 1000 times a second, what fraction of CPU time is wasted on polling?",
+          "solution": "1. Polling executes 1000 times/sec.\\n2. Total instructions for polling = $1000 \\times 100 = 100,000$ instr/sec.\\n3. CPU capacity = $1000 \\times 10^6 = 1,000,000,000$ instr/sec.\\n4. Fraction wasted = $100,000 / 1,000,000,000 = 0.0001$, or $0.01\\$."
+        }
+      ],
+      "takeaways": [
+        "Programmed I/O causes 'busy waiting', heavily wasting CPU cycles.",
+        "Interrupts allow the CPU to overlap I/O wait time with other useful execution.",
+        "The CPU checks for interrupts only at the end of the execution phase of an instruction.",
+        "Context switching (saving PC and PSW) adds overhead to interrupt handling."
+      ],
+      "quickRecall": [
+        {
+          "question": "When does the CPU check for pending hardware interrupts?",
+          "answer": "At the end of the current instruction cycle."
+        },
+        {
+          "question": "What happens to the Program Counter (PC) when an interrupt occurs?",
+          "answer": "It is saved to the stack so the CPU can return to it after the ISR completes."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Computer Organization (Hamacher et al.) - I/O",
+          "url": "https://example.com/hamacher-io",
+          "usedFor": [
+            "Programmed vs Interrupt I/O",
+            "Daisy Chaining"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 10,
+      "title": "Direct Memory Access (DMA)",
+      "oneLine": "DMA allows high-speed I/O devices to transfer data directly to and from main memory without tying up the CPU.",
+      "whyItMatters": "For bulk data transfers (like reading a file from a disk), processing an interrupt for every single byte would cripple the CPU. DMA bypasses the CPU entirely, resulting in massive speed improvements.",
+      "understandSimply": [
+        "If you need to move 1,000 boxes into a warehouse, Interrupt I/O is like the boss (CPU) carrying every single box one by one.",
+        "DMA is like the boss hiring a specialized forklift driver (DMA Controller). The boss says 'move 1,000 boxes to aisle 4', and goes back to office work. The driver does it all and just tells the boss when it's done."
+      ],
+      "technicalExplanation": [
+        "A DMA Controller (DMAC) takes over the system buses (address, data, control) from the CPU to perform memory transfers.",
+        "The CPU initializes the DMAC with the starting memory address, word count, and direction (Read/Write).",
+        "Mode 1: Burst Mode. The DMAC halts the CPU, takes control of the bus, transfers the entire block of data, and returns control. Good for fast devices, bad for CPU responsiveness.",
+        "Mode 2: Cycle Stealing. The DMAC transfers one word at a time, 'stealing' a bus cycle from the CPU whenever the CPU doesn't need it. CPU execution is slowed down, but not halted.",
+        "Mode 3: Transparent DMA. DMAC only transfers data when the CPU is not using the system bus."
+      ],
+      "formulasAndMethods": [
+        "DMA Transfer Time = $\\text{Prep Time (Interrupt)} + (\\text{Words} \\times \\text{Time per word}) + \\text{Post-Transfer Interrupt Time}$.",
+        "Percentage of CPU cycles stolen = $\\frac{\\text{Data Transfer Rate}}{\\text{Bus Transfer Rate}} \\times 100$."
+      ],
+      "traps": [
+        "Assuming DMA requires zero CPU involvement. The CPU must still execute a few instructions to initialize the DMAC, and handle a single interrupt at the very end when the transfer is complete.",
+        "Confusing Burst Mode with Cycle Stealing. Burst holds the bus hostage until finished; Cycle Stealing sneaks in word-by-word.",
+        "Calculating data transfer rate incorrectly by failing to align byte/word sizes with bus width."
+      ],
+      "comparisons": [
+        {
+          "title": "Burst Mode vs Cycle Stealing",
+          "columns": [
+            "Feature",
+            "Burst Mode",
+            "Cycle Stealing"
+          ],
+          "rows": [
+            [
+              "Bus Control",
+              "Continuous until transfer complete",
+              "Interleaved with CPU access"
+            ],
+            [
+              "CPU Impact",
+              "CPU is blocked (stalled)",
+              "CPU is slowed down slightly"
+            ],
+            [
+              "Use Case",
+              "Very high-speed devices",
+              "Moderate-speed devices"
+            ]
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "term": "Bus Request (BR) / Bus Grant (BG)",
+          "definition": "The control signals used by the DMAC to ask the CPU for control of the system bus, and the CPU's acknowledgment."
+        },
+        {
+          "term": "Cycle Stealing",
+          "definition": "A DMA mode where the controller transfers one data word and then releases the bus back to the CPU, stealing just one cycle at a time."
+        }
+      ],
+      "steps": [
+        {
+          "title": "DMA Operation Sequence",
+          "description": "1. CPU programs DMAC (address, count). 2. DMAC requests bus (BR). 3. CPU grants bus (BG). 4. DMAC transfers data directly to/from memory. 5. DMAC releases bus. 6. DMAC sends interrupt to CPU when word count reaches zero."
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "A hard drive transfers data at 2 MB/s using DMA cycle stealing. The memory bus transfers 4 bytes per cycle, and operates at 10 MHz. What percentage of bus cycles are stolen by the DMAC?",
+          "solution": "1. Find memory bus transfer rate: $10 \\text{ MHz} = 10^7 \\text{ cycles/sec}$. Transfer rate = $10^7 \\times 4 \\text{ bytes} = 40$ MB/s.\\n2. Find DMA requirement: 2 MB/s.\\n3. Percentage stolen = $(2 / 40) \\times 100 = 5\\$."
+        }
+      ],
+      "takeaways": [
+        "DMA bypasses the CPU for data transfer, routing data directly between the I/O device and memory.",
+        "The CPU is only involved at the start (initialization) and end (completion interrupt).",
+        "Burst mode transfers entire blocks, halting the CPU. Cycle stealing transfers word-by-word, slowing the CPU.",
+        "DMA requires the CPU to release control of the address and data buses."
+      ],
+      "quickRecall": [
+        {
+          "question": "Which DMA mode halts the CPU completely until the entire data block is transferred?",
+          "answer": "Burst Mode."
+        },
+        {
+          "question": "What two pieces of information must the CPU give the DMA controller to start a transfer?",
+          "answer": "The starting memory address and the word count."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Computer Organization and Architecture (Stallings) - DMA",
+          "url": "https://example.com/stallings-dma",
+          "usedFor": [
+            "DMA Modes",
+            "Cycle stealing math"
+          ]
+        }
+      ]
+    }
+  ]
+}

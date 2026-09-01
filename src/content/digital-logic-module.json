@@ -1,0 +1,732 @@
+{
+  "id": "digital-logic",
+  "title": "Digital Logic",
+  "provenance": "original",
+  "syllabusSource": {
+    "title": "GATE 2026 CS Syllabus & IOCL Grade-A Domain Knowledge Syllabus",
+    "url": "https://gate2026.iitg.ac.in/"
+  },
+  "topics": [
+    {
+      "order": 1,
+      "title": "Number Systems, Base Conversions, Signed Representation",
+      "oneLine": "Data in computers is fundamentally stored in binary; negative numbers use 2's complement to simplify hardware arithmetic.",
+      "whyItMatters": "Base conversion and signed number interpretation are guaranteed foundational questions in digital logic exams.",
+      "understandSimply": [
+        "A base determines how many digits exist before rolling over (Base-10 has 0-9, Base-2 has 0-1).",
+        "To represent negative numbers without needing a separate 'minus sign' circuit, computers use 2's complement.",
+        "In 2's complement, adding a positive and negative number works identically to adding two positive numbers."
+      ],
+      "technicalExplanation": [
+        "Base $r$ to decimal conversion involves summing digits multiplied by $r^i$ (where $i$ is position).",
+        "Decimal to Base $r$ conversion uses successive division (for integers) and multiplication (for fractions).",
+        "1's complement of a binary number is found by inverting all bits (0 to 1, 1 to 0).",
+        "2's complement is found by taking the 1's complement and adding 1 to the least significant bit (LSB).",
+        "In 2's complement representation, there is a unique zero (unlike signed-magnitude or 1's complement which have +0 and -0)."
+      ],
+      "definitions": [
+        {
+          "term": "Radix / Base",
+          "definition": "The number of unique digits, including zero, used to represent numbers in a positional numeral system."
+        },
+        {
+          "term": "MSB / LSB",
+          "definition": "Most Significant Bit (leftmost) and Least Significant Bit (rightmost) in a binary number."
+        },
+        {
+          "term": "2's Complement",
+          "definition": "A mathematical operation on binary numbers used primarily to represent negative integers, calculated as 1's complement + 1."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Decimal to Binary Conversion",
+          "description": "Divide the decimal number by 2 repeatedly. The remainders, read from bottom to top, form the binary number."
+        },
+        {
+          "title": "Finding 2's Complement",
+          "description": "Step 1: Invert all bits. Step 2: Add 1 to the result."
+        }
+      ],
+      "formulasAndMethods": [
+        "Range of $n$-bit Signed Magnitude: $-(2^{n-1}-1)$ to $+(2^{n-1}-1)$",
+        "Range of $n$-bit 1's Complement: $-(2^{n-1}-1)$ to $+(2^{n-1}-1)$",
+        "Range of $n$-bit 2's Complement: $-2^{n-1}$ to $+(2^{n-1}-1)$"
+      ],
+      "comparisons": [
+        {
+          "title": "1's vs 2's Complement",
+          "columns": ["Property", "1's Complement", "2's Complement"],
+          "rows": [
+            ["Zero Representation", "Two (+0, -0)", "One unique (0)"],
+            ["Arithmetic", "Requires end-around carry", "Standard addition"],
+            ["Range (n bits)", "$-2^{n-1}+1$ to $2^{n-1}-1$", "$-2^{n-1}$ to $2^{n-1}-1$"]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Convert $(43)_{10}$ to binary.",
+          "solution": "43/2 = 21 rem 1; 21/2 = 10 rem 1; 10/2 = 5 rem 0; 5/2 = 2 rem 1; 2/2 = 1 rem 0; 1/2 = 0 rem 1. Reading remainders bottom-up: $(101011)_2$."
+        },
+        {
+          "question": "Find the 8-bit 2's complement of $-25$.",
+          "solution": "Positive 25 in 8 bits: $00011001$. 1's complement: $11100110$. Add 1: $11100111$."
+        }
+      ],
+      "traps": [
+        "Forgetting to pad with leading zeros to match the specified bit-width before calculating 2's complement.",
+        "Assuming the range of an $n$-bit 2's complement number is symmetric (it has one more negative number)."
+      ],
+      "takeaways": [
+        "2's complement is the standard for signed integers because it simplifies ALU design.",
+        "An $n$-bit 2's complement number represents values from $-2^{n-1}$ to $2^{n-1}-1$.",
+        "Sign extension preserves the value of a 2's complement number when increasing bit width (copy the MSB).",
+        "Octal to Binary and Hex to Binary can be done by expanding each digit to 3 or 4 bits respectively.",
+        "A negative zero does not exist in 2's complement."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the 2's complement of 0000?",
+          "answer": "0000 (The carry out is discarded)."
+        },
+        {
+          "question": "What is the largest positive number in 8-bit 2's complement?",
+          "answer": "+127 (which is $2^7 - 1$)."
+        }
+      ],
+      "sources": [
+        {
+          "title": "M. Morris Mano, Digital Design",
+          "url": "https://gate2026.iitg.ac.in/doc/GATE2026_Syllabus/CS_2026_Syllabus.pdf",
+          "usedFor": ["Number bases", "Complement arithmetic"]
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "title": "Floating-Point Representation (IEEE 754)",
+      "oneLine": "IEEE 754 standardizes how computers represent real numbers using a sign bit, a biased exponent, and a normalized fractional mantissa.",
+      "whyItMatters": "Floating-point representation is heavily tested for conversions, range calculations, and special values like Infinity and NaN.",
+      "understandSimply": [
+        "Scientific notation writes numbers like $1.5 \\times 10^3$. IEEE 754 does this in binary: $1.M \\times 2^E$.",
+        "The sign bit determines positive or negative.",
+        "The exponent is shifted (biased) so we only deal with positive numbers in the exponent field.",
+        "The mantissa (fraction) drops the leading '1' to save a bit (since binary scientific notation always starts with 1)."
+      ],
+      "technicalExplanation": [
+        "IEEE 754 Single Precision uses 32 bits: 1 sign bit, 8 exponent bits, 23 fraction (mantissa) bits.",
+        "IEEE 754 Double Precision uses 64 bits: 1 sign bit, 11 exponent bits, 52 fraction bits.",
+        "The stored exponent $E$ is biased: $E = \\text{Actual Exponent} + \\text{Bias}$. Bias is 127 for Single and 1023 for Double.",
+        "The fraction $M$ represents the fractional part after the implied '1.' (normalized form).",
+        "Value $= (-1)^S \\times 1.M \\times 2^{E-\\text{Bias}}$.",
+        "Special cases exist when $E=0$ (Denormalized/Zero) and when $E=\\text{all 1s}$ (Infinity/NaN)."
+      ],
+      "definitions": [
+        {
+          "term": "Biased Exponent",
+          "definition": "An exponent representation where a fixed constant (bias) is added to the true exponent so all stored values are non-negative."
+        },
+        {
+          "term": "Normalized Form",
+          "definition": "A standard format for floating point numbers where the radix point is placed exactly after the first non-zero digit."
+        },
+        {
+          "term": "NaN (Not a Number)",
+          "definition": "A special floating-point value used to represent undefined operations like $0/0$."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Decimal to IEEE 754 (Single Precision)",
+          "description": "1. Convert decimal to binary. 2. Normalize to $1.M \\times 2^e$. 3. Calculate $E = e + 127$. 4. Pack Sign (1 bit), $E$ (8 bits), and $M$ (23 bits)."
+        }
+      ],
+      "formulasAndMethods": [
+        "Single Precision Value: $V = (-1)^S \\times 1.M \\times 2^{E - 127}$",
+        "Double Precision Value: $V = (-1)^S \\times 1.M \\times 2^{E - 1023}$"
+      ],
+      "comparisons": [
+        {
+          "title": "Single vs Double Precision",
+          "columns": ["Property", "Single (32-bit)", "Double (64-bit)"],
+          "rows": [
+            ["Sign Bits", "1", "1"],
+            ["Exponent Bits", "8", "11"],
+            ["Fraction Bits", "23", "52"],
+            ["Bias", "127", "1023"]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Convert $-5.75$ to IEEE 754 single precision.",
+          "solution": "Sign $S=1$. Binary of 5.75 is $101.11$. Normalize: $1.0111 \\times 2^2$. True exponent $e=2$. Biased exponent $E = 2+127 = 129 = (10000001)_2$. Mantissa $M = 0111$ (padded to 23 bits). Result: $1\\ 10000001\\ 01110000000000000000000$."
+        }
+      ],
+      "traps": [
+        "Forgetting the implicit leading '1' in the normalized mantissa when calculating the decimal value.",
+        "Confusing the bias value (127 vs 1023) or subtracting the bias in the wrong direction."
+      ],
+      "takeaways": [
+        "IEEE 754 single precision allocates 1 bit for sign, 8 for exponent, 23 for mantissa.",
+        "Bias for 32-bit is 127; Bias for 64-bit is 1023.",
+        "The leading '1' in normalized form is implicit and NOT stored.",
+        "An exponent of all 1s indicates Infinity (if mantissa is 0) or NaN (if mantissa is non-zero).",
+        "An exponent of all 0s indicates a Denormalized number or Zero."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the bias for IEEE 754 double precision?",
+          "answer": "1023."
+        },
+        {
+          "question": "How is Infinity represented in IEEE 754?",
+          "answer": "Exponent = all 1s, Mantissa = all 0s."
+        }
+      ],
+      "sources": [
+        {
+          "title": "IEEE 754-2019 Standard",
+          "url": "https://gate2026.iitg.ac.in/doc/GATE2026_Syllabus/CS_2026_Syllabus.pdf",
+          "usedFor": ["Standardized floating point formats"]
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "title": "Boolean Algebra & Logic Gates",
+      "oneLine": "Boolean algebra provides the mathematical rules for simplifying digital circuits built using fundamental logic gates.",
+      "whyItMatters": "Simplifying Boolean expressions reduces the number of hardware gates required, lowering cost and propagation delay.",
+      "understandSimply": [
+        "Logic gates are physical devices that implement basic logical operations (AND, OR, NOT).",
+        "Boolean algebra acts like regular algebra but only uses 0 and 1, with specific rules (like $A + A = A$).",
+        "De Morgan's laws allow us to transform AND operations into OR operations, and vice versa."
+      ],
+      "technicalExplanation": [
+        "Key postulates: Commutative, Associative, and Distributive laws apply to AND ($\\cdot$) and OR ($+$).",
+        "Idempotent Law: $A + A = A$, $A \\cdot A = A$.",
+        "Absorption Law: $A + AB = A$, $A(A + B) = A$.",
+        "De Morgan's Theorem: $(A+B)' = A' \\cdot B'$ and $(AB)' = A' + B'$.",
+        "Canonical Forms: Sum of Products (SOP) uses minterms (where function is 1), Product of Sums (POS) uses maxterms (where function is 0).",
+        "NAND and NOR are Universal Gates because any boolean function can be implemented using only NAND or only NOR gates."
+      ],
+      "definitions": [
+        {
+          "term": "Universal Gate",
+          "definition": "A logic gate capable of implementing any Boolean function without needing any other type of gate (e.g., NAND, NOR)."
+        },
+        {
+          "term": "Minterm",
+          "definition": "A product term containing all variables of the function exactly once (in true or complemented form), evaluating to 1 for exactly one input combination."
+        },
+        {
+          "term": "Maxterm",
+          "definition": "A sum term containing all variables exactly once, evaluating to 0 for exactly one input combination."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Proving Equivalence using Boolean Algebra",
+          "description": "Apply theorems like Distributive, Absorption, and De Morgan's sequentially to reduce an expression to its simplest form."
+        }
+      ],
+      "formulasAndMethods": [
+        "Consensus Theorem: $AB + A'C + BC = AB + A'C$",
+        "Involution: $(A')' = A$"
+      ],
+      "comparisons": [
+        {
+          "title": "SOP vs POS Canonical Forms",
+          "columns": ["Property", "SOP (Sum of Products)", "POS (Product of Sums)"],
+          "rows": [
+            ["Base Units", "Minterms ($m_i$)", "Maxterms ($M_i$)"],
+            ["Evaluates to", "1s of the function", "0s of the function"],
+            ["Variable State", "Normal=1, Comp=0", "Normal=0, Comp=1"]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Simplify $F = A'B + ABC' + ABC$.",
+          "solution": "$F = A'B + AB(C' + C) = A'B + AB(1) = A'B + AB = B(A' + A) = B$."
+        },
+        {
+          "question": "Implement NOT $A$ using only 2-input NAND gates.",
+          "solution": "Tie both inputs of a NAND gate together: $F = (A \\cdot A)' = A'$."
+        }
+      ],
+      "traps": [
+        "Failing to apply the Consensus Theorem, leaving a redundant term in the expression.",
+        "Incorrectly translating a truth table to POS by using minterm variables instead of maxterm rules (in POS, 0 is uncomplemented)."
+      ],
+      "takeaways": [
+        "NAND and NOR are the only universal gates.",
+        "The Consensus Theorem ($AB + A'C + BC = AB + A'C$) eliminates redundant terms.",
+        "SOP focuses on combinations that output 1; POS focuses on combinations that output 0.",
+        "Any boolean function can be uniquely expressed in standard canonical SOP or POS form.",
+        "De Morgan's laws invert variables and flip AND/OR operators."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the Absorption Law?",
+          "answer": "$A + AB = A$."
+        },
+        {
+          "question": "Which gates are universal?",
+          "answer": "NAND and NOR."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Mano & Ciletti, Digital Design",
+          "url": "https://gate2026.iitg.ac.in/doc/GATE2026_Syllabus/CS_2026_Syllabus.pdf",
+          "usedFor": ["Boolean postulates and logic gates"]
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "title": "Gate-Level Minimization (K-Maps)",
+      "oneLine": "Karnaugh Maps (K-Maps) provide a visual, systematic method to find the minimal boolean expression without complex algebraic manipulation.",
+      "whyItMatters": "K-map minimization is a guaranteed question pattern, testing your ability to group 1s optimally and handle 'don't care' conditions.",
+      "understandSimply": [
+        "A K-Map is a grid where adjacent cells differ by only one variable (Gray code order).",
+        "By drawing rectangles around adjacent 1s (in powers of 2: 1, 2, 4, 8), we cancel out variables that change state.",
+        "The larger the rectangle, the fewer variables remain in the final term."
+      ],
+      "technicalExplanation": [
+        "Cells are arranged so physical adjacency matches logical adjacency ($A'B$ is adjacent to $AB$).",
+        "The grid wraps around; edges are adjacent to opposite edges.",
+        "Prime Implicant (PI): A group of 1s that cannot be expanded into a larger group.",
+        "Essential Prime Implicant (EPI): A PI that covers at least one '1' not covered by any other PI. EPIs must be in the final minimal expression.",
+        "Don't Cares (d or X): Output states that will never occur. They can be treated as 1 or 0 to help form larger groups."
+      ],
+      "definitions": [
+        {
+          "term": "Gray Code",
+          "definition": "An ordering of binary numbers such that two successive values differ in only one bit (used on K-map axes)."
+        },
+        {
+          "term": "Prime Implicant (PI)",
+          "definition": "The largest possible group of adjacent 1s in a K-map."
+        },
+        {
+          "term": "Essential Prime Implicant (EPI)",
+          "definition": "A prime implicant that contains at least one minterm which is not covered by any other prime implicant."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Minimizing using a K-Map",
+          "description": "1. Plot 1s (and Xs) in the map. 2. Identify all EPIs and include them. 3. Cover remaining 1s with the fewest/largest overlapping PIs. 4. Ignore Xs that don't help."
+        }
+      ],
+      "formulasAndMethods": [
+        "A K-map for $n$ variables has $2^n$ cells.",
+        "A group of $2^k$ cells eliminates $k$ variables from the resulting term."
+      ],
+      "comparisons": [
+        {
+          "title": "Algebraic vs K-Map Minimization",
+          "columns": ["Feature", "Algebraic", "K-Map"],
+          "rows": [
+            ["Method", "Apply theorems sequentially", "Visual grouping"],
+            ["Guarantee of Minimalism", "Depends on human intuition", "Systematically guaranteed up to 4-5 vars"],
+            ["Error Proneness", "High (easy to miss rules)", "Low (if grouped correctly)"]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Minimize $F(A,B,C) = \\sum m(0, 2, 4, 6)$.",
+          "solution": "These are minterms $A'B'C'$ (0), $A'BC'$ (2), $AB'C'$ (4), $ABC'$ (6). They all share $C=0$. Grouping all four corners (or a column if drawn that way) eliminates A and B. Minimal expression: $F = C'$."
+        }
+      ],
+      "traps": [
+        "Grouping cells diagonally (only horizontal/vertical adjacencies are valid).",
+        "Forgetting that the map wraps around the edges.",
+        "Including 'Don't Cares' in the final grouping when they aren't needed to cover an uncovered '1'."
+      ],
+      "takeaways": [
+        "K-Map axes must follow Gray code (00, 01, 11, 10).",
+        "Group sizes must be powers of 2 (1, 2, 4, 8, 16).",
+        "Essential Prime Implicants MUST be part of the minimal SOP.",
+        "Use 'Don't Cares' ONLY if they make a group larger, reducing the term size.",
+        "Grouping 1s gives the minimal SOP; grouping 0s gives the minimal POS."
+      ],
+      "quickRecall": [
+        {
+          "question": "How many cells are in a 4-variable K-map?",
+          "answer": "16 cells."
+        },
+        {
+          "question": "What is an Essential Prime Implicant?",
+          "answer": "A maximal group covering a 1 that no other group can cover."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Mano & Ciletti, Digital Design",
+          "url": "https://gate2026.iitg.ac.in/doc/GATE2026_Syllabus/CS_2026_Syllabus.pdf",
+          "usedFor": ["K-Map minimization rules", "Prime implicants"]
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "title": "Combinational Circuits I: Arithmetic",
+      "oneLine": "Combinational circuits compute outputs instantly based only on current inputs, forming the arithmetic backbone of the ALU.",
+      "whyItMatters": "Exams frequently test adder logic, carry propagation delay, and the construction of subtractors/multipliers.",
+      "understandSimply": [
+        "Combinational means 'no memory'. The output depends only on what is plugged in right now.",
+        "A Half Adder adds two bits. A Full Adder adds two bits PLUS a carry-in bit.",
+        "To add large numbers (like 8-bit), we chain Full Adders together, but waiting for the carry to ripple through takes time."
+      ],
+      "technicalExplanation": [
+        "Half Adder: Sum = $A \\oplus B$, Carry = $AB$.",
+        "Full Adder: Sum = $A \\oplus B \\oplus C_{in}$, Carry = $AB + C_{in}(A \\oplus B)$.",
+        "Ripple Carry Adder (RCA): Connects $C_{out}$ of one stage to $C_{in}$ of the next. Total delay for $n$-bits is roughly $n$ times the delay of a single full adder.",
+        "Carry Lookahead Adder (CLA): Computes carry signals in parallel using Generate ($G_i = A_i B_i$) and Propagate ($P_i = A_i \\oplus B_i$) signals, significantly reducing delay to $O(\\log n)$ or constant time logic levels.",
+        "Subtractors can be implemented using Adders by passing the 2's complement of the subtrahend (invert inputs and set $C_{in} = 1$)."
+      ],
+      "definitions": [
+        {
+          "term": "Combinational Circuit",
+          "definition": "A logic circuit whose output depends entirely on the present combination of inputs, with no internal state or memory."
+        },
+        {
+          "term": "Carry Propagation Delay",
+          "definition": "The time it takes for a carry signal to travel from the least significant bit to the most significant bit in an adder."
+        },
+        {
+          "term": "Generate/Propagate",
+          "definition": "Signals used in CLA. Generate means the stage produces a carry regardless of input carry. Propagate means it will pass an input carry to the output."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Designing a Full Adder from Half Adders",
+          "description": "Connect two Half Adders and an OR gate. First HA adds A and B. Second HA adds the sum to Cin. OR gate combines their carries."
+        }
+      ],
+      "formulasAndMethods": [
+        "Full Adder Sum: $S = A \\oplus B \\oplus C_{in}$",
+        "Full Adder Carry: $C_{out} = AB + BC_{in} + AC_{in}$",
+        "CLA Carry eq: $C_{i+1} = G_i + P_i C_i$"
+      ],
+      "comparisons": [
+        {
+          "title": "Ripple Carry vs Carry Lookahead",
+          "columns": ["Feature", "Ripple Carry Adder (RCA)", "Carry Lookahead Adder (CLA)"],
+          "rows": [
+            ["Speed", "Slow (delay $\\propto n$)", "Fast (delay is roughly constant/logarithmic)"],
+            ["Hardware Complexity", "Low (repeated full adders)", "High (complex parallel carry logic)"],
+            ["Cost", "Cheap", "Expensive (more gates)"]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "How many AND, OR, and EX-OR gates are required for a Full Adder?",
+          "solution": "A typical implementation requires 2 XOR gates (for Sum), 2 AND gates, and 1 OR gate (for Carry)."
+        }
+      ],
+      "traps": [
+        "Confusing the Sum and Carry equations of a Half Adder ($S = A \\oplus B$, $C = AB$).",
+        "Assuming a CLA has exactly $O(1)$ delay for infinite bits (fan-in limits require hierarchical CLAs)."
+      ],
+      "takeaways": [
+        "Combinational circuits have no memory or feedback loops.",
+        "A Full Adder is constructed using 2 Half Adders and an OR gate.",
+        "Ripple Carry Adders are slow because the carry bit must sequentially pass through every stage.",
+        "Carry Lookahead Adders (CLA) use Generate and Propagate terms to compute carries in parallel.",
+        "A 2's complement subtractor is just an adder with inverted B inputs and an initial carry-in of 1."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the logical expression for a Half Adder's sum?",
+          "answer": "$A \\oplus B$"
+        },
+        {
+          "question": "What do $P_i$ and $G_i$ stand for in a CLA?",
+          "answer": "Propagate and Generate."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Mano & Ciletti, Digital Design",
+          "url": "https://gate2026.iitg.ac.in/doc/GATE2026_Syllabus/CS_2026_Syllabus.pdf",
+          "usedFor": ["Adder circuits", "Carry lookahead logic"]
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "title": "Combinational Circuits II: Data Routing",
+      "oneLine": "Multiplexers, decoders, and encoders route and translate data, and can be used to implement arbitrary boolean functions.",
+      "whyItMatters": "Exams frequently ask you to implement an $n$-variable boolean function using a specific size MUX or Decoder.",
+      "understandSimply": [
+        "A Multiplexer (MUX) is a digital switch: many inputs, one output, controlled by select lines.",
+        "A Decoder activates one specific output line based on the binary input code.",
+        "An Encoder does the reverse: it converts a single active input line into a binary code."
+      ],
+      "technicalExplanation": [
+        "A $2^n$-to-$1$ MUX has $n$ select lines and can implement any boolean function of $n$ variables directly, or $n+1$ variables if the data inputs are tied to variables/constants.",
+        "An $n$-to-$2^n$ Decoder takes an $n$-bit binary input and activates exactly one of its $2^n$ outputs (representing minterms).",
+        "Any SOP boolean function can be implemented using one Decoder and a single OR gate connecting the required minterms.",
+        "A Priority Encoder resolves multiple active inputs by outputting the binary code of the active input with the highest priority."
+      ],
+      "definitions": [
+        {
+          "term": "Multiplexer (MUX)",
+          "definition": "A combinational circuit that selects binary information from one of many input lines and directs it to a single output line."
+        },
+        {
+          "term": "Decoder",
+          "definition": "A combinational circuit that converts binary information from $n$ input lines to a maximum of $2^n$ unique output lines."
+        },
+        {
+          "term": "Enable Input",
+          "definition": "A control pin on decoders/chips that turns the entire circuit on or off. Useful for chaining smaller decoders into larger ones."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Implementing an N-variable function with an N-1 variable MUX",
+          "description": "1. Use $N-1$ variables as select lines. 2. Write the truth table. 3. For each select combination, determine if the output matches the remaining variable (e.g. $0, 1, X, X'$). 4. Apply these to the data inputs."
+        }
+      ],
+      "formulasAndMethods": [
+        "A $2^n$-to-1 MUX requires $n$ select lines.",
+        "Building a $2^{2n}$-to-1 MUX requires $(2^n + 1)$ of $2^n$-to-1 MUXes."
+      ],
+      "comparisons": [
+        {
+          "title": "MUX vs Decoder",
+          "columns": ["Feature", "Multiplexer (MUX)", "Decoder"],
+          "rows": [
+            ["Inputs/Outputs", "$2^n$ inputs, 1 output", "$n$ inputs, $2^n$ outputs"],
+            ["Select Lines", "$n$ select lines", "None (inputs act as selectors)"],
+            ["Function Realization", "Connect data pins to constants/vars", "Connect outputs to an OR gate"]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "How many $4:1$ MUXes are required to build a $16:1$ MUX?",
+          "solution": "We need four $4:1$ MUXes in the first stage to handle 16 inputs, and one $4:1$ MUX in the second stage to select among their outputs. Total: 5."
+        }
+      ],
+      "traps": [
+        "Forgetting that implementing an $n$-variable function with a $2^{n-1}:1$ MUX requires connecting the $n$-th variable (or its complement) to the data pins.",
+        "Confusing standard encoders with priority encoders when multiple inputs are high."
+      ],
+      "takeaways": [
+        "A MUX is a Data Selector; a Demultiplexer (DEMUX) is a Data Distributor.",
+        "An $n$-to-$2^n$ decoder generates all $2^n$ minterms of its input variables.",
+        "Any boolean function can be implemented with a decoder and an OR gate.",
+        "A priority encoder handles simultaneous inputs by prioritizing the highest-index input.",
+        "To build a large MUX from smaller MUXes, arrange them in a tree structure."
+      ],
+      "quickRecall": [
+        {
+          "question": "How many select lines are in an $8:1$ MUX?",
+          "answer": "3 select lines ($2^3 = 8$)."
+        },
+        {
+          "question": "What gate is used with a Decoder to implement SOP functions?",
+          "answer": "An OR gate."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Mano & Ciletti, Digital Design",
+          "url": "https://gate2026.iitg.ac.in/doc/GATE2026_Syllabus/CS_2026_Syllabus.pdf",
+          "usedFor": ["MUX implementations", "Decoder logic"]
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "title": "Sequential Circuits I: Latches & Flip-Flops",
+      "oneLine": "Sequential circuits incorporate memory and clock timing, meaning their output depends on both current inputs and past states.",
+      "whyItMatters": "Flip-flop characteristic equations, excitation tables, and timing constraints (setup/hold) are critical for analyzing state changes.",
+      "understandSimply": [
+        "While combinational logic is instantaneous, sequential logic remembers the past using feedback loops.",
+        "A Latch is level-sensitive: it changes state as long as the enable signal is high.",
+        "A Flip-Flop is edge-triggered: it only captures input data exactly when the clock transitions (rising or falling edge)."
+      ],
+      "technicalExplanation": [
+        "SR Flip-Flop: Set (1), Reset (0). S=1, R=1 is an invalid state.",
+        "JK Flip-Flop: Solves the SR invalid state by toggling when J=1, K=1.",
+        "D Flip-Flop (Data/Delay): Output matches input on the clock edge ($Q(t+1) = D$).",
+        "T Flip-Flop (Toggle): Toggles output if T=1, holds if T=0 ($Q(t+1) = T \\oplus Q(t)$).",
+        "Setup Time ($t_s$): Minimum time data must be stable BEFORE the clock edge.",
+        "Hold Time ($t_h$): Minimum time data must be stable AFTER the clock edge."
+      ],
+      "definitions": [
+        {
+          "term": "Sequential Circuit",
+          "definition": "A logic circuit whose output depends on present inputs and the previous state (memory)."
+        },
+        {
+          "term": "Edge-Triggered",
+          "definition": "A circuit state change that occurs only at the exact moment of a clock signal transition (rising or falling edge)."
+        },
+        {
+          "term": "Race Around Condition",
+          "definition": "In level-triggered JK flip-flops, if J=1, K=1 and the clock pulse is too long, the output toggles unpredictably."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Preventing Race Around Condition",
+          "description": "1. Use edge-triggered flip-flops. 2. Use Master-Slave configuration. 3. Ensure clock pulse width is less than the propagation delay of the flip-flop."
+        }
+      ],
+      "formulasAndMethods": [
+        "SR Char. Eq: $Q(t+1) = S + R'Q$ (with $SR=0$)",
+        "JK Char. Eq: $Q(t+1) = JQ' + K'Q$",
+        "D Char. Eq: $Q(t+1) = D$",
+        "T Char. Eq: $Q(t+1) = T \\oplus Q$",
+        "Max Clock Freq: $f_{\\max} = \\frac{1}{t_{prop} + t_{setup}}$"
+      ],
+      "comparisons": [
+        {
+          "title": "Latch vs Flip-Flop",
+          "columns": ["Feature", "Latch", "Flip-Flop"],
+          "rows": [
+            ["Triggering", "Level-triggered", "Edge-triggered"],
+            ["Components", "Logic gates with feedback", "Latches with clock edge detector / Master-Slave"],
+            ["Sensitivity", "Sensitive while clock is high/low", "Sensitive only at the clock transition"]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Derive the D flip-flop from a JK flip-flop.",
+          "solution": "Connect the data input $D$ directly to the $J$ pin, and connect $D'$ (via a NOT gate) to the $K$ pin. Now, if $D=1 \\rightarrow J=1,K=0 \\rightarrow Q=1$. If $D=0 \\rightarrow J=0,K=1 \\rightarrow Q=0$."
+        }
+      ],
+      "traps": [
+        "Confusing Characteristic Tables (given present state and input, what is next state?) with Excitation Tables (given present state and next state, what input is required?).",
+        "Ignoring setup/hold times when calculating the maximum operating frequency of a sequential circuit."
+      ],
+      "takeaways": [
+        "Latches are level-sensitive; Flip-flops are edge-triggered.",
+        "The JK flip-flop resolves the SR flip-flop's undefined state by toggling when inputs are 1,1.",
+        "The Race Around Condition occurs in level-triggered JK latches and is solved using Master-Slave flip-flops.",
+        "D flip-flops are widely used for building registers and memory (delay elements).",
+        "T flip-flops are widely used for building counters (toggle elements)."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the characteristic equation of a JK flip-flop?",
+          "answer": "$Q(t+1) = JQ' + K'Q$"
+        },
+        {
+          "question": "Which flip-flop toggles its output?",
+          "answer": "T Flip-Flop (when T=1) or JK Flip-Flop (when J=1, K=1)."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Mano & Ciletti, Digital Design",
+          "url": "https://gate2026.iitg.ac.in/doc/GATE2026_Syllabus/CS_2026_Syllabus.pdf",
+          "usedFor": ["Flip-flop characteristics", "Timing constraints"]
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "title": "Sequential Circuits II: Registers & Counters",
+      "oneLine": "Multiple flip-flops linked together form registers for data storage and counters for state sequencing, governed by finite state machines.",
+      "whyItMatters": "Exams frequently test counter states, MOD numbers, shift register sequence prediction, and state diagrams.",
+      "understandSimply": [
+        "A Register is a row of D flip-flops that stores a multi-bit word.",
+        "A Shift Register passes data down the line from one flip-flop to the next on every clock pulse.",
+        "A Counter is a sequential circuit that cycles through a specific sequence of states (like binary numbers 0 to 7)."
+      ],
+      "technicalExplanation": [
+        "Asynchronous (Ripple) Counter: Clock drives only the first flip-flop; subsequent FFs are clocked by the output of the previous one. Slow due to cumulative delay.",
+        "Synchronous Counter: All flip-flops share a common clock. Fast, but requires complex combinational logic to determine next states.",
+        "Modulus (MOD): A MOD-N counter cycles through N distinct states. It requires $\\lceil \\log_2 N \\rceil$ flip-flops.",
+        "Ring Counter: A shift register with the output of the last FF fed to the first. $N$ states for $N$ flip-flops.",
+        "Johnson Counter: A twisted ring counter where the inverted output of the last FF is fed to the first. $2N$ states for $N$ flip-flops.",
+        "Finite State Machines (FSM): Moore machine output depends ONLY on the current state. Mealy machine output depends on BOTH the current state and current inputs."
+      ],
+      "definitions": [
+        {
+          "term": "MOD Number",
+          "definition": "The number of unique states a counter cycles through before repeating."
+        },
+        {
+          "term": "Mealy Machine",
+          "definition": "An FSM where outputs are determined by the current state AND the current inputs."
+        },
+        {
+          "term": "Moore Machine",
+          "definition": "An FSM where outputs are determined solely by the current state."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Designing a Synchronous Counter",
+          "description": "1. Draw state diagram/table. 2. Choose FF type (e.g. T or JK). 3. Use excitation tables to find required FF inputs. 4. Use K-Maps to minimize logic for FF inputs."
+        }
+      ],
+      "formulasAndMethods": [
+        "Max states with $n$ FFs: $2^n$",
+        "Ring Counter MOD: $N$",
+        "Johnson Counter MOD: $2N$",
+        "Ripple Counter Max Delay: $n \\times t_{pd}$ (for $n$ bits)"
+      ],
+      "comparisons": [
+        {
+          "title": "Synchronous vs Asynchronous Counters",
+          "columns": ["Feature", "Asynchronous (Ripple)", "Synchronous"],
+          "rows": [
+            ["Clocking", "FFs clocked sequentially", "All FFs clocked simultaneously"],
+            ["Speed", "Slow (cumulative delay)", "Fast (delay of one FF + logic)"],
+            ["Design", "Simple to cascade", "Complex combinational logic needed"]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "How many flip-flops are needed to design a MOD-25 counter?",
+          "solution": "We need $2^n \\ge 25$. If $n=4$, $2^4 = 16$ (too small). If $n=5$, $2^5 = 32$. Thus, 5 flip-flops are required."
+        }
+      ],
+      "traps": [
+        "Assuming an $N$-bit Ring counter has $2^N$ states (it only has $N$ states).",
+        "Forgetting that Mealy machine outputs can change asynchronously if the input changes mid-cycle, whereas Moore machine outputs are stable throughout the state."
+      ],
+      "takeaways": [
+        "Asynchronous counters are simple but suffer from propagation delay ripples.",
+        "Synchronous counters apply the clock to all flip-flops simultaneously.",
+        "A Ring Counter with $N$ flip-flops has MOD $N$.",
+        "A Johnson Counter with $N$ flip-flops has MOD $2N$.",
+        "Moore outputs are state-dependent; Mealy outputs are state and input-dependent."
+      ],
+      "quickRecall": [
+        {
+          "question": "How many states in a 4-bit Johnson counter?",
+          "answer": "8 states ($2 \\times 4$)."
+        },
+        {
+          "question": "Which FSM's output depends on inputs?",
+          "answer": "Mealy Machine."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Mano & Ciletti, Digital Design",
+          "url": "https://gate2026.iitg.ac.in/doc/GATE2026_Syllabus/CS_2026_Syllabus.pdf",
+          "usedFor": ["Counter design", "FSM classification"]
+        }
+      ]
+    }
+  ]
+}
