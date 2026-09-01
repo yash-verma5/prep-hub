@@ -1,0 +1,1216 @@
+{
+  "id": "algorithms",
+  "title": "Algorithms",
+  "description": "Master algorithmic design techniques, asymptotic analysis, and complex data operations as outlined in the GATE/IOCL CS syllabus.",
+  "provenance": "original",
+  "syllabusSource": {
+    "title": "GATE CS 2026 Algorithms Scope",
+    "url": "https://gate.iitkgp.ac.in/cs-syllabus.html"
+  },
+  "topics": [
+    {
+      "id": "algo-1-asymptotic-analysis",
+      "order": 1,
+      "title": "Asymptotic Analysis",
+      "oneLine": "Asymptotic analysis defines the mathematical bounds of an algorithm's resource consumption as input size grows toward infinity.",
+      "whyItMatters": "Calculations on Big-O, Omega, and Theta bounds are foundational; practically every numerical efficiency question in the exam starts here.",
+      "understandSimply": [
+        "Instead of counting exact milliseconds, we just care how the runtime scales.",
+        "If doubling the input doubles the time, it's linear. If it quadruples the time, it's quadratic.",
+        "Big-O gives a ceiling (worst-case scaling), Big-Omega gives a floor (best-case scaling), and Big-Theta means the scaling is tightly bound."
+      ],
+      "technicalExplanation": [
+        "Asymptotic notations describe the limiting behavior of a function when the argument tends towards a particular value or infinity.",
+        "For $f(n) = O(g(n))$, there exist positive constants $c$ and $n_0$ such that $0 \\le f(n) \\le c \\cdot g(n)$ for all $n \\ge n_0$.",
+        "For $f(n) = \\Omega(g(n))$, there exist $c > 0$ and $n_0$ such that $0 \\le c \\cdot g(n) \\le f(n)$ for all $n \\ge n_0$.",
+        "For $f(n) = \\Theta(g(n))$, both $O$ and $\\Omega$ conditions hold simultaneously."
+      ],
+      "formulasAndMethods": [
+        "Strict Upper Bound (Little-o): $f(n) = o(g(n))$ implies $\\lim_{n \\to \\infty} \\frac{f(n)}{g(n)} = 0$",
+        "Strict Lower Bound (Little-omega): $f(n) = \\omega(g(n))$ implies $\\lim_{n \\to \\infty} \\frac{f(n)}{g(n)} = \\infty$",
+        "Growth Hierarchy: $O(1) < O(\\log n) < O(n) < O(n \\log n) < O(n^c) < O(c^n) < O(n!) < O(n^n)$"
+      ],
+      "comparisons": [
+        {
+          "title": "Big-O vs Big-Omega vs Big-Theta",
+          "columns": [
+            "Property",
+            "Big-O ($O$)",
+            "Big-Omega ($\\Omega$)",
+            "Big-Theta ($\\Theta$)"
+          ],
+          "rows": [
+            [
+              "Definition",
+              "Upper bound",
+              "Lower bound",
+              "Tight bound"
+            ],
+            [
+              "Analogy",
+              "$\\le$",
+              "$\\ge$",
+              "$=$"
+            ],
+            [
+              "Application",
+              "Worst-case limits",
+              "Best-case limits",
+              "Exact scaling"
+            ]
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "term": "General Asymptotic Analysis",
+          "definition": "Core concept related to Asymptotic Analysis"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Analyze Asymptotic Analysis",
+          "description": "Step-by-step breakdown of Asymptotic Analysis"
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Which grows faster: $f(n) = n^{\\log n}$ or $g(n) = (\\log n)^n$?",
+          "solution": "Take $\\log$ of both sides. $\\log f(n) = \\log n \\cdot \\log n = (\\log n)^2$. $\\log g(n) = n \\cdot \\log(\\log n)$. Since $n$ grows much faster than $(\\log n)^2$, $g(n)$ grows significantly faster than $f(n)$."
+        },
+        {
+          "question": "Is $2^{n+1} = O(2^n)$? Is $2^{2n} = O(2^n)$?",
+          "solution": "Yes, $2^{n+1} = 2 \\cdot 2^n$, so it differs by a constant factor $c=2$. However, $2^{2n} = 4^n$, which is exponentially larger than $2^n$, so it is not $O(2^n)$."
+        }
+      ],
+      "takeaways": [
+        "Always take logarithms of both sides when comparing complex exponential or logarithmic functions.",
+        "Big-O represents an upper bound, not necessarily the exact worst-case complexity.",
+        "Constants and lower-order terms are always ignored in asymptotic analysis.",
+        "Polynomial growth always overtakes poly-logarithmic growth eventually.",
+        "Little-o and Little-omega require strict inequality; they do not allow the functions to grow at the exact same rate."
+      ],
+      "traps": [
+        "Confusing worst-case time complexity with Big-O. An algorithm can have a best-case time complexity of $O(n^2)$ and a worst-case of $O(n^2)$."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the relationship between Big-O and Little-o?",
+          "answer": "Big-O is $\\le$, Little-o is strict $<$. If $f(n) = o(g(n))$, it is definitely $O(g(n))$, but the reverse is not always true."
+        },
+        {
+          "question": "Which is asymptotically larger: $n!$ or $n^n$?",
+          "answer": "$n^n$ is larger. $n! \\approx (n/e)^n$ via Stirling's approximation."
+        },
+        {
+          "question": "What is the condition for $f(n) = \\Theta(g(n))$?",
+          "answer": "There exist constants $c_1, c_2, n_0$ such that $c_1 g(n) \\le f(n) \\le c_2 g(n)$ for all $n \\ge n_0$."
+        }
+      ],
+      "sources": [
+        {
+          "title": "CLRS Introduction to Algorithms",
+          "url": "https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/",
+          "usedFor": [
+            "Formal definitions of asymptotic bounds and growth order"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "algo-2-recurrence-relations",
+      "order": 2,
+      "title": "Recurrence Relations & Master Theorem",
+      "oneLine": "Recurrence relations express the runtime of recursive algorithms, most commonly solved using the Master Theorem.",
+      "whyItMatters": "Questions asking for the time complexity of a recursive pseudo-code snippet are guaranteed in the exam. You must be able to solve $T(n) = aT(n/b) + f(n)$ in seconds.",
+      "understandSimply": [
+        "When an algorithm calls itself, we can write its total time as the time to do the split/merge work plus the time taken by the subproblems.",
+        "The Master Theorem is a shortcut. It compares the work done at the root of the recursion tree to the work done at the leaves.",
+        "If leaves do more work, it's case 1. If work is balanced, it's case 2. If the root does more work, it's case 3."
+      ],
+      "technicalExplanation": [
+        "The Master Theorem solves recurrences of the form $T(n) = aT(n/b) + f(n)$ where $a \\ge 1$ and $b > 1$.",
+        "It defines the critical exponent $c_{crit} = \\log_b a$. We compare $n^{c_{crit}}$ with $f(n)$.",
+        "Case 1: If $f(n) = O(n^{c_{crit} - \\epsilon})$ for $\\epsilon > 0$, then $T(n) = \\Theta(n^{\\log_b a})$.",
+        "Case 2: If $f(n) = \\Theta(n^{c_{crit}} \\log^k n)$ for $k \\ge 0$, then $T(n) = \\Theta(n^{\\log_b a} \\log^{k+1} n)$.",
+        "Case 3: If $f(n) = \\Omega(n^{c_{crit} + \\epsilon})$ for $\\epsilon > 0$, and if $a f(n/b) \\le c f(n)$ for some $c < 1$ (regularity condition), then $T(n) = \\Theta(f(n))$."
+      ],
+      "formulasAndMethods": [
+        "Master Theorem Critical Exponent: $E = \\log_b a$",
+        "Substitution Method: Guess the bound, use mathematical induction to prove $T(n) \\le c \\cdot g(n)$.",
+        "Recursion Tree: Sum the cost of all nodes across all levels. Useful when Master Theorem fails (e.g., $T(n) = T(n/3) + T(2n/3) + O(n)$)."
+      ],
+      "definitions": [
+        {
+          "term": "General Recurrence Relations & Master Theorem",
+          "definition": "Core concept related to Recurrence Relations & Master Theorem"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Applying Master Theorem",
+          "description": "Identify $a$ (subproblems), $b$ (division factor), and $f(n)$ (outside work). Calculate $\\log_b a$. Compare $f(n)$ with $n^{\\log_b a}$. Apply the matching Case 1, 2, or 3."
+        }
+      ],
+      "comparisons": [],
+      "solvedExamples": [
+        {
+          "question": "Solve $T(n) = 2T(n/2) + n \\log n$.",
+          "solution": "Here $a=2, b=2, f(n) = n \\log n$. $n^{\\log_2 2} = n^1$. Since $f(n) = \\Theta(n^1 \\log^1 n)$, this is Extended Case 2 (with $k=1$). The solution is $T(n) = \\Theta(n \\log^2 n)$."
+        },
+        {
+          "question": "Solve $T(n) = 3T(n/4) + n \\log n$.",
+          "solution": "Here $a=3, b=4$. $n^{\\log_4 3} \\approx n^{0.79}$. $f(n) = n \\log n$. Since $f(n)$ is polynomially larger than $n^{0.79}$ (by at least $n^{0.21}$), this is Case 3. Thus, $T(n) = \\Theta(n \\log n)$."
+        }
+      ],
+      "takeaways": [
+        "The Master Theorem only applies to divide-and-conquer recurrences with constant $a$ and $b$.",
+        "If $f(n)$ is not polynomially distinct from $n^{\\log_b a}$, you cannot use Case 1 or 3 (e.g., $f(n) = n / \\log n$).",
+        "For subtract and conquer $T(n) = aT(n-b) + f(n)$, the solution is typically exponential $O(a^{n/b} \\cdot f(n))$.",
+        "The regularity condition in Case 3 is almost always satisfied for polynomial functions.",
+        "Recursion trees are the foolproof fallback when Master Theorem fails."
+      ],
+      "traps": [
+        "Applying the Master Theorem to $T(n) = 2T(n/2) + n / \\log n$. This falls in the gap between Case 1 and Case 2, and the Master Theorem cannot solve it directly."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the critical exponent in the Master Theorem?",
+          "answer": "$\\log_b a$, where $a$ is the number of subproblems and $b$ is the factor by which the input size is divided."
+        },
+        {
+          "question": "What is the solution to $T(n) = T(n-1) + 1$?",
+          "answer": "$O(n)$. This is a linear subtract-and-conquer recurrence."
+        },
+        {
+          "question": "Which case of Master Theorem applies to Merge Sort?",
+          "answer": "Case 2. $T(n) = 2T(n/2) + O(n)$. Since $n^{\\log_2 2} = n^1$, which matches $f(n)$, the runtime is $O(n \\log n)$."
+        }
+      ],
+      "sources": [
+        {
+          "title": "CLRS Master Theorem Section",
+          "url": "https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/",
+          "usedFor": [
+            "Master Theorem cases and extended case 2 formulation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "algo-3-searching-hashing",
+      "order": 3,
+      "title": "Searching Algorithms & Hashing",
+      "oneLine": "Searching locates elements, while Hashing achieves $O(1)$ average search time by mapping keys to array indices.",
+      "whyItMatters": "Hashing collisions and probe sequences (Linear, Quadratic) are highly testable. Questions often ask for the exact array index a key will land in after collisions.",
+      "understandSimply": [
+        "Binary search works by cutting the search space in half each time, but requires sorted data.",
+        "Hashing is like an index in a book. You compute exactly where the item should be. If two items want the same spot (a collision), you need a rule to find the next available spot.",
+        "Chaining handles collisions by putting a linked list at each spot. Open addressing forces the item into the next available slot."
+      ],
+      "technicalExplanation": [
+        "Binary Search has a recurrence of $T(n) = T(n/2) + O(1)$, leading to $O(\\log n)$ time.",
+        "A Hash Function $h(k)$ maps a universe of keys $U$ into $m$ slots. Load factor $\\alpha = n/m$.",
+        "Collision Resolution by Chaining: Expected search time is $\\Theta(1 + \\alpha)$.",
+        "Collision Resolution by Open Addressing: Requires $\\alpha < 1$. Sequence of probes depends on the method."
+      ],
+      "formulasAndMethods": [
+        "Linear Probing: $h(k, i) = (h'(k) + i) \\bmod m$",
+        "Quadratic Probing: $h(k, i) = (h'(k) + c_1 i + c_2 i^2) \\bmod m$",
+        "Double Hashing: $h(k, i) = (h_1(k) + i \\cdot h_2(k)) \\bmod m$"
+      ],
+      "comparisons": [
+        {
+          "title": "Chaining vs Open Addressing",
+          "columns": [
+            "Feature",
+            "Chaining",
+            "Open Addressing"
+          ],
+          "rows": [
+            [
+              "Load Factor $\\alpha$",
+              "Can be $> 1$",
+              "Must be $< 1$"
+            ],
+            [
+              "Extra Memory",
+              "Uses pointers (linked lists)",
+              "No extra pointers needed"
+            ],
+            [
+              "Cache Performance",
+              "Poor (scattered memory)",
+              "Better (contiguous arrays)"
+            ],
+            [
+              "Deletion",
+              "Easy",
+              "Difficult (requires tombstones)"
+            ]
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "term": "General Searching Algorithms & Hashing",
+          "definition": "Core concept related to Searching Algorithms & Hashing"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Analyze Searching Algorithms & Hashing",
+          "description": "Step-by-step breakdown of Searching Algorithms & Hashing"
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Given hash table size $10$, $h(k) = k \\bmod 10$, and linear probing. Insert $43, 23, 13$. Where does $13$ end up?",
+          "solution": "$43 \\bmod 10 = 3$ (Index 3). $23 \\bmod 10 = 3$ (Collision, tries 4, placed at Index 4). $13 \\bmod 10 = 3$ (Collision at 3, collision at 4, placed at Index 5)."
+        },
+        {
+          "question": "What is the primary clustering problem?",
+          "solution": "In linear probing, continuous blocks of occupied slots build up, increasing search times. Quadratic probing avoids primary clustering but suffers from secondary clustering."
+        }
+      ],
+      "takeaways": [
+        "Binary search strictly requires a sorted array and takes $O(\\log n)$ time.",
+        "In double hashing, $h_2(k)$ must be relatively prime to the table size $m$ to ensure the probe sequence visits every slot.",
+        "Tombstones (dummy flags) are required when deleting from an open-addressed hash table so search chains aren't broken.",
+        "Expected unsuccessful search time in open addressing is $\\frac{1}{1-\\alpha}$.",
+        "A good hash function satisfies the assumption of simple uniform hashing."
+      ],
+      "traps": [
+        "Assuming Binary Search works on Linked Lists in $O(\\log n)$ time. It doesn't, because random access in a linked list takes $O(n)$."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the worst-case time complexity of searching in a Hash Table?",
+          "answer": "$O(n)$, which occurs when all keys hash to the exact same slot."
+        },
+        {
+          "question": "Which collision resolution technique prevents primary clustering?",
+          "answer": "Quadratic probing and Double hashing."
+        },
+        {
+          "question": "What is the formula for load factor $\\alpha$?",
+          "answer": "$\\alpha = n / m$, where $n$ is number of elements and $m$ is the number of table slots."
+        }
+      ],
+      "sources": [
+        {
+          "title": "GATE CS Search & Hashing",
+          "url": "https://gate.iitkgp.ac.in/cs-syllabus.html",
+          "usedFor": [
+            "Hash function types and open addressing equations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "algo-4-comparison-sorting",
+      "order": 4,
+      "title": "Comparison-Based Sorting",
+      "oneLine": "Algorithms that sort elements by comparing them against each other, mathematically bounded by $\\Omega(n \\log n)$.",
+      "whyItMatters": "You will be asked to identify the best sorting algorithm for specific constraints (e.g., nearly sorted arrays, memory limits) or to trace a specific algorithm's swaps.",
+      "understandSimply": [
+        "Bubble, Selection, and Insertion are simple but slow ($O(n^2)$).",
+        "Merge Sort splits everything down to singles, then merges them perfectly sorted. It needs extra memory.",
+        "Quick Sort picks a pivot, puts smaller things left and bigger things right, then repeats. It's fast in practice but can be slow if you pick bad pivots.",
+        "Heap Sort uses a priority queue (Heap) to always grab the largest element and put it at the end."
+      ],
+      "technicalExplanation": [
+        "Selection Sort does minimum swaps ($O(n)$) but always takes $O(n^2)$ comparisons.",
+        "Insertion Sort takes $O(n)$ time on already sorted arrays, making it adaptive.",
+        "Merge Sort takes $\\Theta(n \\log n)$ strictly and requires $O(n)$ auxiliary space. It is stable.",
+        "Quick Sort takes $O(n \\log n)$ average but $O(n^2)$ worst-case. It is in-place but typically unstable.",
+        "Heap Sort is in-place and strictly $O(n \\log n)$ but is unstable and has poor cache locality."
+      ],
+      "formulasAndMethods": [
+        "Lower Bound for Comparison Sorts: Any decision tree for sorting $n$ elements has height $\\Omega(n \\log n)$.",
+        "Number of permutations: $n!$. The decision tree must have $\\ge n!$ leaves, so $2^h \\ge n! \\implies h \\ge \\log(n!) \\approx n \\log n$."
+      ],
+      "comparisons": [
+        {
+          "title": "Sorting Algorithms Comparison",
+          "columns": [
+            "Algorithm",
+            "Best Time",
+            "Worst Time",
+            "Space",
+            "Stable?"
+          ],
+          "rows": [
+            [
+              "Insertion Sort",
+              "$O(n)$",
+              "$O(n^2)$",
+              "$O(1)$",
+              "Yes"
+            ],
+            [
+              "Selection Sort",
+              "$O(n^2)$",
+              "$O(n^2)$",
+              "$O(1)$",
+              "No"
+            ],
+            [
+              "Merge Sort",
+              "$O(n \\log n)$",
+              "$O(n \\log n)$",
+              "$O(n)$",
+              "Yes"
+            ],
+            [
+              "Quick Sort",
+              "$O(n \\log n)$",
+              "$O(n^2)$",
+              "$O(\\log n)$",
+              "No"
+            ],
+            [
+              "Heap Sort",
+              "$O(n \\log n)$",
+              "$O(n \\log n)$",
+              "$O(1)$",
+              "No"
+            ]
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "term": "Stable Sort",
+          "definition": "A sort that preserves the relative order of equal elements in the sorted output."
+        },
+        {
+          "term": "In-place Sort",
+          "definition": "A sort that requires at most a constant $O(1)$ or logarithmic $O(\\log n)$ amount of extra space."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Analyze Comparison-Based Sorting",
+          "description": "Step-by-step breakdown of Comparison-Based Sorting"
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "If an array is already sorted in ascending order, what is the worst-case complexity of Quick Sort if the last element is always chosen as pivot?",
+          "solution": "$O(n^2)$. The pivot will be the largest element, partitioning the array into sizes $n-1$ and $0$, resulting in $T(n) = T(n-1) + O(n)$."
+        },
+        {
+          "question": "Which algorithm makes the minimum number of data movements (swaps)?",
+          "solution": "Selection Sort. It makes exactly $O(n)$ swaps in all cases, making it useful when writes to memory are very costly."
+        }
+      ],
+      "takeaways": [
+        "Insertion sort is the best choice for small or nearly-sorted arrays.",
+        "Merge sort is the standard algorithm for sorting linked lists because it doesn't require random access.",
+        "Quick sort's worst-case space complexity is $O(n)$ if the recursion tree is heavily skewed.",
+        "Heap sort is used in systems where bounded worst-case time is critical (like Linux kernel) and memory is tight.",
+        "No comparison-based sort can beat $O(n \\log n)$ in the worst case."
+      ],
+      "traps": [
+        "Thinking Quick Sort space complexity is $O(1)$. It requires $O(\\log n)$ stack space on average for recursion."
+      ],
+      "quickRecall": [
+        {
+          "question": "Is standard Quick Sort stable?",
+          "answer": "No. Partitioning swaps elements across long distances, disrupting original order."
+        },
+        {
+          "question": "What is the worst-case time complexity of Merge Sort?",
+          "answer": "$O(n \\log n)$."
+        },
+        {
+          "question": "Which sorting algorithm heavily utilizes the divide-and-conquer strategy?",
+          "answer": "Both Merge Sort and Quick Sort."
+        }
+      ],
+      "sources": [
+        {
+          "title": "GATE CS Standard Sorting",
+          "url": "https://gate.iitkgp.ac.in/cs-syllabus.html",
+          "usedFor": [
+            "Sorting algorithm constraints and characteristics"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "algo-5-linear-sorting",
+      "order": 5,
+      "title": "Linear-Time Sorting",
+      "oneLine": "Sorting algorithms that do not compare elements, allowing them to beat the $\\Omega(n \\log n)$ comparison bound under specific constraints.",
+      "whyItMatters": "Questions focus on identifying when these algorithms can be used (e.g., sorting integers in a small range) and their space-time trade-offs.",
+      "understandSimply": [
+        "If you have to sort 100 students by their age (1 to 100), you don't compare them. You just make 100 buckets and throw each student into their age bucket. That's Counting Sort.",
+        "If the numbers are huge (like phone numbers), you sort them digit by digit. That's Radix Sort.",
+        "If the numbers are uniformly distributed fractions between 0 and 1, you put them into distinct range buckets. That's Bucket Sort."
+      ],
+      "technicalExplanation": [
+        "Counting Sort determines, for each element $x$, the number of elements less than $x$. It takes $O(n + k)$ time where $k$ is the range of inputs. It is stable.",
+        "Radix Sort sorts by each digit, starting from least significant digit (LSD) to most (MSD). It uses Counting Sort as a subroutine. Time is $O(d(n+k))$ where $d$ is number of digits.",
+        "Bucket Sort divides the interval $[0, 1)$ into $n$ equal-sized sub-intervals (buckets), distributes inputs, sorts each bucket (often with insertion sort), and concatenates. Average time $O(n)$."
+      ],
+      "formulasAndMethods": [
+        "Counting Sort Runtime: $O(n + k)$. If $k = O(n)$, then runtime is $O(n)$.",
+        "Radix Sort Runtime: $O(d(n+k))$. If $d$ is constant and $k=O(n)$, runtime is $O(n)$."
+      ],
+      "comparisons": [],
+      "definitions": [
+        {
+          "term": "General Linear-Time Sorting",
+          "definition": "Core concept related to Linear-Time Sorting"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Radix Sort (LSD approach)",
+          "description": "For each digit $i$ from right (least significant) to left (most significant), use a stable sort (like Counting Sort) to sort the entire array on digit $i$."
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Can Counting Sort be used to sort floating point numbers?",
+          "solution": "No. Counting Sort requires elements to map directly to discrete array indices (integers)."
+        },
+        {
+          "question": "Why must the subroutine sort in Radix Sort be stable?",
+          "solution": "Because when sorting on a more significant digit, elements with the same digit must retain their relative order established by the lesser significant digits."
+        }
+      ],
+      "takeaways": [
+        "Linear sorts avoid the $\\Omega(n \\log n)$ bound by not using comparisons.",
+        "Counting Sort becomes highly inefficient in space and time if the range of numbers $k$ is much larger than $n$ (e.g., $k = n^2$).",
+        "Bucket Sort relies on the assumption that the input is drawn from a uniform distribution.",
+        "Radix Sort is commonly used to sort IP addresses or dates.",
+        "Stability is non-negotiable for the internal sort used within Radix Sort."
+      ],
+      "traps": [
+        "Assuming Linear Sorts are always faster. For general data where $k$ is unknown or very large, Quick Sort or Merge Sort are practically and theoretically better."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the space complexity of Counting Sort?",
+          "answer": "$O(n + k)$, requiring an auxiliary array of size $k$ for counts and $n$ for output."
+        },
+        {
+          "question": "In Radix Sort, do we sort from MSD to LSD, or LSD to MSD?",
+          "answer": "Typically LSD to MSD, so that the final pass on the most significant digit dictates the final primary order."
+        },
+        {
+          "question": "What happens if Bucket Sort receives input that is heavily clustered rather than uniform?",
+          "answer": "Many elements fall into a single bucket, degrading performance to $O(n^2)$ if Insertion Sort is used within the bucket."
+        }
+      ],
+      "sources": [
+        {
+          "title": "CLRS Sorting in Linear Time",
+          "url": "https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/",
+          "usedFor": [
+            "Counting and Radix sort properties and bounds"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "algo-6-divide-and-conquer",
+      "order": 6,
+      "title": "Divide and Conquer Strategy",
+      "oneLine": "A design paradigm that recursively breaks a problem into non-overlapping subproblems, solves them, and merges the results.",
+      "whyItMatters": "The performance of these algorithms strictly relies on recurrence relations. They form the basis for many optimized arithmetic and searching techniques.",
+      "understandSimply": [
+        "Divide: Break the array or problem in half.",
+        "Conquer: Solve the halves independently using recursion.",
+        "Combine: Merge the two solved halves back together."
+      ],
+      "technicalExplanation": [
+        "Binary Search: Divides array in half. Recurrence: $T(n) = T(n/2) + O(1) \\implies O(\\log n)$.",
+        "Merge Sort: Divides array in half, merges in linear time. Recurrence: $T(n) = 2T(n/2) + O(n) \\implies O(n \\log n)$.",
+        "Quick Select: Finds the $k$-th smallest element. Like Quick Sort, but only recurses into one half. Average $O(n)$, Worst $O(n^2)$.",
+        "Strassen's Matrix Multiplication: Multiplies two $n \\times n$ matrices using 7 multiplications instead of 8. Recurrence: $T(n) = 7T(n/2) + O(n^2) \\implies O(n^{\\log_2 7}) \\approx O(n^{2.81})$."
+      ],
+      "formulasAndMethods": [
+        "Standard Matrix Multiplication: $O(n^3)$",
+        "Strassen's Matrix Multiplication: $O(n^{2.81})$"
+      ],
+      "comparisons": [],
+      "definitions": [
+        {
+          "term": "General Divide and Conquer Strategy",
+          "definition": "Core concept related to Divide and Conquer Strategy"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Analyze Divide and Conquer Strategy",
+          "description": "Step-by-step breakdown of Divide and Conquer Strategy"
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "What makes Divide and Conquer different from Dynamic Programming?",
+          "solution": "Divide and Conquer assumes subproblems are independent and do not overlap. DP is used when subproblems overlap and share sub-subproblems, caching results to avoid redundant work."
+        },
+        {
+          "question": "How does Median of Medians improve Quick Select?",
+          "solution": "It guarantees a good pivot by recursively finding the median of chunks of 5. This ensures the split is always bounded, dropping the worst-case runtime from $O(n^2)$ to deterministic $O(n)$."
+        }
+      ],
+      "takeaways": [
+        "The combine step is often the bottleneck (e.g., $O(n)$ in Merge Sort, $O(n^2)$ in Strassen's).",
+        "Binary Search is technically 'Decrease and Conquer' because it only pursues one subproblem.",
+        "Strassen's algorithm reduces recursive multiplications from 8 to 7, slightly lowering the asymptotic bound.",
+        "Divide and conquer is naturally implemented using recursion and a call stack.",
+        "Master Theorem is explicitly designed to analyze this paradigm."
+      ],
+      "traps": [
+        "Assuming Strassen's is always faster. The hidden constant factors are huge; for small matrices, standard $O(n^3)$ multiplication is faster."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the time complexity of finding the min and max of an array simultaneously using Divide and Conquer?",
+          "answer": "$\\frac{3n}{2} - 2$ comparisons, which is better than the $2n$ needed for naive iteration."
+        },
+        {
+          "question": "What is the average time complexity of Quick Select?",
+          "answer": "$O(n)$."
+        },
+        {
+          "question": "In Strassen's algorithm, how many recursive multiplications are performed?",
+          "answer": "7."
+        }
+      ],
+      "sources": [
+        {
+          "title": "GATE CS Algorithm Paradigms",
+          "url": "https://gate.iitkgp.ac.in/cs-syllabus.html",
+          "usedFor": [
+            "Strassen's complexity, quick select"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "algo-7-greedy-algorithms",
+      "order": 7,
+      "title": "Greedy Algorithms",
+      "oneLine": "Greedy algorithms make the locally optimal choice at each step with the hope of finding a global optimum.",
+      "whyItMatters": "Questions frequently test if a specific problem (like Fractional Knapsack) can be solved with a greedy approach, or ask you to calculate the optimal value.",
+      "understandSimply": [
+        "A greedy algorithm doesn't plan ahead. It just grabs the best immediate option.",
+        "If you want the maximum value in a knapsack where you can cut items (fractional), always grab the item with the highest value-to-weight ratio.",
+        "Greedy algorithms don't always yield the globally optimal solution (like in the 0/1 Knapsack problem)."
+      ],
+      "technicalExplanation": [
+        "A problem must exhibit two properties for Greedy to work: Greedy Choice Property (local optimal choice leads to global optimal) and Optimal Substructure.",
+        "Fractional Knapsack: Sort items by value/weight ratio in descending order. Take whole items until full, then take a fraction of the next item. Time: $O(n \\log n)$ due to sorting.",
+        "Job Sequencing with Deadlines: Sort jobs by profit. Place each job in the latest possible free slot before its deadline. Time: $O(n^2)$ naive, or $O(n \\log n)$ with Disjoint Sets.",
+        "Huffman Coding: Builds an optimal prefix code. Uses a min-heap to repeatedly merge the two least frequent characters. Time: $O(n \\log n)$."
+      ],
+      "formulasAndMethods": [
+        "Fractional Knapsack Ratio: $R_i = v_i / w_i$",
+        "Huffman Average Length: $L = \\sum (frequency_i \\times depth_i)$"
+      ],
+      "comparisons": [],
+      "definitions": [
+        {
+          "term": "Prefix Code",
+          "definition": "A code system where no codeword is a prefix of another, ensuring unambiguous decoding (used in Huffman Coding)."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Huffman Coding Tree Construction",
+          "description": "1. Create leaf nodes for each character. 2. Extract two nodes with lowest frequency. 3. Create a parent node with sum of their frequencies. 4. Re-insert parent into queue. 5. Repeat until one node (root) remains."
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "You have a knapsack of capacity 50. Items (value, weight): $A(60, 10), B(100, 20), C(120, 30)$. Maximize value for Fractional Knapsack.",
+          "solution": "Ratios: $A=6, B=5, C=4$. Sort: $A, B, C$. Take all $A$ (w=10, v=60). Remainder=40. Take all $B$ (w=20, v=100). Remainder=20. Take $20/30$ of $C$ (w=20, v=80). Total Value = $60 + 100 + 80 = 240$."
+        },
+        {
+          "question": "Can Greedy solve 0/1 Knapsack?",
+          "solution": "No. If you cannot take fractions, greedily taking the best ratio might leave wasted space that could have been filled by a combination of other items."
+        }
+      ],
+      "takeaways": [
+        "Fractional Knapsack is Greedy. 0/1 Knapsack is Dynamic Programming.",
+        "Huffman Coding produces optimal, variable-length prefix codes to minimize file size.",
+        "Job sequencing is maximized by scheduling the highest profit jobs as close to their deadlines as possible.",
+        "Greedy algorithms are typically fast ($O(n \\log n)$ due to a sorting step) but only work on specific problems.",
+        "Dijkstra's, Prim's, and Kruskal's are all fundamentally greedy algorithms."
+      ],
+      "traps": [
+        "Assuming Huffman coding always produces a unique tree. If frequencies tie, different tie-breaking choices yield different trees (but the same total optimal compressed size)."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the time complexity of Huffman Coding using a Min-Heap?",
+          "answer": "$O(n \\log n)$."
+        },
+        {
+          "question": "What data structure is optimal to manage free slots in Job Sequencing with Deadlines?",
+          "answer": "Disjoint Set (Union-Find), which drops complexity to $O(n \\log n)$."
+        },
+        {
+          "question": "Which property is required to prove a Greedy algorithm works?",
+          "answer": "The Greedy Choice Property."
+        }
+      ],
+      "sources": [
+        {
+          "title": "GATE CS Greedy Paradigms",
+          "url": "https://gate.iitkgp.ac.in/cs-syllabus.html",
+          "usedFor": [
+            "Knapsack, Huffman, Job sequencing bounds"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "algo-8-dynamic-programming",
+      "order": 8,
+      "title": "Dynamic Programming",
+      "oneLine": "Dynamic Programming solves complex problems by breaking them down into overlapping subproblems and caching their results.",
+      "whyItMatters": "LCS and Matrix Chain Multiplication table-filling formulas are highly tested. You must know the transition equations and matrix dimensions.",
+      "understandSimply": [
+        "If you compute Fibonacci(5), you need Fib(4) and Fib(3). But Fib(4) also needs Fib(3). Instead of calculating Fib(3) twice, save it the first time.",
+        "Memoization is top-down (recursive with a cache).",
+        "Tabulation is bottom-up (iterative table filling)."
+      ],
+      "technicalExplanation": [
+        "Requires Optimal Substructure and Overlapping Subproblems.",
+        "0/1 Knapsack: DP array $V[i][w] = \\max(V[i-1][w], v_i + V[i-1][w-w_i])$. Time: $O(n \\cdot W)$ (Pseudo-polynomial).",
+        "Longest Common Subsequence (LCS): If characters match, $L[i][j] = 1 + L[i-1][j-1]$. If not, $L[i][j] = \\max(L[i-1][j], L[i][j-1])$. Time: $O(m \\cdot n)$.",
+        "Matrix Chain Multiplication (MCM): Finds optimal parenthesization to minimize scalar multiplications. Time: $O(n^3)$, Space: $O(n^2)$."
+      ],
+      "formulasAndMethods": [
+        "MCM Cost: $M[i,j] = \\min_{i \\le k < j} (M[i,k] + M[k+1,j] + P_{i-1} P_k P_j)$"
+      ],
+      "comparisons": [
+        {
+          "title": "Divide & Conquer vs Dynamic Programming vs Greedy",
+          "columns": [
+            "Paradigm",
+            "Subproblems",
+            "Makes Choices based on",
+            "Example"
+          ],
+          "rows": [
+            [
+              "Divide & Conquer",
+              "Independent",
+              "Splitting logic",
+              "Merge Sort"
+            ],
+            [
+              "Dynamic Programming",
+              "Overlapping",
+              "All future states (Global)",
+              "0/1 Knapsack"
+            ],
+            [
+              "Greedy",
+              "Dependent",
+              "Current state (Local)",
+              "Fractional Knapsack"
+            ]
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "term": "General Dynamic Programming",
+          "definition": "Core concept related to Dynamic Programming"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Analyze Dynamic Programming",
+          "description": "Step-by-step breakdown of Dynamic Programming"
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "What is the dimensions sequence $P$ for matrices $A(10 \\times 20), B(20 \\times 30), C(30 \\times 40)$?",
+          "solution": "The sequence array $P = [10, 20, 30, 40]$. The cost of $(A B) C$ vs $A (B C)$ is calculated using these boundary dimensions."
+        },
+        {
+          "question": "Is 0/1 Knapsack polynomial time?",
+          "solution": "No, it is Pseudo-polynomial. The runtime $O(n \\cdot W)$ depends on the numeric value of $W$ (the capacity), which requires exponential bits to represent."
+        }
+      ],
+      "takeaways": [
+        "LCS length can be found in $O(m \\cdot n)$ time and $O(\\min(m, n))$ space (if only length is needed).",
+        "MCM determines the order of multiplication, not the actual matrix multiplication result.",
+        "DP is overkill if the problem lacks overlapping subproblems; Divide & Conquer is better there.",
+        "The Bellman-Ford algorithm and Floyd-Warshall algorithm are graph applications of DP.",
+        "The size of the DP table directly dictates the time and space complexity."
+      ],
+      "traps": [
+        "Confusing Longest Common Subsequence (elements don't have to be contiguous) with Longest Common Substring (elements must be contiguous)."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the time complexity of the MCM algorithm?",
+          "answer": "$O(n^3)$."
+        },
+        {
+          "question": "What is the recurrence relation for the Fibonacci sequence?",
+          "answer": "$F(n) = F(n-1) + F(n-2)$."
+        },
+        {
+          "question": "Can DP be implemented recursively?",
+          "answer": "Yes, using Memoization (Top-Down approach)."
+        }
+      ],
+      "sources": [
+        {
+          "title": "GATE DP Formulations",
+          "url": "https://gate.iitkgp.ac.in/cs-syllabus.html",
+          "usedFor": [
+            "LCS and MCM DP relations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "algo-9-graph-traversals",
+      "order": 9,
+      "title": "Graph Algorithms: BFS, DFS & Topological Sort",
+      "oneLine": "BFS explores level by level using a Queue, while DFS explores deeply using a Stack.",
+      "whyItMatters": "Questions frequently present a graph and ask for valid traversal sequences, cycle detection properties, or edge classifications.",
+      "understandSimply": [
+        "BFS spreads out like a ripple on water. It finds the shortest path in unweighted graphs.",
+        "DFS explores a maze by going as deep as possible until hitting a dead end, then backtracking.",
+        "Topological sort is like scheduling prerequisites in college. You can't take course C until you finish A and B."
+      ],
+      "technicalExplanation": [
+        "BFS (Breadth-First Search): Uses a Queue. Time complexity $O(V + E)$ using adjacency list, $O(V^2)$ using adjacency matrix.",
+        "DFS (Depth-First Search): Uses a Stack (or recursion). Same time complexities as BFS. Yields Discovery/Finish times.",
+        "Topological Sort: Only valid on Directed Acyclic Graphs (DAGs). Represents a linear ordering of vertices such that for every directed edge $uv$, $u$ comes before $v$.",
+        "DFS Edge Classifications (in Directed Graphs): Tree Edge (part of DFS forest), Back Edge (connects to an ancestor), Forward Edge (connects to a descendant), Cross Edge (all others)."
+      ],
+      "formulasAndMethods": [
+        "DFS Cycle Detection: A directed graph has a cycle if and only if DFS yields a Back Edge.",
+        "Topological Sort via DFS: Perform DFS, push vertices to a stack upon finishing. Pop stack to get topological order."
+      ],
+      "comparisons": [
+        {
+          "title": "BFS vs DFS",
+          "columns": [
+            "Property",
+            "BFS",
+            "DFS"
+          ],
+          "rows": [
+            [
+              "Data Structure",
+              "Queue",
+              "Stack (Recursion)"
+            ],
+            [
+              "Shortest Path",
+              "Finds it (Unweighted)",
+              "Does not guarantee"
+            ],
+            [
+              "Memory",
+              "Wider (stores level)",
+              "Deeper (stores path)"
+            ],
+            [
+              "Application",
+              "Bipartite testing, Shortest path",
+              "Topological Sort, Strongly Connected Components"
+            ]
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "term": "DAG",
+          "definition": "Directed Acyclic Graph. A directed graph with no cycles."
+        },
+        {
+          "term": "Bipartite Graph",
+          "definition": "A graph whose vertices can be divided into two disjoint sets such that every edge connects a vertex in one set to the other. Detectable using BFS (no odd-length cycles)."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Analyze Graph Algorithms: BFS, DFS & Topological Sort",
+          "description": "Step-by-step breakdown of Graph Algorithms: BFS, DFS & Topological Sort"
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Can a cyclic graph have a topological sort?",
+          "solution": "No. Topological sort requires strict dependencies. A cycle creates a circular dependency, making ordering impossible."
+        },
+        {
+          "question": "How to detect a cycle in an undirected graph using BFS?",
+          "solution": "During BFS, if you encounter an already visited node that is not the immediate parent of the current node, a cycle exists."
+        }
+      ],
+      "takeaways": [
+        "Both BFS and DFS take $O(V+E)$ time on an adjacency list.",
+        "Kahn's algorithm (using in-degree counts) is the iterative queue-based way to find a Topological Sort.",
+        "A DAG has at least one vertex with in-degree 0 and at least one with out-degree 0.",
+        "Back edges indicate cycles.",
+        "DFS uses $O(V)$ auxiliary space in the worst case for the recursion stack."
+      ],
+      "traps": [
+        "Assuming Topological Sort is unique. A graph can have many valid topological orderings depending on which node is selected first."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the edge classification for an edge pointing back to an ancestor in the DFS tree?",
+          "answer": "Back Edge."
+        },
+        {
+          "question": "Which traversal is best to find the shortest path in a labyrinth/maze?",
+          "answer": "BFS."
+        },
+        {
+          "question": "Can Topological sort be applied to Undirected graphs?",
+          "answer": "No, it strictly requires Directed Acyclic Graphs (DAGs)."
+        }
+      ],
+      "sources": [
+        {
+          "title": "CLRS Graph Algorithms",
+          "url": "https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/",
+          "usedFor": [
+            "Edge classification, BFS/DFS complexities"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "algo-10-mst",
+      "order": 10,
+      "title": "Minimum Spanning Trees (MST)",
+      "oneLine": "MST finds a tree that connects all vertices in an undirected graph with the minimum possible total edge weight.",
+      "whyItMatters": "Calculating the MST weight from a small graph or knowing the conditions for unique MSTs is heavily tested in numericals.",
+      "understandSimply": [
+        "A spanning tree connects all cities with roads without loops.",
+        "A Minimum Spanning Tree does it as cheaply as possible.",
+        "Kruskal's is greedy: sort all roads by price, buy the cheapest ones that don't form a loop.",
+        "Prim's is greedy: start at one city, build outward by always picking the cheapest connecting road."
+      ],
+      "technicalExplanation": [
+        "Both Prim's and Kruskal's are Greedy Algorithms.",
+        "Kruskal's Algorithm: Sorts edges by weight. Uses Disjoint-Set (Union-Find) to detect cycles. Time: $O(E \\log E) = O(E \\log V)$. Best for sparse graphs.",
+        "Prim's Algorithm: Maintains a set of visited vertices. Uses a Min-Heap (Priority Queue) to pick the minimum cut edge. Time: $O(E \\log V)$ with binary heap, $O(E + V \\log V)$ with Fibonacci heap. Best for dense graphs."
+      ],
+      "formulasAndMethods": [
+        "Number of edges in a Spanning Tree: Exactly $V - 1$.",
+        "Cut Property: For any cut of the graph, the lightest edge crossing the cut belongs to the MST."
+      ],
+      "comparisons": [
+        {
+          "title": "Prim's vs Kruskal's",
+          "columns": [
+            "Feature",
+            "Prim's",
+            "Kruskal's"
+          ],
+          "rows": [
+            [
+              "Approach",
+              "Vertex-based (grows one tree)",
+              "Edge-based (merges forests)"
+            ],
+            [
+              "Data Structure",
+              "Min-Heap",
+              "Disjoint-Set (Union-Find)"
+            ],
+            [
+              "Best For",
+              "Dense Graphs ($E \\approx V^2$)",
+              "Sparse Graphs ($E \\approx V$)"
+            ]
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "term": "General Minimum Spanning Trees (MST)",
+          "definition": "Core concept related to Minimum Spanning Trees (MST)"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Kruskal's Union-Find",
+          "description": "If `Find(u) == Find(v)`, the edge creates a cycle. Otherwise, `Union(u, v)` and add the edge to the MST."
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "If all edge weights in a connected graph are distinct, how many MSTs exist?",
+          "solution": "Exactly one. The MST is unique if all edge weights are distinct."
+        },
+        {
+          "question": "What happens if we add a constant $C$ to every edge in the graph? Does the MST change?",
+          "solution": "No. The MST remains exactly the same because every spanning tree has exactly $V-1$ edges, so all spanning trees increase in total weight by exactly $C(V-1)$. The relative order of weights doesn't change."
+        }
+      ],
+      "takeaways": [
+        "An MST cannot contain any cycles.",
+        "If the graph is unweighted, any spanning tree (e.g., from BFS/DFS) is a Minimum Spanning Tree.",
+        "Squaring all edge weights (assuming weights are positive) does not change the structural MST, as relative ordering is preserved.",
+        "Kruskal's complexity is heavily dominated by the edge sorting step $O(E \\log E)$.",
+        "Prim's is fundamentally identical to Dijkstra's, just with a different relaxation formula."
+      ],
+      "traps": [
+        "Multiplying edges by a negative number DOES change the MST, because it flips the relative ordering (max becomes min)."
+      ],
+      "quickRecall": [
+        {
+          "question": "How many edges does the MST of a graph with 100 vertices have?",
+          "answer": "99 edges."
+        },
+        {
+          "question": "Which data structure optimizes cycle detection in Kruskal's?",
+          "answer": "Disjoint Set (Union-Find) with Path Compression."
+        },
+        {
+          "question": "Which algorithm is better for a highly dense graph?",
+          "answer": "Prim's algorithm with an adjacency matrix ($O(V^2)$) or Fibonacci Heap."
+        }
+      ],
+      "sources": [
+        {
+          "title": "GATE CS Minimum Spanning Trees",
+          "url": "https://gate.iitkgp.ac.in/cs-syllabus.html",
+          "usedFor": [
+            "Prim vs Kruskal characteristics and bounds"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "algo-11-single-shortest-path",
+      "order": 11,
+      "title": "Single-Source Shortest Paths",
+      "oneLine": "Algorithms to find the shortest distance from one source vertex to all other vertices.",
+      "whyItMatters": "Dijkstra's inability to handle negative weights and Bellman-Ford's cycle detection are extremely frequent theoretical questions.",
+      "understandSimply": [
+        "Dijkstra's is greedy. It trusts that once it finds the shortest path to a node, no cheaper path will magically appear later.",
+        "Bellman-Ford is cautious. It assumes paths can get cheaper (due to negative edges), so it re-checks (relaxes) every edge multiple times.",
+        "If a graph has a cycle that sums to a negative number, 'shortest path' becomes meaningless because you can loop infinitely for infinite negative cost."
+      ],
+      "technicalExplanation": [
+        "Dijkstra's Algorithm: Greedy. Uses a Min-Heap. Relaxes outgoing edges of the closest unvisited node. Time: $O(E \\log V)$. Fails with negative weight edges.",
+        "Bellman-Ford Algorithm: Dynamic Programming. Relaxes ALL edges exactly $V-1$ times. Time: $O(V \\cdot E)$. Works with negative edges.",
+        "Negative Weight Cycle Detection: In Bellman-Ford, if a $V$-th relaxation reduces a distance, the graph contains a negative weight cycle."
+      ],
+      "formulasAndMethods": [
+        "Edge Relaxation: `if (d[u] + w(u,v) < d[v]) then d[v] = d[u] + w(u,v)`"
+      ],
+      "comparisons": [
+        {
+          "title": "Dijkstra's vs Bellman-Ford",
+          "columns": [
+            "Feature",
+            "Dijkstra's",
+            "Bellman-Ford"
+          ],
+          "rows": [
+            [
+              "Paradigm",
+              "Greedy",
+              "Dynamic Programming"
+            ],
+            [
+              "Time Complexity",
+              "$O(E \\log V)$",
+              "$O(V \\cdot E)$"
+            ],
+            [
+              "Negative Edges",
+              "May fail",
+              "Handles correctly"
+            ],
+            [
+              "Negative Cycles",
+              "Infinite loop / Fails",
+              "Detects them"
+            ]
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "term": "General Single-Source Shortest Paths",
+          "definition": "Core concept related to Single-Source Shortest Paths"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Analyze Single-Source Shortest Paths",
+          "description": "Step-by-step breakdown of Single-Source Shortest Paths"
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Why does Dijkstra's algorithm fail with negative edges?",
+          "solution": "It permanently finalizes a node's distance once extracted from the heap. A negative edge discovered later could retroactively make an alternate path cheaper, which Dijkstra's ignores."
+        },
+        {
+          "question": "If a graph is a DAG, what is the fastest way to find shortest paths?",
+          "solution": "Topological Sort. Calculate the top-sort ($O(V+E)$), then relax edges in that topological order. Time is strictly $O(V+E)$, faster than Dijkstra's."
+        }
+      ],
+      "takeaways": [
+        "Dijkstra's uses a Min-Heap priority queue just like Prim's MST.",
+        "Bellman-Ford runs slower but provides safety against negative edges.",
+        "If edge weights are all 1, BFS finds the shortest path in $O(V+E)$ without needing Dijkstra.",
+        "The shortest path cannot contain a cycle (positive cycles add cost, negative cycles break the definition).",
+        "A shortest path tree from a single source has exactly $V-1$ edges."
+      ],
+      "traps": [
+        "Assuming adding a constant $C$ to all edges preserves shortest paths. It doesn't. A path with more edges will be penalized more heavily than a path with fewer edges, changing the shortest path."
+      ],
+      "quickRecall": [
+        {
+          "question": "How many times does Bellman-Ford relax all edges to guarantee shortest paths?",
+          "answer": "$V-1$ times."
+        },
+        {
+          "question": "What indicates a negative weight cycle in Bellman-Ford?",
+          "answer": "If any distance updates on the $V$-th pass."
+        },
+        {
+          "question": "Does Dijkstra's work on undirected graphs with negative edges?",
+          "answer": "No. An undirected negative edge immediately forms a negative cycle of length 2."
+        }
+      ],
+      "sources": [
+        {
+          "title": "GATE CS Shortest Paths",
+          "url": "https://gate.iitkgp.ac.in/cs-syllabus.html",
+          "usedFor": [
+            "Dijkstra and Bellman-Ford comparisons"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "algo-12-all-pairs-np",
+      "order": 12,
+      "title": "All-Pairs Shortest Paths & NP-Completeness",
+      "oneLine": "Floyd-Warshall computes paths between all nodes, while NP theory classifies problems based on computational intractability.",
+      "whyItMatters": "The $P = NP$ theoretical hierarchy and reductions between known NP-Complete problems form the hardest conceptual questions on the exam.",
+      "understandSimply": [
+        "Floyd-Warshall asks: 'Is it shorter to go from A to B directly, or by passing through K?' It checks this for every possible intermediate node K.",
+        "P problems are easy to solve (polynomial time).",
+        "NP problems are easy to verify if someone hands you an answer.",
+        "NP-Complete problems are the hardest problems in NP. If you solve one quickly, you solve them all."
+      ],
+      "technicalExplanation": [
+        "Floyd-Warshall: Uses Dynamic Programming. Transition: $D[i][j] = \\min(D[i][j], D[i][k] + D[k][j])$. Time: $O(V^3)$.",
+        "P (Polynomial): Solvable by a deterministic Turing machine in polynomial time.",
+        "NP (Nondeterministic Polynomial): Solvable by a nondeterministic Turing machine in polynomial time. Equivalently, solutions are verifiable in polynomial time.",
+        "NP-Hard: Every problem in NP can be polynomially reduced to it. Not necessarily in NP.",
+        "NP-Complete: Both NP and NP-Hard."
+      ],
+      "formulasAndMethods": [
+        "Polynomial Reduction: $A \\le_p B$ means problem A can be reduced to problem B in polynomial time. If B is easy, A is easy. If A is hard, B is hard."
+      ],
+      "comparisons": [
+        {
+          "title": "P vs NP vs NP-Complete",
+          "columns": [
+            "Class",
+            "Solve in Poly Time?",
+            "Verify in Poly Time?",
+            "Examples"
+          ],
+          "rows": [
+            [
+              "P",
+              "Yes",
+              "Yes",
+              "Sorting, Shortest Path, MST"
+            ],
+            [
+              "NP",
+              "Maybe (Unknown)",
+              "Yes",
+              "Sudoku, Graph Isomorphism"
+            ],
+            [
+              "NP-Complete",
+              "Unlikely",
+              "Yes",
+              "SAT, TSP, Vertex Cover, Clique"
+            ]
+          ]
+        }
+      ],
+      "definitions": [
+        {
+          "term": "SAT Problem (Boolean Satisfiability)",
+          "definition": "The first problem proven to be NP-Complete (Cook-Levin Theorem). Asks if there exists a truth assignment satisfying a Boolean formula."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Analyze All-Pairs Shortest Paths & NP-Completeness",
+          "description": "Step-by-step breakdown of All-Pairs Shortest Paths & NP-Completeness"
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "If Problem A reduces to Problem B in polynomial time ($A \\le_p B$), and A is NP-Complete, what can we say about B?",
+          "solution": "B is at least as hard as A. Therefore, B is NP-Hard. If B is also verifiable in polynomial time, B is NP-Complete."
+        },
+        {
+          "question": "What happens if a polynomial-time algorithm is found for the Traveling Salesperson Problem (TSP)?",
+          "solution": "Since TSP is NP-Complete, finding a polynomial-time solution for it implies $P = NP$, meaning all problems in NP can be solved in polynomial time."
+        }
+      ],
+      "takeaways": [
+        "Floyd-Warshall works with negative edges but fails on negative cycles (detected if a diagonal matrix element $D[i][i]$ becomes negative).",
+        "NP stands for Nondeterministic Polynomial, NOT Non-Polynomial.",
+        "A problem is NP-Hard if it is as hard as the hardest problems in NP, but it might not even be verifiable (e.g., Halting Problem).",
+        "Subset Sum, Hamiltonian Cycle, 3-Coloring, and Knapsack (0/1) are NP-Complete.",
+        "Eulerian Circuit is in P, while Hamiltonian Circuit is NP-Complete."
+      ],
+      "traps": [
+        "Believing $P \\cap NP$ is empty. Actually, $P \\subseteq NP$. All problems solvable in polynomial time are naturally verifiable in polynomial time."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the time complexity of the Floyd-Warshall algorithm?",
+          "answer": "$O(V^3)$."
+        },
+        {
+          "question": "Is the 0/1 Knapsack problem NP-Complete?",
+          "answer": "Yes, it is NP-Complete (pseudo-polynomial)."
+        },
+        {
+          "question": "If $P \\neq NP$, are NP-Complete problems solvable in polynomial time?",
+          "answer": "No."
+        }
+      ],
+      "sources": [
+        {
+          "title": "GATE NP Completeness",
+          "url": "https://gate.iitkgp.ac.in/cs-syllabus.html",
+          "usedFor": [
+            "P/NP/NPC definitions and reductions"
+          ]
+        }
+      ]
+    }
+  ]
+}

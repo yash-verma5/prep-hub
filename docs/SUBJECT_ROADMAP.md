@@ -18,7 +18,7 @@ The official IOCL Grade-A Computer Science and IT CBT syllabus comprises 10 doma
 | **3** | **Theory of Computation** | 10 | Pumping lemma bounds, DFA minimization, Closure properties | `COMPLETE` |
 | **4** | **Compiler Design** | 8 | FIRST/FOLLOW sets, Parsing tables, Liveness analysis | `COMPLETE` |
 | **5** | **Programming and Data Structures** | 10 | Recursion depth, Tree traversals, BST operations, Heapify | `NOT_STARTED` |
-| **6** | **Algorithms** | 12 | Asymptotic bounds, Recurrences, MST/Shortest path weights | `NOT_STARTED` |
+| **6** | **Algorithms** | 12 | Asymptotic bounds, Recurrences, MST/Shortest path weights | `IN_PROGRESS` |
 | **7** | **Digital Logic** | 8 | K-map minimization, Multiplexer realization, FLOP propagation | `NOT_STARTED` |
 | **8** | **Computer Organization & Architecture** | 10 | Pipeline speedup/stalls, Cache mapping & hit ratios, IEEE 754 | `NOT_STARTED` |
 | **9** | **Engineering Mathematics** | 12 | Matrix rank/eigenvalues, Bayes theorem, Combinatorics, Recurrences | `NOT_STARTED` |
@@ -185,7 +185,7 @@ The official IOCL Grade-A Computer Science and IT CBT syllabus comprises 10 doma
 
 ### 6. Algorithms (Priority 6)
 
-* **Status**: `NOT_STARTED`
+* **Status**: `IN_PROGRESS`
 * **Official Syllabus Coverage**:
   * IOCL Broad Heading: Algorithms
   * GATE CS Detailed Expansion: Searching, sorting, and hashing; asymptotic worst-case time and space complexity; greedy, dynamic programming, and divide-and-conquer techniques; graph traversals, minimum spanning trees, and shortest paths.

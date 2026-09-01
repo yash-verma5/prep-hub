@@ -52,16 +52,17 @@ describe("progress persistence", () => {
 
 describe("question validation", () => {
   it("accepts the expanded bank and preserves the exact mock section pools", () => {
-    expect(questions).toHaveLength(191);
+    expect(questions).toHaveLength(211);
     expect(questions.filter((q) => q.section === "quant")).toHaveLength(20);
     expect(questions.filter((q) => q.section === "reasoning")).toHaveLength(15);
     expect(questions.filter((q) => q.section === "english")).toHaveLength(15);
-    expect(questions.filter((q) => q.section === "domain")).toHaveLength(141);
+    expect(questions.filter((q) => q.section === "domain")).toHaveLength(161);
     expect(questions.filter((q) => q.subject === "Computer Networks")).toHaveLength(20);
     expect(questions.filter((q) => q.subject === "Operating Systems")).toHaveLength(25);
     expect(questions.filter((q) => q.subject === "Databases")).toHaveLength(25);
     expect(questions.filter((q) => q.subject === "Theory of Computation")).toHaveLength(25);
     expect(questions.filter((q) => q.subject === "Compiler Design")).toHaveLength(21);
+    expect(questions.filter((q) => q.subject === "Algorithms")).toHaveLength(25);
     expect(questions.filter((q) => q.id.startsWith("toc-"))).toHaveLength(25);
     expect(questions.filter((q) => q.id.startsWith("cd-"))).toHaveLength(16);
     expect(questions.filter((q) => q.id.startsWith("compiler-"))).toHaveLength(5);
