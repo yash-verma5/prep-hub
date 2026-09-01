@@ -1,0 +1,902 @@
+[
+  {
+    "id": "os-001",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p. 2 — Operating System: system calls and dual-mode execution",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "Operating System Structure, System Calls, and User/Kernel Modes",
+    "difficulty": "Easy",
+    "question": "Which mechanism is used by user-level processes to synchronously request privileged hardware operations from the OS kernel?",
+    "stem": "Which mechanism is used by user-level processes to synchronously request privileged hardware operations from the OS kernel?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Hardware Interrupt"
+      },
+      {
+        "id": "b",
+        "text": "System Call (Software Trap)"
+      },
+      {
+        "id": "c",
+        "text": "Polling"
+      },
+      {
+        "id": "d",
+        "text": "Direct Memory Access (DMA)"
+      }
+    ],
+    "correctOption": "b",
+    "correctOptionId": "b",
+    "explanation": "A system call executes a software trap instruction that synchronously switches CPU execution mode from User Mode (1) to Kernel Mode (0) to request kernel services.",
+    "closestDistractorExplanation": "Hardware interrupts are generated asynchronously by external devices (e.g. keyboard, network card), not synchronously requested by user code.",
+    "sourceTitle": "Operating System Concepts, 10th edition",
+    "sourceUrl": "https://www.os-book.com/",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Ch. 1 — Dual-Mode and System Calls"
+      }
+    ],
+    "reviewNote": "Synchronous software trap vs asynchronous hardware interrupt distinguished."
+  },
+  {
+    "id": "os-002",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p. 2 — Operating System: processes and state transitions",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "Processes, Threads, Context Switching, and Process State Transitions",
+    "difficulty": "Easy",
+    "question": "When a running process initiates a disk I/O read operation, into which state does the OS scheduler move the process?",
+    "stem": "When a running process initiates a disk I/O read operation, into which state does the OS scheduler move the process?",
+    "options": [
+      {
+        "id": "a",
+        "text": "READY"
+      },
+      {
+        "id": "b",
+        "text": "WAITING (BLOCKED)"
+      },
+      {
+        "id": "c",
+        "text": "TERMINATED"
+      },
+      {
+        "id": "d",
+        "text": "NEW"
+      }
+    ],
+    "correctOption": "b",
+    "correctOptionId": "b",
+    "explanation": "Initiating I/O causes a transition from RUNNING to WAITING (BLOCKED) state until the external disk I/O operation completes.",
+    "closestDistractorExplanation": "The process moves to READY only AFTER its requested I/O operation finishes; it cannot move to READY while still waiting for I/O.",
+    "sourceTitle": "Operating System Concepts, 10th edition",
+    "sourceUrl": "https://www.os-book.com/",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Ch. 3 — Process State Diagrams"
+      }
+    ],
+    "reviewNote": "Standard 5-state process transition rules verified."
+  },
+  {
+    "id": "os-003",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p. 2 — Operating System: threads and execution context",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "Processes, Threads, Context Switching, and Process State Transitions",
+    "difficulty": "Easy",
+    "question": "Which component is strictly private to each thread within a multi-threaded process and NOT shared among sibling threads?",
+    "stem": "Which component is strictly private to each thread within a multi-threaded process and NOT shared among sibling threads?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Global variables (Data section)"
+      },
+      {
+        "id": "b",
+        "text": "Dynamic heap memory"
+      },
+      {
+        "id": "c",
+        "text": "Open file descriptors"
+      },
+      {
+        "id": "d",
+        "text": "Register set and Stack space"
+      }
+    ],
+    "correctOption": "d",
+    "correctOptionId": "d",
+    "explanation": "Each thread maintains its own private Program Counter, CPU register set, and function call Stack. Code, data, heap, and open files are shared across all threads of the process.",
+    "closestDistractorExplanation": "Global variables residing in the process data section are accessible to all sibling threads, so they are shared.",
+    "sourceTitle": "Operating System Concepts, 10th edition",
+    "sourceUrl": "https://www.os-book.com/",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Ch. 4 — Multithreaded Models"
+      }
+    ],
+    "reviewNote": "Shared vs private thread attributes verified."
+  },
+  {
+    "id": "os-004",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p. 2 — Operating System: inter-process communication",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "Inter-Process Communication (Shared Memory & Message Passing)",
+    "difficulty": "Easy",
+    "question": "In message passing IPC, what state is created when both sender and receiver use blocking (synchronous) communication primitives?",
+    "stem": "In message passing IPC, what state is created when both sender and receiver use blocking (synchronous) communication primitives?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Starvation"
+      },
+      {
+        "id": "b",
+        "text": "Rendezvous"
+      },
+      {
+        "id": "c",
+        "text": "Thrashing"
+      },
+      {
+        "id": "d",
+        "text": "Belady's Anomaly"
+      }
+    ],
+    "correctOption": "b",
+    "correctOptionId": "b",
+    "explanation": "A Rendezvous occurs when both send and receive are blocking; the sender blocks until the receiver receives the message, creating zero-capacity buffer handoff.",
+    "closestDistractorExplanation": "Thrashing is a virtual memory paging overload condition, entirely unrelated to message passing IPC.",
+    "sourceTitle": "Operating System Concepts, 10th edition",
+    "sourceUrl": "https://www.os-book.com/",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Ch. 3 — IPC Message Passing"
+      }
+    ],
+    "reviewNote": "IPC blocking terminology verified against Silberschatz."
+  },
+  {
+    "id": "os-005",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p. 2 — Operating System: CPU scheduling",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "CPU Scheduling Algorithms (FCFS, SJF, SRTF, Round Robin, Priority)",
+    "difficulty": "Medium",
+    "question": "Three processes P1 (BT=10), P2 (BT=5), and P3 (BT=2) arrive simultaneously at t=0. What is the average Waiting Time under FCFS scheduling in order P1, P2, P3?",
+    "stem": "Three processes P1 (BT=10), P2 (BT=5), and P3 (BT=2) arrive simultaneously at t=0. What is the average Waiting Time under FCFS scheduling in order P1, P2, P3?",
+    "options": [
+      {
+        "id": "a",
+        "text": "5.0 ms"
+      },
+      {
+        "id": "b",
+        "text": "8.33 ms"
+      },
+      {
+        "id": "c",
+        "text": "11.67 ms"
+      },
+      {
+        "id": "d",
+        "text": "15.0 ms"
+      }
+    ],
+    "correctOption": "b",
+    "correctOptionId": "b",
+    "explanation": "FCFS Gantt chart: P1 [0 to 10], P2 [10 to 15], P3 [15 to 17]. Waiting Times (WT = CT - AT - BT): P1 = 0, P2 = 10, P3 = 15. Average WT = (0 + 10 + 15)/3 = 25/3 = 8.33 ms.",
+    "closestDistractorExplanation": "11.67 ms is the average Turnaround Time (10 + 15 + 17)/3 = 42/3 = 14 ms minus wrong offsets; TAT average is 14 ms.",
+    "sourceTitle": "Operating System Concepts, 10th edition",
+    "sourceUrl": "https://www.os-book.com/",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Ch. 5 — FCFS Scheduling"
+      }
+    ],
+    "reviewNote": "FCFS wait time arithmetic rechecked."
+  },
+  {
+    "id": "os-006",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p. 2 — Operating System: CPU scheduling algorithms",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "CPU Scheduling Algorithms (FCFS, SJF, SRTF, Round Robin, Priority)",
+    "difficulty": "Medium",
+    "question": "Which CPU scheduling algorithm guarantees the provably minimum average waiting time for a given set of non-preemptive processes arriving simultaneously?",
+    "stem": "Which CPU scheduling algorithm guarantees the provably minimum average waiting time for a given set of non-preemptive processes arriving simultaneously?",
+    "options": [
+      {
+        "id": "a",
+        "text": "First-Come, First-Served (FCFS)"
+      },
+      {
+        "id": "b",
+        "text": "Round Robin (RR)"
+      },
+      {
+        "id": "c",
+        "text": "Shortest Job First (SJF)"
+      },
+      {
+        "id": "d",
+        "text": "Priority Scheduling"
+      }
+    ],
+    "correctOption": "c",
+    "correctOptionId": "c",
+    "explanation": "Shortest Job First (SJF) is mathematically optimal because moving a shorter process before a longer process reduces the waiting time of the shorter process more than it increases the waiting time of the longer process.",
+    "closestDistractorExplanation": "Round Robin prioritizes fairness and interactive response time, but does NOT yield minimal average waiting time.",
+    "sourceTitle": "Operating System Concepts, 10th edition",
+    "sourceUrl": "https://www.os-book.com/",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Ch. 5 — SJF Scheduling Proof"
+      }
+    ],
+    "reviewNote": "SJF optimality theorem verified."
+  },
+  {
+    "id": "os-007",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p. 2 — Operating System: critical section criteria",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "Process Synchronization: Critical Section Problem, Semaphores, and Mutex",
+    "difficulty": "Easy",
+    "question": "Which of the following is NOT one of the three mandatory criteria required to solve the Critical Section problem?",
+    "stem": "Which of the following is NOT one of the three mandatory criteria required to solve the Critical Section problem?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Mutual Exclusion"
+      },
+      {
+        "id": "b",
+        "text": "Progress"
+      },
+      {
+        "id": "c",
+        "text": "Bounded Waiting"
+      },
+      {
+        "id": "d",
+        "text": "Strict Alternation"
+      }
+    ],
+    "correctOption": "d",
+    "correctOptionId": "d",
+    "explanation": "Strict Alternation is NOT a requirement; in fact, enforcing strict alternation violates the Progress requirement because a process ready to re-enter must wait for the other process.",
+    "closestDistractorExplanation": "Progress is one of the three core required criteria (along with Mutual Exclusion and Bounded Waiting).",
+    "sourceTitle": "Operating System Concepts, 10th edition",
+    "sourceUrl": "https://www.os-book.com/",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Ch. 6 — Critical-Section Problem"
+      }
+    ],
+    "reviewNote": "Critical section rules verified against Silberschatz."
+  },
+  {
+    "id": "os-008",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p. 2 — Operating System: semaphores",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "Process Synchronization: Critical Section Problem, Semaphores, and Mutex",
+    "difficulty": "Medium",
+    "question": "A counting semaphore S is initialized to 10. A sequence of 15 wait(S) operations and 7 signal(S) operations are executed. What is the resulting value of S?",
+    "stem": "A counting semaphore S is initialized to 10. A sequence of 15 wait(S) operations and 7 signal(S) operations are executed. What is the resulting value of S?",
+    "options": [
+      {
+        "id": "a",
+        "text": "2"
+      },
+      {
+        "id": "b",
+        "text": "5"
+      },
+      {
+        "id": "c",
+        "text": "0 (with 2 processes blocked)"
+      },
+      {
+        "id": "d",
+        "text": "12"
+      }
+    ],
+    "correctOption": "a",
+    "correctOptionId": "a",
+    "explanation": "Final Value = Initial Value - Wait Count + Signal Count = 10 - 15 + 7 = 2.",
+    "closestDistractorExplanation": "0 with 2 processes blocked occurs when using a block-wakeup implementation where 15 wait calls on 10 initial units block 5, and 7 signals wake all 5 and leave value at 2.",
+    "sourceTitle": "Operating System Concepts, 10th edition",
+    "sourceUrl": "https://www.os-book.com/",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Ch. 6 — Semaphore Operations"
+      }
+    ],
+    "reviewNote": "Semaphore math checked: 10 - 15 + 7 = 2."
+  },
+  {
+    "id": "os-009",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p. 2 — Operating System: bounded buffer synchronization",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "Classic Synchronization Problems (Producer-Consumer, Readers-Writers, Dining Philosophers)",
+    "difficulty": "Medium",
+    "question": "In the standard Producer-Consumer semaphore solution for buffer size N, what are the initial values for `mutex`, `empty`, and `full`?",
+    "stem": "In the standard Producer-Consumer semaphore solution for buffer size N, what are the initial values for `mutex`, `empty`, and `full`?",
+    "options": [
+      {
+        "id": "a",
+        "text": "mutex = 0, empty = 0, full = N"
+      },
+      {
+        "id": "b",
+        "text": "mutex = 1, empty = N, full = 0"
+      },
+      {
+        "id": "c",
+        "text": "mutex = 1, empty = 0, full = N"
+      },
+      {
+        "id": "d",
+        "text": "mutex = N, empty = 1, full = 0"
+      }
+    ],
+    "correctOption": "b",
+    "correctOptionId": "b",
+    "explanation": "mutex is a binary semaphore initialized to 1; empty counts free slots initialized to N; full counts items produced initialized to 0.",
+    "closestDistractorExplanation": "Setting empty=0 and full=N would indicate the buffer is full initially, preventing producers from producing.",
+    "sourceTitle": "Operating System Concepts, 10th edition",
+    "sourceUrl": "https://www.os-book.com/",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Ch. 6 — Bounded Buffer Problem"
+      }
+    ],
+    "reviewNote": "Standard semaphore initialization checked."
+  },
+  {
+    "id": "os-010",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p. 2 — Operating System: Banker's algorithm safety check",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "Deadlocks: Characterization, Prevention, Avoidance (Banker's Algorithm), and Detection",
+    "difficulty": "Hard",
+    "question": "System has Available = [3, 2, 2]. Process P0 has Allocation = [1, 0, 0] and Max = [3, 2, 2]. Process P1 has Allocation = [2, 1, 1] and Max = [4, 3, 3]. Is the state safe, and which process can run first?",
+    "stem": "System has Available = [3, 2, 2]. Process P0 has Allocation = [1, 0, 0] and Max = [3, 2, 2]. Process P1 has Allocation = [2, 1, 1] and Max = [4, 3, 3]. Is the state safe, and which process can run first?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Unsafe state; neither P0 nor P1 can execute"
+      },
+      {
+        "id": "b",
+        "text": "Safe state; P0 can finish first because Need[P0] = [2, 2, 2] <= Available [3, 2, 2]"
+      },
+      {
+        "id": "c",
+        "text": "Safe state; P1 must finish first"
+      },
+      {
+        "id": "d",
+        "text": "Unsafe state; Need exceeds Max"
+      }
+    ],
+    "correctOption": "b",
+    "correctOptionId": "b",
+    "explanation": "Need[P0] = Max[P0] - Alloc[P0] = [3-1, 2-0, 2-0] = [2, 2, 2]. Available = [3, 2, 2]. Since Need[P0] [2,2,2] <= Available [3,2,2], P0 can finish. After P0 finishes, Available becomes [3,2,2] + [1,0,0] = [4,2,2]. Need[P1] = [4-2, 3-1, 3-1] = [2,2,2] <= [4,2,2], so P1 finishes. Safe sequence: <P0, P1>.",
+    "closestDistractorExplanation": "Claiming P1 can finish first is false because Need[P1] = [2, 2, 2] requires Available[1] >= 2, but Available[1] is 2, so P1 could run, but P0 is the canonical first process.",
+    "sourceTitle": "Operating System Concepts, 10th edition",
+    "sourceUrl": "https://www.os-book.com/",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Ch. 7 — Banker's Algorithm Safety"
+      }
+    ],
+    "reviewNote": "Banker's algorithm vector math verified."
+  },
+  {
+    "id": "os-011",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p. 2 — Operating System: contiguous memory allocation",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "Memory Management: Contiguous Allocation, Paging, and Segmentation",
+    "difficulty": "Medium",
+    "question": "Free memory holes in order: 100 KB, 500 KB, 200 KB, 300 KB, 600 KB. Which hole will be allocated to a 212 KB process under Best-Fit allocation?",
+    "stem": "Free memory holes in order: 100 KB, 500 KB, 200 KB, 300 KB, 600 KB. Which hole will be allocated to a 212 KB process under Best-Fit allocation?",
+    "options": [
+      {
+        "id": "a",
+        "text": "500 KB hole"
+      },
+      {
+        "id": "b",
+        "text": "200 KB hole"
+      },
+      {
+        "id": "c",
+        "text": "300 KB hole"
+      },
+      {
+        "id": "d",
+        "text": "600 KB hole"
+      }
+    ],
+    "correctOption": "c",
+    "correctOptionId": "c",
+    "explanation": "Best-Fit allocates the smallest hole that is large enough for the process (>= 212 KB). Eligible holes are 500 KB, 300 KB, and 600 KB. The smallest eligible hole is 300 KB.",
+    "closestDistractorExplanation": "500 KB would be selected under First-Fit (first hole >= 212 KB).",
+    "sourceTitle": "Operating System Concepts, 10th edition",
+    "sourceUrl": "https://www.os-book.com/",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Ch. 8 — Dynamic Storage Allocation"
+      }
+    ],
+    "reviewNote": "First-Fit vs Best-Fit allocation selection checked."
+  },
+  {
+    "id": "os-012",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p. 2 — Operating System: paging address translation",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "Memory Management: Contiguous Allocation, Paging, and Segmentation",
+    "difficulty": "Medium",
+    "question": "A system uses a page size of 2 KB (2048 bytes). Logical address 5000 corresponds to which Page Number and Offset?",
+    "stem": "A system uses a page size of 2 KB (2048 bytes). Logical address 5000 corresponds to which Page Number and Offset?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Page 2, Offset 904"
+      },
+      {
+        "id": "b",
+        "text": "Page 2, Offset 500"
+      },
+      {
+        "id": "c",
+        "text": "Page 3, Offset 904"
+      },
+      {
+        "id": "d",
+        "text": "Page 1, Offset 2048"
+      }
+    ],
+    "correctOption": "a",
+    "correctOptionId": "a",
+    "explanation": "Page Number = floor(5000 / 2048) = 2. Offset = 5000 mod 2048 = 5000 - 4096 = 904.",
+    "closestDistractorExplanation": "Page 3 is wrong because 3 * 2048 = 6144 > 5000; address 5000 is inside Page 2 (range 4096 to 6143).",
+    "sourceTitle": "Operating System Concepts, 10th edition",
+    "sourceUrl": "https://www.os-book.com/",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Ch. 8 — Paging Hardware"
+      }
+    ],
+    "reviewNote": "Division and modulus verified: 5000 = 2 * 2048 + 904."
+  },
+  {
+    "id": "os-013",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p. 2 — Operating System: TLB effective access time",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "Virtual Memory: Demand Paging, Page Table Structures, and TLB",
+    "difficulty": "Hard",
+    "question": "TLB lookup time is 20 ns and main memory access time is 100 ns. Using a single-level page table, what TLB hit ratio h is required to achieve an Effective Access Time (EAT) of 130 ns?",
+    "stem": "TLB lookup time is 20 ns and main memory access time is 100 ns. Using a single-level page table, what TLB hit ratio h is required to achieve an Effective Access Time (EAT) of 130 ns?",
+    "options": [
+      {
+        "id": "a",
+        "text": "80%"
+      },
+      {
+        "id": "b",
+        "text": "85%"
+      },
+      {
+        "id": "c",
+        "text": "90%"
+      },
+      {
+        "id": "d",
+        "text": "95%"
+      }
+    ],
+    "correctOption": "c",
+    "correctOptionId": "c",
+    "explanation": "TLB Hit Time = 20 + 100 = 120 ns. TLB Miss Time = 20 + 100 + 100 = 220 ns. EAT = h * 120 + (1 - h) * 220 = 130 => 220 - 100h = 130 => 100h = 90 => h = 0.90 or 90%.",
+    "closestDistractorExplanation": "80% yields EAT = 0.8(120) + 0.2(220) = 96 + 44 = 140 ns.",
+    "sourceTitle": "Operating System Concepts, 10th edition",
+    "sourceUrl": "https://www.os-book.com/",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Ch. 9 — TLB EAT Calculation"
+      }
+    ],
+    "reviewNote": "EAT algebraic solution rechecked."
+  },
+  {
+    "id": "os-014",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p. 2 — Operating System: page replacement trace",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "Page Replacement Algorithms (FIFO, Optimal, LRU, Clock) and Thrashing",
+    "difficulty": "Medium",
+    "question": "For reference string '7, 0, 1, 2, 0, 3, 0' with 3 frames initially empty, how many page faults occur under LRU (Least Recently Used)?",
+    "stem": "For reference string '7, 0, 1, 2, 0, 3, 0' with 3 frames initially empty, how many page faults occur under LRU (Least Recently Used)?",
+    "options": [
+      {
+        "id": "a",
+        "text": "4"
+      },
+      {
+        "id": "b",
+        "text": "5"
+      },
+      {
+        "id": "c",
+        "text": "6"
+      },
+      {
+        "id": "d",
+        "text": "7"
+      }
+    ],
+    "correctOption": "b",
+    "correctOptionId": "b",
+    "explanation": "Ref 7: [7] (Fault 1). Ref 0: [7,0] (Fault 2). Ref 1: [7,0,1] (Fault 3). Ref 2: Evict 7 (least recently used) -> [2,0,1] (Fault 4). Ref 0: Hit [2,0,1] (recency: 0 newest). Ref 3: Evict 1 (least recently used) -> [2,0,3] (Fault 5). Ref 0: Hit [2,0,3]. Total faults = 5.",
+    "closestDistractorExplanation": "6 faults occurs if 0 was evicted at ref 3 by mistake instead of 1.",
+    "sourceTitle": "Operating System Concepts, 10th edition",
+    "sourceUrl": "https://www.os-book.com/",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Ch. 9 — LRU Replacement Trace"
+      }
+    ],
+    "reviewNote": "LRU frame stack trace re-verified."
+  },
+  {
+    "id": "os-015",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p. 2 — Operating System: Belady's anomaly",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "Page Replacement Algorithms (FIFO, Optimal, LRU, Clock) and Thrashing",
+    "difficulty": "Easy",
+    "question": "Which page replacement algorithm can exhibit Belady's Anomaly (where increasing frames increases page faults)?",
+    "stem": "Which page replacement algorithm can exhibit Belady's Anomaly (where increasing frames increases page faults)?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Least Recently Used (LRU)"
+      },
+      {
+        "id": "b",
+        "text": "Optimal Page Replacement (OPT)"
+      },
+      {
+        "id": "c",
+        "text": "First-In, First-Out (FIFO)"
+      },
+      {
+        "id": "d",
+        "text": "Most Recently Used (MRU Stack Algorithm)"
+      }
+    ],
+    "correctOption": "c",
+    "correctOptionId": "c",
+    "explanation": "Belady's Anomaly is a counter-intuitive behavior where adding frames causes MORE page faults; it occurs in FIFO, but never in Stack algorithms like LRU or OPT.",
+    "closestDistractorExplanation": "LRU is a stack algorithm and is mathematically proven to be immune to Belady's Anomaly.",
+    "sourceTitle": "Operating System Concepts, 10th edition",
+    "sourceUrl": "https://www.os-book.com/",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Ch. 9 — Belady's Anomaly"
+      }
+    ],
+    "reviewNote": "Belady's anomaly applicability checked."
+  },
+  {
+    "id": "os-016",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p. 2 — Operating System: thrashing and working set",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "Page Replacement Algorithms (FIFO, Optimal, LRU, Clock) and Thrashing",
+    "difficulty": "Medium",
+    "question": "What primary condition triggers system thrashing in a virtual memory operating system?",
+    "stem": "What primary condition triggers system thrashing in a virtual memory operating system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "CPU clock frequency exceeds memory bus bandwidth"
+      },
+      {
+        "id": "b",
+        "text": "Sum of working set sizes of all active processes exceeds total physical RAM frames"
+      },
+      {
+        "id": "c",
+        "text": "TLB hit ratio reaches 100%"
+      },
+      {
+        "id": "d",
+        "text": "Disk controller buffer overflows"
+      }
+    ],
+    "correctOption": "b",
+    "correctOptionId": "b",
+    "explanation": "Thrashing occurs when total memory demand (sum of working set sizes) exceeds physical RAM capacity, causing continuous page swapping and near-zero CPU execution.",
+    "closestDistractorExplanation": "TLB hit ratio reaching 100% is ideal performance, the complete opposite of thrashing.",
+    "sourceTitle": "Operating System Concepts, 10th edition",
+    "sourceUrl": "https://www.os-book.com/",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Ch. 9 — Working-Set Model"
+      }
+    ],
+    "reviewNote": "Thrashing working set threshold verified."
+  },
+  {
+    "id": "os-017",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p. 2 — Operating System: disk scheduling head movement",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "Disk Scheduling (FCFS, SSTF, SCAN, C-SCAN, LOOK) and I/O Management",
+    "difficulty": "Hard",
+    "question": "Disk queue requests: 98, 183, 37, 122. Current head is at 53 moving towards higher cylinders. Disk range is 0 to 199. What is the total head movement under SCAN scheduling?",
+    "stem": "Disk queue requests: 98, 183, 37, 122. Current head is at 53 moving towards higher cylinders. Disk range is 0 to 199. What is the total head movement under SCAN scheduling?",
+    "options": [
+      {
+        "id": "a",
+        "text": "236 tracks"
+      },
+      {
+        "id": "b",
+        "text": "308 tracks"
+      },
+      {
+        "id": "c",
+        "text": "331 tracks"
+      },
+      {
+        "id": "d",
+        "text": "382 tracks"
+      }
+    ],
+    "correctOption": "b",
+    "correctOptionId": "b",
+    "explanation": "Head starts at 53, moves up servicing 98, 122, 183 and reaches boundary 199. Upward movement = 199 - 53 = 146 tracks. Head reverses at 199 and moves down to service 37. Downward movement = 199 - 37 = 162 tracks. Total head movement = 146 + 162 = 308 tracks.",
+    "closestDistractorExplanation": "331 tracks includes moving down all the way to 14 instead of stopping at 37 (which is the last request in this queue).",
+    "sourceTitle": "Operating System Concepts, 10th edition",
+    "sourceUrl": "https://www.os-book.com/",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Ch. 10 — SCAN Disk Scheduling"
+      }
+    ],
+    "reviewNote": "SCAN head trace re-verified: (199-53) + (199-37) = 146 + 162 = 308."
+  },
+  {
+    "id": "os-018",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p. 2 — Operating System: disk access time components",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "Disk Scheduling (FCFS, SSTF, SCAN, C-SCAN, LOOK) and I/O Management",
+    "difficulty": "Medium",
+    "question": "A hard disk rotates at 6000 RPM. What is its average rotational latency?",
+    "stem": "A hard disk rotates at 6000 RPM. What is its average rotational latency?",
+    "options": [
+      {
+        "id": "a",
+        "text": "2.5 ms"
+      },
+      {
+        "id": "b",
+        "text": "5.0 ms"
+      },
+      {
+        "id": "c",
+        "text": "10.0 ms"
+      },
+      {
+        "id": "d",
+        "text": "12.0 ms"
+      }
+    ],
+    "correctOption": "b",
+    "correctOptionId": "b",
+    "explanation": "Rotations per second = 6000 / 60 = 100 rev/sec. Time for 1 full rotation = 1 / 100 sec = 10 ms. Average rotational latency is half of one full rotation = 10 ms / 2 = 5.0 ms.",
+    "closestDistractorExplanation": "10.0 ms is the full rotation time, not the average latency (which is half a rotation).",
+    "sourceTitle": "Operating System Concepts, 10th edition",
+    "sourceUrl": "https://www.os-book.com/",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Ch. 10 — Disk Performance Attributes"
+      }
+    ],
+    "reviewNote": "Rotational latency math checked: 0.5 * (60/6000) * 1000 = 5ms."
+  },
+  {
+    "id": "os-019",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p. 2 — Operating System: file allocation i-node capacity",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "File System Structure, Allocation Methods, and Directory Systems",
+    "difficulty": "Hard",
+    "question": "A Unix file system has block size = 2 KB (2048 bytes) and disk pointer size = 8 bytes. How many block pointers can be stored in a single indirect index block?",
+    "stem": "A Unix file system has block size = 2 KB (2048 bytes) and disk pointer size = 8 bytes. How many block pointers can be stored in a single indirect index block?",
+    "options": [
+      {
+        "id": "a",
+        "text": "128 pointers"
+      },
+      {
+        "id": "b",
+        "text": "256 pointers"
+      },
+      {
+        "id": "c",
+        "text": "512 pointers"
+      },
+      {
+        "id": "d",
+        "text": "1024 pointers"
+      }
+    ],
+    "correctOption": "b",
+    "correctOptionId": "b",
+    "explanation": "Pointers per Block = Block Size / Pointer Size = 2048 bytes / 8 bytes = 256 pointers.",
+    "closestDistractorExplanation": "512 pointers is the result if using 4-byte pointers instead of 8-byte pointers.",
+    "sourceTitle": "Operating System Concepts, 10th edition",
+    "sourceUrl": "https://www.os-book.com/",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Ch. 11 — File Allocation Methods"
+      }
+    ],
+    "reviewNote": "Block pointer division checked: 2048 / 8 = 256."
+  },
+  {
+    "id": "os-020",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Original for IOCL Prep Hub; not an IOCL previous-year question",
+    "sourceId": "GATE-CS-SYL-2026",
+    "sourceLocator": "p. 2 — Operating System: file links",
+    "section": "domain",
+    "subject": "Operating Systems",
+    "topic": "File System Structure, Allocation Methods, and Directory Systems",
+    "difficulty": "Easy",
+    "question": "What happens when the target original file is deleted in a file system containing a Symbolic Link (soft link) and a Hard Link pointing to it?",
+    "stem": "What happens when the target original file is deleted in a file system containing a Symbolic Link (soft link) and a Hard Link pointing to it?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Both symbolic link and hard link become broken pointers"
+      },
+      {
+        "id": "b",
+        "text": "Symbolic link breaks (dangling pointer); Hard link continues to access data file content"
+      },
+      {
+        "id": "c",
+        "text": "Hard link breaks; Symbolic link remains intact"
+      },
+      {
+        "id": "d",
+        "text": "OS prevents deletion until all links are removed"
+      }
+    ],
+    "correctOption": "b",
+    "correctOptionId": "b",
+    "explanation": "A symbolic link contains path text and breaks (dangling pointer) when the path is removed. A hard link points directly to the i-node; deleting the original name decrements the i-node link count, but the file data persists until the link count reaches 0.",
+    "closestDistractorExplanation": "Claiming both break is incorrect because hard links hold direct i-node references.",
+    "sourceTitle": "Operating System Concepts, 10th edition",
+    "sourceUrl": "https://www.os-book.com/",
+    "verificationSources": [
+      {
+        "sourceId": "OS-CONCEPTS",
+        "locator": "Ch. 11 — Directories and Links"
+      }
+    ],
+    "reviewNote": "Hard link vs soft link deletion behavior verified."
+  }
+]

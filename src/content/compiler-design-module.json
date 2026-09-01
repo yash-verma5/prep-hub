@@ -1,0 +1,588 @@
+{
+  "id": "compiler-design-module",
+  "title": "Compiler Design",
+  "provenance": "original",
+  "syllabusSource": {
+    "title": "GATE 2026 CS syllabus — Section 7",
+    "url": "https://gate2026.iitg.ac.in/doc/GATE2026_Syllabus/CS_2026_Syllabus.pdf"
+  },
+  "topics": [
+    {
+      "order": 1,
+      "title": "Compiler Architecture, Lexical Analysis, and Tokenization",
+      "oneLine": "A compiler maps high-level source code into target machine code through analysis and synthesis phases.",
+      "whyItMatters": "Questions test phase boundaries, lexeme vs token distinctions, input buffering efficiency, and DFA representation of lexical tokens.",
+      "understandSimply": [
+        "A compiler operates like a multi-stage factory pipeline. The front end reads human source code, verifies grammatical correctness, and produces an intermediate blueprint.",
+        "The back end takes this intermediate blueprint, optimizes performance, and generates machine binary instructions. Lexical analysis is the very first stage that reads raw character streams and groups them into logical words (tokens)."
+      ],
+      "technicalExplanation": [
+        "The analysis phase (front end) consists of Lexical Analysis (scanning), Syntax Analysis (parsing), and Semantic Analysis (type checking). The synthesis phase (back end) consists of Intermediate Code Generation (ICG), Code Optimization, and Target Code Generation.",
+        "Lexical analysis scans input character by character using a two-buffer scheme with sentinels to minimize I/O calls. It matches character sequences called lexemes against regular expression patterns to emit pairs of `(token_name, attribute_value)`.",
+        "Symbol tables and global error handlers interact with all compiler phases to maintain scope, type, and location metadata throughout translation."
+      ],
+      "definitions": [
+        { "term": "Lexeme", "definition": "A specific sequence of characters in the source code matching a token pattern (e.g., `count`, `100`, `+`)." },
+        { "term": "Token", "definition": "An abstract terminal symbol returned by the scanner to the parser (e.g., `id`, `num`, `assign_op`)." },
+        { "term": "Pattern", "definition": "A formal rule (usually a Regular Expression) describing the set of strings forming a token." },
+        { "term": "Sentinel", "definition": "A special marker character (such as `EOF`) placed at the end of a buffer to avoid checking buffer boundaries on every character read." }
+      ],
+      "steps": [
+        { "title": "1. Buffer Input Stream", "description": "Fill the input buffer using a double-buffering scheme and scan forward until a token boundary is identified." },
+        { "title": "2. Match Pattern via DFA", "description": "Traverse the deterministic finite automaton for regular expressions; pick the longest matching lexeme (longest match rule)." },
+        { "title": "3. Emit Token & Symbol Entry", "description": "Pass the token to the parser and enter identifiers into the Symbol Table with type and scope metadata." }
+      ],
+      "formulasAndMethods": [
+        "Longest Match Rule: When multiple patterns match a prefix, the scanner selects the pattern matching the longest character sequence.",
+        "Rule Priority: If a lexeme matches multiple patterns of equal length (e.g., `if` as keyword vs identifier), the rule defined earliest in the specification wins.",
+        "Buffer Scan Speedup: Using two buffers of size \\(N\\) with sentinels requires only 1 boundary check per character instead of 2."
+      ],
+      "comparisons": [
+        {
+          "title": "Lexical Concepts Comparison",
+          "columns": ["Concept", "Nature", "Concrete Example"],
+          "rows": [
+            ["Lexeme", "Concrete character sequence in source code", "`total_amount`"],
+            ["Token", "Abstract symbol passed to parser", "`id`"],
+            ["Pattern", "Formal rule defining the set of valid lexemes", "`[a-zA-Z_][a-zA-Z0-9_]*`"]
+          ]
+        },
+        {
+          "title": "Compiler vs Interpreter",
+          "columns": ["Property", "Compiler", "Interpreter"],
+          "rows": [
+            ["Execution Model", "Translates entire program before execution", "Translates and executes line-by-line"],
+            ["Execution Speed", "Faster target binary execution", "Slower due to runtime translation overhead"],
+            ["Error Reporting", "Collects all syntactic errors before run", "Stops execution at first runtime error"]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "How many tokens are produced by the C statement `x = y + 10;`?",
+          "solution": "The lexemes are `x` (token `id`), `=` (token `assign`), `y` (token `id`), `+` (token `add_op`), `10` (token `num`), and `;` (token `semi`). Total tokens = 6."
+        },
+        {
+          "question": "If a language defines identifier as `[a-z]+` and keyword `if`, how is `ifvar` classified?",
+          "solution": "By the longest match rule, `ifvar` is scanned as a single identifier token because 5 characters (`ifvar`) is longer than the 2-character keyword `if`."
+        }
+      ],
+      "traps": [
+        "Lexical analysis DOES NOT verify matching parentheses or nested scopes; that is the job of syntax analysis.",
+        "Keywords like `while` are not valid variable identifiers because keyword patterns precede identifier patterns in scanner specifications.",
+        "Comments and whitespace are stripped during lexical analysis and do not reach the parser unless required for layout sensitivity."
+      ],
+      "takeaways": [
+        "Lexical analysis turns a raw character stream into a token stream.",
+        "Longest match and rule priority resolve scanner ambiguity.",
+        "Symbol tables maintain global identifier metadata across all compilation phases."
+      ],
+      "quickRecall": [
+        { "question": "Which compiler phase strips comments and whitespace?", "answer": "Lexical Analysis (Scanner)." },
+        { "question": "What rule resolves ambiguity between `if` as a keyword and `if` as an identifier?", "answer": "Rule priority (keywords listed before identifiers)." },
+        { "question": "What is the role of a sentinel in input buffering?", "answer": "To mark buffer ends and reduce boundary checking overhead to once per character." }
+      ],
+      "sources": [
+        { "title": "GATE 2026 CS syllabus — Section 7", "url": "https://gate2026.iitg.ac.in/doc/GATE2026_Syllabus/CS_2026_Syllabus.pdf", "usedFor": ["Scope: Lexical analysis and parsing"] },
+        { "title": "Compilers: Principles, Techniques, and Tools — Chapter 3", "url": "https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools", "usedFor": ["Lexical analysis, input buffering, tokens"] }
+      ]
+    },
+    {
+      "order": 2,
+      "title": "Context-Free Grammars, LL(1) Parsing, and FIRST & FOLLOW Sets",
+      "oneLine": "Top-down parsers construct parse trees from the root downward using LL(1) grammars guided by FIRST and FOLLOW sets.",
+      "whyItMatters": "FIRST and FOLLOW set computation is a guaranteed exam numerical area, along with LL(1) parsing table conflict verification.",
+      "understandSimply": [
+        "A Context-Free Grammar (CFG) provides the grammatical rules of a programming language. A top-down parser tries to predict which grammar rule to expand next by looking at the upcoming input token.",
+        "An LL(1) parser looks at exactly 1 input token to choose the correct rule. To build its decision table without guessing, it calculates which tokens can appear at the start of a production rule (FIRST set) and which tokens can immediately follow a variable (FOLLOW set)."
+      ],
+      "technicalExplanation": [
+        "A CFG is defined as \\(G = (V, \\Sigma, R, S)\\). Top-down predictive parsing requires an LL(1) grammar: Left-to-right scan, Leftmost derivation, 1 token lookahead.",
+        "Left recursion (e.g., \\(A \\rightarrow A \\alpha \\mid \\beta\\)) causes infinite recursion in top-down parsers and must be eliminated into \\(A \\rightarrow \\beta A'\\) and \\(A' \\rightarrow \\alpha A' \\mid \\epsilon\\).",
+        "For a production \\(A \\rightarrow \\alpha\\), \\(\\text{FIRST}(\\alpha)\\) contains terminal symbols that begin strings derived from \\(\\alpha\\). \\(\\text{FOLLOW}(A)\\) contains terminal symbols that can appear immediately to the right of \\(A\\) in some sentential form. \\(\\text{FOLLOW}(S)\\) always contains the endmarker \\(\\$\\)."
+      ],
+      "definitions": [
+        { "term": "LL(1) Grammar", "definition": "A context-free grammar whose parsing table has no duplicate entries when using 1 lookahead token." },
+        { "term": "Immediate Left Recursion", "definition": "A production of the form \\(A \\rightarrow A \\alpha\\), causing infinite loops in recursive descent parsers." },
+        { "term": "FIRST Set", "definition": "Set of terminal symbols that can appear as the first symbol of a string derived from a grammar string." },
+        { "term": "FOLLOW Set", "definition": "Set of terminal symbols that can appear immediately after a non-terminal in some valid sentential form." }
+      ],
+      "steps": [
+        { "title": "1. Compute FIRST Sets", "description": "If \\(X \\rightarrow a \\alpha\\), add \\(a\\) to \\(\\text{FIRST}(X)\\). If \\(X \\rightarrow \\epsilon\\), add \\(\\epsilon\\) to \\(\\text{FIRST}(X)\\)." },
+        { "title": "2. Compute FOLLOW Sets", "description": "Place \\(\\$\\) in \\(\\text{FOLLOW}(S)\\). For \\(A \\rightarrow \\alpha B \\beta\\), add all non-\\(\\epsilon\\) symbols of \\(\\text{FIRST}(\\beta)\\) to \\(\\text{FOLLOW}(B)\\). If \\(\\epsilon \\in \\text{FIRST}(\\beta)\\), add \\(\\text{FOLLOW}(A)\\) to \\(\\text{FOLLOW}(B)\\)." },
+        { "title": "3. Construct LL(1) Table", "description": "For each production \\(A \\rightarrow \\alpha\\): for each terminal \\(a \\in \\text{FIRST}(\\alpha)\\), add \\(A \\rightarrow \\alpha\\) to \\(M[A, a]\\). If \\(\\epsilon \\in \\text{FIRST}(\\alpha)\\), for each \\(b \\in \\text{FOLLOW}(A)\\), add \\(A \\rightarrow \\alpha\\) to \\(M[A, b]\\)." }
+      ],
+      "formulasAndMethods": [
+        "Left Recursion Elimination: \\(A \\rightarrow A \\alpha_1 \\mid A \\alpha_2 \\mid \\beta_1 \\mid \\beta_2\\) transforms to \\(A \\rightarrow \\beta_1 A' \\mid \\beta_2 A'\\) and \\(A' \\rightarrow \\alpha_1 A' \\mid \\alpha_2 A' \\mid \\epsilon\\).",
+        "LL(1) Condition: For two productions \\(A \\rightarrow \\alpha \\mid \\beta\\), (1) \\(\\text{FIRST}(\\alpha) \\cap \\text{FIRST}(\\beta) = \\emptyset\\), and (2) if \\(\\epsilon \\in \\text{FIRST}(\\alpha)\\), then \\(\\text{FIRST}(\\beta) \\cap \\text{FOLLOW}(A) = \\emptyset\\)."
+      ],
+      "comparisons": [
+        {
+          "title": "FIRST vs FOLLOW Properties",
+          "columns": ["Property", "FIRST(A)", "FOLLOW(A)"],
+          "rows": [
+            ["Can contain \\(\\epsilon\\)?", "Yes, if \\(A \\Rightarrow^* \\epsilon\\)", "NEVER (FOLLOW sets never contain \\(\\epsilon\\))"],
+            ["Can contain \\(\\$\\)?", "No", "Yes, \\(\\$\\) represents end of input stream"],
+            ["Derived from", "Symbols on the right-hand side of \\(A \\rightarrow \\alpha\\)", "Context where \\(A\\) appears on the RHS of productions"]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Given grammar \\(S \\rightarrow A B\\), \\(A \\rightarrow a \\mid \\epsilon\\), \\(B \\rightarrow b\\). Find \\(\\text{FOLLOW}(A)\\).",
+          "solution": "In \\(S \\rightarrow A B\\), \\(B\\) immediately follows \\(A\\). Thus \\(\\text{FOLLOW}(A) = \\text{FIRST}(B) = \\{b\\}\\). Note that \\(\\epsilon\\) is not included."
+        },
+        {
+          "question": "Is the grammar \\(S \\rightarrow i E t S \\mid i E t S e S \\mid a\\) LL(1)?",
+          "solution": "No. Both conditional productions start with \\(i\\), so \\(\\text{FIRST}(i E t S) \\cap \\text{FIRST}(i E t S e S) = \\{i\\} \\neq \\emptyset\\). This creates a FIRST/FIRST conflict (dangling else problem)."
+        }
+      ],
+      "traps": [
+        "FOLLOW sets NEVER contain \\(\\epsilon\\). If your calculated FOLLOW set has \\(\\epsilon\\), it is incorrect.",
+        "Left-recursive grammars can NEVER be LL(1). You must eliminate left recursion before testing for LL(1).",
+        "When \\(A \\rightarrow \\epsilon\\), place the production in \\(M[A, b]\\) for terminals \\(b \\in \\text{FOLLOW}(A)\\), NOT \\(\\text{FIRST}(A)\\)."
+      ],
+      "takeaways": [
+        "LL(1) parsers require deterministic top-down prediction without backtracking.",
+        "Left recursion must be removed for top-down parsing.",
+        "FIRST sets inspect leading terminals; FOLLOW sets inspect context trailing a non-terminal."
+      ],
+      "quickRecall": [
+        { "question": "Can an LL(1) grammar contain left recursion?", "answer": "No, left recursion creates infinite loops in top-down parsers." },
+        { "question": "What symbol is always in \\(\\text{FOLLOW}(S)\\) for start symbol \\(S\\)?", "answer": "The input endmarker symbol \\(\\$\\)." },
+        { "question": "If \\(\\epsilon \\in \\text{FIRST}(\\alpha)\\) for \\(A \\rightarrow \\alpha\\), where is the entry added in the LL(1) table?", "answer": "In columns corresponding to \\(\\text{FOLLOW}(A)\\)." }
+      ],
+      "sources": [
+        { "title": "Compilers: Principles, Techniques, and Tools — Chapter 4", "url": "https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools", "usedFor": ["LL(1) grammars, FIRST and FOLLOW algorithms"] }
+      ]
+    },
+    {
+      "order": 3,
+      "title": "Bottom-Up Parsing and LR Parsers: LR(0), SLR(1), LALR(1), and CLR(1)",
+      "oneLine": "Bottom-up LR parsers construct parse trees from leaves to root by performing shift and reduce actions using deterministic item automata.",
+      "whyItMatters": "LR parser power hierarchy, item set state counting, and Shift/Reduce or Reduce/Reduce conflict identification are heavily tested in exams.",
+      "understandSimply": [
+        "Unlike top-down parsers that guess from the top, a bottom-up parser starts with the raw input tokens at the bottom and builds the tree upward by replacing matching patterns (handles) with non-terminal variables.",
+        "An LR parser maintains a stack of states. At each step, it either shifts the next token onto the stack or reduces a group of stack items using a grammar rule. Different LR variants differ in how cleverly they look ahead before deciding to reduce."
+      ],
+      "technicalExplanation": [
+        "LR parsing stands for Left-to-right scan, Rightmost derivation in reverse. The parser state machine consists of sets of LR items.",
+        "An LR(0) item is a production with a dot `.` indicating how much of the production has been seen (e.g., \\(A \\rightarrow \\alpha . \\beta\\)).",
+        "SLR(1) uses LR(0) item collection but restricts reduction actions on token \\(a\\) to when \\(a \\in \\text{FOLLOW}(A)\\).",
+        "CLR(1) includes explicit lookahead tokens inside items: \\([A \\rightarrow \\alpha . \\beta, a]\\). This provides maximum parsing power but produces large state spaces.",
+        "LALR(1) merges CLR(1) states that have identical core LR(0) items. Merging states never creates new Shift/Reduce conflicts, but can create new Reduce/Reduce conflicts."
+      ],
+      "definitions": [
+        { "term": "Handle", "definition": "A substring of a right sentential form that matches the RHS of a production and whose reduction represents one step in reverse rightmost derivation." },
+        { "term": "LR(0) Item", "definition": "A production rule with a dot `.` marking the current position of parsing progress." },
+        { "term": "Shift/Reduce Conflict", "definition": "A parsing table state where the parser cannot decide whether to shift the next input token or reduce by a completed item." },
+        { "term": "Reduce/Reduce Conflict", "definition": "A parsing table state where the parser has two completed items and cannot decide which rule to reduce by." }
+      ],
+      "steps": [
+        { "title": "1. Build Augmented Grammar", "description": "Add \\(S' \\rightarrow S\\) to create a unique single acceptance state." },
+        { "title": "2. Construct Closure of Item Sets", "description": "For any item \\(A \\rightarrow \\alpha . B \\beta\\), add \\(B \\rightarrow . \\gamma\\) for all productions of \\(B\\)." },
+        { "title": "3. Compute GOTO Transitions", "description": "\\(\\text{GOTO}(I, X)\\) finds the closure of all items in \\(I\\) updated from \\(A \\rightarrow \\alpha . X \\beta\\) to \\(A \\rightarrow \\alpha X . \\beta\\)." },
+        { "title": "4. Fill Action and Goto Tables", "description": "Place shift actions for terminal transitions, reduce actions for completed items (based on SLR/CLR/LALR lookahead rules), and accept for \\(S' \\rightarrow S .\\)." }
+      ],
+      "formulasAndMethods": [
+        "LR Power Hierarchy: \\(\\text{LR}(0) \\subset \\text{SLR}(1) \\subset \\text{LALR}(1) \\subset \\text{CLR}(1)\\).",
+        "State Count Relation: \\(|\\text{States}_{\\text{LR}(0)}| = |\\text{States}_{\\text{SLR}(1)}| = |\\text{States}_{\\text{LALR}(1)}| \\le |\\text{States}_{\\text{CLR}(1)}|\\).",
+        "SLR(1) Reduction Rule: Place reduce \\(A \\rightarrow \\alpha\\) in state \\(i\\) under column \\(a\\) if and only if \\(a \\in \\text{FOLLOW}(A)\\)."
+      ],
+      "comparisons": [
+        {
+          "title": "LR Parser Family Comparison",
+          "columns": ["Parser Family", "Lookahead in Items?", "Reduction Condition", "State Count relative to LR(0)"],
+          "rows": [
+            ["LR(0)", "No lookahead", "Reduces across ALL terminal columns", "Same (100%)"],
+            ["SLR(1)", "No lookahead in items", "Reduces ONLY on \\(a \\in \\text{FOLLOW}(A)\\)", "Same (100%)"],
+            ["LALR(1)", "Lookahead in items", "Reduces on merged CLR lookahead", "Same (100%)"],
+            ["CLR(1)", "Explicit lookahead per item", "Reduces ONLY on specific item lookahead", "Much larger (can be 10x)"]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "If a grammar is SLR(1), is it guaranteed to be LALR(1) and CLR(1)?",
+          "solution": "Yes. Since \\(\\text{SLR}(1) \\subset \\text{LALR}(1) \\subset \\text{CLR}(1)\\), every SLR(1) grammar is also LALR(1) and CLR(1)."
+        },
+        {
+          "question": "Can merging states with identical cores in CLR(1) to form LALR(1) introduce a Shift/Reduce conflict?",
+          "solution": "No. State merging in LALR(1) never introduces Shift/Reduce conflicts, but it can introduce Reduce/Reduce conflicts."
+        }
+      ],
+      "traps": [
+        "LR(0) parsers place reduction actions in ALL action columns for a completed item state, which frequently causes conflicts.",
+        "Merging CLR(1) states to form LALR(1) NEVER causes new Shift/Reduce conflicts, but CAN cause Reduce/Reduce conflicts.",
+        "An ambiguous grammar can NEVER be parsed by any deterministic LR parser (LR(0), SLR(1), LALR(1), or CLR(1))."
+      ],
+      "takeaways": [
+        "LR parsers are powerful bottom-up shift-reduce engines.",
+        "CLR(1) is the most powerful deterministic LR parser, while LALR(1) provides a practical compact equivalent.",
+        "SLR(1) uses simple FOLLOW sets to disambiguate reductions."
+      ],
+      "quickRecall": [
+        { "question": "Which LR parser has the largest number of states for a given grammar?", "answer": "CLR(1) (Canonical LR)." },
+        { "question": "What type of conflict can be introduced when merging CLR(1) states to build LALR(1)?", "answer": "Reduce/Reduce conflict." },
+        { "question": "What condition must hold for an SLR(1) reduction on terminal \\(a\\)?", "answer": "\\(a \\in \\text{FOLLOW}(A)\\) where \\(A\\) is the LHS of the reduction rule." }
+      ],
+      "sources": [
+        { "title": "Compilers: Principles, Techniques, and Tools — Chapter 4", "url": "https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools", "usedFor": ["LR parsing, canonical items, SLR/LALR/CLR comparisons"] }
+      ]
+    },
+    {
+      "order": 4,
+      "title": "Syntax-Directed Translation (SDT): Synthesized & Inherited Attributes",
+      "oneLine": "Syntax-directed translation attaches semantic rules to grammar productions, computing values during parse tree traversal.",
+      "whyItMatters": "Exams test the distinction between S-attributed and L-attributed definitions, attribute evaluation orders, and AST generation.",
+      "understandSimply": [
+        "Parsing checks structure; semantic translation calculates meaning (such as computing expression values or building abstract syntax trees).",
+        "Syntax-Directed Translation (SDT) attaches code fragments or mathematical formulas to grammar rules. Synthesized attributes pass information up from child nodes to parent nodes, while Inherited attributes pass information down or sideways from parents and left siblings."
+      ],
+      "technicalExplanation": [
+        "A Syntax-Directed Definition (SDD) is a context-free grammar together with attributes and semantic rules. An SDD with no side effects is an attribute grammar.",
+        "Synthesized Attributes: Defined in terms of the attribute values of the node's children or the node itself. Evaluated bottom-up.",
+        "Inherited Attributes: Defined in terms of attribute values of the node's parent, itself, and its siblings. Evaluated top-down or sideways.",
+        "S-Attributed SDD: Contains ONLY synthesized attributes. Can be naturally evaluated during bottom-up parsing using an LR parser stack.",
+        "L-Attributed SDD: Attributes can be synthesized or inherited, but inherited attributes for a node \\(X_j\\) in \\(A \\rightarrow X_1 X_2 \\dots X_n\\) can depend ONLY on: (1) inherited attributes of \\(A\\), or (2) attributes of siblings \\(X_1, X_2, \\dots, X_{j-1}\\) to the LEFT of \\(X_j\\)."
+      ],
+      "definitions": [
+        { "term": "Synthesized Attribute", "definition": "An attribute whose value at a parse tree node is computed from the attributes of its child nodes." },
+        { "term": "Inherited Attribute", "definition": "An attribute whose value at a parse tree node is computed from the attributes of its parent or left siblings." },
+        { "term": "S-Attributed SDD", "definition": "A syntax-directed definition that uses only synthesized attributes." },
+        { "term": "L-Attributed SDD", "definition": "An SDD where inherited attributes depend only on parent attributes or left sibling attributes." }
+      ],
+      "steps": [
+        { "title": "1. Construct Parse Tree", "description": "Generate the concrete syntax parse tree for the input expression." },
+        { "title": "2. Build Dependency Graph", "description": "Create directed edges from source attributes to target attributes according to semantic rules." },
+        { "title": "3. Topological Sort Evaluation", "description": "Evaluate attribute rules in topological order along the dependency graph edges." }
+      ],
+      "formulasAndMethods": [
+        "S-Attributed Evaluation Rule: Evaluated during LR parsing by storing attribute values in an extra stack parallel to the state stack.",
+        "L-Attributed Dependency Restriction: For production \\(A \\rightarrow X_1 X_2 \\dots X_n\\), attribute \\(X_j.a\\) can depend on \\(A.i\\) or \\(X_k.b\\) where \\(k < j\\). It NEVER depends on \\(X_m\\) for \\(m > j\\) (right siblings)."
+      ],
+      "comparisons": [
+        {
+          "title": "S-Attributed vs L-Attributed SDD",
+          "columns": ["Property", "S-Attributed SDD", "L-Attributed SDD"],
+          "rows": [
+            ["Attribute Types Allowed", "ONLY Synthesized attributes", "Synthesized AND Inherited attributes"],
+            ["Inherited Flow Allowed", "None", "Top-down & Left-to-Right only"],
+            ["Parser Integration", "Evaluated easily during LR (bottom-up) parsing", "Evaluated easily during LL (top-down) depth-first traversal"],
+            ["Inclusion Relationship", "Strict subset of L-Attributed (S-Attributed \\(\\subset\\) L-Attributed)", "Broader class containing all S-Attributed definitions"]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Given rule \\(A \\rightarrow B C\\) with semantic action \\(B.i = C.s + 1\\). Is this L-attributed?",
+          "solution": "No. \\(B\\) is to the left of \\(C\\), but \\(B.i\\) depends on \\(C.s\\) (a right sibling). L-attributed SDDs forbid dependencies on right siblings."
+        },
+        {
+          "question": "Is every S-attributed definition also an L-attributed definition?",
+          "solution": "Yes. S-attributed definitions contain zero inherited attributes, so they trivially satisfy the left-to-right restriction of L-attributed definitions."
+        }
+      ],
+      "traps": [
+        "Inherited attributes CANNOT depend on right siblings in L-attributed SDDs.",
+        "S-attributed SDDs can be evaluated in a single bottom-up pass during LR parsing without building an explicit parse tree.",
+        "If a dependency graph has a directed cycle, the attribute grammar is invalid and cannot be evaluated."
+      ],
+      "takeaways": [
+        "Synthesized attributes compute bottom-up from children; inherited attributes pass context top-down/left-to-right.",
+        "S-attributed SDDs contain only synthesized attributes and fit LR parsing.",
+        "L-attributed SDDs permit left-to-right inherited data flow."
+      ],
+      "quickRecall": [
+        { "question": "What type of attributes are used exclusively in S-attributed SDDs?", "answer": "Synthesized attributes." },
+        { "question": "Can an L-attributed SDD depend on attributes of right siblings?", "answer": "No, only on left siblings or the parent node." },
+        { "question": "How are S-attributed definitions evaluated during LR parsing?", "answer": "Using a parallel attribute value stack updated during reduction steps." }
+      ],
+      "sources": [
+        { "title": "Compilers: Principles, Techniques, and Tools — Chapter 5", "url": "https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools", "usedFor": ["SDT, synthesized/inherited attributes, S-attributed, L-attributed"] }
+      ]
+    },
+    {
+      "order": 5,
+      "title": "Intermediate Code Generation (ICG): Three-Address Code, Quadruples, and Triples",
+      "oneLine": "Intermediate representations bridge language front-ends to target machine code using linear Three-Address Code (TAC) statements.",
+      "whyItMatters": "Questions frequently test TAC instruction count, Quadruples vs Triples memory representation, and Boolean control-flow backpatching.",
+      "understandSimply": [
+        "Instead of translating C code directly into Intel x86 or ARM assembly code, compilers convert it into a simple, universal intermediate language called Three-Address Code (TAC).",
+        "In TAC, every instruction has at most one operator on the right-hand side. Complex expressions like `a = b + c * d` are broken down into simple steps using temporary variables: `t1 = c * d` followed by `a = b + t1`."
+      ],
+      "technicalExplanation": [
+        "Three-Address Code (TAC) is an intermediate representation where each instruction has at most 3 operands/addresses. General form: \\(x = y \\text{ op } z\\).",
+        "Data structures for TAC implementation: (1) Quadruples: Record with 4 fields `(op, arg1, arg2, result)`. (2) Triples: Record with 3 fields `(op, arg1, arg2)`; references to previous results use the tuple's index `(i)`. (3) Indirect Triples: Array of pointers to triples, enabling statement reordering without altering triple indices.",
+        "Boolean expressions and control flow use syntax-directed translation with backpatching to fill in jump targets in a single pass."
+      ],
+      "definitions": [
+        { "term": "Three-Address Code (TAC)", "definition": "A sequence of instructions where each statement contains at most 3 operands and at most 1 operator." },
+        { "term": "Quadruple", "definition": "A TAC record structure containing explicit fields for operator, argument 1, argument 2, and result." },
+        { "term": "Triple", "definition": "A TAC record structure avoiding explicit result variable names by referencing statement positions `(i)` directly." },
+        { "term": "Backpatching", "definition": "A technique that leaves jump targets unspecified during parsing and fills them in when the target label location becomes known." }
+      ],
+      "steps": [
+        { "title": "1. Convert Expression to Postfix", "description": "Break nested expressions into linear order based on operator precedence." },
+        { "title": "2. Generate TAC Statements", "description": "Assign temporary variables \\(t_1, t_2, \\dots\\) for intermediate operational results." },
+        { "title": "3. Record in Data Structure", "description": "Emit as Quadruple records `(op, arg1, arg2, res)` or Triple array entries `(op, arg1, arg2)`." }
+      ],
+      "formulasAndMethods": [
+        "TAC Representation of `x = a + b * c`:\n`t1 = b * c`\n`t2 = a + t1`\n`x = t2`",
+        "Quadruple vs Triple Memory Tradeoff: Quadruples require explicit result storage (larger size), but allow easy instruction movement during optimization. Triples save memory by avoiding result names, but reordering instructions breaks positional index references `(i)`."
+      ],
+      "comparisons": [
+        {
+          "title": "Quadruples vs Triples vs Indirect Triples",
+          "columns": ["Structure", "Fields", "Result Handling", "Optimization Flexibility"],
+          "rows": [
+            ["Quadruples", "`op, arg1, arg2, result`", "Explicit temporary variable name", "High (statements can be moved freely)"],
+            ["Triples", "`op, arg1, arg2`", "Implicit statement index `(i)`", "Low (moving statements invalidates indices)"],
+            ["Indirect Triples", "Array of pointers to triples", "Implicit statement index `(i)`", "High (reorder pointer array without changing triples)"]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Translate `a = b + c * -d` into minimal Three-Address Code.",
+          "solution": "TAC statements:\n1. `t1 = -d`\n2. `t2 = c * t1`\n3. `t3 = b + t2`\n4. `a = t3`\nTotal TAC statements = 4."
+        },
+        {
+          "question": "Why are Quadruples preferred over Triples in optimizing compilers?",
+          "solution": "In Quadruples, target variables are named explicitly. Moving or deleting instructions during code optimization does not invalidate operand references, unlike Triples which rely on fixed position indices `(i)`."
+        }
+      ],
+      "traps": [
+        "Triples refer to previous instruction results using positional indices like `(0)`, NOT variable names.",
+        "Short-circuit evaluation of boolean expressions like `a || b` generates conditional jump TAC instructions rather than computing full bitwise values.",
+        "Array reference `A[i]` in TAC translates to offset computation: `t1 = i * width`, `t2 = base(A) + t1`, `x = contents(t2)`."
+      ],
+      "takeaways": [
+        "TAC simplifies machine code generation by ensuring at most 1 operator per line.",
+        "Quadruples store explicit results; Triples store implicit positional references.",
+        "Backpatching resolves jump target addresses in single-pass translation."
+      ],
+      "quickRecall": [
+        { "question": "What is the maximum number of operators on the RHS of a Three-Address Code instruction?", "answer": "Exactly 1 operator." },
+        { "question": "Which TAC data structure uses explicit result names: Quadruples or Triples?", "answer": "Quadruples." },
+        { "question": "What problem do Indirect Triples solve compared to standard Triples?", "answer": "They allow instruction reordering without corrupting positional index references." }
+      ],
+      "sources": [
+        { "title": "Compilers: Principles, Techniques, and Tools — Chapter 6", "url": "https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools", "usedFor": ["Intermediate code generation, TAC, quadruples, triples, backpatching"] }
+      ]
+    },
+    {
+      "order": 6,
+      "title": "Runtime Environments, Memory Layout, and Activation Records",
+      "oneLine": "Runtime environments organize process memory into code, static data, heap, and stack frames for function call management.",
+      "whyItMatters": "Questions test activation record layout, access link vs control link functions, and parameter passing mechanisms.",
+      "understandSimply": [
+        "When a program runs, operating system memory is split into distinct regions: fixed program code at the bottom, global variables in static data, dynamic memory in the heap, and function call frames on the stack.",
+        "Every time a function is called, a new chunk of memory called an Activation Record (or stack frame) is pushed onto the stack. When the function returns, its frame is popped."
+      ],
+      "technicalExplanation": [
+        "Runtime layout: Code segment (read-only executable), Static segment (global/static variables), Heap (dynamically allocated memory growing upward), Stack (function frames growing downward).",
+        "Activation Record (Stack Frame) contains: (1) Returned value, (2) Actual parameters, (3) Control Link (Dynamic Link, pointing to caller's frame), (4) Access Link (Static Link, pointing to lexically enclosing scope's frame), (5) Saved machine status (program counter, registers), (6) Local variables, (7) Temporaries.",
+        "Parameter Passing Mechanisms: Call by Value (caller passes r-value copy), Call by Reference (caller passes l-value pointer), Call by Value-Result (copy-in at call, copy-out at return), Call by Name (textual substitution using thunks)."
+      ],
+      "definitions": [
+        { "term": "Activation Record", "definition": "A contiguous block of memory allocated on the stack to store data required for a single function execution." },
+        { "term": "Control Link (Dynamic Link)", "definition": "A pointer in an activation record pointing to the activation record of the caller function." },
+        { "term": "Access Link (Static Link)", "definition": "A pointer in an activation record pointing to the activation record of the lexically/statically enclosing function." },
+        { "term": "Thunk", "definition": "A parameterless compiler-generated function used to evaluate expressions in Call-by-Name parameter passing." }
+      ],
+      "steps": [
+        { "title": "1. Call Sequence", "description": "Caller evaluates actual arguments, pushes them, saves return PC, sets Control Link, and jumps to callee." },
+        { "title": "2. Prologue", "description": "Callee saves caller registers, sets frame pointer (FP), and allocates stack space for local variables." },
+        { "title": "3. Epilogue & Return", "description": "Callee places return value, restores registers/FP, and branches to caller's return PC." }
+      ],
+      "formulasAndMethods": [
+        "Static vs Dynamic Scoping Variable Resolution:\n- Static Scoping: Follows Access Links (Static Links) up the lexical nesting hierarchy.\n- Dynamic Scoping: Follows Control Links (Dynamic Links) down the runtime call chain.",
+        "Call by Reference vs Call by Value-Result: Under Call by Reference, aliased parameters reflect changes instantly. Under Call by Value-Result, changes reflect ONLY at function return."
+      ],
+      "comparisons": [
+        {
+          "title": "Parameter Passing Modes",
+          "columns": ["Parameter Mode", "Passed Item", "Side Effects Location", "Aliasing Effect"],
+          "rows": [
+            ["Call by Value", "Copy of value (r-value)", "Local copy only (no caller effect)", "None"],
+            ["Call by Reference", "Address of variable (l-value)", "Immediate effect on caller variable", "Aliased variables change simultaneously"],
+            ["Call by Value-Result", "Value copy in, result copy out", "Effect delayed until function return", "Aliased variables update sequentially at return"],
+            ["Call by Name", "Thunk (expression lambda)", "Evaluated on every access in callee body", "Re-evaluates expressions with current bindings"]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "What is the primary difference between a Control Link and an Access Link in a stack frame?",
+          "solution": "A Control Link points to the caller's stack frame (dynamic call history). An Access Link points to the lexically enclosing parent scope's stack frame (static scope nesting)."
+        },
+        {
+          "question": "Given `swap(x, y)` called as `swap(i, A[i])` under Call by Name where `swap(a, b)` does `t=a; a=b; b=t;`. If `i=1, A[1]=10, A[10]=20`, what happens?",
+          "solution": "Under Call by Name, `b` is replaced by `A[i]`. `t = i` (1). `i = A[i]` (`i` becomes 10). `A[i] = t` (`A[10]` becomes 1, NOT `A[1]`). This demonstrates the classic Call-by-Name evaluation trap."
+        }
+      ],
+      "traps": [
+        "Static Links (Access Links) are required ONLY for languages that support nested function definitions (e.g., Pascal, Python). C does not support nested functions, so it requires only Control Links.",
+        "Heap allocation is required when local variables outlive the function return (e.g., returning pointers to dynamically allocated memory or closures).",
+        "Stack allocation fails for languages with first-class functions unless static chains/closures are stored on the heap."
+      ],
+      "takeaways": [
+        "Activation records manage local variables, parameters, and return information.",
+        "Control Links track caller execution path; Access Links track static nested scope.",
+        "Call by Reference modifies original variables instantly, whereas Call by Value-Result delays modification until return."
+      ],
+      "quickRecall": [
+        { "question": "Which link in an activation record points to the caller function's stack frame?", "answer": "Control Link (Dynamic Link)." },
+        { "question": "Does C require Access Links (Static Links) in its activation records?", "answer": "No, because C does not permit nested function definitions." },
+        { "question": "Which parameter passing mechanism uses compiler-generated 'thunks'?", "answer": "Call by Name." }
+      ],
+      "sources": [
+        { "title": "Compilers: Principles, Techniques, and Tools — Chapter 7", "url": "https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools", "usedFor": ["Runtime environments, activation records, parameter passing"] }
+      ]
+    },
+    {
+      "order": 7,
+      "title": "Local Code Optimization, Basic Blocks, and Directed Acyclic Graphs (DAGs)",
+      "oneLine": "Code optimization transforms code to execute faster and use less memory without changing program semantics.",
+      "whyItMatters": "Leader identification in basic blocks, DAG representation for expression optimization, and loop invariants are core exam topics.",
+      "understandSimply": [
+        "Optimizing code is like editing a written essay: remove wordy phrases, eliminate repetitive sentences, and simplify complex math without changing the story's meaning.",
+        "A Basic Block is a sequence of straight-line code instructions with 1 entry point at the top and 1 exit point at the bottom (no jumps into or out of the middle). Compilers build Directed Acyclic Graphs (DAGs) for basic blocks to catch and eliminate duplicate calculations."
+      ],
+      "technicalExplanation": [
+        "Basic Block Construction: Partition Three-Address Code into basic blocks using Leaders.",
+        "Leader Rules: (1) First instruction of TAC is a leader. (2) Any target of a conditional/unconditional jump is a leader. (3) Any instruction immediately following a jump is a leader. A basic block starts at a leader and extends up to (but excluding) the next leader or end of program.",
+        "DAG Representation of a Basic Block: Leaves correspond to initial variable values. Interior nodes correspond to operators labeled with target variable names. If an expression `b + c` is computed again without re-defining `b` or `c`, the DAG reuses the existing node instead of creating a new one.",
+        "Loop Optimizations: Code Motion (moving loop-invariant computations out of loops), Induction Variable Elimination, Loop Unrolling, and Strength Reduction (replacing expensive operations like multiplication `i * 4` with addition `i + 4`)."
+      ],
+      "definitions": [
+        { "term": "Basic Block", "definition": "A sequence of consecutive statements with single entry and single exit points, containing no internal jump instructions." },
+        { "term": "Leader", "definition": "The first statement of a basic block." },
+        { "term": "DAG (Directed Acyclic Graph)", "definition": "A graph representation of a basic block identifying common subexpressions and variable assignments." },
+        { "term": "Strength Reduction", "definition": "Replacing an expensive operation (e.g., multiplication) with an equivalent cheaper operation (e.g., addition)." }
+      ],
+      "steps": [
+        { "title": "1. Identify Leaders", "description": "Mark instruction 1, jump targets, and instructions immediately following jumps as leaders." },
+        { "title": "2. Form Basic Blocks", "description": "Group instructions from each leader up to the next leader." },
+        { "title": "3. Construct DAG", "description": "For each statement \\(x = y \\text{ op } z\\), attach or create leaf nodes for \\(y, z\\) and interior node for \\(\\text{op}\\) labeled \\(x\\)." },
+        { "title": "4. Re-generate Optimized TAC", "description": "Traverse the DAG to emit minimum TAC statements without common subexpression redundancy." }
+      ],
+      "formulasAndMethods": [
+        "Leader Identification Algorithm:\n1. First instruction is a Leader.\n2. Target of `goto L` or `if condition goto L` is a Leader.\n3. Instruction immediately following `goto L` or `if condition goto L` is a Leader.",
+        "Strength Reduction Example: Inside a loop over `i`, replace `t1 = i * 4` with `t1 = t1 + 4` initialized before loop."
+      ],
+      "comparisons": [
+        {
+          "title": "Optimization Techniques",
+          "columns": ["Technique", "Action Taken", "Primary Benefit"],
+          "rows": [
+            ["Common Subexpression Elimination", "Reuses previously computed expression result", "Eliminates redundant arithmetic instructions"],
+            ["Dead Code Elimination", "Removes statements whose outputs are never used", "Reduces binary size and execution time"],
+            ["Code Motion (Loop Invariant)", "Moves invariant expression outside loop body", "Avoids re-evaluating constant expressions per iteration"],
+            ["Strength Reduction", "Replaces expensive operator with cheaper one", "Saves CPU clock cycles per loop iteration"]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Find the number of basic blocks in TAC:\n1. `i = 1`\n2. `j = 1`\n3. `t1 = 10 * i`\n4. `if t1 > 100 goto (7)`\n5. `i = i + 1`\n6. `goto (3)`\n7. `return`",
+          "solution": "Identify Leaders:\n- Line 1 (first instruction)\n- Line 3 (target of `goto (3)` from line 6)\n- Line 5 (instruction following conditional jump at line 4)\n- Line 7 (target of `goto (7)` from line 4)\nLeaders are lines 1, 3, 5, 7. Therefore, there are 4 basic blocks: B1 (lines 1-2), B2 (lines 3-4), B3 (lines 5-6), B4 (line 7)."
+        },
+        {
+          "question": "How does a DAG optimize `a = b + c; d = b + c;`?",
+          "solution": "Node for `+` with children `b` and `c` is created for `a`. When `d = b + c` is parsed, since `b` and `c` have not changed, `d` is attached as a label to the existing `+` node. Emitted TAC: `t1 = b + c; a = t1; d = t1;` (or directly `a = b + c; d = a;`)."
+        }
+      ],
+      "traps": [
+        "A basic block NEVER contains jump instructions inside its middle—only at its very end.",
+        "The instruction IMMEDIATELY FOLLOWING a jump is always a leader, even if it is not targeted by any jump statement.",
+        "Constant Folding (evaluating `3 + 5` at compile time) is distinct from Constant Propagation (replacing `x` with `8` after `x = 8`)."
+      ],
+      "takeaways": [
+        "Basic blocks partition straight-line code between jumps.",
+        "DAGs eliminate local common subexpressions within a basic block.",
+        "Loop optimizations like strength reduction and code motion yield high performance gains."
+      ],
+      "quickRecall": [
+        { "question": "What is the maximum number of jump targets allowed inside a basic block?", "answer": "Zero inside; jumps can occur only as the final statement." },
+        { "question": "Replacing `x * 2` with `x + x` is an example of which optimization?", "answer": "Strength Reduction." },
+        { "question": "Is the instruction immediately following a `goto` statement a leader?", "answer": "Yes, always." }
+      ],
+      "sources": [
+        { "title": "Compilers: Principles, Techniques, and Tools — Chapter 8 & 9", "url": "https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools", "usedFor": ["Basic blocks, leaders algorithm, DAG construction, loop optimizations"] }
+      ]
+    },
+    {
+      "order": 8,
+      "title": "Data-Flow Analysis: Constant Propagation, Liveness Analysis, and CSE",
+      "oneLine": "Data-flow analysis collects global information about the flow of values along execution paths in a Control Flow Graph.",
+      "whyItMatters": "Liveness analysis (backward may analysis), data-flow equations, and reaching definitions are critical high-scoring exam concepts.",
+      "understandSimply": [
+        "Local optimization works inside 1 basic block. Data-Flow Analysis works across the whole program graph (Control Flow Graph of connected basic blocks).",
+        "It asks global questions such as: 'Is variable x ever used after this line?' (Liveness Analysis) or 'Does variable x hold the exact constant value 5 along all incoming paths?' (Constant Propagation)."
+      ],
+      "technicalExplanation": [
+        "A Data-Flow Analysis framework operates on a Control Flow Graph \\(G = (N, E)\\). It defines data-flow values, Transfer Functions \\(f_B\\), and a Meet Operator \\(\\wedge\\) (Union \\(\\cup\\) for May analysis, Intersection \\(\\cap\\) for Must analysis).",
+        "Liveness Analysis: A variable \\(x\\) is live at point \\(p\\) if there exists a path from \\(p\\) to a use of \\(x\\) along which \\(x\\) is not redefined.",
+        "Liveness is a BACKWARD MAY analysis. Data-flow equations:\n\\(\\text{IN}[B] = \\text{use}_B \\cup (\\text{OUT}[B] - \\text{def}_B)\\)\n\\(\\text{OUT}[B] = \\bigcup_{S \\in \\text{succ}(B)} \\text{IN}[S]\\).",
+        "Reaching Definitions: A definition \\(d: x = y + z\\) reaches point \\(p\\) if there is a path from \\(d\\) to \\(p\\) such that \\(x\\) is not killed along that path. This is a FORWARD MAY analysis using \\(\\cup\\).",
+        "Available Expressions: An expression \\(x + y\\) is available at point \\(p\\) if every path from entry to \\(p\\) evaluates \\(x + y\\) and neither \\(x\\) nor \\(y\\) is redefined afterward. This is a FORWARD MUST analysis using \\(\\cap\\)."
+      ],
+      "definitions": [
+        { "term": "Liveness Analysis", "definition": "A backward data-flow analysis determining whether a variable's current value will be read in the future before being overwritten." },
+        { "term": "Reaching Definitions", "definition": "A forward data-flow analysis identifying which variable assignments may reach a given program point." },
+        { "term": "Available Expressions", "definition": "A forward data-flow analysis determining whether an expression has already been computed along all paths to a point." },
+        { "term": "Use and Def Sets", "definition": "`use_B` is the set of variables read in basic block B before definition; `def_B` is the set of variables assigned in B." }
+      ],
+      "steps": [
+        { "title": "1. Initialize Sets", "description": "Set \\(\\text{IN}[B] = \\emptyset\\) and \\(\\text{OUT}[B] = \\emptyset\\) for all basic blocks." },
+        { "title": "2. Apply Iterative Worklist", "description": "For backward analysis (Liveness), update \\(\\text{OUT}[B]\\) from successors, then update \\(\\text{IN}[B]\\) using transfer equation." },
+        { "title": "3. Repeat Until Fixed Point", "description": "Iterate until no \\(\\text{IN}[B]\\) or \\(\\text{OUT}[B]\\) sets change across an entire pass." }
+      ],
+      "formulasAndMethods": [
+        "Liveness Transfer Equations:\n\\(\\text{IN}[B] = \\text{use}_B \\cup (\\text{OUT}[B] - \\text{def}_B)\\)\n\\(\\text{OUT}[B] = \\bigcup_{S \\in \\text{succ}(B)} \\text{IN}[S]\\)",
+        "Reaching Definitions Transfer Equations:\n\\(\\text{OUT}[B] = \\text{gen}_B \\cup (\\text{IN}[B] - \\text{kill}_B)\\)\n\\(\\text{IN}[B] = \\bigcup_{P \\in \\text{pred}(B)} \\text{OUT}[P]\\)"
+      ],
+      "comparisons": [
+        {
+          "title": "Classic Data-Flow Analysis Frameworks",
+          "columns": ["Analysis", "Direction", "Meet Operator", "Initial Boundary Condition"],
+          "rows": [
+            ["Liveness Analysis", "Backward", "Union (\\(\\cup\\), May analysis)", "\\(\\text{OUT}[\\text{Exit}] = \\emptyset\\)"],
+            ["Reaching Definitions", "Forward", "Union (\\(\\cup\\), May analysis)", "\\(\\text{IN}[\\text{Entry}] = \\emptyset\\)"],
+            ["Available Expressions", "Forward", "Intersection (\\(\\cap\\), Must analysis)", "\\(\\text{IN}[\\text{Entry}] = \\emptyset\\), others Universal"]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "In basic block B, statement 1 is `x = a + b` and statement 2 is `y = x * c`. What are `use_B` and `def_B`?",
+          "solution": "`a`, `b`, and `c` are read before being defined in B, so `use_B = {a, b, c}`. `x` and `y` are assigned in B, so `def_B = {x, y}`."
+        },
+        {
+          "question": "Is Liveness Analysis a forward or backward analysis, and does it use Union or Intersection at join points?",
+          "solution": "Liveness Analysis is a BACKWARD analysis that uses UNION (\\(\\cup\\)) at join points (May analysis) because a variable is live if it is used along AT LEAST ONE future path."
+        }
+      ],
+      "traps": [
+        "In Liveness Analysis, `use_B` includes variables read BEFORE any assignment in block B. If `x = 5; y = x;`, `x` is NOT in `use_B` because it was defined before being read.",
+        "Available Expressions is a MUST analysis (uses intersection \\(\\cap\\)); if an expression is available along 1 path but redefined along another, it is NOT available.",
+        "Liveness analysis flows from Exit to Entry (backward), whereas Reaching Definitions flows from Entry to Exit (forward)."
+      ],
+      "takeaways": [
+        "Data-flow analysis calculates global program properties across Control Flow Graphs.",
+        "Liveness is a backward-may analysis used for register allocation.",
+        "Reaching definitions and available expressions enable global CSE and constant propagation."
+      ],
+      "quickRecall": [
+        { "question": "What direction does Liveness Analysis flow in a Control Flow Graph?", "answer": "Backward (from successors to predecessors)." },
+        { "question": "Which data-flow analysis uses intersection (\\(\\cap\\)) as its meet operator: Liveness or Available Expressions?", "answer": "Available Expressions (Must analysis)." },
+        { "question": "What compiler optimization relies directly on Liveness Analysis results?", "answer": "Register allocation (variables not live at the same time can share registers)." }
+      ],
+      "sources": [
+        { "title": "Compilers: Principles, Techniques, and Tools — Chapter 9", "url": "https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools", "usedFor": ["Data-flow analysis, liveness analysis, reaching definitions, available expressions"] }
+      ]
+    }
+  ]
+}

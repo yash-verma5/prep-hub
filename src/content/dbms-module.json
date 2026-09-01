@@ -1,0 +1,1412 @@
+{
+  "id": "dbms",
+  "title": "Databases",
+  "provenance": "original",
+  "syllabusSource": {
+    "title": "Official GATE CS 2026 Syllabus - Section 6: Databases & IOCL Grade-A Domain Syllabus",
+    "url": "https://gate2026.iitg.ac.in"
+  },
+  "topics": [
+    {
+      "order": 1,
+      "title": "Entity-Relationship (ER) Modeling, Entities, Relationships, and Constraints",
+      "oneLine": "Conceptual data modeling technique using entities, attributes, and relationships to map real-world mini-worlds into structured schemas.",
+      "whyItMatters": "ER modeling is the starting point of database design in exams. Questions test relationship cardinality (1:1, 1:N, M:N), participation constraints, weak entities, and table reduction count.",
+      "understandSimply": [
+        "Think of an ER diagram as a architectural blueprint of a house before laying bricks.",
+        "Entities are nouns (Student, Course), attributes are adjectives/properties (Roll Number, Marks), and relationships are verbs (Enrolls_In).",
+        "Cardinality tells you how many instances of one entity can connect to another (e.g., one student can take many courses).",
+        "A weak entity is like a child ticket on a parent flight ticket\u2014it cannot exist without its identifying parent entity."
+      ],
+      "technicalExplanation": [
+        "Entity-Relationship (ER) modeling abstracts real-world objects into Entity Sets and Relationship Sets.",
+        "Attributes are categorized as Simple (indivisible), Composite (divisible e.g. Name -> First, Last), Multi-valued (double oval e.g. Phone Numbers), Derived (dashed oval e.g. Age from DOB), and Key attributes (underlined).",
+        "Mapping Cardinality ratios specify maximum relationship instances: One-to-One (1:1), One-to-Many (1:N), Many-to-One (N:1), and Many-to-Many (M:N).",
+        "Participation Constraints denote minimum instances: Total (double line, every entity must participate) vs Partial (single line, optional participation).",
+        "A Weak Entity Set lacks a primary key of its own and depends on an Identifying (Owner) Entity Set via an Identifying Relationship (double diamond). Its key is formed by combining the Primary Key of the owner entity with its own Partial Key (Discriminator, dashed underline)."
+      ],
+      "definitions": [
+        {
+          "term": "Weak Entity Set",
+          "definition": "An entity set that does not possess sufficient attributes to form a primary key on its own and relies on an identifying parent entity set."
+        },
+        {
+          "term": "Discriminator (Partial Key)",
+          "definition": "A set of attributes in a weak entity set that uniquely distinguishes weak entities associated with the same owner entity."
+        },
+        {
+          "term": "Total Participation",
+          "definition": "A constraint where every entity instance in an entity set must participate in at least one relationship instance of a relationship set."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Identify Entity Sets & Keys",
+          "description": "Extract strong entity sets with their candidate/primary keys and weak entity sets with their discriminators."
+        },
+        {
+          "title": "Determine Cardinality & Participation",
+          "description": "Analyze binary and ternary relationships to mark 1:1, 1:N, or M:N cardinality and total/partial participation."
+        },
+        {
+          "title": "Reduce ER Diagram to Relational Tables",
+          "description": "Create separate tables for strong entities. For M:N, create a separate relationship table. For 1:N with total participation on the N side, collapse the relationship into the N-side table."
+        }
+      ],
+      "formulasAndMethods": [
+        "Minimum Relational Tables for Binary Relationships:",
+        "1. M:N Relationship -> Minimum 3 tables (Entity A, Entity B, Relationship AB).",
+        "2. 1:N Relationship (Partial or Total) -> Minimum 2 tables (Collapse relationship into N-side table by storing 1-side Primary Key as Foreign Key).",
+        "3. 1:1 Relationship (Total on one side) -> Minimum 2 tables (Collapse relationship into the total-participation side table).",
+        "4. Weak Entity Set -> 1 table for owner entity, 1 table for weak entity (containing owner's PK + weak entity's discriminator)."
+      ],
+      "comparisons": [
+        {
+          "title": "Strong Entity Set vs Weak Entity Set",
+          "columns": [
+            "Feature",
+            "Strong Entity Set",
+            "Weak Entity Set"
+          ],
+          "rows": [
+            [
+              "Primary Key",
+              "Has its own primary key",
+              "Lacks primary key; relies on owner PK + discriminator"
+            ],
+            [
+              "Existence",
+              "Independent existence",
+              "Dependent on identifying owner entity"
+            ],
+            [
+              "Diagram Symbol",
+              "Single Rectangle",
+              "Double Rectangle"
+            ],
+            [
+              "Relationship Symbol",
+              "Single Diamond",
+              "Double Diamond (Identifying Relationship)"
+            ]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "An ER diagram contains Strong Entity E1, Strong Entity E2, and Weak Entity E3 (identified by E2). There is a binary M:N relationship R1 between E1 and E2, and an identifying binary 1:N relationship R2 between E2 and E3. What is the minimum number of relational tables required?",
+          "solution": "Step 1: E1 is strong -> Table T1(PK_E1).\\nStep 2: E2 is strong -> Table T2(PK_E2).\\nStep 3: R1 is M:N between E1 and E2 -> Table T3(PK_E1, PK_E2).\\nStep 4: E3 is weak with 1:N identifying relationship R2 from E2 -> Table T4(PK_E2, Discriminator_E3). R2 collapses into E3's table.\\nTotal minimum tables = 4 (T1, T2, T3, T4)."
+        },
+        {
+          "question": "Given binary relationship R between Entity A (10 instances) and Entity B (20 instances) with 1:N cardinality (A to B) and total participation of B. What are the minimum and maximum number of relationship tuples in R?",
+          "solution": "Since cardinality is 1:N (A to B), each B instance links to at most 1 A instance. Total participation of B means EVERY B instance MUST link to exactly 1 A instance. Thus, there are exactly 20 relationship tuples.\\nMinimum tuples = 20, Maximum tuples = 20."
+        }
+      ],
+      "traps": [
+        "Assuming a 1:N relationship always needs a 3rd table. In relational reduction, a 1:N relationship table can always be merged into the N-side entity table.",
+        "Confusing total participation with 1:1 cardinality. Participation defines minimum (0 or 1), cardinality defines maximum (1 or N)."
+      ],
+      "takeaways": [
+        "M:N binary relationships require a dedicated relational table containing primary keys of both entities.",
+        "1:N binary relationships merge into the N-side table as a Foreign Key.",
+        "Weak entity sets always require total participation in their identifying relationship.",
+        "The primary key of a weak entity relation is (Owner PK + Discriminator).",
+        "Derived attributes are omitted from relational schemas to avoid redundancy and inconsistency."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the primary key structure of a converted weak entity set relation?",
+          "answer": "Primary Key of the identifying owner entity set + Discriminator of the weak entity set."
+        },
+        {
+          "question": "How many relational tables are required for a 1:1 binary relationship with total participation on both sides?",
+          "answer": "Exactly 1 table (both entity sets and relationship can be merged into a single table)."
+        },
+        {
+          "question": "Which attribute type is represented by a double ellipse in ER diagrams?",
+          "answer": "Multi-valued attribute."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Elmasri & Navathe - Fundamentals of Database Systems (7th Ed.)",
+          "url": "https://gate2026.iitg.ac.in",
+          "usedFor": [
+            "ER Concepts",
+            "Weak Entities",
+            "Relational Mapping Rules"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "title": "Relational Model Fundamentals: Keys and Integrity Constraints",
+      "oneLine": "Mathematical foundation of relational databases using tabular relations, super keys, candidate keys, and domain/referential integrity constraints.",
+      "whyItMatters": "Key derivation and candidate key counting are staple exam problems. Understanding foreign keys and referential actions (CASCADE, SET NULL) is vital for SQL and normalization.",
+      "understandSimply": [
+        "A relation is just a table where rows are tuples and columns are attributes.",
+        "A Super Key is any group of columns that can uniquely identify a row.",
+        "A Candidate Key is a minimal super key\u2014no extra columns allowed!",
+        "A Foreign Key is a pointer in one table that references the primary key of another table to maintain consistency."
+      ],
+      "technicalExplanation": [
+        "The Relational Model, introduced by E.F. Codd, represents data as n-ary relations.",
+        "A Super Key $K$ is a set of attributes such that no two distinct tuples in relation $R$ have identical values for $K$.",
+        "A Candidate Key $K$ is a minimal super key: $K$ is a super key, and no proper subset of $K$ is a super key.",
+        "A Primary Key is a candidate key chosen by the database designer. Attributes belonging to any candidate key are called Prime Attributes; others are Non-Prime Attributes.",
+        "Domain Constraint: Values must be atomic and belong to the attribute domain.",
+        "Key Constraint: Primary key values must be unique and non-null (Entity Integrity).",
+        "Referential Integrity Constraint: A foreign key value in referencing relation $R_1$ must either match a valid primary key value in referenced relation $R_2$ or be NULL."
+      ],
+      "definitions": [
+        {
+          "term": "Candidate Key",
+          "definition": "A minimal super key whose proper subset cannot uniquely identify tuples in a relation."
+        },
+        {
+          "term": "Entity Integrity Constraint",
+          "definition": "The rule stating that no primary key attribute value can be NULL in a base relation."
+        },
+        {
+          "term": "Referential Integrity Constraint",
+          "definition": "The requirement that foreign key values must either exist as primary key values in the referenced table or be NULL."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Identify Super Keys",
+          "description": "Find all attribute combinations that uniquely identify tuples in relation R."
+        },
+        {
+          "title": "Filter Minimal Attribute Sets",
+          "description": "Remove any super key that contains another valid super key as a subset to obtain Candidate Keys."
+        },
+        {
+          "title": "Classify Prime & Non-Prime Attributes",
+          "description": "Mark attributes appearing in AT LEAST ONE candidate key as prime attributes."
+        }
+      ],
+      "formulasAndMethods": [
+        "Super Key Counting Formula:",
+        "Given a relation R(A1, A2, ..., An) with a single attribute candidate key {A1}:",
+        "Number of Super Keys = 2^(n-1) (since A1 must be present, remaining n-1 attributes can be present or absent).",
+        "For two candidate keys {A1} and {A2}:",
+        "Total Super Keys = |Keys with A1| + |Keys with A2| - |Keys with both A1 and A2| = 2^(n-1) + 2^(n-1) - 2^(n-2)."
+      ],
+      "comparisons": [
+        {
+          "title": "Super Key vs Candidate Key vs Primary Key",
+          "columns": [
+            "Property",
+            "Super Key",
+            "Candidate Key",
+            "Primary Key"
+          ],
+          "rows": [
+            [
+              "Uniqueness",
+              "Guaranteed",
+              "Guaranteed",
+              "Guaranteed"
+            ],
+            [
+              "Minimality",
+              "Not required",
+              "Strictly required",
+              "Strictly required"
+            ],
+            [
+              "Nullability",
+              "May contain nulls",
+              "May contain nulls (in some DBs)",
+              "STRICTLY NON-NULL"
+            ],
+            [
+              "Count per Relation",
+              "Many (up to 2^n)",
+              "One or more",
+              "Exactly ONE chosen key"
+            ]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "A relation R(A, B, C, D, E) has candidate keys {A} and {B, C}. How many total super keys exist for R?",
+          "solution": "Total attributes n = 5.\\nSuper keys containing {A}: Any combination of remaining 4 attributes {B, C, D, E} -> 2^4 = 16.\\nSuper keys containing {B, C}: Any combination of remaining 3 attributes {A, D, E} -> 2^3 = 8.\\nSuper keys containing BOTH {A} and {B, C}: Any combination of remaining 2 attributes {D, E} -> 2^2 = 4.\\nBy Inclusion-Exclusion Principle:\\nTotal Super Keys = 16 + 8 - 4 = 20."
+        },
+        {
+          "question": "Table Student(roll, dept_id) has dept_id as Foreign Key referencing Department(dept_id). If Department row with dept_id=10 is deleted, what happens under 'ON DELETE CASCADE' vs 'ON DELETE SET NULL'?",
+          "solution": "ON DELETE CASCADE: All rows in Student where dept_id=10 are automatically deleted.\\nON DELETE SET NULL: All rows in Student where dept_id=10 have their dept_id set to NULL (provided dept_id is nullable)."
+        }
+      ],
+      "traps": [
+        "Assuming a foreign key CANNOT be NULL. Foreign keys can be NULL unless declared with an explicit NOT NULL constraint.",
+        "Confusing Candidate Key with Primary Key count. A relation can have multiple candidate keys, but exactly ONE primary key."
+      ],
+      "takeaways": [
+        "Every candidate key is a super key, but not every super key is a candidate key.",
+        "Entity integrity forbids NULL values in primary keys.",
+        "Foreign keys establish relationships between relations and enforce referential integrity.",
+        "For n attributes with single candidate key K, there are 2^(n-1) super keys.",
+        "Prime attributes are members of any candidate key; non-prime attributes belong to no candidate key."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the maximum number of primary keys a relation can have?",
+          "answer": "Exactly ONE primary key."
+        },
+        {
+          "question": "If relation R(A,B,C,D) has candidate key {A,B}, can {A,B,C} be a candidate key?",
+          "answer": "No. {A,B,C} is a super key, but not a candidate key because proper subset {A,B} is already a super key."
+        },
+        {
+          "question": "Which Codd integrity rule states that no primary key component can be NULL?",
+          "answer": "Entity Integrity Rule."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Elmasri & Navathe - Fundamentals of Database Systems (7th Ed.)",
+          "url": "https://gate2026.iitg.ac.in",
+          "usedFor": [
+            "Relational Model",
+            "Keys",
+            "Codd Integrity Rules"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "title": "Relational Algebra & Relational Calculus",
+      "oneLine": "Procedural query algebra (Selection, Projection, Join, Division) vs non-procedural calculus (TRC, DRC) forming the formal logic of database queries.",
+      "whyItMatters": "Exams test expression equivalence, max/min tuple counts in joins, and division operations. Relational algebra provides the formal semantics for SQL execution engines.",
+      "understandSimply": [
+        "Relational Algebra tells the computer HOW to retrieve data step-by-step.",
+        "Selection (sigma \u03c3) filters ROWS like a sieve.",
+        "Projection (pi \u03c0) keeps specified COLUMNS and discards duplicate rows.",
+        "Join (bowtie \u22c8) glues matching rows from two tables together based on a condition.",
+        "Division (\u00f7) finds instances that match ALL items in another list (e.g., 'students enrolled in ALL core courses')."
+      ],
+      "technicalExplanation": [
+        "Relational Algebra is a procedural query language consisting of basic and derived operators operating on relations to yield new relations.",
+        "Fundamental Operators:",
+        "1. Selection ($\\sigma_p(R)$): Returns tuples satisfying predicate $p$. Unary, operates on rows.",
+        "2. Projection ($$\\pi_L(R)$$): Selects attributes in list $L$ and automatically eliminates duplicates. Unary, operates on columns.",
+        "3. Cartesian Product ($R \u00d7 S$): Combines every tuple of $R$ with every tuple of $S$. Schema degree $= \\text{deg}(R) + \\text{deg}(S)$, tuple cardinality $= |R| \u00d7 |S|$.",
+        "4. Set Union ($R \u222a S$), Difference ($R - S$), Intersection ($R \u2229 S$): Requires Union Compatibility (same number of attributes, matching domain types).",
+        "5. Rename ($\\rho_x(R)$): Renames relation/attributes.",
+        "Derived Operators:",
+        "1. Natural Join ($$R \\bowtie S$$): Equi-join on common attributes, followed by duplicate column removal.",
+        "2. Division ($R \\div S$): For $R(A,B)$ and $S(B)$, returns $A$-values associated with ALL $B$-values in $S$.",
+        "Relational Calculus is non-procedural (declarative): Tuple Relational Calculus (TRC) $\\{ t \\mid P(t) \\}$ and Domain Relational Calculus (DRC). Codd's Theorem proves relational algebra and safe relational calculus are equivalent in expressive power."
+      ],
+      "definitions": [
+        {
+          "term": "Union Compatibility",
+          "definition": "The requirement that two relations must have the same number of attributes with compatible corresponding domain types to perform union, intersection, or set difference."
+        },
+        {
+          "term": "Natural Join",
+          "definition": "A binary operator that combines tuples from two relations on matching common attribute values and eliminates duplicate common columns."
+        },
+        {
+          "term": "Division Operator (R \u00f7 S)",
+          "definition": "An algebraic operator that selects tuples in R that match every tuple present in relation S."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Evaluate Selection (\u03c3)",
+          "description": "Filter rows matching condition p from relation R."
+        },
+        {
+          "title": "Perform Join (\u22c8)",
+          "description": "Combine tuples of R and S matching join attributes."
+        },
+        {
+          "title": "Apply Projection (\u03c0)",
+          "description": "Keep requested attributes and strip duplicate rows from final output."
+        }
+      ],
+      "formulasAndMethods": [
+        "Tuple Count Bounds for Binary Relational Operations:",
+        "Given relation R with m tuples and relation S with n tuples:",
+        "1. Cartesian Product |R x S| = m * n (always).",
+        "2. Natural Join |R \u22c8 S| (common attribute is Primary Key of S):",
+        "   - Minimum Tuples = 0 (if no foreign key matches).",
+        "   - Maximum Tuples = m (each R tuple matches at most 1 S tuple).",
+        "3. Natural Join |R \u22c8 S| (common attribute is NOT key in either):",
+        "   - Maximum Tuples = m * n (if all join values are identical).",
+        "4. Set Union |R U S|: Min = max(m,n), Max = m + n.",
+        "5. Set Difference |R - S|: Min = max(0, m - n), Max = m."
+      ],
+      "comparisons": [
+        {
+          "title": "Relational Algebra vs Relational Calculus",
+          "columns": [
+            "Property",
+            "Relational Algebra",
+            "Relational Calculus"
+          ],
+          "rows": [
+            [
+              "Paradigm",
+              "Procedural (HOW to fetch)",
+              "Declarative / Non-procedural (WHAT to fetch)"
+            ],
+            [
+              "Operators",
+              "Selection, Projection, Join, Union, etc.",
+              "Quantifiers (\u2203, \u2200), Predicates, Variables"
+            ],
+            [
+              "Execution",
+              "Defines explicit execution order",
+              "No execution order specified"
+            ],
+            [
+              "Variants",
+              "Standard Algebra",
+              "Tuple Relational Calculus (TRC), Domain Calculus (DRC)"
+            ]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Relation R(A, B) has 15 tuples, Relation S(B, C) has 20 tuples. Attribute B is the Primary Key of S and a Foreign Key in R. What are the minimum and maximum possible number of tuples in Natural Join (R \u22c8 S)?",
+          "solution": "Since B is Primary Key of S, each B value in S is unique.\\nSince B is Foreign Key in R referencing S (and assuming partial participation/nullable or matching foreign keys):\\nMinimum Tuples: If all 15 tuples in R have NULL in B or non-matching B, Min = 0. (If foreign key is NOT NULL and referential integrity enforced, Min = 15).\\nMaximum Tuples: Each of the 15 tuples in R matches at most 1 tuple in S -> Max = 15."
+        },
+        {
+          "question": "Express the Division operation R(A,B) \u00f7 S(B) using basic Relational Algebra operators (Projection, Cartesian Product, Set Difference).",
+          "solution": "Step 1: Project target attribute from R -> T1 = \u03c0_A(R).\\nStep 2: Find all possible (A,B) combinations -> T2 = \u03c0_A(R) x S.\\nStep 3: Find missing (A,B) combinations not in R -> T3 = T2 - R.\\nStep 4: Project A values that have missing combinations -> T4 = \u03c0_A(T3).\\nStep 5: Subtract missing A values from all A values -> R \u00f7 S = \u03c0_A(R) - \u03c0_A((\u03c0_A(R) x S) - R)."
+        }
+      ],
+      "traps": [
+        "Forgetting duplicate elimination in Projection. Unlike SQL SELECT, relational algebra Projection \u03c0 AUTOMATICALLY removes duplicate rows.",
+        "Confusing Cartesian Product cardinality with Natural Join. Cartesian product is ALWAYS m * n, but natural join depends on matching attribute values."
+      ],
+      "takeaways": [
+        "Projection (\u03c0) automatically eliminates duplicate tuples in Relational Algebra.",
+        "Union, Intersection, and Set Difference require Union Compatibility.",
+        "Relational Algebra is procedural; Relational Calculus is declarative.",
+        "Division operator is used for queries involving 'ALL' (universal quantification).",
+        "Codd's Theorem establishes equivalence between Relational Algebra and Safe Relational Calculus."
+      ],
+      "quickRecall": [
+        {
+          "question": "Which relational algebra operator is used to implement universal quantification ('for all') queries?",
+          "answer": "Division operator (\u00f7)."
+        },
+        {
+          "question": "Does Projection (\u03c0) in pure relational algebra retain duplicate tuples?",
+          "answer": "No. Relational algebra operates on sets, so duplicates are automatically eliminated."
+        },
+        {
+          "question": "What is the schema degree of R(A,B,C) x S(C,D)?",
+          "answer": "Degree = 5 (3 + 2 = 5 attributes: R.A, R.B, R.C, S.C, S.D)."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Silberschatz - Database System Concepts (7th Ed.)",
+          "url": "https://gate2026.iitg.ac.in",
+          "usedFor": [
+            "Relational Algebra",
+            "Tuple Relational Calculus",
+            "Codd Equivalence"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "title": "Structured Query Language (SQL): DDL, DML, Aggregations, and Joins",
+      "oneLine": "Practical database manipulation using declarative SQL syntax, grouping, aggregate filtering, nested subqueries, and join semantics.",
+      "whyItMatters": "SQL query interpretation, NULL value semantics, aggregation rules, and correlated subquery evaluation form a major portion of DBMS exam questions.",
+      "understandSimply": [
+        "SQL is the universal language spoken by modern databases.",
+        "DDL (CREATE, ALTER) builds the structures; DML (SELECT, INSERT) populates and queries data.",
+        "WHERE filters individual rows BEFORE grouping; HAVING filters summary groups AFTER GROUP BY.",
+        "INNER JOIN gives matching pairs; LEFT OUTER JOIN keeps all rows from the left table even if no match exists on the right."
+      ],
+      "technicalExplanation": [
+        "SQL is divided into sub-languages: Data Definition Language (DDL - `CREATE`, `ALTER`, `DROP`, `TRUNCATE`), Data Manipulation Language (DML - `SELECT`, `INSERT`, `UPDATE`, `DELETE`), and Data Control Language (DCL - `GRANT`, `REVOKE`).",
+        "Conceptual Query Processing Evaluation Order:",
+        "1. `FROM` & `JOIN`: Build Cartesian product/joined table source.",
+        "2. `WHERE`: Filter individual rows satisfying predicate.",
+        "3. `GROUP BY`: Group remaining rows by specified grouping attributes.",
+        "4. `HAVING`: Filter aggregate groups satisfying group condition.",
+        "5. `SELECT`: Evaluate projections, expressions, and aggregate functions.",
+        "6. `DISTINCT`: Remove duplicate rows (if specified).",
+        "7. `ORDER BY`: Sort output rows.",
+        "Null Handling & 3-Valued Logic: Truth values are `TRUE`, `FALSE`, `UNKNOWN`. `NULL = NULL` evaluates to `UNKNOWN`. Aggregate functions (`SUM`, `AVG`, `COUNT(col)`) ignore `NULL` values, EXCEPT `COUNT(*)`, which counts all rows.",
+        "Subqueries: Scalar, Multi-row (`IN`, `ANY`, `ALL`), and Correlated Subqueries (inner query references outer query row by row)."
+      ],
+      "definitions": [
+        {
+          "term": "Correlated Subquery",
+          "definition": "A subquery that depends on values from the outer query and is re-evaluated once for each row processed by the outer query."
+        },
+        {
+          "term": "HAVING Clause",
+          "definition": "A SQL clause used exclusively with GROUP BY to filter aggregated group summary rows."
+        },
+        {
+          "term": "Three-Valued Logic",
+          "definition": "SQL logical evaluation framework consisting of TRUE, FALSE, and UNKNOWN (resulting from comparisons involving NULL)."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Parse FROM & JOINs",
+          "description": "Identify base tables and perform join condition evaluations."
+        },
+        {
+          "title": "Apply WHERE & GROUP BY",
+          "description": "Filter row-level predicates first, then form groups based on grouping columns."
+        },
+        {
+          "title": "Evaluate HAVING & SELECT",
+          "description": "Filter aggregated groups using HAVING, then project final SELECT attributes and aggregates."
+        }
+      ],
+      "formulasAndMethods": [
+        "SQL Aggregate Functions with NULL Semantics:",
+        "1. COUNT(*) -> Counts TOTAL rows in group, including rows with NULLs.",
+        "2. COUNT(column) -> Counts non-NULL entries in 'column'.",
+        "3. AVG(column) -> SUM(column) / COUNT(column) [Ignores NULLs, denominator excludes NULL rows!]",
+        "Three-Valued Logic Rules:",
+        "- TRUE AND UNKNOWN = UNKNOWN | FALSE AND UNKNOWN = FALSE",
+        "- TRUE OR UNKNOWN = TRUE     | FALSE OR UNKNOWN = UNKNOWN",
+        "- NOT UNKNOWN = UNKNOWN"
+      ],
+      "comparisons": [
+        {
+          "title": "WHERE Clause vs HAVING Clause",
+          "columns": [
+            "Feature",
+            "WHERE Clause",
+            "HAVING Clause"
+          ],
+          "rows": [
+            [
+              "Filtering Level",
+              "Individual row level",
+              "Aggregated group level"
+            ],
+            [
+              "Execution Phase",
+              "Evaluated BEFORE GROUP BY",
+              "Evaluated AFTER GROUP BY"
+            ],
+            [
+              "Aggregate Functions",
+              "CANNOT contain aggregate functions",
+              "CAN contain aggregate functions (e.g. HAVING COUNT(*) > 5)"
+            ],
+            [
+              "Dependency",
+              "Can exist without GROUP BY",
+              "Requires GROUP BY (or operates on implicit whole-table group)"
+            ]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Table Marks contains values: {10, 20, NULL, 30, NULL}. What are the results of (a) SELECT COUNT(*) FROM Marks, (b) SELECT COUNT(marks) FROM Marks, and (c) SELECT AVG(marks) FROM Marks?",
+          "solution": "(a) COUNT(*) counts all rows = 5.\\n(b) COUNT(marks) ignores NULLs = 3 (for values 10, 20, 30).\\n(c) AVG(marks) = SUM(non-null) / COUNT(non-null) = (10 + 20 + 30) / 3 = 60 / 3 = 20."
+        },
+        {
+          "question": "Consider query: SELECT dept_id, COUNT(*) FROM Employee WHERE salary > 50000 GROUP BY dept_id HAVING COUNT(*) > 2. Explain the step-by-step filtering.",
+          "solution": "Step 1: FROM Employee reads all rows.\\nStep 2: WHERE salary > 50000 filters out employees earning <= 50000.\\nStep 3: GROUP BY dept_id groups remaining high-earning employees by department.\\nStep 4: HAVING COUNT(*) > 2 filters out departments that have 2 or fewer high-earning employees.\\nStep 5: SELECT projects dept_id and the count for qualifying departments."
+        }
+      ],
+      "traps": [
+        "Using `WHERE AVG(salary) > 50000`. Aggregate functions are invalid in WHERE clauses; use HAVING instead.",
+        "Assuming `AVG(col)` divides by total rows $N$. `AVG(col)` divides by the count of NON-NULL entries, ignoring NULL rows."
+      ],
+      "takeaways": [
+        "Conceptual query evaluation order: FROM -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY.",
+        "COUNT(*) counts all rows; COUNT(column) ignores NULLs.",
+        "WHERE filters rows before grouping; HAVING filters groups after aggregation.",
+        "Comparisons with NULL (e.g. col = NULL) evaluate to UNKNOWN, not TRUE or FALSE.",
+        "LEFT OUTER JOIN retains all tuples from the left table, padding missing right attributes with NULL."
+      ],
+      "quickRecall": [
+        {
+          "question": "Which SQL clause is executed immediately after GROUP BY?",
+          "answer": "HAVING clause."
+        },
+        {
+          "question": "What is the result of 'WHERE age = NULL' in standard SQL?",
+          "answer": "UNKNOWN (which evaluates to false for row selection)."
+        },
+        {
+          "question": "Does AVG(salary) include NULL salary rows in its denominator?",
+          "answer": "No. NULL values are completely ignored in both numerator (SUM) and denominator (COUNT)."
+        }
+      ],
+      "sources": [
+        {
+          "title": "ISO/IEC 9075 SQL Standard & Silberschatz Ch. 3-5",
+          "url": "https://gate2026.iitg.ac.in",
+          "usedFor": [
+            "SQL Syntax",
+            "Query Evaluation Order",
+            "3-Valued Logic"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "title": "Functional Dependencies, Attribute Closure, and Candidate Key Derivation",
+      "oneLine": "Mathematical formalization of data dependencies ($X \\to Y$), Armstrong's Axioms, closure algorithms, and systematic candidate key identification.",
+      "whyItMatters": "Attribute closure ($X^+$) and candidate key derivation are fundamental skills tested in almost every DBMS exam paper.",
+      "understandSimply": [
+        "A Functional Dependency $X \\to Y$ means $X$ uniquely determines $Y$ (like Roll Number determines Student Name).",
+        "Attribute Closure $X^+$ is the ultimate snowball effect: start with $X$, and add every attribute that $X$ can determine directly or indirectly.",
+        "If $X^+$ contains ALL attributes of relation $R$, then $X$ is a Super Key!",
+        "If no subset of $X$ can determine all attributes, then $X$ is a Candidate Key!"
+      ],
+      "technicalExplanation": [
+        "A Functional Dependency (FD) $X \\to Y$ holds on relation schema $R$ if whenever two tuples agree on attribute set $X$, they must also agree on attribute set $Y$.",
+        "Armstrong's Axioms (Sound and Complete inference rules):",
+        "1. Reflexivity: If $Y \u2286 X$, then $X \\to Y$ (Trivial FD).",
+        "2. Augmentation: If $X \\to Y$, then $XZ \\to YZ$.",
+        "3. Transitivity: If $X \\to Y$ and $Y \\to Z$, then $X \\to Z$.",
+        "Secondary Rules: Decomposition (if $X \\to YZ$, then $X \\to Y$ and $X \\to Z$), Union (if $X \\to Y$ and $X \\to Z$, then $X \\to YZ$), Composition (if $X \\to Y$ and $A \\to B$, then $XA \\to YB$).",
+        "Attribute Closure Algorithm ($X^+$): Set $X^+ = X$. Repeatedly scan FD set $F$; if $A \\to B \u2208 F$ and $A \u2286 X^+$, then $X^+ = X^+ \u222a B$. Stop when $X^+$ no longer grows.",
+        "Candidate Key Derivation: An attribute set $K$ is a candidate key if $K^+ = R$ and no proper subset of $K$ has a closure equal to $R$. Attributes that never appear on the RHS of any FD MUST be part of EVERY candidate key."
+      ],
+      "definitions": [
+        {
+          "term": "Functional Dependency (X \u2192 Y)",
+          "definition": "A constraint between two sets of attributes in a relation such that $X$ uniquely determines the values of $Y$."
+        },
+        {
+          "term": "Attribute Closure (X+)",
+          "definition": "The set of all attributes that are functionally determined by attribute set $X$ under a given set of functional dependencies."
+        },
+        {
+          "term": "Minimal Cover (Canonical Cover)",
+          "definition": "A simplified, equivalent set of functional dependencies containing single attributes on the RHS, no redundant FDs, and no extraneous LHS attributes."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Identify RHS-Missing Attributes",
+          "description": "Find attributes in R that never appear on the RHS of any FD in set F. These MUST be included in every Candidate Key candidate."
+        },
+        {
+          "title": "Compute Attribute Closures",
+          "description": "Start with core essential attributes, compute X+. If X+ = R, X is a Candidate Key."
+        },
+        {
+          "title": "Test Minimality",
+          "description": "If X+ contains all attributes, verify that no proper subset of X can derive R."
+        }
+      ],
+      "formulasAndMethods": [
+        "Essential Rules for Candidate Key Search:",
+        "1. Essential Attributes: Attributes appearing ONLY on LHS or NEVER in F must be present in ALL Candidate Keys.",
+        "2. Non-Essential Attributes: Attributes appearing ONLY on RHS will NEVER be part of any minimal Candidate Key (unless required as part of an essential composite).",
+        "3. Both-Side Attributes: Attributes appearing on BOTH LHS and RHS can combine with essential attributes to form alternative candidate keys."
+      ],
+      "comparisons": [
+        {
+          "title": "Trivial FD vs Non-Trivial FD",
+          "columns": [
+            "Property",
+            "Trivial FD (X \u2192 Y)",
+            "Non-Trivial FD (X \u2192 Y)"
+          ],
+          "rows": [
+            [
+              "Condition",
+              "Y is a subset of X (Y \u2286 X)",
+              "Y is NOT a subset of X"
+            ],
+            [
+              "Example",
+              "{A, B} \u2192 A",
+              "{A} \u2192 B"
+            ],
+            [
+              "Verification",
+              "Always holds trivially in any relation",
+              "Depends on actual data / functional constraints"
+            ],
+            [
+              "Utility in Normalization",
+              "Ignored during 2NF/3NF/BCNF checks",
+              "Must be checked against Super Key / Prime rules"
+            ]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Given R(A, B, C, D, E) with FDs: {A -> BC, CD -> E, B -> D, E -> A}. Find all candidate keys of R.",
+          "solution": "Step 1: Check attribute occurrences.\\nAttributes: A, B, C, D, E.\\nLHS only: None.\\nRHS only: None.\\nNever in F: None.\\nBoth LHS and RHS: A, B, C, D, E.\\nStep 2: Test single attribute closures:\\n- A+ = {A, B, C, D, E} (A -> BC gives BC, B -> D gives D, CD -> E gives E). A is a Candidate Key!\\n- B+ = {B, D}. Not R.\\n- C+ = {C}. Not R.\\n- D+ = {D}. Not R.\\n- E+ = {E, A, B, C, D} (E -> A -> BC -> D). E is a Candidate Key!\\nStep 3: Test combinations with B, C, D:\\n- (BC)+ = {B, C, D, E, A} (since B -> D, CD -> E, E -> A). {B, C} is a Candidate Key!\\n- (CD)+ = {C, D, E, A, B} (since CD -> E -> A -> BC). {C, D} is a Candidate Key!\\nAll Candidate Keys: {A}, {E}, {B, C}, {C, D}."
+        },
+        {
+          "question": "Given R(A, B, C, D) and FDs: {A -> B, B -> C, C -> A}. Is {A, D} a candidate key?",
+          "solution": "Compute (AD)+:\\nStart: (AD)+ = {A, D}.\\nA -> B adds B -> {A, B, D}.\\nB -> C adds C -> {A, B, C, D} = R.\\nSo {A, D} is a Super Key.\\nCheck proper subsets: A+ = {A, B, C} != R. D+ = {D} != R.\\nSince no proper subset is a super key, {A, D} is a valid Candidate Key!"
+        }
+      ],
+      "traps": [
+        "Stopping closure calculation early. Always iterate through the entire FD set until no new attributes can be added.",
+        "Assuming essential attributes alone form a candidate key. If essential attributes' closure is not R, combine them systematically with both-side attributes."
+      ],
+      "takeaways": [
+        "Attribute closure $X^+$ contains all attributes functionally determined by $X$.",
+        "If $X^+ = R$, then $X$ is a super key of relation $R$.",
+        "A candidate key is a minimal super key (no proper subset is a super key).",
+        "Attributes appearing only on LHS or nowhere in $F$ must be present in every candidate key.",
+        "Armstrong's Axioms (Reflexivity, Augmentation, Transitivity) are sound and complete."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the closure of attribute set X if X is a candidate key of R(A,B,C)?",
+          "answer": "X+ = {A, B, C} (the full set of attributes R)."
+        },
+        {
+          "question": "Which Armstrong axiom states that if X \u2192 Y and Y \u2192 Z, then X \u2192 Z?",
+          "answer": "Transitivity Rule."
+        },
+        {
+          "question": "If an attribute never appears on the RHS of any FD, where must it appear in candidate key analysis?",
+          "answer": "It MUST appear in EVERY candidate key of the relation."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Elmasri & Navathe Ch. 14 & Ullman - Principles of Database Systems",
+          "url": "https://gate2026.iitg.ac.in",
+          "usedFor": [
+            "Armstrong Axioms",
+            "Attribute Closure Algorithm",
+            "Candidate Key Search"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "title": "Database Normalization: 1NF, 2NF, 3NF, BCNF, and Decompositions",
+      "oneLine": "Eliminating insertion, deletion, and update anomalies through progressive normal forms (1NF, 2NF, 3NF, BCNF) while preserving dependencies and lossless joins.",
+      "whyItMatters": "Identifying the highest normal form of a relation and testing decompositions for Lossless Join / Dependency Preservation are heavily tested exam topics.",
+      "understandSimply": [
+        "Normalization is organizing table columns to eliminate duplicate, wasteful data.",
+        "1NF: Atomic values only (no lists or comma-separated values in a cell).",
+        "2NF: No Partial Dependencies (non-prime attribute depending on part of a composite key).",
+        "3NF: No Transitive Dependencies (non-prime attribute depending on another non-prime attribute).",
+        "BCNF: Strict rule\u2014for EVERY functional dependency $X \\to Y$, $X$ MUST be a Super Key!"
+      ],
+      "technicalExplanation": [
+        "Normalization systematically eliminates data redundancy and update anomalies (Insertion, Deletion, Modification).",
+        "Normal Forms Hierarchy: 1NF $\\subset$ 2NF $\\subset$ 3NF $\\subset$ BCNF.",
+        "1. First Normal Form (1NF): All attribute values must be atomic (indivisible domain).",
+        "2. Second Normal Form (2NF): Must be in 1NF, and no non-prime attribute is partially dependent on any candidate key. (Applies only when candidate keys are composite).",
+        "3. Third Normal Form (3NF): Must be in 2NF, and for every non-trivial FD $X \\to Y$, either $X$ is a Super Key OR $Y$ is a Prime Attribute.",
+        "4. Boyce-Codd Normal Form (BCNF): For every non-trivial FD $X \\to Y$, $X$ MUST be a Super Key.",
+        "Decomposition Properties:",
+        "- Lossless Join (Non-additive Join): Decomposition of $R$ into $R_1, R_2$ is lossless iff $(R_1 \u2229 R_2) \\to R_1$ OR $(R_1 \u2229 R_2) \\to R_2$ (common attribute must be a super key in at least one decomposed relation).",
+        "- Dependency Preservation: All original FDs in $F$ can be enforced within individual decomposed relations without performing joins ($F^+ = (F_1 \u222a F_2)^+$)."
+      ],
+      "definitions": [
+        {
+          "term": "Partial Dependency",
+          "definition": "A functional dependency $X \\to Y$ where $X$ is a proper subset of a candidate key and $Y$ is a non-prime attribute."
+        },
+        {
+          "term": "Transitive Dependency",
+          "definition": "A functional dependency $X \\to Z$ derived via $X \\to Y$ and $Y \\to Z$, where $X$ is a super key, and $Y, Z$ are non-prime attributes."
+        },
+        {
+          "term": "Lossless Join Decomposition",
+          "definition": "A relational decomposition property ensuring that joining the decomposed tables produces exactly the original relation without spurious tuples."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Find Candidate Keys & Prime Attributes",
+          "description": "Compute candidate keys for relation R. Mark attributes in any CK as prime; others as non-prime."
+        },
+        {
+          "title": "Check FDs Against Normal Form Rules",
+          "description": "For each non-trivial FD X -> Y: Check if X is Super Key (BCNF). If not, check if Y is Prime (3NF). If not, check if X is partial key & Y non-prime (2NF failure)."
+        },
+        {
+          "title": "Test Decomposition Properties",
+          "description": "Check if common attribute of R1 and R2 forms a super key in R1 or R2 (Lossless). Check if all FDs exist in F1 U F2 (Dependency Preservation)."
+        }
+      ],
+      "formulasAndMethods": [
+        "Normal Form Decision Checklist for Non-Trivial FD X -> Y:",
+        "1. Is X a Super Key? -> Satisfies BCNF, 3NF, 2NF.",
+        "2. Is Y a Prime Attribute? -> Satisfies 3NF, 2NF (even if X is not Super Key).",
+        "3. Is X a proper subset of a CK and Y Non-Prime? -> Violates 2NF (Relation is in 1NF).",
+        "Lossless Join Condition for 2-relation decomposition R -> R1, R2:",
+        "- Lossless iff (R1 \u2229 R2)+ contains R1 OR (R1 \u2229 R2)+ contains R2."
+      ],
+      "comparisons": [
+        {
+          "title": "3NF vs BCNF",
+          "columns": [
+            "Property",
+            "Third Normal Form (3NF)",
+            "Boyce-Codd Normal Form (BCNF)"
+          ],
+          "rows": [
+            [
+              "FD Condition for X \u2192 Y",
+              "X is Super Key OR Y is Prime Attribute",
+              "X MUST be a Super Key"
+            ],
+            [
+              "Redundancy Level",
+              "Low (allows minor prime redundancy)",
+              "Strictly Zero FD Redundancy"
+            ],
+            [
+              "Lossless Join Guaranteed?",
+              "Yes (always achievable)",
+              "Yes (always achievable)"
+            ],
+            [
+              "Dependency Preservation?",
+              "ALWAYS achievable in 3NF decomposition",
+              "NOT ALWAYS achievable (may lose FDs)"
+            ]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Relation R(A, B, C, D) has FDs: {AB -> C, C -> D, D -> A}. Find the highest normal form of R.",
+          "solution": "Step 1: Find candidate keys.\\n- (AB)+ = {A, B, C, D} -> {A, B} is CK.\\n- (BC)+ = {B, C, D, A} (C->D, D->A) -> {B, C} is CK.\\n- (BD)+ = {B, D, A, C} (D->A, AB->C) -> {B, D} is CK.\\nPrime attributes = {A, B, C, D} (all attributes are prime!).\\nStep 2: Check FDs for BCNF and 3NF:\\n- AB -> C: AB is Super Key -> OK for BCNF.\\n- C -> D: C is NOT Super Key. But D is a Prime Attribute! -> Satisfies 3NF.\\n- D -> A: D is NOT Super Key. But A is a Prime Attribute! -> Satisfies 3NF.\\nSince all FDs satisfy 3NF condition (RHS is prime), relation R is in 3rd Normal Form (3NF)."
+        },
+        {
+          "question": "Relation R(A, B, C) with FDs {A -> B, B -> C} is decomposed into R1(A, B) and R2(B, C). Is this decomposition (a) Lossless Join, and (b) Dependency Preserving?",
+          "solution": "(a) Lossless test: R1 \u2229 R2 = {B}.\\nCompute B+ under F: B+ = {B, C} = R2.\\nSince B+ contains all attributes of R2, B is a super key of R2. Hence, decomposition is LOSSLESS JOIN.\\n(b) Dependency preservation test:\\nFD A -> B is in R1(A,B). FD B -> C is in R2(B,C).\\nAll original FDs are preserved in individual relations. Hence, DEPENDENCY PRESERVING."
+        }
+      ],
+      "traps": [
+        "Concluding a relation is in BCNF because all attributes are prime. In example 1 above, all attributes are prime, but C -> D has C not a super key, so it is 3NF, NOT BCNF!",
+        "Believing BCNF decomposition ALWAYS preserves functional dependencies. BCNF decomposition guarantees Lossless Join, but may fail Dependency Preservation."
+      ],
+      "takeaways": [
+        "1NF requires atomic values; 2NF eliminates partial dependencies; 3NF eliminates transitive dependencies; BCNF enforces super key LHS.",
+        "BCNF is strictly stronger than 3NF: BCNF $\u27f9$ 3NF $\u27f9$ 2NF $\u27f9$ 1NF.",
+        "3NF decomposition can ALWAYS achieve both Lossless Join and Dependency Preservation.",
+        "BCNF decomposition guarantees Lossless Join, but dependency preservation is NOT guaranteed.",
+        "A relation where all candidate keys consist of single attributes is automatically in 2NF."
+      ],
+      "quickRecall": [
+        {
+          "question": "What is the condition for a non-trivial FD X \u2192 Y to be valid in 3NF but invalid in BCNF?",
+          "answer": "When X is NOT a Super Key, but Y is a Prime Attribute."
+        },
+        {
+          "question": "Can a 3NF decomposition always preserve functional dependencies?",
+          "answer": "Yes. 3NF decomposition guarantees both Lossless Join and Dependency Preservation."
+        },
+        {
+          "question": "What is the condition for a binary decomposition of R into R1 and R2 to be lossless?",
+          "answer": "(R1 \u2229 R2) must be a Super Key in either R1 or R2 (i.e. (R1 \u2229 R2)+ contains R1 or R2)."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Elmasri & Navathe Ch. 14-15 & Codd 1972 Normalization papers",
+          "url": "https://gate2026.iitg.ac.in",
+          "usedFor": [
+            "Normal Forms",
+            "Decomposition Theorems",
+            "Lossless Join Criteria"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "title": "Storage Structures, Indexing, B-Trees and B+ Trees",
+      "oneLine": "Physical database organization, dense vs sparse indexing, and multi-way search trees (B-Trees & B+ Trees) for fast disk block access.",
+      "whyItMatters": "B-Tree and B+ Tree node order, capacity formulas, maximum tree height, and index block calculations are frequent numerical exam targets.",
+      "understandSimply": [
+        "Indexes are like the index at the back of a textbook\u2014they help you jump straight to the page without scanning every chapter.",
+        "A Primary Index is built on a sorted table's primary key.",
+        "A B-Tree stores both search keys and data records in internal and leaf nodes.",
+        "A B+ Tree stores ALL data record pointers strictly in leaf nodes, linking them together like a chain for super-fast range searches!"
+      ],
+      "technicalExplanation": [
+        "File Organization determines physical block layout: Heap (unordered), Sequential (ordered by key), Hash file.",
+        "Indexing Types:",
+        "1. Primary Index: Built on ordered key attribute. Sparse index (one index entry per disk block).",
+        "2. Clustering Index: Built on ordered non-key attribute. Sparse index (one index entry per distinct key value).",
+        "3. Secondary Index: Built on unordered attribute. Dense index (one index entry per data record).",
+        "B-Tree Properties (Order $m$):",
+        "- Every node has at most $m$ children and at most $m-1$ key values.",
+        "- Root node has at least 2 children (unless tree has 1 node).",
+        "- Internal nodes have at least $\\lceil m/2 \\rceil$ children and $\\lceil m/2 \\rceil - 1$ keys.",
+        "- All leaf nodes are at the exact same depth.",
+        "B+ Tree Variant:",
+        "- Internal nodes contain ONLY search keys and child pointers (no record pointers!).",
+        "- Leaf nodes contain search keys and actual record pointers, plus a pointer to the next leaf node (doubly/singly linked list for range queries).",
+        "Node Capacity Equation (Block Size $B$, Key Size $K$, Block Pointer $P$, Record Pointer $P_r$):",
+        "- B-Tree Node: $m \u00b7 P + (m-1) \u00b7 (K + P_r) \u2264 B$.",
+        "- B+ Tree Internal Node: $m \u00b7 P + (m-1) \u00b7 K \u2264 B$.",
+        "- B+ Tree Leaf Node: $n \u00b7 (K + P_r) + P_{\\text{next}} \u2264 B$."
+      ],
+      "definitions": [
+        {
+          "term": "Sparse Index",
+          "definition": "An index structure containing entries for only some of the data records (typically one entry per disk block)."
+        },
+        {
+          "term": "Dense Index",
+          "definition": "An index structure containing an explicit index entry for every single record in the data file."
+        },
+        {
+          "term": "B+ Tree Order (m)",
+          "definition": "The maximum number of child pointers an internal node in a B+ tree can hold."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Formulate Node Size Inequality",
+          "description": "Set up child pointer, key, and record pointer byte sum against disk block size B."
+        },
+        {
+          "title": "Solve for Maximum Order m / n",
+          "description": "Calculate integer floor bound for m (order) in internal and leaf nodes."
+        },
+        {
+          "title": "Compute Tree Height & Block Accesses",
+          "description": "Determine maximum keys stored per level to find total disk I/O accesses for a query."
+        }
+      ],
+      "formulasAndMethods": [
+        "B+ Tree Capacity & Order Formulas:",
+        "1. Internal Node Order Equation: m * P + (m - 1) * K <= Block Size B",
+        "   => m * (P + K) - K <= B  => m = floor((B + K) / (P + K)).",
+        "2. Leaf Node Capacity Equation: n * (K + Pr) + Pnext <= Block Size B",
+        "   => n = floor((B - Pnext) / (K + Pr)).",
+        "3. Maximum Keys in B+ Tree of Height h and Order m:",
+        "   - Max Leaf Nodes = m^(h-1).",
+        "   - Max Data Records = m^(h-1) * n."
+      ],
+      "comparisons": [
+        {
+          "title": "B-Tree vs B+ Tree",
+          "columns": [
+            "Feature",
+            "B-Tree",
+            "B+ Tree"
+          ],
+          "rows": [
+            [
+              "Data Pointer Location",
+              "Stored in BOTH internal and leaf nodes",
+              "Stored STRICTLY in leaf nodes only"
+            ],
+            [
+              "Internal Node Capacity",
+              "Lower (payload includes record pointers)",
+              "Higher (internal nodes store only keys and child pointers)"
+            ],
+            [
+              "Leaf Node Linking",
+              "Leaf nodes are not linked",
+              "Leaf nodes are linked sequentially (ideal for range queries)"
+            ],
+            [
+              "Search Time",
+              "Variable (may hit key in internal node)",
+              "Uniform (always traverses root to leaf level)"
+            ]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Given Disk Block Size B = 512 bytes, Search Key K = 10 bytes, Block Pointer P = 6 bytes, Record Pointer Pr = 8 bytes. Calculate (a) Maximum Order m of B+ Tree Internal Node, and (b) Maximum Record capacity n of B+ Tree Leaf Node (with 6-byte leaf pointer).",
+          "solution": "(a) Internal Node: m * P + (m - 1) * K <= B\\nm * 6 + (m - 1) * 10 <= 512\\n16m - 10 <= 512 => 16m <= 522 => m = floor(522 / 16) = floor(32.625) = 32.\\nMaximum Order of Internal Node m = 32.\\n\\n(b) Leaf Node: n * (K + Pr) + Pnext <= B\\nn * (10 + 8) + 6 <= 512\\n18n + 6 <= 512 => 18n <= 506 => n = floor(506 / 18) = floor(28.11) = 28.\\nMaximum Capacity of Leaf Node n = 28 records."
+        },
+        {
+          "question": "A database file has 1,000,000 records. A secondary B+ tree index is constructed with leaf node capacity of 100 records and internal node order of 100. How many disk block accesses are needed to search for a record in the worst case?",
+          "solution": "Level 3 (Leaves): Stores 1,000,000 records / 100 per leaf = 10,000 leaf nodes.\\nLevel 2 (Parent of Leaves): Stores 10,000 / 100 = 100 nodes.\\nLevel 1 (Root): Stores 100 / 100 = 1 root node.\\nTree height h = 3 levels.\\nWorst-case disk block accesses = Height of index + 1 access for actual data block = 3 + 1 = 4 block accesses."
+        }
+      ],
+      "traps": [
+        "Confusing Order $m$ (number of pointers) with key count. An internal node of order $m$ holds $m$ child pointers and $m-1$ keys.",
+        "Forgetting to add $+1$ for the data block read after searching a B+ tree index."
+      ],
+      "takeaways": [
+        "Primary Index is sparse and built on a sorted key attribute.",
+        "Secondary Index is dense and built on an unordered attribute.",
+        "B+ trees store record pointers exclusively in leaf nodes, maximizing internal node fan-out.",
+        "Leaf nodes in a B+ tree form a linked list for fast sequential range queries.",
+        "For block size $B$, B+ tree order $m = \\lfloor (B + K) / (P + K) \\rfloor$."
+      ],
+      "quickRecall": [
+        {
+          "question": "Where are data record pointers stored in a B+ tree?",
+          "answer": "Exclusively in the leaf nodes."
+        },
+        {
+          "question": "What is the maximum number of keys held by an internal node of order m in a B-tree?",
+          "answer": "m - 1 keys."
+        },
+        {
+          "question": "Is a Secondary Index on an unordered data file Sparse or Dense?",
+          "answer": "Dense Index (one entry per data record)."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Elmasri & Navathe Ch. 16-17 & Comer (1979) B-Tree Survey",
+          "url": "https://gate2026.iitg.ac.in",
+          "usedFor": [
+            "Indexing Classification",
+            "B+ Tree Node Equations",
+            "Disk Access Calculations"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "title": "Transaction Processing and ACID Properties",
+      "oneLine": "Logical units of database execution, state transitions, and the four pillar guarantees (Atomicity, Consistency, Isolation, Durability).",
+      "whyItMatters": "ACID property responsibilities (which DBMS subsystem manages which property) and transaction lifecycle states are standard theoretical exam questions.",
+      "understandSimply": [
+        "A transaction is like a bank ATM transfer: either money moves completely from Account A to B, or the operation cancels as if nothing happened.",
+        "Atomicity: All operations succeed, or all roll back (All or Nothing).",
+        "Consistency: The database transitions from one valid state to another.",
+        "Isolation: Concurrent transactions execute without interfering with each other.",
+        "Durability: Once committed, updates survive even if the power fails instantly!"
+      ],
+      "technicalExplanation": [
+        "A Transaction is a logical unit of database processing that includes a sequence of read (`R(X)`) and write (`W(X)`) operations.",
+        "ACID Properties & Subsystem Responsibilities:",
+        "1. Atomicity: Ensured by Recovery Manager (using Write-Ahead Logging WAL and undo logs).",
+        "2. Consistency: Primary responsibility of Application Programmer (integrity constraints checked by DBMS engine).",
+        "3. Isolation: Ensured by Concurrency Control Manager (locking, timestamping).",
+        "4. Durability: Ensured by Recovery Manager (redo logs and non-volatile storage flushing).",
+        "Transaction State Diagram:",
+        "- Active: Initial state during execution.",
+        "- Partially Committed: After final statement has executed, before commit log write.",
+        "- Committed: After successful completion and log write to disk (permanent).",
+        "- Failed: Discovered normal execution can no longer proceed.",
+        "- Aborted: Rollback completed, database restored to pre-transaction state."
+      ],
+      "definitions": [
+        {
+          "term": "Atomicity",
+          "definition": "The ACID property guaranteeing that all operations in a transaction complete successfully, or none take effect."
+        },
+        {
+          "term": "Durability",
+          "definition": "The ACID property ensuring that once a transaction commits, its changes survive system crashes."
+        },
+        {
+          "term": "Write-Ahead Logging (WAL)",
+          "definition": "A protocol requiring log records describing changes to be written to non-volatile disk before actual data blocks are modified on disk."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Begin Transaction (Active)",
+          "description": "Execute R(X) and W(X) operations in local volatile memory buffer space."
+        },
+        {
+          "title": "Partial Commit & WAL Flush",
+          "description": "Write commit log record to non-volatile disk log storage."
+        },
+        {
+          "title": "Committed State",
+          "description": "Transaction completes permanently; changes are guaranteed durable."
+        }
+      ],
+      "formulasAndMethods": [
+        "ACID Subsystem Mapping Quick Matrix:",
+        "- Atomicity   -> Recovery Manager (Undo Log)",
+        "- Consistency -> Application Developer + DBMS Integrity Constraints",
+        "- Isolation   -> Concurrency Control Manager (2PL / Timestamping)",
+        "- Durability  -> Recovery Manager (Redo Log + Disk)"
+      ],
+      "comparisons": [
+        {
+          "title": "Atomicity vs Durability",
+          "columns": [
+            "Property",
+            "Atomicity",
+            "Durability"
+          ],
+          "rows": [
+            [
+              "Core Guarantee",
+              "All or Nothing execution",
+              "Permanent retention of committed updates"
+            ],
+            [
+              "Failure Handling",
+              "Handled via UNDO logging",
+              "Handled via REDO logging"
+            ],
+            [
+              "Target Phase",
+              "Applies during active/abort execution",
+              "Applies post-COMMIT phase"
+            ],
+            [
+              "Subsystem",
+              "Recovery Manager",
+              "Recovery Manager"
+            ]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Transaction T1 transfers Rs. 500 from Account A to Account B. T1 executes R(A), A=A-500, W(A), and then system crashes before W(B). Which ACID property is violated if the DB retains W(A), and which manager fixes it?",
+          "solution": "Violated Property: ATOMICITY (since only half the transaction took effect, losing Rs. 500).\\nManaging Subsystem: RECOVERY MANAGER. The recovery manager reads the undo log and rolls back W(A) to restore Account A to its original balance."
+        },
+        {
+          "question": "Trace the transition of T1 from 'Partially Committed' to either 'Committed' or 'Aborted'. What exact event triggers 'Committed'?",
+          "solution": "In 'Partially Committed' state, T1 has executed its last statement. The Recovery Manager writes the [COMMIT, T1] log record to non-volatile disk. Once the commit record is successfully flushed to disk, T1 transitions to 'Committed'. If a disk write failure occurs before commit log flush, T1 transitions to 'Failed' and then 'Aborted'."
+        }
+      ],
+      "traps": [
+        "Attributing Consistency management solely to Concurrency Control. Consistency is primarily the responsibility of the application writer, relying on Atomicity and Isolation.",
+        "Confusing 'Partially Committed' with 'Committed'. A transaction is NOT committed until its commit log record is safely flushed to non-volatile storage."
+      ],
+      "takeaways": [
+        "ACID: Atomicity (Recovery), Consistency (Application/Integrity), Isolation (Concurrency Control), Durability (Recovery).",
+        "Write-Ahead Logging (WAL) ensures log records hit disk BEFORE data blocks are modified on disk.",
+        "Transactions transition from Active -> Partially Committed -> Committed.",
+        "Aborting a transaction requires rolling back all its uncommitted updates via Undo logs.",
+        "Durability guarantees committed transactions survive system crashes."
+      ],
+      "quickRecall": [
+        {
+          "question": "Which DBMS component is responsible for ensuring Isolation?",
+          "answer": "Concurrency Control Manager."
+        },
+        {
+          "question": "What state does a transaction enter immediately after executing its final statement?",
+          "answer": "Partially Committed state."
+        },
+        {
+          "question": "What protocol requires log records to be written to disk before database modifications?",
+          "answer": "Write-Ahead Logging (WAL) protocol."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Silberschatz Ch. 14 & Gray & Reuter - Transaction Processing",
+          "url": "https://gate2026.iitg.ac.in",
+          "usedFor": [
+            "ACID Definitions",
+            "Transaction State Diagram",
+            "WAL Protocol"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 9,
+      "title": "Serializability: Conflict & View Serializability, Precedence Graphs",
+      "oneLine": "Mathematical validation of non-serial concurrent schedules using precedence graph cycle detection and conflict equivalence.",
+      "whyItMatters": "Drawing precedence graphs to test conflict serializability and finding equivalent serial orderings is a guaranteed 2-mark exam problem.",
+      "understandSimply": [
+        "Running transactions one after another (serial schedule) is 100% safe but super slow.",
+        "Running transactions concurrently is fast, but can create chaos if operations overlap incorrectly.",
+        "A concurrent schedule is Conflict Serializable if we can swap non-conflicting operations until it matches a safe serial schedule.",
+        "Precedence Graph: Draw an arrow T1 -> T2 if T1 acts on item X first and T2 acts on X next in a conflicting way. NO CYCLES = CONFLICT SERIALIZABLE!"
+      ],
+      "technicalExplanation": [
+        "Two operations in a schedule conflict if they belong to different transactions, access the exact same data item $X$, and at least ONE operation is a WRITE (`W(X)`).",
+        "Conflicting Pairs: $R_1(X) - W_2(X)$, $W_1(X) - R_2(X)$, $W_1(X) - W_2(X)$.",
+        "Conflict Equivalence: Two schedules $S_1, S_2$ on the same transactions are conflict equivalent if $S_1$ can be transformed into $S_2$ by a series of swaps of non-conflicting adjacent operations.",
+        "Conflict Serializability Test (Precedence Graph / Serialization Graph):",
+        "- Nodes: Transactions $T_1, T_2, \\dots, T_n$.",
+        "- Directed Edge $T_i \\to T_j$: Created if $T_i$ executes a conflicting operation on $X$ BEFORE $T_j$ executes its conflicting operation on $X$.",
+        "- Conflict Serializability Theorem: Schedule $S$ is Conflict Serializable IF AND ONLY IF its Precedence Graph contains NO CYCLES.",
+        "- Equivalent Serial Order: Topological sort of the acyclic precedence graph.",
+        "View Serializability: Weaker relaxation allowing blind writes. Every conflict serializable schedule is view serializable. If a schedule is View Serializable but NOT Conflict Serializable, it MUST contain at least one BLIND WRITE ($W(X)$ without prior $R(X)$)."
+      ],
+      "definitions": [
+        {
+          "term": "Conflicting Operations",
+          "definition": "Two operations in a concurrent schedule belonging to different transactions, operating on the same data item, where at least one is a Write operation."
+        },
+        {
+          "term": "Conflict Serializability",
+          "definition": "A schedule property indicating that the schedule is conflict-equivalent to some serial execution schedule."
+        },
+        {
+          "term": "Precedence Graph",
+          "definition": "A directed graph used to test conflict serializability where nodes represent transactions and directed edges represent conflicting operation ordering."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Identify All Conflicting Pairs",
+          "description": "Locate all R(X)-W(X), W(X)-R(X), and W(X)-W(X) pairs between distinct transactions."
+        },
+        {
+          "title": "Construct Precedence Graph",
+          "description": "Add directed edge Ti -> Tj for every conflicting pair where Ti executes before Tj."
+        },
+        {
+          "title": "Check for Cycles & Topological Sort",
+          "description": "If graph has a cycle -> NOT Conflict Serializable. If acyclic -> Conflict Serializable, topological sort yields serial order."
+        }
+      ],
+      "formulasAndMethods": [
+        "Precedence Graph Edge Creation Rules:",
+        "1. R1(X) before W2(X) -> Draw Edge T1 -> T2",
+        "2. W1(X) before R2(X) -> Draw Edge T1 -> T2",
+        "3. W1(X) before W2(X) -> Draw Edge T1 -> T2",
+        "Conflict vs View Serializability Venn Relationship:",
+        "Conflict Serializable Scheds \u2282 View Serializable Scheds \u2282 All Scheds."
+      ],
+      "comparisons": [
+        {
+          "title": "Conflict Serializability vs View Serializability",
+          "columns": [
+            "Property",
+            "Conflict Serializability",
+            "View Serializability"
+          ],
+          "rows": [
+            [
+              "Computational Complexity",
+              "O(V + E) using Precedence Graph cycle check",
+              "NP-Complete problem"
+            ],
+            [
+              "Condition",
+              "Acyclic Precedence Graph",
+              "Preserves initial read, updated read, and final write views"
+            ],
+            [
+              "Blind Writes",
+              "Does not require blind writes",
+              "Can be view serializable despite cycles ONLY IF blind writes exist"
+            ],
+            [
+              "Practical Use",
+              "Standard used by commercial DB locking engines",
+              "Theoretical concept (too expensive to test dynamically)"
+            ]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Consider Schedule S: R1(X), W2(X), W1(X), R2(Y), W2(Y). Is S Conflict Serializable?",
+          "solution": "Step 1: Identify conflicting pairs:\\n- R1(X) and W2(X): R1(X) precedes W2(X) -> Edge T1 -> T2.\\n- W2(X) and W1(X): W2(X) precedes W1(X) -> Edge T2 -> T1.\\nStep 2: Precedence Graph has edges T1 -> T2 AND T2 -> T1.\\nStep 3: Graph contains a cycle (T1 -> T2 -> T1)!\\nConclusion: Schedule S is NOT Conflict Serializable."
+        },
+        {
+          "question": "Schedule S on T1, T2, T3: R1(A), R2(B), W1(B), W2(A), W3(B). Find the precedence graph edges and equivalent serial order if acyclic.",
+          "solution": "Conflicting pairs:\\n- R2(B) before W1(B) -> Edge T2 -> T1.\\n- W1(B) before W3(B) -> Edge T1 -> T3.\\n- R2(B) before W3(B) -> Edge T2 -> T3.\\n- R1(A) before W2(A) -> Edge T1 -> T2.\\nEdges: T2 -> T1 AND T1 -> T2 (Cycle T1 <-> T2)!\\nConclusion: Graph has a cycle, so S is NOT Conflict Serializable."
+        }
+      ],
+      "traps": [
+        "Drawing edges for $R_1(X)$ and $R_2(X)$. Two READ operations on the same item DO NOT CONFLICT! Never draw an edge for Read-Read.",
+        "Assuming a schedule with a cycle in precedence graph CANNOT be View Serializable. If blind writes exist ($W(X)$ without prior $R(X)$), it MIGHT be View Serializable."
+      ],
+      "takeaways": [
+        "Conflicting operations: same item $X$, different transactions, at least ONE Write.",
+        "Read-Read operations never conflict.",
+        "A schedule is Conflict Serializable iff its Precedence Graph is ACYCLIC.",
+        "Topological sorting of an acyclic precedence graph yields the equivalent serial order.",
+        "View serializability testing is NP-Complete; conflict serializability is $O(V+E)$."
+      ],
+      "quickRecall": [
+        {
+          "question": "Do two READ operations on the same data item by different transactions conflict?",
+          "answer": "No. Read-Read operations do not conflict."
+        },
+        {
+          "question": "What graph condition guarantees conflict serializability?",
+          "answer": "The Precedence Graph must be ACYCLIC (contain no directed cycles)."
+        },
+        {
+          "question": "If a schedule is View Serializable but NOT Conflict Serializable, what MUST it contain?",
+          "answer": "At least one Blind Write (Write operation without a preceding Read on the same item)."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Silberschatz Ch. 14 & Eswaran et al. (1976) Serializability Theory",
+          "url": "https://gate2026.iitg.ac.in",
+          "usedFor": [
+            "Precedence Graph Rules",
+            "Conflict Equivalence",
+            "View Serializability"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 10,
+      "title": "Concurrency Control: Two-Phase Locking (2PL) and Timestamp Ordering",
+      "oneLine": "Locking protocols (Basic, Strict, Rigorous 2PL) and Timestamp Ordering (TO) algorithms to enforce serializable concurrent executions.",
+      "whyItMatters": "2PL phase progression, Strict 2PL cascading abort prevention, and Timestamp Ordering validation rules ($TS(T) < W\\_TS(X)$) are heavily evaluated exam topics.",
+      "understandSimply": [
+        "2PL is like holding a pass in a relay race: Phase 1 (Growing) you acquire locks; Phase 2 (Shrinking) you release locks. Once you release ONE lock, you can NEVER acquire any more locks!",
+        "Shared Lock (S): Read-only (many can hold). Exclusive Lock (X): Read & Write (only one can hold).",
+        "Strict 2PL: Holds all Exclusive locks until COMMIT to prevent dirty reads and cascading rollbacks.",
+        "Timestamp Ordering: Gives every transaction a timestamp clock ticket upon entry. Older transactions always get priority over younger ones!"
+      ],
+      "technicalExplanation": [
+        "Concurrency Control mechanisms guarantee Isolation and Conflict Serializability dynamically.",
+        "Lock Types: Shared Lock $S(X)$ (for reading) and Exclusive Lock $X(X)$ (for writing). Lock compatibility: $S-S$ compatible; $S-X, X-S, X-X$ incompatible.",
+        "Two-Phase Locking (2PL) Protocol Rules:",
+        "1. Growing Phase: Transaction may acquire locks, but CANNOT release any locks.",
+        "2. Lock Point: Moment when transaction acquires its final lock.",
+        "3. Shrinking Phase: Transaction may release locks, but CANNOT acquire any new locks.",
+        "2PL Variants:",
+        "- Basic 2PL: Guarantees Conflict Serializability, but allows Deadlocks and Cascading Aborts.",
+        "- Strict 2PL: Basic 2PL + All EXCLUSIVE locks must be held until COMMIT/ABORT. Prevents cascading aborts!",
+        "- Rigorous 2PL: Basic 2PL + ALL locks (Shared AND Exclusive) held until COMMIT/ABORT.",
+        "Timestamp Ordering (TO) Protocol:",
+        "- Each $T_i$ assigned unique timestamp $TS(T_i)$.",
+        "- For Read $R_i(X)$: If $TS(T_i) < W\\_TS(X)$, roll back $T_i$. Else execute and update $R\\_TS(X) = \\max(R\\_TS(X), TS(T_i))$.",
+        "- For Write $W_i(X)$: If $TS(T_i) < R\\_TS(X)$ or $TS(T_i) < W\\_TS(X)$, roll back $T_i$. Else execute and update $W\\_TS(X) = TS(T_i)$."
+      ],
+      "definitions": [
+        {
+          "term": "Two-Phase Locking (2PL)",
+          "definition": "A concurrency control protocol requiring transactions to acquire all locks in a growing phase before releasing any locks in a shrinking phase."
+        },
+        {
+          "term": "Cascading Abort (Cascading Rollback)",
+          "definition": "A phenomenon where the failure of one transaction causes a chain reaction of aborts in other transactions that read its uncommitted writes."
+        },
+        {
+          "term": "Strict 2PL",
+          "definition": "A variant of 2PL requiring all exclusive locks to be retained until the transaction commits or aborts, ensuring cascadeless schedules."
+        }
+      ],
+      "steps": [
+        {
+          "title": "Acquire Locks (Growing Phase)",
+          "description": "Request S(X) or X(X) locks as needed for operations; no locks released yet."
+        },
+        {
+          "title": "Reach Lock Point",
+          "description": "Acquire last needed lock. Transition to Shrinking Phase."
+        },
+        {
+          "title": "Release Locks / Commit",
+          "description": "Release locks (or hold X-locks until COMMIT under Strict 2PL)."
+        }
+      ],
+      "formulasAndMethods": [
+        "Timestamp Ordering Read/Write Validation Rules:",
+        "When Ti attempts Read(X):",
+        "- If TS(Ti) < W_TS(X) -> ROLLBACK Ti (Younger transaction already wrote X!).",
+        "- Else -> ALLOW Read, set R_TS(X) = max(R_TS(X), TS(Ti)).",
+        "When Ti attempts Write(X):",
+        "- If TS(Ti) < R_TS(X) -> ROLLBACK Ti (Younger transaction already read X!).",
+        "- If TS(Ti) < W_TS(X) -> ROLLBACK Ti (Younger transaction already wrote X!).",
+        "- Else -> ALLOW Write, set W_TS(X) = TS(Ti)."
+      ],
+      "comparisons": [
+        {
+          "title": "Basic 2PL vs Strict 2PL vs Timestamp Ordering",
+          "columns": [
+            "Feature",
+            "Basic 2PL",
+            "Strict 2PL",
+            "Timestamp Ordering"
+          ],
+          "rows": [
+            [
+              "Conflict Serializability",
+              "Guaranteed",
+              "Guaranteed",
+              "Guaranteed"
+            ],
+            [
+              "Deadlock Possible?",
+              "YES (Can deadlock)",
+              "YES (Can deadlock)",
+              "NO (Deadlock-Free!)"
+            ],
+            [
+              "Cascading Aborts?",
+              "YES (Allows cascading aborts)",
+              "NO (Strictly Cascadeless)",
+              "Allows cascading aborts (unless modified)"
+            ],
+            [
+              "Lock Release Time",
+              "Shrinking phase",
+              "Exclusive locks held till COMMIT",
+              "No locks used (Timestamp checks)"
+            ]
+          ]
+        }
+      ],
+      "solvedExamples": [
+        {
+          "question": "Transaction T1 acquires Lock-S(A), Lock-X(B), unlocks S(A), acquires Lock-S(C), and unlocks X(B), S(C). Does T1 follow 2PL?",
+          "solution": "Trace lock operations:\\n1. Lock-S(A) -> Growing\\n2. Lock-X(B) -> Growing\\n3. Unlock S(A) -> SHRINKING PHASE HAS STARTED!\\n4. Lock-S(C) -> ERROR! Lock acquired AFTER an unlock operation!\\nT1 VIOLATES 2PL because it acquired Lock-S(C) during the shrinking phase."
+        },
+        {
+          "question": "In Timestamp Ordering, T1 (TS=10) attempts W(X). Current R_TS(X) = 15, W_TS(X) = 8. Will T1 succeed or abort?",
+          "solution": "Compare TS(T1) with R_TS(X):\\nTS(T1) = 10 < R_TS(X) = 15.\\nThis means a younger transaction T2 (TS=15) has ALREADY READ item X assuming its old value.\\nAllowing T1 to write X now would invalidate T2's read.\\nDecision: T1 MUST BE ABORTED AND RESTARTED with a new timestamp."
+        }
+      ],
+      "traps": [
+        "Assuming 2PL PREVENTS DEADLOCKS. Basic 2PL and Strict 2PL BOTH allow deadlocks to occur!",
+        "Confusing Shared and Exclusive lock compatibility. Shared-Shared IS compatible; Shared-Exclusive is NOT."
+      ],
+      "takeaways": [
+        "2PL guarantees Conflict Serializability, but DOES NOT prevent deadlocks.",
+        "Basic 2PL allows cascading aborts; Strict 2PL prevents cascading aborts by holding X-locks till COMMIT.",
+        "Timestamp Ordering (TO) guarantees conflict serializability and is DEADLOCK-FREE.",
+        "Thomas Write Rule ignores obsolete writes ($TS(T_i) < W\\_TS(X)$) instead of aborting the transaction.",
+        "Lock Point is the instant when a transaction holds its maximum set of locks."
+      ],
+      "quickRecall": [
+        {
+          "question": "Does 2PL protocol prevent deadlocks from occurring?",
+          "answer": "No. 2PL guarantees serializability, but deadlocks can still occur."
+        },
+        {
+          "question": "Which 2PL variant holds all Exclusive locks until transaction commit to prevent cascading aborts?",
+          "answer": "Strict 2PL."
+        },
+        {
+          "question": "Is the Timestamp Ordering protocol susceptible to deadlocks?",
+          "answer": "No. Timestamp Ordering is inherently deadlock-free."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Silberschatz Ch. 15 & Eswaran et al. (1976) 2PL Paper",
+          "url": "https://gate2026.iitg.ac.in",
+          "usedFor": [
+            "2PL Protocol",
+            "Strict 2PL",
+            "Timestamp Ordering Rules"
+          ]
+        }
+      ]
+    }
+  ]
+}

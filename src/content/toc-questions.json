@@ -1,0 +1,802 @@
+[
+  {
+    "id": "toc-q1",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Standard Automata Theory",
+    "sourceId": "SIPSER-TOC",
+    "sourceLocator": "Chapter 1.1, Exercise 1.4",
+    "section": "domain",
+    "subject": "Theory of Computation",
+    "topic": "Finite Automata: Deterministic (DFA), Nondeterministic (NFA), and Equivalence",
+    "difficulty": "Easy",
+    "stem": "What is the maximum theoretical number of states in a Deterministic Finite Automaton (DFA) created by converting an Nondeterministic Finite Automaton (NFA) with n states?",
+    "options": [
+      {
+        "id": "A",
+        "text": "n^2"
+      },
+      {
+        "id": "B",
+        "text": "2^n"
+      },
+      {
+        "id": "C",
+        "text": "2n"
+      },
+      {
+        "id": "D",
+        "text": "n!"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "By the Rabin-Scott Subset Construction algorithm, each state of the converted DFA corresponds to a subset of the states of the NFA. For an NFA with n states, the power set has exactly 2^n possible subsets, making 2^n the maximum theoretical state count.",
+    "verificationSources": [
+      {
+        "sourceId": "SIPSER-TOC",
+        "locator": "Chapter 1.2, Theorem 1.39"
+      }
+    ],
+    "reviewNote": "Verified against Rabin-Scott subset construction theorem."
+  },
+  {
+    "id": "toc-q2",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Finite Automata Synthesis",
+    "sourceId": "SIPSER-TOC",
+    "sourceLocator": "Chapter 1.1, State Transition Analysis",
+    "section": "domain",
+    "subject": "Theory of Computation",
+    "topic": "Finite Automata: Deterministic (DFA), Nondeterministic (NFA), and Equivalence",
+    "difficulty": "Medium",
+    "stem": "What is the minimum number of states in a DFA over alphabet Σ = {0, 1} that accepts all strings containing an odd number of 1s?",
+    "options": [
+      {
+        "id": "A",
+        "text": "1 state"
+      },
+      {
+        "id": "B",
+        "text": "2 states"
+      },
+      {
+        "id": "C",
+        "text": "3 states"
+      },
+      {
+        "id": "D",
+        "text": "4 states"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "To track whether the number of 1s seen so far is even or odd, the DFA only needs 2 states: State q0 (start state, even number of 1s, non-accepting) and State q1 (odd number of 1s, accepting). On input '0', both states remain in themselves. On input '1', q0 transitions to q1 and q1 transitions to q0.",
+    "verificationSources": [
+      {
+        "sourceId": "SIPSER-TOC",
+        "locator": "Chapter 1.1, Example 1.7"
+      }
+    ],
+    "reviewNote": "Verified state machine reduction for modulo 2 parity checking."
+  },
+  {
+    "id": "toc-q3",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Algebraic Automata Theory",
+    "sourceId": "SIPSER-TOC",
+    "sourceLocator": "Chapter 1.3, Regular Expressions",
+    "section": "domain",
+    "subject": "Theory of Computation",
+    "topic": "Regular Expressions, Regular Languages, and Arden's Theorem",
+    "difficulty": "Easy",
+    "stem": "Under Arden's Theorem, what is the unique algebraic solution for the linear equation R = Q + RP over an alphabet, provided that ε is not in the language of P?",
+    "options": [
+      {
+        "id": "A",
+        "text": "R = P* Q"
+      },
+      {
+        "id": "B",
+        "text": "R = Q P*"
+      },
+      {
+        "id": "C",
+        "text": "R = (Q + P)*"
+      },
+      {
+        "id": "D",
+        "text": "R = Q* P"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Arden's Theorem states that if P and Q are regular expressions and ε ∉ L(P), then the linear equation R = Q + RP has the unique solution R = Q P*.",
+    "verificationSources": [
+      {
+        "sourceId": "SIPSER-TOC",
+        "locator": "Chapter 1.3, State Elimination Equations"
+      }
+    ],
+    "reviewNote": "Verified Arden's theorem standard form R = QP*."
+  },
+  {
+    "id": "toc-q4",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Regular Expression Equivalences",
+    "sourceId": "SIPSER-TOC",
+    "sourceLocator": "Chapter 1.3, Identities",
+    "section": "domain",
+    "subject": "Theory of Computation",
+    "topic": "Regular Expressions, Regular Languages, and Arden's Theorem",
+    "difficulty": "Medium",
+    "stem": "Which of the following regular expressions generates the exact same language as (a + b)*?",
+    "options": [
+      {
+        "id": "A",
+        "text": "a* + b*"
+      },
+      {
+        "id": "B",
+        "text": "(a* b*)*"
+      },
+      {
+        "id": "C",
+        "text": "a* b*"
+      },
+      {
+        "id": "D",
+        "text": "(a b)*"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "(a* b*)* allows any sequence of zero or more a's followed by zero or more b's to be repeated arbitrarily many times. This covers all possible combinations of 'a' and 'b' characters in any order, which is identical to (a + b)*. Options A, C, and D miss mixed non-alternating strings.",
+    "verificationSources": [
+      {
+        "sourceId": "SIPSER-TOC",
+        "locator": "Chapter 1.3, Expression Equivalence Rules"
+      }
+    ],
+    "reviewNote": "Verified regex identity (a*b*)* == (a+b)*."
+  },
+  {
+    "id": "toc-q5",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Automata Minimization Theory",
+    "sourceId": "SIPSER-TOC",
+    "sourceLocator": "Chapter 1.4, Myhill-Nerode Theorem",
+    "section": "domain",
+    "subject": "Theory of Computation",
+    "topic": "DFA Minimization and Myhill-Nerode Theorem",
+    "difficulty": "Easy",
+    "stem": "What is the relationship between the number of equivalence classes of the Myhill-Nerode relation for a regular language L and the minimal DFA for L?",
+    "options": [
+      {
+        "id": "A",
+        "text": "The number of equivalence classes is strictly greater than the state count of the minimal DFA."
+      },
+      {
+        "id": "B",
+        "text": "The number of equivalence classes equals the exact number of states in the minimal DFA."
+      },
+      {
+        "id": "C",
+        "text": "The number of equivalence classes is 2^n where n is the state count of the minimal DFA."
+      },
+      {
+        "id": "D",
+        "text": "The number of equivalence classes depends on the choice of non-deterministic transitions."
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "The Myhill-Nerode Theorem states that a language L is regular if and only if the number of equivalence classes of the relation R_L is finite. Furthermore, the index (number of equivalence classes) of R_L is exactly equal to the number of states in the unique minimal DFA for L.",
+    "verificationSources": [
+      {
+        "sourceId": "SIPSER-TOC",
+        "locator": "Chapter 1.4, Corollary on Myhill-Nerode Theorem"
+      }
+    ],
+    "reviewNote": "Verified Myhill-Nerode index equality theorem."
+  },
+  {
+    "id": "toc-q6",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "DFA State Reduction Calculation",
+    "sourceId": "SIPSER-TOC",
+    "sourceLocator": "Chapter 1.4, Minimization Algorithm",
+    "section": "domain",
+    "subject": "Theory of Computation",
+    "topic": "DFA Minimization and Myhill-Nerode Theorem",
+    "difficulty": "Medium",
+    "stem": "A DFA has 5 reachable states: q0 (start), q1, q2, q3, q4 (final state). In the base step of the table-filling minimization algorithm, how many unordered state pairs (p, q) are initially marked as distinguishable?",
+    "options": [
+      {
+        "id": "A",
+        "text": "4 pairs"
+      },
+      {
+        "id": "B",
+        "text": "6 pairs"
+      },
+      {
+        "id": "C",
+        "text": "8 pairs"
+      },
+      {
+        "id": "D",
+        "text": "10 pairs"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The base step marks any state pair (p, q) where one state is an accepting (final) state and the other is a non-accepting state. Here, only q4 is final, while {q0, q1, q2, q3} are non-final. The pairs formed between q4 and each of the 4 non-final states are: (q0, q4), (q1, q4), (q2, q4), and (q3, q4). Exactly 4 pairs are marked in the base step.",
+    "verificationSources": [
+      {
+        "sourceId": "SIPSER-TOC",
+        "locator": "Chapter 1.4, Table-filling algorithm base condition"
+      }
+    ],
+    "reviewNote": "Verified table-filling base distinction count."
+  },
+  {
+    "id": "toc-q7",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Formal Language Classification",
+    "sourceId": "SIPSER-TOC",
+    "sourceLocator": "Chapter 1.4, Pumping Lemma bounds",
+    "section": "domain",
+    "subject": "Theory of Computation",
+    "topic": "Pumping Lemma for Regular Languages and Non-Regularity Proofs",
+    "difficulty": "Easy",
+    "stem": "In the Pumping Lemma for regular languages, if string w is decomposed into w = xyz with pumping length p, what are the mandatory constraints on the substrings xy and y?",
+    "options": [
+      {
+        "id": "A",
+        "text": "|xy| <= p and |y| >= 1"
+      },
+      {
+        "id": "B",
+        "text": "|xyz| <= p and |y| >= 0"
+      },
+      {
+        "id": "C",
+        "text": "|xy| >= p and |y| <= 1"
+      },
+      {
+        "id": "D",
+        "text": "|yz| <= p and |x| >= 1"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The Pumping Lemma for regular languages mandates three conditions for w = xyz: (1) for all i >= 0, x yⁱ z is in L, (2) |y| >= 1 (y is non-empty), and (3) |xy| <= p (the loop y occurs within the first p symbols).",
+    "verificationSources": [
+      {
+        "sourceId": "SIPSER-TOC",
+        "locator": "Chapter 1.4, Theorem 1.70 (Pumping Lemma)"
+      }
+    ],
+    "reviewNote": "Verified Pumping Lemma bounds."
+  },
+  {
+    "id": "toc-q8",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Language Regularity Analysis",
+    "sourceId": "SIPSER-TOC",
+    "sourceLocator": "Chapter 1.4, Non-regular examples",
+    "section": "domain",
+    "subject": "Theory of Computation",
+    "topic": "Pumping Lemma for Regular Languages and Non-Regularity Proofs",
+    "difficulty": "Medium",
+    "stem": "Which of the following languages over alphabet Σ = {a, b} is Regular?",
+    "options": [
+      {
+        "id": "A",
+        "text": "L = { a^n b^n | n >= 0 }"
+      },
+      {
+        "id": "B",
+        "text": "L = { w w^R | w in {a, b}* }"
+      },
+      {
+        "id": "C",
+        "text": "L = { a^n b^m | n <= 500, m >= 0 }"
+      },
+      {
+        "id": "D",
+        "text": "L = { a^{n^2} | n >= 1 }"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Option C has a bounded count of 'a's (n <= 500) followed by any number of 'b's (m >= 0). This can be easily parsed by a finite automaton with 502 states tracking the exact number of 'a's before transitioning to a 'b'-loop. Options A, B, and D require infinite tracking memory and are non-regular.",
+    "verificationSources": [
+      {
+        "sourceId": "SIPSER-TOC",
+        "locator": "Chapter 1.4, Exercises on non-regularity"
+      }
+    ],
+    "reviewNote": "Verified regularity of bounded memory languages."
+  },
+  {
+    "id": "toc-q9",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Advanced Non-regularity Proofs",
+    "sourceId": "SIPSER-TOC",
+    "sourceLocator": "Chapter 1.4, Non-regularity proofs",
+    "section": "domain",
+    "subject": "Theory of Computation",
+    "topic": "Pumping Lemma for Regular Languages and Non-Regularity Proofs",
+    "difficulty": "Hard",
+    "stem": "Suppose a student attempts to use the Pumping Lemma to show that language L is regular. Which statement accurately describes this attempt?",
+    "options": [
+      {
+        "id": "A",
+        "text": "The proof is valid because the Pumping Lemma is a necessary and sufficient condition for regular languages."
+      },
+      {
+        "id": "B",
+        "text": "The proof is invalid because the Pumping Lemma is only a necessary condition for regular languages and cannot be used to prove regularity."
+      },
+      {
+        "id": "C",
+        "text": "The proof is valid if i = 2 is successfully pumped for all strings."
+      },
+      {
+        "id": "D",
+        "text": "The proof is valid provided |xy| <= p is satisfied for all string lengths."
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "The Pumping Lemma is a NECESSARY condition for regular languages, not a sufficient condition. Some non-regular languages (e.g. L = { a^i b^j c^k | i=0 or j=k }) satisfy the pumping lemma. Therefore, satisfying the pumping lemma does NOT prove a language is regular; the lemma can only be used to disprove regularity.",
+    "verificationSources": [
+      {
+        "sourceId": "SIPSER-TOC",
+        "locator": "Chapter 1.4, Discussion on Pumping Lemma limitations"
+      }
+    ],
+    "reviewNote": "Verified logic of necessary vs sufficient condition in Pumping Lemma."
+  },
+  {
+    "id": "toc-q10",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Chomsky Normal Form Analysis",
+    "sourceId": "SIPSER-TOC",
+    "sourceLocator": "Chapter 2.1, Chomsky Normal Form",
+    "section": "domain",
+    "subject": "Theory of Computation",
+    "topic": "Context-Free Grammars (CFG), Parse Trees, and Ambiguity",
+    "difficulty": "Easy",
+    "stem": "In a Context-Free Grammar converted to Chomsky Normal Form (CNF), what are the allowed forms for all production rules (assuming S does not derive ε)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A -> BC or A -> a (where A, B, C are non-terminals and a is a terminal)"
+      },
+      {
+        "id": "B",
+        "text": "A -> aB or A -> a (where A, B are non-terminals and a is a terminal)"
+      },
+      {
+        "id": "C",
+        "text": "A -> B or A -> a (unit productions and terminal rules)"
+      },
+      {
+        "id": "D",
+        "text": "A -> BCD or A -> a"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Chomsky Normal Form restricts all production rules to either A -> BC (a non-terminal producing exactly two non-terminals) or A -> a (a non-terminal producing a single terminal symbol).",
+    "verificationSources": [
+      {
+        "sourceId": "SIPSER-TOC",
+        "locator": "Chapter 2.1, Definition 2.8 (Chomsky Normal Form)"
+      }
+    ],
+    "reviewNote": "Verified CNF definition."
+  },
+  {
+    "id": "toc-q11",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Grammar Parse Tree Derivations",
+    "sourceId": "SIPSER-TOC",
+    "sourceLocator": "Chapter 2.1, Derivations",
+    "section": "domain",
+    "subject": "Theory of Computation",
+    "topic": "Context-Free Grammars (CFG), Parse Trees, and Ambiguity",
+    "difficulty": "Medium",
+    "stem": "If a string w of length |w| = 6 is derived using a Context-Free Grammar in Chomsky Normal Form (CNF), how many total derivation steps are performed?",
+    "options": [
+      {
+        "id": "A",
+        "text": "6 steps"
+      },
+      {
+        "id": "B",
+        "text": "11 steps"
+      },
+      {
+        "id": "C",
+        "text": "12 steps"
+      },
+      {
+        "id": "D",
+        "text": "5 steps"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "For any string of length n derived from a grammar in Chomsky Normal Form, the number of derivation steps is given by the formula 2n - 1. For n = 6: Steps = 2(6) - 1 = 12 - 1 = 11 steps.",
+    "verificationSources": [
+      {
+        "sourceId": "SIPSER-TOC",
+        "locator": "Chapter 2.1, Theorem on CNF Derivation Length"
+      }
+    ],
+    "reviewNote": "Verified 2n - 1 derivation length formula."
+  },
+  {
+    "id": "toc-q12",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Grammar Ambiguity and Decidability",
+    "sourceId": "SIPSER-TOC",
+    "sourceLocator": "Chapter 2.1, Ambiguity",
+    "section": "domain",
+    "subject": "Theory of Computation",
+    "topic": "Context-Free Grammars (CFG), Parse Trees, and Ambiguity",
+    "difficulty": "Hard",
+    "stem": "Which of the following statements concerning grammar ambiguity and inherently ambiguous languages is TRUE?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Checking whether an arbitrary Context-Free Grammar is ambiguous is a decidable problem."
+      },
+      {
+        "id": "B",
+        "text": "An inherently ambiguous Context-Free Language possesses at least one unambiguous CFG."
+      },
+      {
+        "id": "C",
+        "text": "A grammar is ambiguous if and only if there exists a string with two distinct Leftmost Derivations."
+      },
+      {
+        "id": "D",
+        "text": "If a string has one LMD and one RMD, the grammar is guaranteed to be ambiguous."
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "A grammar is defined to be ambiguous if there exists at least one string in its language that has two or more distinct parse trees, which is mathematically equivalent to having two or more distinct Leftmost Derivations (LMDs). Option A is false (ambiguity is undecidable), B is false (inherently ambiguous languages have NO unambiguous CFGs), and D is false (every unambiguous grammar yields 1 LMD and 1 RMD for a string).",
+    "verificationSources": [
+      {
+        "sourceId": "SIPSER-TOC",
+        "locator": "Chapter 2.1, Definition of Ambiguity"
+      }
+    ],
+    "reviewNote": "Verified equivalence of ambiguity to multiple LMDs."
+  },
+  {
+    "id": "toc-q13",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Pushdown Automata Fundamentals",
+    "sourceId": "SIPSER-TOC",
+    "sourceLocator": "Chapter 2.2, Definition of PDA",
+    "section": "domain",
+    "subject": "Theory of Computation",
+    "topic": "Pushdown Automata (PDA) and Context-Free Languages (CFL)",
+    "difficulty": "Easy",
+    "stem": "What additional data structure distinguishes a Pushdown Automaton (PDA) from a standard Finite State Automaton (FA)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A Queue memory"
+      },
+      {
+        "id": "B",
+        "text": "A Stack memory"
+      },
+      {
+        "id": "C",
+        "text": "A Hash table"
+      },
+      {
+        "id": "D",
+        "text": "A Random access array"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "A Pushdown Automaton is a finite state machine augmented with an auxiliary infinite Stack memory operating on Last-In, First-Out (LIFO) access rules.",
+    "verificationSources": [
+      {
+        "sourceId": "SIPSER-TOC",
+        "locator": "Chapter 2.2, Formal Definition of PDA"
+      }
+    ],
+    "reviewNote": "Verified basic PDA architecture."
+  },
+  {
+    "id": "toc-q14",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Deterministic vs Nondeterministic PDA",
+    "sourceId": "SIPSER-TOC",
+    "sourceLocator": "Chapter 2.2, DPDA vs NPDA",
+    "section": "domain",
+    "subject": "Theory of Computation",
+    "topic": "Pushdown Automata (PDA) and Context-Free Languages (CFL)",
+    "difficulty": "Medium",
+    "stem": "Which of the following languages is a Deterministic Context-Free Language (DCFL) recognizable by a Deterministic PDA (DPDA)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "L = { w w^R | w in {a, b}* } (Even length palindromes without marker)"
+      },
+      {
+        "id": "B",
+        "text": "L = { w c w^R | w in {a, b}* } (Palindromes with middle marker 'c')"
+      },
+      {
+        "id": "C",
+        "text": "L = { a^n b^n c^n | n >= 1 }"
+      },
+      {
+        "id": "D",
+        "text": "L = { w | w contains equal number of 'a's, 'b's, and 'c's }"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "In L = {w c w^R}, the explicit middle marker symbol 'c' allows a DPDA to deterministically know when to stop pushing symbols and start popping symbols to verify the reverse string. In Option A ({w w^R}), there is no marker, requiring an NPDA to non-deterministically guess the midpoint. Options C and D are non-context-free.",
+    "verificationSources": [
+      {
+        "sourceId": "SIPSER-TOC",
+        "locator": "Chapter 2.2, Examples of DPDAs"
+      }
+    ],
+    "reviewNote": "Verified DPDA marker determinism requirement."
+  },
+  {
+    "id": "toc-q15",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "CFL Closure Properties",
+    "sourceId": "SIPSER-TOC",
+    "sourceLocator": "Chapter 2.3, Closure Properties",
+    "section": "domain",
+    "subject": "Theory of Computation",
+    "topic": "Pumping Lemma for CFLs and Closure Properties",
+    "difficulty": "Medium",
+    "stem": "If L1 is a Context-Free Language (CFL) and L2 is a Regular Language (REG), which of the following is GUARANTEED to be a Context-Free Language?",
+    "options": [
+      {
+        "id": "A",
+        "text": "L1 ∩ L2"
+      },
+      {
+        "id": "B",
+        "text": "L1 - L2"
+      },
+      {
+        "id": "C",
+        "text": "L1 ∪ L2"
+      },
+      {
+        "id": "D",
+        "text": "All of the above"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Context-Free Languages are closed under Union with any CFL/Regular language (L1 ∪ L2 is CFL). Furthermore, by the Cross-Class Intersection Theorem, L1 ∩ L2 (CFL ∩ Regular) is ALWAYS a CFL. Since L1 - L2 = L1 ∩ L2' and L2' is Regular, L1 - L2 is also a CFL. Thus, all of the above options are guaranteed to be Context-Free Languages.",
+    "verificationSources": [
+      {
+        "sourceId": "SIPSER-TOC",
+        "locator": "Chapter 2.3, Theorem on CFL and Regular Intersection"
+      }
+    ],
+    "reviewNote": "Verified cross-class closure theorem for CFL and Regular languages."
+  },
+  {
+    "id": "toc-q16",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "CFL Pumping Lemma Breakdown",
+    "sourceId": "SIPSER-TOC",
+    "sourceLocator": "Chapter 2.3, Pumping Lemma for CFLs",
+    "section": "domain",
+    "subject": "Theory of Computation",
+    "topic": "Pumping Lemma for CFLs and Closure Properties",
+    "difficulty": "Hard",
+    "stem": "In the Pumping Lemma for Context-Free Languages (w = u v w x y), what is the structural constraint imposed on the substring vwx?",
+    "options": [
+      {
+        "id": "A",
+        "text": "|vwx| <= p"
+      },
+      {
+        "id": "B",
+        "text": "|vwx| >= p"
+      },
+      {
+        "id": "C",
+        "text": "|uv| <= p"
+      },
+      {
+        "id": "D",
+        "text": "|xy| <= p"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The Pumping Lemma for Context-Free Languages decomposes string w into five parts w = u v w x y such that: (1) for all i >= 0, u v^i w x^i y is in L, (2) |vx| >= 1, and (3) |vwx| <= p. Constraint |vwx| <= p ensures that the two pumped substrings v and x are separated by at most p characters.",
+    "verificationSources": [
+      {
+        "sourceId": "SIPSER-TOC",
+        "locator": "Chapter 2.3, Theorem 2.34 (Pumping Lemma for CFLs)"
+      }
+    ],
+    "reviewNote": "Verified CFL Pumping Lemma distance constraint."
+  },
+  {
+    "id": "toc-q17",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Turing Machine Definitions",
+    "sourceId": "SIPSER-TOC",
+    "sourceLocator": "Chapter 3.1, Definition of Turing Machine",
+    "section": "domain",
+    "subject": "Theory of Computation",
+    "topic": "Turing Machines (TM) and Language Acceptance",
+    "difficulty": "Easy",
+    "stem": "What is the primary difference between a Recursive Language (Turing Decidable) and a Recursively Enumerable Language (Turing Recognizable)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "For a Recursive Language, the Turing Machine is guaranteed to halt on all inputs; for a Recursively Enumerable Language, it may loop forever on strings not in the language."
+      },
+      {
+        "id": "B",
+        "text": "Recursive languages are accepted by Finite Automata, while RE languages require Turing Machines."
+      },
+      {
+        "id": "C",
+        "text": "RE languages are closed under complementation, whereas Recursive languages are not."
+      },
+      {
+        "id": "D",
+        "text": "Recursive languages require non-deterministic Turing Machines."
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "A language is Recursive (Decidable) if there exists a Turing Machine that halts on EVERY input string (accepting members and rejecting non-members). A language is Recursively Enumerable (Recognizable) if its TM halts and accepts valid strings, but may loop endlessly on non-member strings.",
+    "verificationSources": [
+      {
+        "sourceId": "SIPSER-TOC",
+        "locator": "Chapter 3.1, Decidability Definitions"
+      }
+    ],
+    "reviewNote": "Verified Recursive vs RE halting guarantee."
+  },
+  {
+    "id": "toc-q18",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Turing Machine Model Equivalence",
+    "sourceId": "SIPSER-TOC",
+    "sourceLocator": "Chapter 3.2, Variants of Turing Machines",
+    "section": "domain",
+    "subject": "Theory of Computation",
+    "topic": "Turing Machines (TM) and Language Acceptance",
+    "difficulty": "Medium",
+    "stem": "How does the language recognition power of a Multitape Turing Machine compare to a standard Single-Tape Deterministic Turing Machine?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Multitape Turing Machines can recognize Context-Sensitive languages that single-tape TMs cannot."
+      },
+      {
+        "id": "B",
+        "text": "Multitape Turing Machines have the exact same language recognition power as single-tape TMs."
+      },
+      {
+        "id": "C",
+        "text": "Multitape Turing Machines can solve the Halting Problem."
+      },
+      {
+        "id": "D",
+        "text": "Single-tape TMs are strictly more powerful than Multitape TMs."
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Every Multitape Turing Machine can be simulated by an equivalent Single-Tape Turing Machine with multiple tracks. While the simulation introduces a quadratic time slowdown, the class of languages recognized by both models is identical (the Recursively Enumerable languages).",
+    "verificationSources": [
+      {
+        "sourceId": "SIPSER-TOC",
+        "locator": "Chapter 3.2, Theorem 3.13 (Multitape TM Equivalence)"
+      }
+    ],
+    "reviewNote": "Verified equivalence of multitape and single-tape TMs."
+  },
+  {
+    "id": "toc-q19",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Chomsky Hierarchy Classification",
+    "sourceId": "SIPSER-TOC",
+    "sourceLocator": "Chapter 3.1 & 5.1, Hierarchy",
+    "section": "domain",
+    "subject": "Theory of Computation",
+    "topic": "Chomsky Hierarchy of Languages",
+    "difficulty": "Medium",
+    "stem": "Which machine architecture corresponds to Type 1 (Context-Sensitive) languages in the Chomsky Hierarchy?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Finite Automaton (FA)"
+      },
+      {
+        "id": "B",
+        "text": "Pushdown Automaton (PDA)"
+      },
+      {
+        "id": "C",
+        "text": "Linear Bounded Automaton (LBA)"
+      },
+      {
+        "id": "D",
+        "text": "Unrestricted Turing Machine"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "In the Chomsky Hierarchy: Type 3 (Regular) -> Finite Automaton, Type 2 (Context-Free) -> Pushdown Automaton, Type 1 (Context-Sensitive) -> Linear Bounded Automaton (LBA), and Type 0 (Unrestricted / RE) -> Turing Machine.",
+    "verificationSources": [
+      {
+        "sourceId": "SIPSER-TOC",
+        "locator": "Chapter 5.1, Chomsky Hierarchy Machine Mapping"
+      }
+    ],
+    "reviewNote": "Verified LBA mapping to Context-Sensitive languages."
+  },
+  {
+    "id": "toc-q20",
+    "status": "approved",
+    "provenance": "original",
+    "attribution": "Rice's Theorem Application",
+    "sourceId": "SIPSER-TOC",
+    "sourceLocator": "Chapter 5.1, Rice's Theorem",
+    "section": "domain",
+    "subject": "Theory of Computation",
+    "topic": "Undecidability, Halting Problem, and Rice's Theorem",
+    "difficulty": "Hard",
+    "stem": "Which of the following decision problems concerning a Turing Machine M is DECIDABLE?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Determining whether the language accepted L(M) is empty (E_TM)."
+      },
+      {
+        "id": "B",
+        "text": "Determining whether the language accepted L(M) is regular."
+      },
+      {
+        "id": "C",
+        "text": "Determining whether Turing Machine M contains more than 15 states in its specification."
+      },
+      {
+        "id": "D",
+        "text": "Determining whether L(M) contains the string '101'."
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Rice's Theorem states that any non-trivial SEMANTIC property (a property of the language L(M) accepted by a TM) is undecidable. Options A, B, and D are all semantic properties of L(M) and are undecidable. Option C asks about the number of states in M's description—this is a SYNTACTIC property of the machine code, which can be directly counted and is therefore DECIDABLE.",
+    "verificationSources": [
+      {
+        "sourceId": "SIPSER-TOC",
+        "locator": "Chapter 5.1, Rice's Theorem and Syntactic Properties"
+      }
+    ],
+    "reviewNote": "Verified distinction between syntactic (decidable) and semantic (undecidable) TM properties under Rice's theorem."
+  }
+]
